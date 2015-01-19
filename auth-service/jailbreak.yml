@@ -1,0 +1,46 @@
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http 
+    port: 8090
+
+database:
+  driverClass: org.postgresql.Driver
+
+  # connection settings
+  user: set-by-env
+  password: set-by-env
+  url: set-by-env
+
+  properties:
+    charSet: UTF-8
+
+  maxWaitForConnection: 1s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+
+  # connection pool size
+  minSize: 8
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  # the amount of time to sleep between runs of the idle connection validation, abandoned cleaner and idle pool resizing
+  evictionInterval: 10s
+
+  # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
+  minIdleTime: 1 minute
+  
+logging:
+  level: INFO
+  
+  loggers:
+  	org.jailbreak.auth: DEBUG
+  	org.hibernate.SQL: ALL
+
+  appenders:
+    - type: console
+      threshold: INFO
+      target: stdout

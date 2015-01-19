@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1" author="kbaker">
+    	<createTable tableName="api_tokens">
+    		<column name="api_token" type="char(64)">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="user_id" type="bigint">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="expires" type="bigint">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	<createIndex tableName="api_tokens" indexName="user_id">
+    		<column name="user_id" type="bigint"/>
+    	</createIndex>
+    	<createTable tableName="users">
+    		<column name="user_id" type="bigint">
+    			<constraints primaryKey="true" nullable="false"></constraints>
+    		</column>
+    		<column name="time_created" type="bigint"></column>
+    		<column name="email" type="varchar(120)">
+    			<constraints nullable="false"></constraints>
+    		</column>
+    		<column name="user_level" type="tinyint">
+    			<constraints nullable="false"></constraints>
+    		</column>
+    		<column name="first_name" type="varchar(25)"></column>
+    		<column name="last_name" type="varchar(25)"></column>
+    		<column name="gender" type="tinyint"></column>
+    		<column name="timezone" type="tinyint"></column>
+    		<column name="locale" type="char(10)"></column>
+    		<column name="facebook_link" type="text"></column>
+    	</createTable>
+    </changeSet>
+</databaseChangeLog>
