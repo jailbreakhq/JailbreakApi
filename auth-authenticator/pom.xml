@@ -14,32 +14,27 @@
 
   <name>jailbreak-auth-authenticator</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <dropwizard.version>0.7.1</dropwizard.version>
-  </properties>
-
   <dependencies>
-  	<dependency>
-		<groupId>io.dropwizard</groupId>
-		<artifactId>dropwizard-auth</artifactId>
-		<version>${dropwizard.version}</version>
-	</dependency>
- 	<dependency>
-		<groupId>com.google.inject</groupId>
-		<artifactId>guice</artifactId>
-		<version>3.0</version>
-	</dependency>
- 	<dependency>
-		<groupId>org.jailbreak.auth</groupId>
-		<artifactId>auth-api</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
-	<dependency>
-		<groupId>org.jailbreak.auth</groupId>
-		<artifactId>auth-client</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
+    <dependency>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-auth</artifactId>
+      <version>${dropwizard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jailbreak.auth</groupId>
+      <artifactId>auth-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jailbreak.auth</groupId>
+      <artifactId>auth-client</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
 </project>
