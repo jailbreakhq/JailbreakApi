@@ -1,1 +1,1 @@
-protoc --java_out=src/ src/main/resources/representations.proto
+protoc --java_out=src/main/java src/main/resources/representations.proto
