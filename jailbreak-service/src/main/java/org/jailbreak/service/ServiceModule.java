@@ -4,12 +4,12 @@ import io.dropwizard.auth.Authenticator;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
 
+import org.jailbreak.client.FacebookClient;
+import org.jailbreak.client.base.FacebookClientImpl;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
-import org.jailbreak.service.client.FacebookClient;
-import org.jailbreak.service.client.base.FacebookClientImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.UsersManager;
