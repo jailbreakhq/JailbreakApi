@@ -10,16 +10,8 @@ public class JailbreakFactory {
     @JsonProperty
     private long startTime;
     
-    @NotNull
-    @JsonProperty
-    private long endTime;
-	
     public long getStartTime() {
     	return startTime;
     }
     
-    public long getEndTime() {
-    	return endTime;
-    }
-
 }

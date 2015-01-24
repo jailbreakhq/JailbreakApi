@@ -22,93 +22,84 @@ public final class Representations {
     long getStartTime();
 
     /**
-     * <code>optional int64 end_time = 2;</code>
-     */
-    boolean hasEndTime();
-    /**
-     * <code>optional int64 end_time = 2;</code>
-     */
-    long getEndTime();
-
-    /**
-     * <code>optional int32 amount_raised = 3;</code>
+     * <code>optional int32 amount_raised = 2;</code>
      */
     boolean hasAmountRaised();
     /**
-     * <code>optional int32 amount_raised = 3;</code>
+     * <code>optional int32 amount_raised = 2;</code>
      */
     int getAmountRaised();
 
     /**
-     * <code>optional int32 winner_team_id = 4;</code>
+     * <code>optional int32 winner_team_id = 3;</code>
      */
     boolean hasWinnerTeamId();
     /**
-     * <code>optional int32 winner_team_id = 4;</code>
+     * <code>optional int32 winner_team_id = 3;</code>
      */
     int getWinnerTeamId();
 
     /**
-     * <code>optional bool tfm_live = 5;</code>
+     * <code>optional bool tfm_live = 4;</code>
      */
     boolean hasTfmLive();
     /**
-     * <code>optional bool tfm_live = 5;</code>
+     * <code>optional bool tfm_live = 4;</code>
      */
     boolean getTfmLive();
 
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     boolean hasTeamsUrl();
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     java.lang.String getTeamsUrl();
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     com.google.protobuf.ByteString
         getTeamsUrlBytes();
 
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     boolean hasFacebookTokensUrl();
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     java.lang.String getFacebookTokensUrl();
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     com.google.protobuf.ByteString
         getFacebookTokensUrlBytes();
 
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     boolean hasAuthenticateUrl();
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     java.lang.String getAuthenticateUrl();
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     com.google.protobuf.ByteString
         getAuthenticateUrlBytes();
 
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     boolean hasUsersUrl();
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     java.lang.String getUsersUrl();
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     com.google.protobuf.ByteString
         getUsersUrlBytes();
@@ -172,45 +163,40 @@ public final class Representations {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              endTime_ = input.readInt64();
+              amountRaised_ = input.readInt32();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              amountRaised_ = input.readInt32();
+              winnerTeamId_ = input.readInt32();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              winnerTeamId_ = input.readInt32();
+              tfmLive_ = input.readBool();
               break;
             }
-            case 40: {
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000010;
-              tfmLive_ = input.readBool();
+              teamsUrl_ = bs;
               break;
             }
             case 50: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000020;
-              teamsUrl_ = bs;
+              facebookTokensUrl_ = bs;
               break;
             }
             case 58: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000040;
-              facebookTokensUrl_ = bs;
+              authenticateUrl_ = bs;
               break;
             }
             case 66: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000080;
-              authenticateUrl_ = bs;
-              break;
-            }
-            case 74: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000100;
               usersUrl_ = bs;
               break;
             }
@@ -269,76 +255,61 @@ public final class Representations {
       return startTime_;
     }
 
-    public static final int END_TIME_FIELD_NUMBER = 2;
-    private long endTime_;
+    public static final int AMOUNT_RAISED_FIELD_NUMBER = 2;
+    private int amountRaised_;
     /**
-     * <code>optional int64 end_time = 2;</code>
+     * <code>optional int32 amount_raised = 2;</code>
      */
-    public boolean hasEndTime() {
+    public boolean hasAmountRaised() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional int64 end_time = 2;</code>
-     */
-    public long getEndTime() {
-      return endTime_;
-    }
-
-    public static final int AMOUNT_RAISED_FIELD_NUMBER = 3;
-    private int amountRaised_;
-    /**
-     * <code>optional int32 amount_raised = 3;</code>
-     */
-    public boolean hasAmountRaised() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional int32 amount_raised = 3;</code>
+     * <code>optional int32 amount_raised = 2;</code>
      */
     public int getAmountRaised() {
       return amountRaised_;
     }
 
-    public static final int WINNER_TEAM_ID_FIELD_NUMBER = 4;
+    public static final int WINNER_TEAM_ID_FIELD_NUMBER = 3;
     private int winnerTeamId_;
     /**
-     * <code>optional int32 winner_team_id = 4;</code>
+     * <code>optional int32 winner_team_id = 3;</code>
      */
     public boolean hasWinnerTeamId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional int32 winner_team_id = 4;</code>
+     * <code>optional int32 winner_team_id = 3;</code>
      */
     public int getWinnerTeamId() {
       return winnerTeamId_;
     }
 
-    public static final int TFM_LIVE_FIELD_NUMBER = 5;
+    public static final int TFM_LIVE_FIELD_NUMBER = 4;
     private boolean tfmLive_;
     /**
-     * <code>optional bool tfm_live = 5;</code>
+     * <code>optional bool tfm_live = 4;</code>
      */
     public boolean hasTfmLive() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional bool tfm_live = 5;</code>
+     * <code>optional bool tfm_live = 4;</code>
      */
     public boolean getTfmLive() {
       return tfmLive_;
     }
 
-    public static final int TEAMS_URL_FIELD_NUMBER = 6;
+    public static final int TEAMS_URL_FIELD_NUMBER = 5;
     private java.lang.Object teamsUrl_;
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     public boolean hasTeamsUrl() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     public java.lang.String getTeamsUrl() {
       java.lang.Object ref = teamsUrl_;
@@ -355,7 +326,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string teams_url = 6;</code>
+     * <code>optional string teams_url = 5;</code>
      */
     public com.google.protobuf.ByteString
         getTeamsUrlBytes() {
@@ -371,16 +342,16 @@ public final class Representations {
       }
     }
 
-    public static final int FACEBOOK_TOKENS_URL_FIELD_NUMBER = 7;
+    public static final int FACEBOOK_TOKENS_URL_FIELD_NUMBER = 6;
     private java.lang.Object facebookTokensUrl_;
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     public boolean hasFacebookTokensUrl() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     public java.lang.String getFacebookTokensUrl() {
       java.lang.Object ref = facebookTokensUrl_;
@@ -397,7 +368,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string facebook_tokens_url = 7;</code>
+     * <code>optional string facebook_tokens_url = 6;</code>
      */
     public com.google.protobuf.ByteString
         getFacebookTokensUrlBytes() {
@@ -413,16 +384,16 @@ public final class Representations {
       }
     }
 
-    public static final int AUTHENTICATE_URL_FIELD_NUMBER = 8;
+    public static final int AUTHENTICATE_URL_FIELD_NUMBER = 7;
     private java.lang.Object authenticateUrl_;
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     public boolean hasAuthenticateUrl() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     public java.lang.String getAuthenticateUrl() {
       java.lang.Object ref = authenticateUrl_;
@@ -439,7 +410,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string authenticate_url = 8;</code>
+     * <code>optional string authenticate_url = 7;</code>
      */
     public com.google.protobuf.ByteString
         getAuthenticateUrlBytes() {
@@ -455,16 +426,16 @@ public final class Representations {
       }
     }
 
-    public static final int USERS_URL_FIELD_NUMBER = 9;
+    public static final int USERS_URL_FIELD_NUMBER = 8;
     private java.lang.Object usersUrl_;
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     public boolean hasUsersUrl() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     public java.lang.String getUsersUrl() {
       java.lang.Object ref = usersUrl_;
@@ -481,7 +452,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string users_url = 9;</code>
+     * <code>optional string users_url = 8;</code>
      */
     public com.google.protobuf.ByteString
         getUsersUrlBytes() {
@@ -499,7 +470,6 @@ public final class Representations {
 
     private void initFields() {
       startTime_ = 0L;
-      endTime_ = 0L;
       amountRaised_ = 0;
       winnerTeamId_ = 0;
       tfmLive_ = false;
@@ -525,28 +495,25 @@ public final class Representations {
         output.writeInt64(1, startTime_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, endTime_);
+        output.writeInt32(2, amountRaised_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, amountRaised_);
+        output.writeInt32(3, winnerTeamId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, winnerTeamId_);
+        output.writeBool(4, tfmLive_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(5, tfmLive_);
+        output.writeBytes(5, getTeamsUrlBytes());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getTeamsUrlBytes());
+        output.writeBytes(6, getFacebookTokensUrlBytes());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(7, getFacebookTokensUrlBytes());
+        output.writeBytes(7, getAuthenticateUrlBytes());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeBytes(8, getAuthenticateUrlBytes());
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBytes(9, getUsersUrlBytes());
+        output.writeBytes(8, getUsersUrlBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -563,35 +530,31 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, endTime_);
+          .computeInt32Size(2, amountRaised_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, amountRaised_);
+          .computeInt32Size(3, winnerTeamId_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, winnerTeamId_);
+          .computeBoolSize(4, tfmLive_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, tfmLive_);
+          .computeBytesSize(5, getTeamsUrlBytes());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getTeamsUrlBytes());
+          .computeBytesSize(6, getFacebookTokensUrlBytes());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, getFacebookTokensUrlBytes());
+          .computeBytesSize(7, getAuthenticateUrlBytes());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(8, getAuthenticateUrlBytes());
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, getUsersUrlBytes());
+          .computeBytesSize(8, getUsersUrlBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -712,22 +675,20 @@ public final class Representations {
         super.clear();
         startTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        endTime_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
         amountRaised_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         winnerTeamId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         tfmLive_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         teamsUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         facebookTokensUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         authenticateUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
         usersUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -763,33 +724,29 @@ public final class Representations {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.endTime_ = endTime_;
+        result.amountRaised_ = amountRaised_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.amountRaised_ = amountRaised_;
+        result.winnerTeamId_ = winnerTeamId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.winnerTeamId_ = winnerTeamId_;
+        result.tfmLive_ = tfmLive_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.tfmLive_ = tfmLive_;
+        result.teamsUrl_ = teamsUrl_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.teamsUrl_ = teamsUrl_;
+        result.facebookTokensUrl_ = facebookTokensUrl_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.facebookTokensUrl_ = facebookTokensUrl_;
+        result.authenticateUrl_ = authenticateUrl_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
-        }
-        result.authenticateUrl_ = authenticateUrl_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
         }
         result.usersUrl_ = usersUrl_;
         result.bitField0_ = to_bitField0_;
@@ -811,9 +768,6 @@ public final class Representations {
         if (other.hasStartTime()) {
           setStartTime(other.getStartTime());
         }
-        if (other.hasEndTime()) {
-          setEndTime(other.getEndTime());
-        }
         if (other.hasAmountRaised()) {
           setAmountRaised(other.getAmountRaised());
         }
@@ -824,22 +778,22 @@ public final class Representations {
           setTfmLive(other.getTfmLive());
         }
         if (other.hasTeamsUrl()) {
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000010;
           teamsUrl_ = other.teamsUrl_;
           onChanged();
         }
         if (other.hasFacebookTokensUrl()) {
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000020;
           facebookTokensUrl_ = other.facebookTokensUrl_;
           onChanged();
         }
         if (other.hasAuthenticateUrl()) {
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000040;
           authenticateUrl_ = other.authenticateUrl_;
           onChanged();
         }
         if (other.hasUsersUrl()) {
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00000080;
           usersUrl_ = other.usersUrl_;
           onChanged();
         }
@@ -902,65 +856,33 @@ public final class Representations {
         return this;
       }
 
-      private long endTime_ ;
+      private int amountRaised_ ;
       /**
-       * <code>optional int64 end_time = 2;</code>
+       * <code>optional int32 amount_raised = 2;</code>
        */
-      public boolean hasEndTime() {
+      public boolean hasAmountRaised() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional int64 end_time = 2;</code>
-       */
-      public long getEndTime() {
-        return endTime_;
-      }
-      /**
-       * <code>optional int64 end_time = 2;</code>
-       */
-      public Builder setEndTime(long value) {
-        bitField0_ |= 0x00000002;
-        endTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 end_time = 2;</code>
-       */
-      public Builder clearEndTime() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        endTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int amountRaised_ ;
-      /**
-       * <code>optional int32 amount_raised = 3;</code>
-       */
-      public boolean hasAmountRaised() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional int32 amount_raised = 3;</code>
+       * <code>optional int32 amount_raised = 2;</code>
        */
       public int getAmountRaised() {
         return amountRaised_;
       }
       /**
-       * <code>optional int32 amount_raised = 3;</code>
+       * <code>optional int32 amount_raised = 2;</code>
        */
       public Builder setAmountRaised(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         amountRaised_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 amount_raised = 3;</code>
+       * <code>optional int32 amount_raised = 2;</code>
        */
       public Builder clearAmountRaised() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         amountRaised_ = 0;
         onChanged();
         return this;
@@ -968,31 +890,31 @@ public final class Representations {
 
       private int winnerTeamId_ ;
       /**
-       * <code>optional int32 winner_team_id = 4;</code>
+       * <code>optional int32 winner_team_id = 3;</code>
        */
       public boolean hasWinnerTeamId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional int32 winner_team_id = 4;</code>
+       * <code>optional int32 winner_team_id = 3;</code>
        */
       public int getWinnerTeamId() {
         return winnerTeamId_;
       }
       /**
-       * <code>optional int32 winner_team_id = 4;</code>
+       * <code>optional int32 winner_team_id = 3;</code>
        */
       public Builder setWinnerTeamId(int value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         winnerTeamId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 winner_team_id = 4;</code>
+       * <code>optional int32 winner_team_id = 3;</code>
        */
       public Builder clearWinnerTeamId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         winnerTeamId_ = 0;
         onChanged();
         return this;
@@ -1000,31 +922,31 @@ public final class Representations {
 
       private boolean tfmLive_ ;
       /**
-       * <code>optional bool tfm_live = 5;</code>
+       * <code>optional bool tfm_live = 4;</code>
        */
       public boolean hasTfmLive() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional bool tfm_live = 5;</code>
+       * <code>optional bool tfm_live = 4;</code>
        */
       public boolean getTfmLive() {
         return tfmLive_;
       }
       /**
-       * <code>optional bool tfm_live = 5;</code>
+       * <code>optional bool tfm_live = 4;</code>
        */
       public Builder setTfmLive(boolean value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         tfmLive_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool tfm_live = 5;</code>
+       * <code>optional bool tfm_live = 4;</code>
        */
       public Builder clearTfmLive() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         tfmLive_ = false;
         onChanged();
         return this;
@@ -1032,13 +954,13 @@ public final class Representations {
 
       private java.lang.Object teamsUrl_ = "";
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public boolean hasTeamsUrl() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public java.lang.String getTeamsUrl() {
         java.lang.Object ref = teamsUrl_;
@@ -1055,7 +977,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public com.google.protobuf.ByteString
           getTeamsUrlBytes() {
@@ -1071,36 +993,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public Builder setTeamsUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000010;
         teamsUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public Builder clearTeamsUrl() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         teamsUrl_ = getDefaultInstance().getTeamsUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string teams_url = 6;</code>
+       * <code>optional string teams_url = 5;</code>
        */
       public Builder setTeamsUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000010;
         teamsUrl_ = value;
         onChanged();
         return this;
@@ -1108,13 +1030,13 @@ public final class Representations {
 
       private java.lang.Object facebookTokensUrl_ = "";
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public boolean hasFacebookTokensUrl() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public java.lang.String getFacebookTokensUrl() {
         java.lang.Object ref = facebookTokensUrl_;
@@ -1131,7 +1053,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public com.google.protobuf.ByteString
           getFacebookTokensUrlBytes() {
@@ -1147,36 +1069,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public Builder setFacebookTokensUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000020;
         facebookTokensUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public Builder clearFacebookTokensUrl() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         facebookTokensUrl_ = getDefaultInstance().getFacebookTokensUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string facebook_tokens_url = 7;</code>
+       * <code>optional string facebook_tokens_url = 6;</code>
        */
       public Builder setFacebookTokensUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000020;
         facebookTokensUrl_ = value;
         onChanged();
         return this;
@@ -1184,13 +1106,13 @@ public final class Representations {
 
       private java.lang.Object authenticateUrl_ = "";
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public boolean hasAuthenticateUrl() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public java.lang.String getAuthenticateUrl() {
         java.lang.Object ref = authenticateUrl_;
@@ -1207,7 +1129,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public com.google.protobuf.ByteString
           getAuthenticateUrlBytes() {
@@ -1223,36 +1145,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public Builder setAuthenticateUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000080;
+  bitField0_ |= 0x00000040;
         authenticateUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public Builder clearAuthenticateUrl() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000040);
         authenticateUrl_ = getDefaultInstance().getAuthenticateUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string authenticate_url = 8;</code>
+       * <code>optional string authenticate_url = 7;</code>
        */
       public Builder setAuthenticateUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000080;
+  bitField0_ |= 0x00000040;
         authenticateUrl_ = value;
         onChanged();
         return this;
@@ -1260,13 +1182,13 @@ public final class Representations {
 
       private java.lang.Object usersUrl_ = "";
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public boolean hasUsersUrl() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public java.lang.String getUsersUrl() {
         java.lang.Object ref = usersUrl_;
@@ -1283,7 +1205,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public com.google.protobuf.ByteString
           getUsersUrlBytes() {
@@ -1299,36 +1221,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public Builder setUsersUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000100;
+  bitField0_ |= 0x00000080;
         usersUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public Builder clearUsersUrl() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000080);
         usersUrl_ = getDefaultInstance().getUsersUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string users_url = 9;</code>
+       * <code>optional string users_url = 8;</code>
        */
       public Builder setUsersUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000100;
+  bitField0_ |= 0x00000080;
         usersUrl_ = value;
         onChanged();
         return this;
@@ -7213,38 +7135,38 @@ public final class Representations {
   static {
     java.lang.String[] descriptorData = {
       "\n(src/main/resources/representations.pro" +
-      "to\022!org.jailbreak.api.representations\"\326\001" +
-      "\n\020JailbreakService\022\022\n\nstart_time\030\001 \001(\003\022\020" +
-      "\n\010end_time\030\002 \001(\003\022\025\n\ramount_raised\030\003 \001(\005\022" +
-      "\026\n\016winner_team_id\030\004 \001(\005\022\020\n\010tfm_live\030\005 \001(" +
-      "\010\022\021\n\tteams_url\030\006 \001(\t\022\033\n\023facebook_tokens_" +
-      "url\030\007 \001(\t\022\030\n\020authenticate_url\030\010 \001(\t\022\021\n\tu" +
-      "sers_url\030\t \001(\t\"\266\002\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013t" +
-      "eam_number\030\002 \001(\005\022\021\n\tteam_name\030\003 \001(\t\022\r\n\005n" +
-      "ames\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t\022\020\n\010tag_line\030\006",
-      " \001(\t\022\021\n\tstart_lat\030\007 \001(\001\022\021\n\tstart_lon\030\010 \001" +
-      "(\001\022\023\n\013current_lat\030\t \001(\001\022\023\n\013current_lon\030\n" +
-      " \001(\001\022F\n\nuniversity\030\013 \001(\01622.org.jailbreak" +
-      ".api.representations.Team.University\"1\n\n" +
-      "University\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n" +
-      "\004NUIG\020\003\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010locati" +
-      "on\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n" +
-      "\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(" +
-      "\005\":\n\021FacebookAuthToken\022\024\n\014access_token\030\001" +
-      " \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi",
-      "_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expires" +
-      "\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time" +
-      "_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621.org" +
-      ".jailbreak.api.representations.User.User" +
-      "Level\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t" +
-      "\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..or" +
-      "g.jailbreak.api.representations.User.Gen" +
-      "der\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n" +
-      "\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_url\030\013" +
-      " \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPER",
-      "ADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMA" +
-      "L\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005O" +
-      "THER\020\002B\021B\017Representations"
+      "to\022!org.jailbreak.api.representations\"\304\001" +
+      "\n\020JailbreakService\022\022\n\nstart_time\030\001 \001(\003\022\025" +
+      "\n\ramount_raised\030\002 \001(\005\022\026\n\016winner_team_id\030" +
+      "\003 \001(\005\022\020\n\010tfm_live\030\004 \001(\010\022\021\n\tteams_url\030\005 \001" +
+      "(\t\022\033\n\023facebook_tokens_url\030\006 \001(\t\022\030\n\020authe" +
+      "nticate_url\030\007 \001(\t\022\021\n\tusers_url\030\010 \001(\t\"\266\002\n" +
+      "\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013team_number\030\002 \001(\005\022\021" +
+      "\n\tteam_name\030\003 \001(\t\022\r\n\005names\030\004 \001(\t\022\016\n\006avat" +
+      "ar\030\005 \001(\t\022\020\n\010tag_line\030\006 \001(\t\022\021\n\tstart_lat\030",
+      "\007 \001(\001\022\021\n\tstart_lon\030\010 \001(\001\022\023\n\013current_lat\030" +
+      "\t \001(\001\022\023\n\013current_lon\030\n \001(\001\022F\n\nuniversity" +
+      "\030\013 \001(\01622.org.jailbreak.api.representatio" +
+      "ns.Team.University\"1\n\nUniversity\022\007\n\003TCD\020" +
+      "\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003\"p\n\007Checkin" +
+      "\022\n\n\002id\030\001 \001(\005\022\020\n\010location\030\002 \001(\t\022\016\n\006status" +
+      "\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003lon\030\005 \001(\001\022\014\n\004time" +
+      "\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005\":\n\021FacebookAuthT" +
+      "oken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_id\030\002 " +
+      "\001(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007us",
+      "er_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n" +
+      "\007user_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\n" +
+      "user_level\030\003 \001(\01621.org.jailbreak.api.rep" +
+      "resentations.User.UserLevel\022\r\n\005email\030\004 \001" +
+      "(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(" +
+      "\t\022>\n\006gender\030\007 \001(\0162..org.jailbreak.api.re" +
+      "presentations.User.Gender\022\020\n\010timezone\030\010 " +
+      "\001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001" +
+      "(\t\022\026\n\016api_tokens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t" +
+      "\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001",
+      "\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004M" +
+      "ALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Represen" +
+      "tations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7263,7 +7185,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_JailbreakService_descriptor,
-        new java.lang.String[] { "StartTime", "EndTime", "AmountRaised", "WinnerTeamId", "TfmLive", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
+        new java.lang.String[] { "StartTime", "AmountRaised", "WinnerTeamId", "TfmLive", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
     internal_static_org_jailbreak_api_representations_Team_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new

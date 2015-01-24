@@ -43,12 +43,6 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	@Named("jailbreak.endTime")
-	public long provideEndTime(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getEndTime();
-	}
-	
-	@Provides
 	private DBI getDatabaseConnection(ServiceConfiguration config, Environment env) throws ClassNotFoundException {
 		if (this.dbi == null) {
 			final DBIFactory factory = new DBIFactory();

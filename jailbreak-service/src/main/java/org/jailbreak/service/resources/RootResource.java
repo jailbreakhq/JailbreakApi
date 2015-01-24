@@ -18,13 +18,10 @@ import com.google.inject.name.Named;
 public class RootResource {
 	
 	private final long startTime;
-	private final long endTime;
 	
 	@Inject
-	public RootResource(@Named("jailbreak.startTime") long startTime,
-						@Named("jailbreak.endTime") long endTime) {
+	public RootResource(@Named("jailbreak.startTime") long startTime) {
 		this.startTime = startTime;
-		this.endTime = endTime;
 	}
 	
 	@GET
@@ -38,7 +35,6 @@ public class RootResource {
 		
         return JailbreakService.newBuilder()
     		.setStartTime(startTime)
-    		.setEndTime(endTime)
         	.setTeamsUrl(path + Paths.TEAMS_PATH)
     		.setUsersUrl(path + Paths.USERS_PATH)
     		.setAuthenticateUrl(path + Paths.AUTHENTICATE_PATH)

@@ -4,14 +4,13 @@ option java_outer_classname = "Representations";
 
 message JailbreakService {
 	optional int64 start_time = 1;
-	optional int64 end_time = 2;
-	optional int32 amount_raised = 3;
-	optional int32 winner_team_id = 4;
-	optional bool tfm_live = 5;
-	optional string teams_url = 6;
-	optional string facebook_tokens_url = 7;
-	optional string authenticate_url = 8;
-	optional string users_url = 9;
+	optional int32 amount_raised = 2;
+	optional int32 winner_team_id = 3;
+	optional bool tfm_live = 4;
+	optional string teams_url = 5;
+	optional string facebook_tokens_url = 6;
+	optional string authenticate_url = 7;
+	optional string users_url = 8;
 }
 
 message Team {
