@@ -9,8 +9,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.jailbreak.api.representations.Representations.ApiToken;
 import org.jailbreak.api.representations.Representations.FacebookAuthToken;
-import org.jailbreak.auth.errors.AuthenticationFailedException;
 import org.jailbreak.service.core.ApiTokensManager;
+import org.jailbreak.service.errors.auth.AuthenticationFailedException;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

@@ -1,4 +1,4 @@
-package org.jailbreak.auth.errors;
+package org.jailbreak.service.errors.auth;
 
 public class ApiDocs {
 	

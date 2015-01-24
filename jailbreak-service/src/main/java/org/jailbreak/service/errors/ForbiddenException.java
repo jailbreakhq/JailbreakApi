@@ -1,4 +1,4 @@
-package org.jailbreak.errors.common;
+package org.jailbreak.service.errors;
 
 @SuppressWarnings("serial")
 public class ForbiddenException extends AppException {

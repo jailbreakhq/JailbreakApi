@@ -1,4 +1,4 @@
-package org.jailbreak.errors.common;
+package org.jailbreak.service.errors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

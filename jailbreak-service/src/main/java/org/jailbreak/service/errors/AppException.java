@@ -1,4 +1,4 @@
-package org.jailbreak.errors.common;
+package org.jailbreak.service.errors;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;

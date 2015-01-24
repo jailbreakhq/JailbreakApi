@@ -1,6 +1,6 @@
-package org.jailbreak.auth.errors;
+package org.jailbreak.service.errors.auth;
 
-import org.jailbreak.errors.common.AppException;
+import org.jailbreak.service.errors.AppException;
 
 @SuppressWarnings("serial")
 public class ApiTokenExpiredException extends AppException {

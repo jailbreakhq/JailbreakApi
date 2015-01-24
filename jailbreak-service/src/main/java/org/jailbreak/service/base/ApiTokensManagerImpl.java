@@ -3,11 +3,11 @@ package org.jailbreak.service.base;
 import org.jailbreak.api.representations.Representations.ApiToken;
 import org.jailbreak.api.representations.Representations.FacebookAuthToken;
 import org.jailbreak.api.representations.Representations.User;
-import org.jailbreak.auth.errors.ApiTokenExpiredException;
 import org.jailbreak.client.FacebookClient;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
+import org.jailbreak.service.errors.auth.ApiTokenExpiredException;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

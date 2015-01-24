@@ -13,9 +13,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
-import org.jailbreak.auth.errors.ApiDocs;
-import org.jailbreak.errors.common.ForbiddenException;
 import org.jailbreak.service.core.UsersManager;
+import org.jailbreak.service.errors.ForbiddenException;
+import org.jailbreak.service.errors.auth.ApiDocs;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
