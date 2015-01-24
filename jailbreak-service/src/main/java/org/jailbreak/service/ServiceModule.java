@@ -14,11 +14,14 @@ import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
+import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.skife.jdbi.v2.DBI;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.name.Named;
 
 public class ServiceModule extends AbstractModule {
 	
@@ -31,6 +34,18 @@ public class ServiceModule extends AbstractModule {
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
 		bind(FacebookClient.class).to(FacebookClientImpl.class);
 		bind(Authenticator.class).to(ApiTokenAuthenticator.class);
+	}
+	
+	@Provides
+	@Named("jailbreak.startTime")
+	public long provideStartTime(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getStartTime();
+	}
+	
+	@Provides
+	@Named("jailbreak.endTime")
+	public long provideEndTime(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getEndTime();
 	}
 	
 	@Provides
@@ -50,6 +65,16 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public ApiTokensDAO provideApiTokensDAO(DBI jdbi) {
         return jdbi.onDemand(ApiTokensDAO.class);
+	}
+	
+	@Provides
+	public TeamsDAO provideTeamsDAO(DBI jdbi) {
+        return dbi.onDemand(TeamsDAO.class);
+	}
+	
+	@Provides
+	public CheckinsDAO provideCheckinsDAO(DBI jdbi) {
+        return jdbi.onDemand(CheckinsDAO.class);
 	}
 
 }

@@ -8,6 +8,7 @@ import io.dropwizard.db.DataSourceFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.jailbreak.service.config.JailbreakFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,12 +16,26 @@ public class ServiceConfiguration extends Configuration {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ServiceConfiguration.class);
 	
+	// Jailbreak Competition Settings
+	@Valid
+	@NotNull
+	private JailbreakFactory jailbreakSettings = new JailbreakFactory();
+	
+    @JsonProperty("jailbreak")
+    public JailbreakFactory getJailbreakSettings() {
+    	return this.jailbreakSettings;
+    }
+    
+    @JsonProperty("jailbreak")
+    public void setJailbreakSettings(JailbreakFactory factory) {
+    	this.jailbreakSettings = factory;
+    }
+	
     // Database Settings
     @Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();
 	
-    
     @JsonProperty("database")
     public DataSourceFactory getDataSourceFactory() {
     	LOG.info("Dropwizard dummy DB URL will be overridden by environment variable DATABASE_URL");

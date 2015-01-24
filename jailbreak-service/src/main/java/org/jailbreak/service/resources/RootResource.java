@@ -7,14 +7,28 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
-import org.jailbreak.api.representations.Representations.AuthService;
+import org.jailbreak.api.representations.Representations.JailbreakService;
+
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 
 @Path("/")
 @Produces({MediaType.APPLICATION_JSON})
 public class RootResource {
 	
+	private final long startTime;
+	private final long endTime;
+	
+	@Inject
+	public RootResource(@Named("jailbreak.startTime") long startTime,
+						@Named("jailbreak.endTime") long endTime) {
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	@GET
-	public AuthService getJailbreakInfo(@Context UriInfo uriInfo) {
+	public JailbreakService getJailbreakInfo(@Context UriInfo uriInfo) {
 		String path = uriInfo.getBaseUri().toString();
 		
 		// remove possible trailing slash
@@ -22,7 +36,10 @@ public class RootResource {
 		    path = path.substring(0, path.length() - 1);
 		}
 		
-        return AuthService.newBuilder()
+        return JailbreakService.newBuilder()
+    		.setStartTime(startTime)
+    		.setEndTime(endTime)
+        	.setTeamsUrl(path + Paths.TEAMS_PATH)
     		.setUsersUrl(path + Paths.USERS_PATH)
     		.setAuthenticateUrl(path + Paths.AUTHENTICATE_PATH)
     		.setFacebookTokensUrl(path + Paths.FACEBOOK_TOKENS_PATH)

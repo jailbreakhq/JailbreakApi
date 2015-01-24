@@ -2,10 +2,47 @@ package org.jailbreak.api.representations;
 
 option java_outer_classname = "Representations";
 
-message AuthService {
-	optional string facebook_tokens_url = 1;
-	optional string authenticate_url = 2;
-	optional string users_url = 3;
+message JailbreakService {
+	optional int64 start_time = 1;
+	optional int64 end_time = 2;
+	optional int32 amount_raised = 3;
+	optional int32 winner_team_id = 4;
+	optional bool tfm_live = 5;
+	optional string teams_url = 6;
+	optional string facebook_tokens_url = 7;
+	optional string authenticate_url = 8;
+	optional string users_url = 9;
+}
+
+message Team {
+	enum University {
+		TCD = 0;
+		UCD = 1;
+		UCC = 2;
+		NUIG = 3;
+	}
+	
+	optional int32 id = 1;
+	optional int32 team_number = 2;
+	optional string team_name = 3;
+	optional string names = 4;
+	optional string avatar = 5;
+	optional string tag_line = 6;
+	optional double start_lat = 7;
+	optional double start_lon = 8;
+	optional double current_lat = 9;
+	optional double current_lon = 10;
+	optional University university = 11;
+}
+
+message Checkin {
+	optional int32 id = 1;
+	optional string location = 2;
+	optional string status = 3;
+	optional double lat = 4;
+	optional double lon = 5;
+	optional int64 time = 6;
+	optional int32 team_id = 7;
 }
 
 message FacebookAuthToken {

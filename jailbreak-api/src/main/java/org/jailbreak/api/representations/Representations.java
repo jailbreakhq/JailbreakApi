@@ -8,72 +8,131 @@ public final class Representations {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface AuthServiceOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.AuthService)
+  public interface JailbreakServiceOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.JailbreakService)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional int64 start_time = 1;</code>
+     */
+    boolean hasStartTime();
+    /**
+     * <code>optional int64 start_time = 1;</code>
+     */
+    long getStartTime();
+
+    /**
+     * <code>optional int64 end_time = 2;</code>
+     */
+    boolean hasEndTime();
+    /**
+     * <code>optional int64 end_time = 2;</code>
+     */
+    long getEndTime();
+
+    /**
+     * <code>optional int32 amount_raised = 3;</code>
+     */
+    boolean hasAmountRaised();
+    /**
+     * <code>optional int32 amount_raised = 3;</code>
+     */
+    int getAmountRaised();
+
+    /**
+     * <code>optional int32 winner_team_id = 4;</code>
+     */
+    boolean hasWinnerTeamId();
+    /**
+     * <code>optional int32 winner_team_id = 4;</code>
+     */
+    int getWinnerTeamId();
+
+    /**
+     * <code>optional bool tfm_live = 5;</code>
+     */
+    boolean hasTfmLive();
+    /**
+     * <code>optional bool tfm_live = 5;</code>
+     */
+    boolean getTfmLive();
+
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    boolean hasTeamsUrl();
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    java.lang.String getTeamsUrl();
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getTeamsUrlBytes();
+
+    /**
+     * <code>optional string facebook_tokens_url = 7;</code>
      */
     boolean hasFacebookTokensUrl();
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional string facebook_tokens_url = 7;</code>
      */
     java.lang.String getFacebookTokensUrl();
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional string facebook_tokens_url = 7;</code>
      */
     com.google.protobuf.ByteString
         getFacebookTokensUrlBytes();
 
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     boolean hasAuthenticateUrl();
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     java.lang.String getAuthenticateUrl();
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     com.google.protobuf.ByteString
         getAuthenticateUrlBytes();
 
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     boolean hasUsersUrl();
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     java.lang.String getUsersUrl();
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     com.google.protobuf.ByteString
         getUsersUrlBytes();
   }
   /**
-   * Protobuf type {@code org.jailbreak.api.representations.AuthService}
+   * Protobuf type {@code org.jailbreak.api.representations.JailbreakService}
    */
-  public static final class AuthService extends
+  public static final class JailbreakService extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.AuthService)
-      AuthServiceOrBuilder {
-    // Use AuthService.newBuilder() to construct.
-    private AuthService(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.JailbreakService)
+      JailbreakServiceOrBuilder {
+    // Use JailbreakService.newBuilder() to construct.
+    private JailbreakService(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private AuthService(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private JailbreakService(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final AuthService defaultInstance;
-    public static AuthService getDefaultInstance() {
+    private static final JailbreakService defaultInstance;
+    public static JailbreakService getDefaultInstance() {
       return defaultInstance;
     }
 
-    public AuthService getDefaultInstanceForType() {
+    public JailbreakService getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -83,7 +142,7 @@ public final class Representations {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private AuthService(
+    private JailbreakService(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -106,21 +165,52 @@ public final class Representations {
               }
               break;
             }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 8: {
               bitField0_ |= 0x00000001;
+              startTime_ = input.readInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              endTime_ = input.readInt64();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              amountRaised_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              winnerTeamId_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              tfmLive_ = input.readBool();
+              break;
+            }
+            case 50: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000020;
+              teamsUrl_ = bs;
+              break;
+            }
+            case 58: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000040;
               facebookTokensUrl_ = bs;
               break;
             }
-            case 18: {
+            case 66: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000080;
               authenticateUrl_ = bs;
               break;
             }
-            case 26: {
+            case 74: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000100;
               usersUrl_ = bs;
               break;
             }
@@ -138,42 +228,159 @@ public final class Representations {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_AuthService_descriptor;
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_JailbreakService_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_AuthService_fieldAccessorTable
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.jailbreak.api.representations.Representations.AuthService.class, org.jailbreak.api.representations.Representations.AuthService.Builder.class);
+              org.jailbreak.api.representations.Representations.JailbreakService.class, org.jailbreak.api.representations.Representations.JailbreakService.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<AuthService> PARSER =
-        new com.google.protobuf.AbstractParser<AuthService>() {
-      public AuthService parsePartialFrom(
+    public static com.google.protobuf.Parser<JailbreakService> PARSER =
+        new com.google.protobuf.AbstractParser<JailbreakService>() {
+      public JailbreakService parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AuthService(input, extensionRegistry);
+        return new JailbreakService(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AuthService> getParserForType() {
+    public com.google.protobuf.Parser<JailbreakService> getParserForType() {
       return PARSER;
     }
 
     private int bitField0_;
-    public static final int FACEBOOK_TOKENS_URL_FIELD_NUMBER = 1;
-    private java.lang.Object facebookTokensUrl_;
+    public static final int START_TIME_FIELD_NUMBER = 1;
+    private long startTime_;
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional int64 start_time = 1;</code>
      */
-    public boolean hasFacebookTokensUrl() {
+    public boolean hasStartTime() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional int64 start_time = 1;</code>
+     */
+    public long getStartTime() {
+      return startTime_;
+    }
+
+    public static final int END_TIME_FIELD_NUMBER = 2;
+    private long endTime_;
+    /**
+     * <code>optional int64 end_time = 2;</code>
+     */
+    public boolean hasEndTime() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int64 end_time = 2;</code>
+     */
+    public long getEndTime() {
+      return endTime_;
+    }
+
+    public static final int AMOUNT_RAISED_FIELD_NUMBER = 3;
+    private int amountRaised_;
+    /**
+     * <code>optional int32 amount_raised = 3;</code>
+     */
+    public boolean hasAmountRaised() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 amount_raised = 3;</code>
+     */
+    public int getAmountRaised() {
+      return amountRaised_;
+    }
+
+    public static final int WINNER_TEAM_ID_FIELD_NUMBER = 4;
+    private int winnerTeamId_;
+    /**
+     * <code>optional int32 winner_team_id = 4;</code>
+     */
+    public boolean hasWinnerTeamId() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 winner_team_id = 4;</code>
+     */
+    public int getWinnerTeamId() {
+      return winnerTeamId_;
+    }
+
+    public static final int TFM_LIVE_FIELD_NUMBER = 5;
+    private boolean tfmLive_;
+    /**
+     * <code>optional bool tfm_live = 5;</code>
+     */
+    public boolean hasTfmLive() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional bool tfm_live = 5;</code>
+     */
+    public boolean getTfmLive() {
+      return tfmLive_;
+    }
+
+    public static final int TEAMS_URL_FIELD_NUMBER = 6;
+    private java.lang.Object teamsUrl_;
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    public boolean hasTeamsUrl() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    public java.lang.String getTeamsUrl() {
+      java.lang.Object ref = teamsUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          teamsUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string teams_url = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTeamsUrlBytes() {
+      java.lang.Object ref = teamsUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        teamsUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FACEBOOK_TOKENS_URL_FIELD_NUMBER = 7;
+    private java.lang.Object facebookTokensUrl_;
+    /**
+     * <code>optional string facebook_tokens_url = 7;</code>
+     */
+    public boolean hasFacebookTokensUrl() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional string facebook_tokens_url = 7;</code>
      */
     public java.lang.String getFacebookTokensUrl() {
       java.lang.Object ref = facebookTokensUrl_;
@@ -190,7 +397,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string facebook_tokens_url = 1;</code>
+     * <code>optional string facebook_tokens_url = 7;</code>
      */
     public com.google.protobuf.ByteString
         getFacebookTokensUrlBytes() {
@@ -206,16 +413,16 @@ public final class Representations {
       }
     }
 
-    public static final int AUTHENTICATE_URL_FIELD_NUMBER = 2;
+    public static final int AUTHENTICATE_URL_FIELD_NUMBER = 8;
     private java.lang.Object authenticateUrl_;
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     public boolean hasAuthenticateUrl() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     public java.lang.String getAuthenticateUrl() {
       java.lang.Object ref = authenticateUrl_;
@@ -232,7 +439,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string authenticate_url = 2;</code>
+     * <code>optional string authenticate_url = 8;</code>
      */
     public com.google.protobuf.ByteString
         getAuthenticateUrlBytes() {
@@ -248,16 +455,16 @@ public final class Representations {
       }
     }
 
-    public static final int USERS_URL_FIELD_NUMBER = 3;
+    public static final int USERS_URL_FIELD_NUMBER = 9;
     private java.lang.Object usersUrl_;
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     public boolean hasUsersUrl() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     public java.lang.String getUsersUrl() {
       java.lang.Object ref = usersUrl_;
@@ -274,7 +481,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string users_url = 3;</code>
+     * <code>optional string users_url = 9;</code>
      */
     public com.google.protobuf.ByteString
         getUsersUrlBytes() {
@@ -291,6 +498,12 @@ public final class Representations {
     }
 
     private void initFields() {
+      startTime_ = 0L;
+      endTime_ = 0L;
+      amountRaised_ = 0;
+      winnerTeamId_ = 0;
+      tfmLive_ = false;
+      teamsUrl_ = "";
       facebookTokensUrl_ = "";
       authenticateUrl_ = "";
       usersUrl_ = "";
@@ -309,13 +522,31 @@ public final class Representations {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getFacebookTokensUrlBytes());
+        output.writeInt64(1, startTime_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getAuthenticateUrlBytes());
+        output.writeInt64(2, endTime_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getUsersUrlBytes());
+        output.writeInt32(3, amountRaised_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, winnerTeamId_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBool(5, tfmLive_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getTeamsUrlBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getFacebookTokensUrlBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, getAuthenticateUrlBytes());
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeBytes(9, getUsersUrlBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -328,15 +559,39 @@ public final class Representations {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getFacebookTokensUrlBytes());
+          .computeInt64Size(1, startTime_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getAuthenticateUrlBytes());
+          .computeInt64Size(2, endTime_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getUsersUrlBytes());
+          .computeInt32Size(3, amountRaised_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, winnerTeamId_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, tfmLive_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getTeamsUrlBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getFacebookTokensUrlBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, getAuthenticateUrlBytes());
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(9, getUsersUrlBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -350,53 +605,53 @@ public final class Representations {
       return super.writeReplace();
     }
 
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(byte[] data)
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(java.io.InputStream input)
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseDelimitedFrom(java.io.InputStream input)
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseDelimitedFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.jailbreak.api.representations.Representations.AuthService parseFrom(
+    public static org.jailbreak.api.representations.Representations.JailbreakService parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -405,7 +660,7 @@ public final class Representations {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.jailbreak.api.representations.Representations.AuthService prototype) {
+    public static Builder newBuilder(org.jailbreak.api.representations.Representations.JailbreakService prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -417,25 +672,25 @@ public final class Representations {
       return builder;
     }
     /**
-     * Protobuf type {@code org.jailbreak.api.representations.AuthService}
+     * Protobuf type {@code org.jailbreak.api.representations.JailbreakService}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.AuthService)
-        org.jailbreak.api.representations.Representations.AuthServiceOrBuilder {
+        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.JailbreakService)
+        org.jailbreak.api.representations.Representations.JailbreakServiceOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_AuthService_descriptor;
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_JailbreakService_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_AuthService_fieldAccessorTable
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.jailbreak.api.representations.Representations.AuthService.class, org.jailbreak.api.representations.Representations.AuthService.Builder.class);
+                org.jailbreak.api.representations.Representations.JailbreakService.class, org.jailbreak.api.representations.Representations.JailbreakService.Builder.class);
       }
 
-      // Construct using org.jailbreak.api.representations.Representations.AuthService.newBuilder()
+      // Construct using org.jailbreak.api.representations.Representations.JailbreakService.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -455,12 +710,24 @@ public final class Representations {
 
       public Builder clear() {
         super.clear();
-        facebookTokensUrl_ = "";
+        startTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        authenticateUrl_ = "";
+        endTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        usersUrl_ = "";
+        amountRaised_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
+        winnerTeamId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        tfmLive_ = false;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        teamsUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        facebookTokensUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
+        authenticateUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
+        usersUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -470,35 +737,59 @@ public final class Representations {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_AuthService_descriptor;
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_JailbreakService_descriptor;
       }
 
-      public org.jailbreak.api.representations.Representations.AuthService getDefaultInstanceForType() {
-        return org.jailbreak.api.representations.Representations.AuthService.getDefaultInstance();
+      public org.jailbreak.api.representations.Representations.JailbreakService getDefaultInstanceForType() {
+        return org.jailbreak.api.representations.Representations.JailbreakService.getDefaultInstance();
       }
 
-      public org.jailbreak.api.representations.Representations.AuthService build() {
-        org.jailbreak.api.representations.Representations.AuthService result = buildPartial();
+      public org.jailbreak.api.representations.Representations.JailbreakService build() {
+        org.jailbreak.api.representations.Representations.JailbreakService result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.jailbreak.api.representations.Representations.AuthService buildPartial() {
-        org.jailbreak.api.representations.Representations.AuthService result = new org.jailbreak.api.representations.Representations.AuthService(this);
+      public org.jailbreak.api.representations.Representations.JailbreakService buildPartial() {
+        org.jailbreak.api.representations.Representations.JailbreakService result = new org.jailbreak.api.representations.Representations.JailbreakService(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.facebookTokensUrl_ = facebookTokensUrl_;
+        result.startTime_ = startTime_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.authenticateUrl_ = authenticateUrl_;
+        result.endTime_ = endTime_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
+        }
+        result.amountRaised_ = amountRaised_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.winnerTeamId_ = winnerTeamId_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.tfmLive_ = tfmLive_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.teamsUrl_ = teamsUrl_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.facebookTokensUrl_ = facebookTokensUrl_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.authenticateUrl_ = authenticateUrl_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
         }
         result.usersUrl_ = usersUrl_;
         result.bitField0_ = to_bitField0_;
@@ -507,28 +798,48 @@ public final class Representations {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.jailbreak.api.representations.Representations.AuthService) {
-          return mergeFrom((org.jailbreak.api.representations.Representations.AuthService)other);
+        if (other instanceof org.jailbreak.api.representations.Representations.JailbreakService) {
+          return mergeFrom((org.jailbreak.api.representations.Representations.JailbreakService)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.jailbreak.api.representations.Representations.AuthService other) {
-        if (other == org.jailbreak.api.representations.Representations.AuthService.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.jailbreak.api.representations.Representations.JailbreakService other) {
+        if (other == org.jailbreak.api.representations.Representations.JailbreakService.getDefaultInstance()) return this;
+        if (other.hasStartTime()) {
+          setStartTime(other.getStartTime());
+        }
+        if (other.hasEndTime()) {
+          setEndTime(other.getEndTime());
+        }
+        if (other.hasAmountRaised()) {
+          setAmountRaised(other.getAmountRaised());
+        }
+        if (other.hasWinnerTeamId()) {
+          setWinnerTeamId(other.getWinnerTeamId());
+        }
+        if (other.hasTfmLive()) {
+          setTfmLive(other.getTfmLive());
+        }
+        if (other.hasTeamsUrl()) {
+          bitField0_ |= 0x00000020;
+          teamsUrl_ = other.teamsUrl_;
+          onChanged();
+        }
         if (other.hasFacebookTokensUrl()) {
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000040;
           facebookTokensUrl_ = other.facebookTokensUrl_;
           onChanged();
         }
         if (other.hasAuthenticateUrl()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000080;
           authenticateUrl_ = other.authenticateUrl_;
           onChanged();
         }
         if (other.hasUsersUrl()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000100;
           usersUrl_ = other.usersUrl_;
           onChanged();
         }
@@ -544,11 +855,11 @@ public final class Representations {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.jailbreak.api.representations.Representations.AuthService parsedMessage = null;
+        org.jailbreak.api.representations.Representations.JailbreakService parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.jailbreak.api.representations.Representations.AuthService) e.getUnfinishedMessage();
+          parsedMessage = (org.jailbreak.api.representations.Representations.JailbreakService) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -559,15 +870,251 @@ public final class Representations {
       }
       private int bitField0_;
 
-      private java.lang.Object facebookTokensUrl_ = "";
+      private long startTime_ ;
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional int64 start_time = 1;</code>
        */
-      public boolean hasFacebookTokensUrl() {
+      public boolean hasStartTime() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional int64 start_time = 1;</code>
+       */
+      public long getStartTime() {
+        return startTime_;
+      }
+      /**
+       * <code>optional int64 start_time = 1;</code>
+       */
+      public Builder setStartTime(long value) {
+        bitField0_ |= 0x00000001;
+        startTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 start_time = 1;</code>
+       */
+      public Builder clearStartTime() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        startTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long endTime_ ;
+      /**
+       * <code>optional int64 end_time = 2;</code>
+       */
+      public boolean hasEndTime() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int64 end_time = 2;</code>
+       */
+      public long getEndTime() {
+        return endTime_;
+      }
+      /**
+       * <code>optional int64 end_time = 2;</code>
+       */
+      public Builder setEndTime(long value) {
+        bitField0_ |= 0x00000002;
+        endTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 end_time = 2;</code>
+       */
+      public Builder clearEndTime() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        endTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int amountRaised_ ;
+      /**
+       * <code>optional int32 amount_raised = 3;</code>
+       */
+      public boolean hasAmountRaised() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 amount_raised = 3;</code>
+       */
+      public int getAmountRaised() {
+        return amountRaised_;
+      }
+      /**
+       * <code>optional int32 amount_raised = 3;</code>
+       */
+      public Builder setAmountRaised(int value) {
+        bitField0_ |= 0x00000004;
+        amountRaised_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 amount_raised = 3;</code>
+       */
+      public Builder clearAmountRaised() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        amountRaised_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int winnerTeamId_ ;
+      /**
+       * <code>optional int32 winner_team_id = 4;</code>
+       */
+      public boolean hasWinnerTeamId() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 winner_team_id = 4;</code>
+       */
+      public int getWinnerTeamId() {
+        return winnerTeamId_;
+      }
+      /**
+       * <code>optional int32 winner_team_id = 4;</code>
+       */
+      public Builder setWinnerTeamId(int value) {
+        bitField0_ |= 0x00000008;
+        winnerTeamId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 winner_team_id = 4;</code>
+       */
+      public Builder clearWinnerTeamId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        winnerTeamId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean tfmLive_ ;
+      /**
+       * <code>optional bool tfm_live = 5;</code>
+       */
+      public boolean hasTfmLive() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bool tfm_live = 5;</code>
+       */
+      public boolean getTfmLive() {
+        return tfmLive_;
+      }
+      /**
+       * <code>optional bool tfm_live = 5;</code>
+       */
+      public Builder setTfmLive(boolean value) {
+        bitField0_ |= 0x00000010;
+        tfmLive_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool tfm_live = 5;</code>
+       */
+      public Builder clearTfmLive() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        tfmLive_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object teamsUrl_ = "";
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public boolean hasTeamsUrl() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public java.lang.String getTeamsUrl() {
+        java.lang.Object ref = teamsUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            teamsUrl_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTeamsUrlBytes() {
+        java.lang.Object ref = teamsUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          teamsUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public Builder setTeamsUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        teamsUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public Builder clearTeamsUrl() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        teamsUrl_ = getDefaultInstance().getTeamsUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string teams_url = 6;</code>
+       */
+      public Builder setTeamsUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        teamsUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object facebookTokensUrl_ = "";
+      /**
+       * <code>optional string facebook_tokens_url = 7;</code>
+       */
+      public boolean hasFacebookTokensUrl() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional string facebook_tokens_url = 7;</code>
        */
       public java.lang.String getFacebookTokensUrl() {
         java.lang.Object ref = facebookTokensUrl_;
@@ -584,7 +1131,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional string facebook_tokens_url = 7;</code>
        */
       public com.google.protobuf.ByteString
           getFacebookTokensUrlBytes() {
@@ -600,36 +1147,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional string facebook_tokens_url = 7;</code>
        */
       public Builder setFacebookTokensUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000040;
         facebookTokensUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional string facebook_tokens_url = 7;</code>
        */
       public Builder clearFacebookTokensUrl() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000040);
         facebookTokensUrl_ = getDefaultInstance().getFacebookTokensUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string facebook_tokens_url = 1;</code>
+       * <code>optional string facebook_tokens_url = 7;</code>
        */
       public Builder setFacebookTokensUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000040;
         facebookTokensUrl_ = value;
         onChanged();
         return this;
@@ -637,13 +1184,13 @@ public final class Representations {
 
       private java.lang.Object authenticateUrl_ = "";
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public boolean hasAuthenticateUrl() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public java.lang.String getAuthenticateUrl() {
         java.lang.Object ref = authenticateUrl_;
@@ -660,7 +1207,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public com.google.protobuf.ByteString
           getAuthenticateUrlBytes() {
@@ -676,36 +1223,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public Builder setAuthenticateUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000080;
         authenticateUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public Builder clearAuthenticateUrl() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000080);
         authenticateUrl_ = getDefaultInstance().getAuthenticateUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string authenticate_url = 2;</code>
+       * <code>optional string authenticate_url = 8;</code>
        */
       public Builder setAuthenticateUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000080;
         authenticateUrl_ = value;
         onChanged();
         return this;
@@ -713,13 +1260,13 @@ public final class Representations {
 
       private java.lang.Object usersUrl_ = "";
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public boolean hasUsersUrl() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public java.lang.String getUsersUrl() {
         java.lang.Object ref = usersUrl_;
@@ -736,7 +1283,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public com.google.protobuf.ByteString
           getUsersUrlBytes() {
@@ -752,50 +1299,2675 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public Builder setUsersUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000100;
         usersUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public Builder clearUsersUrl() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000100);
         usersUrl_ = getDefaultInstance().getUsersUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string users_url = 3;</code>
+       * <code>optional string users_url = 9;</code>
        */
       public Builder setUsersUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000100;
         usersUrl_ = value;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.AuthService)
+      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.JailbreakService)
     }
 
     static {
-      defaultInstance = new AuthService(true);
+      defaultInstance = new JailbreakService(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.AuthService)
+    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.JailbreakService)
+  }
+
+  public interface TeamOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.Team)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+
+    /**
+     * <code>optional int32 team_number = 2;</code>
+     */
+    boolean hasTeamNumber();
+    /**
+     * <code>optional int32 team_number = 2;</code>
+     */
+    int getTeamNumber();
+
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    boolean hasTeamName();
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    java.lang.String getTeamName();
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTeamNameBytes();
+
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    boolean hasNames();
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    java.lang.String getNames();
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getNamesBytes();
+
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    boolean hasAvatar();
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    java.lang.String getAvatar();
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getAvatarBytes();
+
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    boolean hasTagLine();
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    java.lang.String getTagLine();
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getTagLineBytes();
+
+    /**
+     * <code>optional double start_lat = 7;</code>
+     */
+    boolean hasStartLat();
+    /**
+     * <code>optional double start_lat = 7;</code>
+     */
+    double getStartLat();
+
+    /**
+     * <code>optional double start_lon = 8;</code>
+     */
+    boolean hasStartLon();
+    /**
+     * <code>optional double start_lon = 8;</code>
+     */
+    double getStartLon();
+
+    /**
+     * <code>optional double current_lat = 9;</code>
+     */
+    boolean hasCurrentLat();
+    /**
+     * <code>optional double current_lat = 9;</code>
+     */
+    double getCurrentLat();
+
+    /**
+     * <code>optional double current_lon = 10;</code>
+     */
+    boolean hasCurrentLon();
+    /**
+     * <code>optional double current_lon = 10;</code>
+     */
+    double getCurrentLon();
+
+    /**
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     */
+    boolean hasUniversity();
+    /**
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     */
+    org.jailbreak.api.representations.Representations.Team.University getUniversity();
+  }
+  /**
+   * Protobuf type {@code org.jailbreak.api.representations.Team}
+   */
+  public static final class Team extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.Team)
+      TeamOrBuilder {
+    // Use Team.newBuilder() to construct.
+    private Team(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Team(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Team defaultInstance;
+    public static Team getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Team getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Team(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              teamNumber_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              teamName_ = bs;
+              break;
+            }
+            case 34: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000008;
+              names_ = bs;
+              break;
+            }
+            case 42: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000010;
+              avatar_ = bs;
+              break;
+            }
+            case 50: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000020;
+              tagLine_ = bs;
+              break;
+            }
+            case 57: {
+              bitField0_ |= 0x00000040;
+              startLat_ = input.readDouble();
+              break;
+            }
+            case 65: {
+              bitField0_ |= 0x00000080;
+              startLon_ = input.readDouble();
+              break;
+            }
+            case 73: {
+              bitField0_ |= 0x00000100;
+              currentLat_ = input.readDouble();
+              break;
+            }
+            case 81: {
+              bitField0_ |= 0x00000200;
+              currentLon_ = input.readDouble();
+              break;
+            }
+            case 88: {
+              int rawValue = input.readEnum();
+              org.jailbreak.api.representations.Representations.Team.University value = org.jailbreak.api.representations.Representations.Team.University.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(11, rawValue);
+              } else {
+                bitField0_ |= 0x00000400;
+                university_ = value;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.jailbreak.api.representations.Representations.Team.class, org.jailbreak.api.representations.Representations.Team.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Team> PARSER =
+        new com.google.protobuf.AbstractParser<Team>() {
+      public Team parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Team(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Team> getParserForType() {
+      return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code org.jailbreak.api.representations.Team.University}
+     */
+    public enum University
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>TCD = 0;</code>
+       */
+      TCD(0, 0),
+      /**
+       * <code>UCD = 1;</code>
+       */
+      UCD(1, 1),
+      /**
+       * <code>UCC = 2;</code>
+       */
+      UCC(2, 2),
+      /**
+       * <code>NUIG = 3;</code>
+       */
+      NUIG(3, 3),
+      ;
+
+      /**
+       * <code>TCD = 0;</code>
+       */
+      public static final int TCD_VALUE = 0;
+      /**
+       * <code>UCD = 1;</code>
+       */
+      public static final int UCD_VALUE = 1;
+      /**
+       * <code>UCC = 2;</code>
+       */
+      public static final int UCC_VALUE = 2;
+      /**
+       * <code>NUIG = 3;</code>
+       */
+      public static final int NUIG_VALUE = 3;
+
+
+      public final int getNumber() { return value; }
+
+      public static University valueOf(int value) {
+        switch (value) {
+          case 0: return TCD;
+          case 1: return UCD;
+          case 2: return UCC;
+          case 3: return NUIG;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<University>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<University>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<University>() {
+              public University findValueByNumber(int number) {
+                return University.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.Team.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final University[] VALUES = values();
+
+      public static University valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private University(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:org.jailbreak.api.representations.Team.University)
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int TEAM_NUMBER_FIELD_NUMBER = 2;
+    private int teamNumber_;
+    /**
+     * <code>optional int32 team_number = 2;</code>
+     */
+    public boolean hasTeamNumber() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 team_number = 2;</code>
+     */
+    public int getTeamNumber() {
+      return teamNumber_;
+    }
+
+    public static final int TEAM_NAME_FIELD_NUMBER = 3;
+    private java.lang.Object teamName_;
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    public boolean hasTeamName() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    public java.lang.String getTeamName() {
+      java.lang.Object ref = teamName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          teamName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string team_name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTeamNameBytes() {
+      java.lang.Object ref = teamName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        teamName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAMES_FIELD_NUMBER = 4;
+    private java.lang.Object names_;
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    public boolean hasNames() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    public java.lang.String getNames() {
+      java.lang.Object ref = names_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          names_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string names = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNamesBytes() {
+      java.lang.Object ref = names_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        names_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int AVATAR_FIELD_NUMBER = 5;
+    private java.lang.Object avatar_;
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    public boolean hasAvatar() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    public java.lang.String getAvatar() {
+      java.lang.Object ref = avatar_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          avatar_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string avatar = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAvatarBytes() {
+      java.lang.Object ref = avatar_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        avatar_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TAG_LINE_FIELD_NUMBER = 6;
+    private java.lang.Object tagLine_;
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    public boolean hasTagLine() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    public java.lang.String getTagLine() {
+      java.lang.Object ref = tagLine_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          tagLine_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string tag_line = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTagLineBytes() {
+      java.lang.Object ref = tagLine_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tagLine_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int START_LAT_FIELD_NUMBER = 7;
+    private double startLat_;
+    /**
+     * <code>optional double start_lat = 7;</code>
+     */
+    public boolean hasStartLat() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional double start_lat = 7;</code>
+     */
+    public double getStartLat() {
+      return startLat_;
+    }
+
+    public static final int START_LON_FIELD_NUMBER = 8;
+    private double startLon_;
+    /**
+     * <code>optional double start_lon = 8;</code>
+     */
+    public boolean hasStartLon() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional double start_lon = 8;</code>
+     */
+    public double getStartLon() {
+      return startLon_;
+    }
+
+    public static final int CURRENT_LAT_FIELD_NUMBER = 9;
+    private double currentLat_;
+    /**
+     * <code>optional double current_lat = 9;</code>
+     */
+    public boolean hasCurrentLat() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional double current_lat = 9;</code>
+     */
+    public double getCurrentLat() {
+      return currentLat_;
+    }
+
+    public static final int CURRENT_LON_FIELD_NUMBER = 10;
+    private double currentLon_;
+    /**
+     * <code>optional double current_lon = 10;</code>
+     */
+    public boolean hasCurrentLon() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional double current_lon = 10;</code>
+     */
+    public double getCurrentLon() {
+      return currentLon_;
+    }
+
+    public static final int UNIVERSITY_FIELD_NUMBER = 11;
+    private org.jailbreak.api.representations.Representations.Team.University university_;
+    /**
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     */
+    public boolean hasUniversity() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     */
+    public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
+      return university_;
+    }
+
+    private void initFields() {
+      id_ = 0;
+      teamNumber_ = 0;
+      teamName_ = "";
+      names_ = "";
+      avatar_ = "";
+      tagLine_ = "";
+      startLat_ = 0D;
+      startLon_ = 0D;
+      currentLat_ = 0D;
+      currentLon_ = 0D;
+      university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, teamNumber_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getTeamNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getNamesBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getAvatarBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBytes(6, getTagLineBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeDouble(7, startLat_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeDouble(8, startLon_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeDouble(9, currentLat_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeDouble(10, currentLon_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeEnum(11, university_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, teamNumber_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getTeamNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getNamesBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getAvatarBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getTagLineBytes());
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(7, startLat_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, startLon_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, currentLat_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(10, currentLon_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, university_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Team parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.jailbreak.api.representations.Representations.Team prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.jailbreak.api.representations.Team}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.Team)
+        org.jailbreak.api.representations.Representations.TeamOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.jailbreak.api.representations.Representations.Team.class, org.jailbreak.api.representations.Representations.Team.Builder.class);
+      }
+
+      // Construct using org.jailbreak.api.representations.Representations.Team.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        teamNumber_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        teamName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        names_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        avatar_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        tagLine_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        startLat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        startLon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        currentLat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        currentLon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_descriptor;
+      }
+
+      public org.jailbreak.api.representations.Representations.Team getDefaultInstanceForType() {
+        return org.jailbreak.api.representations.Representations.Team.getDefaultInstance();
+      }
+
+      public org.jailbreak.api.representations.Representations.Team build() {
+        org.jailbreak.api.representations.Representations.Team result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.jailbreak.api.representations.Representations.Team buildPartial() {
+        org.jailbreak.api.representations.Representations.Team result = new org.jailbreak.api.representations.Representations.Team(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.teamNumber_ = teamNumber_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.teamName_ = teamName_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.names_ = names_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.avatar_ = avatar_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.tagLine_ = tagLine_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.startLat_ = startLat_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.startLon_ = startLon_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.currentLat_ = currentLat_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.currentLon_ = currentLon_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        result.university_ = university_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.jailbreak.api.representations.Representations.Team) {
+          return mergeFrom((org.jailbreak.api.representations.Representations.Team)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.jailbreak.api.representations.Representations.Team other) {
+        if (other == org.jailbreak.api.representations.Representations.Team.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasTeamNumber()) {
+          setTeamNumber(other.getTeamNumber());
+        }
+        if (other.hasTeamName()) {
+          bitField0_ |= 0x00000004;
+          teamName_ = other.teamName_;
+          onChanged();
+        }
+        if (other.hasNames()) {
+          bitField0_ |= 0x00000008;
+          names_ = other.names_;
+          onChanged();
+        }
+        if (other.hasAvatar()) {
+          bitField0_ |= 0x00000010;
+          avatar_ = other.avatar_;
+          onChanged();
+        }
+        if (other.hasTagLine()) {
+          bitField0_ |= 0x00000020;
+          tagLine_ = other.tagLine_;
+          onChanged();
+        }
+        if (other.hasStartLat()) {
+          setStartLat(other.getStartLat());
+        }
+        if (other.hasStartLon()) {
+          setStartLon(other.getStartLon());
+        }
+        if (other.hasCurrentLat()) {
+          setCurrentLat(other.getCurrentLat());
+        }
+        if (other.hasCurrentLon()) {
+          setCurrentLon(other.getCurrentLon());
+        }
+        if (other.hasUniversity()) {
+          setUniversity(other.getUniversity());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.jailbreak.api.representations.Representations.Team parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.jailbreak.api.representations.Representations.Team) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int teamNumber_ ;
+      /**
+       * <code>optional int32 team_number = 2;</code>
+       */
+      public boolean hasTeamNumber() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 team_number = 2;</code>
+       */
+      public int getTeamNumber() {
+        return teamNumber_;
+      }
+      /**
+       * <code>optional int32 team_number = 2;</code>
+       */
+      public Builder setTeamNumber(int value) {
+        bitField0_ |= 0x00000002;
+        teamNumber_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 team_number = 2;</code>
+       */
+      public Builder clearTeamNumber() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        teamNumber_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object teamName_ = "";
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public boolean hasTeamName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public java.lang.String getTeamName() {
+        java.lang.Object ref = teamName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            teamName_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTeamNameBytes() {
+        java.lang.Object ref = teamName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          teamName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public Builder setTeamName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        teamName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public Builder clearTeamName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        teamName_ = getDefaultInstance().getTeamName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string team_name = 3;</code>
+       */
+      public Builder setTeamNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        teamName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object names_ = "";
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public boolean hasNames() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public java.lang.String getNames() {
+        java.lang.Object ref = names_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            names_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNamesBytes() {
+        java.lang.Object ref = names_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          names_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public Builder setNames(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        names_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public Builder clearNames() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        names_ = getDefaultInstance().getNames();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string names = 4;</code>
+       */
+      public Builder setNamesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        names_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object avatar_ = "";
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public boolean hasAvatar() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public java.lang.String getAvatar() {
+        java.lang.Object ref = avatar_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            avatar_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAvatarBytes() {
+        java.lang.Object ref = avatar_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          avatar_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public Builder setAvatar(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        avatar_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public Builder clearAvatar() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        avatar_ = getDefaultInstance().getAvatar();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string avatar = 5;</code>
+       */
+      public Builder setAvatarBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        avatar_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object tagLine_ = "";
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public boolean hasTagLine() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public java.lang.String getTagLine() {
+        java.lang.Object ref = tagLine_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            tagLine_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTagLineBytes() {
+        java.lang.Object ref = tagLine_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tagLine_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public Builder setTagLine(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        tagLine_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public Builder clearTagLine() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        tagLine_ = getDefaultInstance().getTagLine();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string tag_line = 6;</code>
+       */
+      public Builder setTagLineBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+        tagLine_ = value;
+        onChanged();
+        return this;
+      }
+
+      private double startLat_ ;
+      /**
+       * <code>optional double start_lat = 7;</code>
+       */
+      public boolean hasStartLat() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional double start_lat = 7;</code>
+       */
+      public double getStartLat() {
+        return startLat_;
+      }
+      /**
+       * <code>optional double start_lat = 7;</code>
+       */
+      public Builder setStartLat(double value) {
+        bitField0_ |= 0x00000040;
+        startLat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double start_lat = 7;</code>
+       */
+      public Builder clearStartLat() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        startLat_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double startLon_ ;
+      /**
+       * <code>optional double start_lon = 8;</code>
+       */
+      public boolean hasStartLon() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional double start_lon = 8;</code>
+       */
+      public double getStartLon() {
+        return startLon_;
+      }
+      /**
+       * <code>optional double start_lon = 8;</code>
+       */
+      public Builder setStartLon(double value) {
+        bitField0_ |= 0x00000080;
+        startLon_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double start_lon = 8;</code>
+       */
+      public Builder clearStartLon() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        startLon_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double currentLat_ ;
+      /**
+       * <code>optional double current_lat = 9;</code>
+       */
+      public boolean hasCurrentLat() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional double current_lat = 9;</code>
+       */
+      public double getCurrentLat() {
+        return currentLat_;
+      }
+      /**
+       * <code>optional double current_lat = 9;</code>
+       */
+      public Builder setCurrentLat(double value) {
+        bitField0_ |= 0x00000100;
+        currentLat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double current_lat = 9;</code>
+       */
+      public Builder clearCurrentLat() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        currentLat_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double currentLon_ ;
+      /**
+       * <code>optional double current_lon = 10;</code>
+       */
+      public boolean hasCurrentLon() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional double current_lon = 10;</code>
+       */
+      public double getCurrentLon() {
+        return currentLon_;
+      }
+      /**
+       * <code>optional double current_lon = 10;</code>
+       */
+      public Builder setCurrentLon(double value) {
+        bitField0_ |= 0x00000200;
+        currentLon_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double current_lon = 10;</code>
+       */
+      public Builder clearCurrentLon() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        currentLon_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private org.jailbreak.api.representations.Representations.Team.University university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       */
+      public boolean hasUniversity() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
+        return university_;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       */
+      public Builder setUniversity(org.jailbreak.api.representations.Representations.Team.University value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000400;
+        university_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       */
+      public Builder clearUniversity() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Team)
+    }
+
+    static {
+      defaultInstance = new Team(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Team)
+  }
+
+  public interface CheckinOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.Checkin)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    boolean hasLocation();
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    java.lang.String getLocation();
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getLocationBytes();
+
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    boolean hasStatus();
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    java.lang.String getStatus();
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getStatusBytes();
+
+    /**
+     * <code>optional double lat = 4;</code>
+     */
+    boolean hasLat();
+    /**
+     * <code>optional double lat = 4;</code>
+     */
+    double getLat();
+
+    /**
+     * <code>optional double lon = 5;</code>
+     */
+    boolean hasLon();
+    /**
+     * <code>optional double lon = 5;</code>
+     */
+    double getLon();
+
+    /**
+     * <code>optional int64 time = 6;</code>
+     */
+    boolean hasTime();
+    /**
+     * <code>optional int64 time = 6;</code>
+     */
+    long getTime();
+
+    /**
+     * <code>optional int32 team_id = 7;</code>
+     */
+    boolean hasTeamId();
+    /**
+     * <code>optional int32 team_id = 7;</code>
+     */
+    int getTeamId();
+  }
+  /**
+   * Protobuf type {@code org.jailbreak.api.representations.Checkin}
+   */
+  public static final class Checkin extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.Checkin)
+      CheckinOrBuilder {
+    // Use Checkin.newBuilder() to construct.
+    private Checkin(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Checkin(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Checkin defaultInstance;
+    public static Checkin getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Checkin getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Checkin(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000002;
+              location_ = bs;
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              status_ = bs;
+              break;
+            }
+            case 33: {
+              bitField0_ |= 0x00000008;
+              lat_ = input.readDouble();
+              break;
+            }
+            case 41: {
+              bitField0_ |= 0x00000010;
+              lon_ = input.readDouble();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              time_ = input.readInt64();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
+              teamId_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Checkin_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.jailbreak.api.representations.Representations.Checkin.class, org.jailbreak.api.representations.Representations.Checkin.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Checkin> PARSER =
+        new com.google.protobuf.AbstractParser<Checkin>() {
+      public Checkin parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Checkin(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Checkin> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int LOCATION_FIELD_NUMBER = 2;
+    private java.lang.Object location_;
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    public boolean hasLocation() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    public java.lang.String getLocation() {
+      java.lang.Object ref = location_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          location_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string location = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLocationBytes() {
+      java.lang.Object ref = location_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        location_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 3;
+    private java.lang.Object status_;
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    public java.lang.String getStatus() {
+      java.lang.Object ref = status_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          status_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string status = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStatusBytes() {
+      java.lang.Object ref = status_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        status_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LAT_FIELD_NUMBER = 4;
+    private double lat_;
+    /**
+     * <code>optional double lat = 4;</code>
+     */
+    public boolean hasLat() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional double lat = 4;</code>
+     */
+    public double getLat() {
+      return lat_;
+    }
+
+    public static final int LON_FIELD_NUMBER = 5;
+    private double lon_;
+    /**
+     * <code>optional double lon = 5;</code>
+     */
+    public boolean hasLon() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional double lon = 5;</code>
+     */
+    public double getLon() {
+      return lon_;
+    }
+
+    public static final int TIME_FIELD_NUMBER = 6;
+    private long time_;
+    /**
+     * <code>optional int64 time = 6;</code>
+     */
+    public boolean hasTime() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional int64 time = 6;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    public static final int TEAM_ID_FIELD_NUMBER = 7;
+    private int teamId_;
+    /**
+     * <code>optional int32 team_id = 7;</code>
+     */
+    public boolean hasTeamId() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional int32 team_id = 7;</code>
+     */
+    public int getTeamId() {
+      return teamId_;
+    }
+
+    private void initFields() {
+      id_ = 0;
+      location_ = "";
+      status_ = "";
+      lat_ = 0D;
+      lon_ = 0D;
+      time_ = 0L;
+      teamId_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getLocationBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getStatusBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeDouble(4, lat_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeDouble(5, lon_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt64(6, time_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt32(7, teamId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getLocationBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getStatusBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(4, lat_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(5, lon_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, time_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, teamId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Checkin parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.jailbreak.api.representations.Representations.Checkin prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.jailbreak.api.representations.Checkin}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.Checkin)
+        org.jailbreak.api.representations.Representations.CheckinOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Checkin_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.jailbreak.api.representations.Representations.Checkin.class, org.jailbreak.api.representations.Representations.Checkin.Builder.class);
+      }
+
+      // Construct using org.jailbreak.api.representations.Representations.Checkin.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        location_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lat_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        lon_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        time_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        teamId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Checkin_descriptor;
+      }
+
+      public org.jailbreak.api.representations.Representations.Checkin getDefaultInstanceForType() {
+        return org.jailbreak.api.representations.Representations.Checkin.getDefaultInstance();
+      }
+
+      public org.jailbreak.api.representations.Representations.Checkin build() {
+        org.jailbreak.api.representations.Representations.Checkin result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.jailbreak.api.representations.Representations.Checkin buildPartial() {
+        org.jailbreak.api.representations.Representations.Checkin result = new org.jailbreak.api.representations.Representations.Checkin(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.location_ = location_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.status_ = status_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.lat_ = lat_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.lon_ = lon_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.time_ = time_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.teamId_ = teamId_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.jailbreak.api.representations.Representations.Checkin) {
+          return mergeFrom((org.jailbreak.api.representations.Representations.Checkin)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.jailbreak.api.representations.Representations.Checkin other) {
+        if (other == org.jailbreak.api.representations.Representations.Checkin.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasLocation()) {
+          bitField0_ |= 0x00000002;
+          location_ = other.location_;
+          onChanged();
+        }
+        if (other.hasStatus()) {
+          bitField0_ |= 0x00000004;
+          status_ = other.status_;
+          onChanged();
+        }
+        if (other.hasLat()) {
+          setLat(other.getLat());
+        }
+        if (other.hasLon()) {
+          setLon(other.getLon());
+        }
+        if (other.hasTime()) {
+          setTime(other.getTime());
+        }
+        if (other.hasTeamId()) {
+          setTeamId(other.getTeamId());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.jailbreak.api.representations.Representations.Checkin parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.jailbreak.api.representations.Representations.Checkin) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object location_ = "";
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public boolean hasLocation() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public java.lang.String getLocation() {
+        java.lang.Object ref = location_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            location_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLocationBytes() {
+        java.lang.Object ref = location_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          location_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public Builder setLocation(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        location_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public Builder clearLocation() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        location_ = getDefaultInstance().getLocation();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string location = 2;</code>
+       */
+      public Builder setLocationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        location_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object status_ = "";
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public java.lang.String getStatus() {
+        java.lang.Object ref = status_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            status_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStatusBytes() {
+        java.lang.Object ref = status_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          status_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public Builder setStatus(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        status_ = getDefaultInstance().getStatus();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string status = 3;</code>
+       */
+      public Builder setStatusBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+
+      private double lat_ ;
+      /**
+       * <code>optional double lat = 4;</code>
+       */
+      public boolean hasLat() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional double lat = 4;</code>
+       */
+      public double getLat() {
+        return lat_;
+      }
+      /**
+       * <code>optional double lat = 4;</code>
+       */
+      public Builder setLat(double value) {
+        bitField0_ |= 0x00000008;
+        lat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double lat = 4;</code>
+       */
+      public Builder clearLat() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        lat_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double lon_ ;
+      /**
+       * <code>optional double lon = 5;</code>
+       */
+      public boolean hasLon() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional double lon = 5;</code>
+       */
+      public double getLon() {
+        return lon_;
+      }
+      /**
+       * <code>optional double lon = 5;</code>
+       */
+      public Builder setLon(double value) {
+        bitField0_ |= 0x00000010;
+        lon_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double lon = 5;</code>
+       */
+      public Builder clearLon() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        lon_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <code>optional int64 time = 6;</code>
+       */
+      public boolean hasTime() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional int64 time = 6;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>optional int64 time = 6;</code>
+       */
+      public Builder setTime(long value) {
+        bitField0_ |= 0x00000020;
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 time = 6;</code>
+       */
+      public Builder clearTime() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int teamId_ ;
+      /**
+       * <code>optional int32 team_id = 7;</code>
+       */
+      public boolean hasTeamId() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional int32 team_id = 7;</code>
+       */
+      public int getTeamId() {
+        return teamId_;
+      }
+      /**
+       * <code>optional int32 team_id = 7;</code>
+       */
+      public Builder setTeamId(int value) {
+        bitField0_ |= 0x00000040;
+        teamId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 team_id = 7;</code>
+       */
+      public Builder clearTeamId() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        teamId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Checkin)
+    }
+
+    static {
+      defaultInstance = new Checkin(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Checkin)
   }
 
   public interface FacebookAuthTokenOrBuilder extends
@@ -4002,10 +7174,20 @@ public final class Representations {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_jailbreak_api_representations_AuthService_descriptor;
+    internal_static_org_jailbreak_api_representations_JailbreakService_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_jailbreak_api_representations_AuthService_fieldAccessorTable;
+      internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_jailbreak_api_representations_Team_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_jailbreak_api_representations_Checkin_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor;
   private static
@@ -4031,24 +7213,38 @@ public final class Representations {
   static {
     java.lang.String[] descriptorData = {
       "\n(src/main/resources/representations.pro" +
-      "to\022!org.jailbreak.api.representations\"W\n" +
-      "\013AuthService\022\033\n\023facebook_tokens_url\030\001 \001(" +
-      "\t\022\030\n\020authenticate_url\030\002 \001(\t\022\021\n\tusers_url" +
-      "\030\003 \001(\t\":\n\021FacebookAuthToken\022\024\n\014access_to" +
-      "ken\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021" +
-      "\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007ex" +
-      "pires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n" +
-      "\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\0162" +
-      "1.org.jailbreak.api.representations.User",
-      ".UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030" +
-      "\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\016" +
-      "2..org.jailbreak.api.representations.Use" +
-      "r.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001" +
-      "(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_" +
-      "url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\n" +
-      "SUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006" +
-      "NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001" +
-      "\022\t\n\005OTHER\020\002B\021B\017Representations"
+      "to\022!org.jailbreak.api.representations\"\326\001" +
+      "\n\020JailbreakService\022\022\n\nstart_time\030\001 \001(\003\022\020" +
+      "\n\010end_time\030\002 \001(\003\022\025\n\ramount_raised\030\003 \001(\005\022" +
+      "\026\n\016winner_team_id\030\004 \001(\005\022\020\n\010tfm_live\030\005 \001(" +
+      "\010\022\021\n\tteams_url\030\006 \001(\t\022\033\n\023facebook_tokens_" +
+      "url\030\007 \001(\t\022\030\n\020authenticate_url\030\010 \001(\t\022\021\n\tu" +
+      "sers_url\030\t \001(\t\"\266\002\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013t" +
+      "eam_number\030\002 \001(\005\022\021\n\tteam_name\030\003 \001(\t\022\r\n\005n" +
+      "ames\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t\022\020\n\010tag_line\030\006",
+      " \001(\t\022\021\n\tstart_lat\030\007 \001(\001\022\021\n\tstart_lon\030\010 \001" +
+      "(\001\022\023\n\013current_lat\030\t \001(\001\022\023\n\013current_lon\030\n" +
+      " \001(\001\022F\n\nuniversity\030\013 \001(\01622.org.jailbreak" +
+      ".api.representations.Team.University\"1\n\n" +
+      "University\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n" +
+      "\004NUIG\020\003\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010locati" +
+      "on\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n" +
+      "\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(" +
+      "\005\":\n\021FacebookAuthToken\022\024\n\014access_token\030\001" +
+      " \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi",
+      "_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expires" +
+      "\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time" +
+      "_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621.org" +
+      ".jailbreak.api.representations.User.User" +
+      "Level\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t" +
+      "\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..or" +
+      "g.jailbreak.api.representations.User.Gen" +
+      "der\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n" +
+      "\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_url\030\013" +
+      " \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPER",
+      "ADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMA" +
+      "L\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005O" +
+      "THER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4062,26 +7258,38 @@ public final class Representations {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_org_jailbreak_api_representations_AuthService_descriptor =
+    internal_static_org_jailbreak_api_representations_JailbreakService_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_org_jailbreak_api_representations_AuthService_fieldAccessorTable = new
+    internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_org_jailbreak_api_representations_AuthService_descriptor,
-        new java.lang.String[] { "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
-    internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
+        internal_static_org_jailbreak_api_representations_JailbreakService_descriptor,
+        new java.lang.String[] { "StartTime", "EndTime", "AmountRaised", "WinnerTeamId", "TfmLive", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
+    internal_static_org_jailbreak_api_representations_Team_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_org_jailbreak_api_representations_Team_descriptor,
+        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "StartLat", "StartLon", "CurrentLat", "CurrentLon", "University", });
+    internal_static_org_jailbreak_api_representations_Checkin_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_org_jailbreak_api_representations_Checkin_descriptor,
+        new java.lang.String[] { "Id", "Location", "Status", "Lat", "Lon", "Time", "TeamId", });
+    internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor,
         new java.lang.String[] { "AccessToken", "UserId", });
     internal_static_org_jailbreak_api_representations_ApiToken_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_org_jailbreak_api_representations_ApiToken_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_ApiToken_descriptor,
         new java.lang.String[] { "ApiToken", "UserId", "Expires", });
     internal_static_org_jailbreak_api_representations_User_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_org_jailbreak_api_representations_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_User_descriptor,

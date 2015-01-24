@@ -2,6 +2,9 @@ package org.jailbreak.service.resources;
 
 public class Paths {
 	
+	public final static String TEAMS_PATH = "/teams";
+	public final static String CHECKINS_PATH = "/teams/{team_id}/checkins";
+	
 	public final static String AUTHENTICATE_PATH = "/authenticate";
 	public final static String FACEBOOK_TOKENS_PATH = "/facebook_tokens";
 	

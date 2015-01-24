@@ -40,4 +40,35 @@
     		<column name="facebook_link" type="text"></column>
     	</createTable>
     </changeSet>
+    <changeSet id="2" author="bakerke">
+    	<createTable tableName="teams">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="team_number" type="int" />
+            <column name="team_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="names" type="varchar(255)"/>
+            <column name="university" type="tinyint"/>
+            <column name="start_position" type="point" />
+        	<column name="current_position" type="point" />
+        	<column name="avatar" type="text" />
+        	<column name="tag_line" type="text" />
+        </createTable>
+        <createTable tableName="checkins">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="location" type="varchar(255)"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="position" type="point"/>
+            <column name="time" type="bigint unsigned"/>
+            <column name="team_id" type="int"/>
+        </createTable>
+        <createIndex tableName="checkins" indexName="team_id">
+    		<column name="team_id" type="bigint"/>
+    	</createIndex>
+    </changeSet>
+    
 </databaseChangeLog>
