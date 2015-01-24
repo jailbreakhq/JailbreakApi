@@ -3,8 +3,8 @@
      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>org.jailbreak.auth</groupId>
-  <artifactId>jailbreak-auth</artifactId>
+  <groupId>org.jailbreak.api</groupId>
+  <artifactId>jailbreak-api</artifactId>
   <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
@@ -15,9 +15,9 @@
   </properties>
 
   <modules>
-    <module>auth-api</module>
-    <module>auth-client</module>
-    <module>auth-service</module>
+    <module>jailbreak-api</module>
+    <module>jailbreak-client</module>
+    <module>jailbreak-service</module>
   </modules>
   
   <build>
