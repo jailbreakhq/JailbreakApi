@@ -63,7 +63,7 @@
             <column name="location" type="varchar(255)"/>
             <column name="status" type="varchar(255)"/>
             <column name="position" type="point"/>
-            <column name="time" type="bigint unsigned"/>
+            <column name="time" type="bigint"/>
             <column name="team_id" type="int"/>
         </createTable>
         <createIndex tableName="checkins" indexName="team_id">
