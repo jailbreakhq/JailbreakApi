@@ -19,8 +19,29 @@ public class CheckinsManagerImpl implements CheckinsManager {
 	}
 	
 	@Override
-	public Optional<Checkin> getCheckin(int team_id, int id) {
-		return this.dao.getCheckin(team_id, id);
+	public Checkin createCheckin(Checkin checkin) {
+		int new_id = this.dao.insert(checkin);
+		return this.getCheckin(new_id).get();
+	}
+	
+	@Override
+	public Optional<Checkin> updateCheckin(int id, Checkin checkin) {
+		int result = dao.update(id, checkin);
+		if (result == 0) {
+			return Optional.of(checkin);
+		} else {
+			return Optional.absent();
+		}
+	}
+	
+	@Override
+	public Optional<Checkin> getCheckin(int id) {
+		return this.dao.getCheckin(id);
+	}
+	
+	@Override
+	public Optional<Checkin> getTeamCheckin(int team_id, int id) {
+		return this.dao.getTeamCheckin(team_id, id);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package org.jailbreak.service.errors.auth;
 
+import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.AppException;
 
 @SuppressWarnings("serial")

@@ -30,13 +30,20 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public Team addTeam(Team team) {
-		int new_id = dao.addTeam(team);
-		return team.toBuilder().setId(new_id).build();
+		if (!team.hasCurrentLat() && !team.hasCurrentLon()) {
+			Team.Builder builder = team.toBuilder();
+			builder.setCurrentLat(team.getStartLat());
+			builder.setCurrentLon(team.getCurrentLon());
+			team = builder.build();
+		}
+
+		int new_id = dao.insert(team);
+		return this.getTeam(new_id).get();
 	}
 	
 	@Override
 	public Optional<Team> updateTeam(int id, Team team) {
-		int result = dao.updateTeam(id, team);
+		int result = dao.update(id, team);
 		if (result == 0) {
 			return Optional.of(team);
 		} else {
@@ -49,9 +56,14 @@ public class TeamsManagerImpl implements TeamsManager {
 		Optional<Team> maybeCurrent = dao.getTeam(newTeam.getId());
 		if (maybeCurrent.isPresent()) {
 			Team merged = maybeCurrent.get().toBuilder().mergeFrom(newTeam).build();
-			dao.updateTeam(id, merged);
+			dao.update(id, merged);
 			return Optional.of(merged);
 		}
 		return Optional.absent(); // returns Optional.absent if there is no team to update
+	}
+	
+	@Override
+	public void deleteTeam(int id) {
+		this.dao.delete(id);
 	}
 }

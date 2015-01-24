@@ -16,12 +16,15 @@ import com.google.common.base.Optional;
 @RegisterMapper(TeamsMapper.class)
 public interface TeamsDAO {	
 	
-	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, start_position, current_position) VALUES (:name, :names, :team_number, :avatar, :tag_line, ST_SetSRID(ST_MakePoint(:start_lon, :start_lat)), ST_SetSRID(ST_MakePoint(:current_long, :current_lat))")
+	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, start_position, current_position) VALUES (:name, :names, :team_number, :avatar, :tag_line, (:start_lon, :start_lat), (:current_long, :current_lat)")
 	@GetGeneratedKeys
-	int addTeam(@BindProtobuf Team team);
+	int insert(@BindProtobuf Team team);
 
-	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, start_position = ST_SetSRID(ST_MakePoint(:start_lon, :start_lat)), current_lat = ST_SetSRID(ST_MakePoint(:current_lon, :current_lat)), university = :university WHERE id = :cid")
-	int updateTeam(@Bind("cid") int id, @BindProtobuf Team team);
+	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, start_position = (:start_lon, :start_lat), current_lat = (:current_lon, :current_lat), university = :university WHERE id = :cid")
+	int update(@Bind("cid") int id, @BindProtobuf Team team);
+	
+	@SqlUpdate("DELETE FROM teams WHERE id = :id")
+	int delete(@Bind("id") int id);
 	
 	@SqlQuery("SELECT *, start_position[0] as start_x, start_position[1] start_y, current_position[0] as current_x, current_position[1] as current_y FROM teams WHERE id = :id")
 	@SingleValueResult(Team.class)

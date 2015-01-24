@@ -8,7 +8,10 @@ import com.google.common.base.Optional;
 
 public interface CheckinsManager {
 	
-	Optional<Checkin> getCheckin(int team_id, int id);
+	Checkin createCheckin(Checkin checkin);
+	Optional<Checkin> updateCheckin(int id, Checkin checkin);
+	Optional<Checkin> getCheckin(int id);
+	Optional<Checkin> getTeamCheckin(int team_id, int id);
 	List<Checkin> getTeamCheckins(int team_id);
 
 }

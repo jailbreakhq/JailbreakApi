@@ -13,5 +13,6 @@ public interface TeamsManager {
 	public Team addTeam(Team team);
 	public Optional<Team> updateTeam(int id, Team team);
 	public Optional<Team> patchTeam(int id, Team team);
+	public void deleteTeam(int id);
 	
 }
