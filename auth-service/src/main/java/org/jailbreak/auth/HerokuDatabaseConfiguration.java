@@ -32,6 +32,7 @@ public class HerokuDatabaseConfiguration {
             final String url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
             LOG.info("Database URL: " + url);
             LOG.info("Database User: " + user);
+            LOG.info("Database Password: *************");
             databaseConfiguration = new DataSourceFactory();
             databaseConfiguration.setUser(user);
             databaseConfiguration.setPassword(password);
