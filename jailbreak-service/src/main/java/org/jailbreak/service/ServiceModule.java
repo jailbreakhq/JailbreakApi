@@ -8,10 +8,14 @@ import org.jailbreak.client.FacebookClient;
 import org.jailbreak.client.base.FacebookClientImpl;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
+import org.jailbreak.service.base.CheckinsManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
+import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
+import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
+import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
@@ -29,6 +33,8 @@ public class ServiceModule extends AbstractModule {
 	
 	@Override
 	protected void configure() {
+		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
+		bind(TeamsManager.class).to(TeamsManagerImpl.class);
 		bind(UsersManager.class).to(UsersManagerImpl.class);
 		bind(ApiTokensManager.class).to(ApiTokensManagerImpl.class);
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
