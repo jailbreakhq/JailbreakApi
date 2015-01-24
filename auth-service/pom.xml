@@ -66,6 +66,12 @@
       <artifactId>auth-client</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+	  <groupId>com.newrelic.agent.java</groupId>
+	  <artifactId>newrelic-agent</artifactId>
+	  <version>3.9.0</version>
+	  <scope>provided</scope>
+	</dependency>
   </dependencies>
   
   <build>
@@ -110,6 +116,25 @@
                 <mainClass>org.jailbreak.auth.AuthApplication</mainClass>
               </transformer>
             </transformers>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>2.6</version>
+      <executions>
+        <execution>
+          <id>copy-new-relic</id>
+          <phase>package</phase>
+         <goals>
+           <goal>copy-dependencies</goal>
+          </goals>
+          <configuration>
+            <includeGroupIds>com.newrelic.agent.java</includeGroupIds>
+            <includeArtifactIds>newrelic-agent</includeArtifactIds>
+            <stripVersion>true</stripVersion>
           </configuration>
         </execution>
       </executions>
