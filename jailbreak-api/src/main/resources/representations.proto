@@ -21,6 +21,12 @@ message Team {
 		UCD = 1;
 		UCC = 2;
 		NUIG = 3;
+		NUIM = 4;
+		CIT = 5;
+		NCI = 6;
+		GMIT = 7;
+		ITT = 8;
+		ITC = 9;
 	}
 	
 	optional int32 id = 1;

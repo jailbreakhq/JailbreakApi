@@ -5,12 +5,12 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>api-api</artifactId>
+  <artifactId>jailbreak-api</artifactId>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.jailbreak.api</groupId>
-    <artifactId>jailbreak-api</artifactId>
+    <artifactId>jailbreak-main</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 

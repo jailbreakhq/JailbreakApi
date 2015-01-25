@@ -1,37 +1,37 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" 
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jailbreak-client</artifactId>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" 
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jailbreak-client</artifactId>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.jailbreak.api</groupId>
-    <artifactId>jailbreak-api</artifactId>
+    <artifactId>jailbreak-main</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-	
-	<name>Jailbreak API clients</name>
+  
+  <name>Jailbreak API clients</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>io.dropwizard</groupId>
-			<artifactId>dropwizard-client</artifactId>
-			<version>${dropwizard.version}</version>
-		</dependency>
+  <dependencies>
     <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>3.0</version>
+      <groupId>io.dropwizard</groupId>
+      <artifactId>dropwizard-client</artifactId>
+      <version>${dropwizard.version}</version>
     </dependency>
-		<dependency>
-			<groupId>org.jailbreak.api</groupId>
-			<artifactId>api-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>3.0</version>
+      </dependency>
+    <dependency>
+      <groupId>org.jailbreak.api</groupId>
+      <artifactId>jailbreak-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
 </project>

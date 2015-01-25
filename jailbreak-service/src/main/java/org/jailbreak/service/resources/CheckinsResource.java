@@ -22,7 +22,6 @@ import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
-import com.sun.jersey.api.NotFoundException;
 
 @Path(Paths.CHECKINS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -52,28 +51,18 @@ public class CheckinsResource {
 	
 	@GET
 	@Path("/{id}")
-	public Checkin getCheckin(@PathParam("team_id") int team_id, @PathParam("id") int id) {
-		Optional<Checkin> checkin = this.manager.getTeamCheckin(team_id, id);
-		if (checkin.isPresent()) {
-			return checkin.get();
-		} else {
-			throw new NotFoundException("No checkin with id " + id);
-		}
+	public Optional<Checkin> getCheckin(@PathParam("team_id") int team_id, @PathParam("id") int id) {
+		return this.manager.getTeamCheckin(team_id, id);
 	}
 	
 	@PUT
 	@Path("/{id}")
-	public Checkin updateCheckin(@Auth User user, @PathParam("id") int id, Checkin checkin) {
+	public Optional<Checkin> updateCheckin(@Auth User user, @PathParam("id") int id, Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a checkin", ApiDocs.CHECKINS);
 		}
 		
-		Optional<Checkin> maybeCheckin = this.manager.updateCheckin(id, checkin);
-		if (maybeCheckin.isPresent()) {
-			return maybeCheckin.get();
-		} else {
-			throw new NotFoundException("No checking with id " + id);
-		}
+		return this.manager.updateCheckin(id, checkin);
 	}
 	
 }

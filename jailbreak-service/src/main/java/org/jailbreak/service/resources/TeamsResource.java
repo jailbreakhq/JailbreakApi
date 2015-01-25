@@ -27,7 +27,6 @@ import org.jailbreak.service.errors.ForbiddenException;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
-import com.sun.jersey.api.NotFoundException;
 
 @Path("/teams")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -58,13 +57,8 @@ public class TeamsResource {
 	
 	@GET
 	@Path("/{id}")
-	public Team getTeam(@PathParam("id") int id) {
-		Optional<Team> team = manager.getTeam(id);
-		if (team.isPresent()) {
-			return team.get();
-		} else {
-			throw new NotFoundException("No team with id " + id);
-		}
+	public Optional<Team> getTeam(@PathParam("id") int id) {
+		return manager.getTeam(id);
 	}
 	
 	@PUT

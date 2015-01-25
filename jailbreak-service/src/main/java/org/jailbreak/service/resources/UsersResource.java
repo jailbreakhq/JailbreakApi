@@ -19,7 +19,6 @@ import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
-import com.sun.jersey.api.NotFoundException;
 
 @Path(Paths.USERS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -43,17 +42,12 @@ public class UsersResource {
 	
 	@Path("/{id}")
 	@GET
-	public User getUser(@Auth User user, @PathParam("id") long user_id) {
+	public Optional<User> getUser(@Auth User user, @PathParam("id") long user_id) {
 		if (user.getUserId() != user_id || user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You do not have the necessary permissions to view user with id " + user_id, ApiDocs.USERS);
 		}
 		
-		Optional<User> object = this.manager.getUser(user_id);
-		if (object.isPresent()) {
-			return object.get();
-		} else {
-			throw new NotFoundException("No User with id " + user_id);
-		}
+		return this.manager.getUser(user_id);
 	}
 	
 }
