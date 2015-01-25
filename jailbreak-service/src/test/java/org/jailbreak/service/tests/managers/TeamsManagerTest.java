@@ -7,7 +7,6 @@ import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.University;
 import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.db.TeamsDAO;
-import org.jailbreak.service.tests.OptionalAnswer;
 import org.junit.Before;
 import org.junit.Test;
 
