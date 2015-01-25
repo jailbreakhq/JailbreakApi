@@ -7,8 +7,8 @@ message JailbreakService {
 	optional int32 amount_raised = 2;
 	optional int32 winner_team_id = 3;
 	optional bool tfm_live = 4;
-	optional string end_lat = 5;
-	optional string end_lon = 6;
+	optional double final_location_lat = 5;
+	optional double final_location_lon = 6;
 	optional string teams_url = 7;
 	optional string facebook_tokens_url = 8;
 	optional string authenticate_url = 9;

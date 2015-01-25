@@ -18,10 +18,16 @@ import com.google.inject.name.Named;
 public class RootResource {
 	
 	private final long startTime;
+	private final double finalLat;
+	private final double finalLon;
 	
 	@Inject
-	public RootResource(@Named("jailbreak.startTime") long startTime) {
+	public RootResource(@Named("jailbreak.startTime") long startTime,
+			@Named("jailbreak.finalLocationLat") double finalLat,
+			@Named("jailbreak.finalLocationLon") double finalLon) {
 		this.startTime = startTime;
+		this.finalLat = finalLat;
+		this.finalLon = finalLon;
 	}
 	
 	@GET
@@ -35,6 +41,8 @@ public class RootResource {
 		
         return JailbreakService.newBuilder()
     		.setStartTime(startTime)
+    		.setFinalLocationLat(finalLat)
+    		.setFinalLocationLon(finalLon)
         	.setTeamsUrl(path + Paths.TEAMS_PATH)
     		.setUsersUrl(path + Paths.USERS_PATH)
     		.setAuthenticateUrl(path + Paths.AUTHENTICATE_PATH)

@@ -49,6 +49,18 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
+	@Named("jailbreak.finalLocationLat")
+	public double provideEndLat(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getFinalLocationLat();
+	}
+	
+	@Provides
+	@Named("jailbreak.finalLocationLon")
+	public double provideEndLon(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getFinalLocationLon();
+	}
+	
+	@Provides
 	private DBI getDatabaseConnection(ServiceConfiguration config, Environment env) throws ClassNotFoundException {
 		if (this.dbi == null) {
 			final DBIFactory factory = new DBIFactory();

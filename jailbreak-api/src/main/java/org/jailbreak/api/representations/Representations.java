@@ -49,32 +49,22 @@ public final class Representations {
     boolean getTfmLive();
 
     /**
-     * <code>optional string end_lat = 5;</code>
+     * <code>optional double final_location_lat = 5;</code>
      */
-    boolean hasEndLat();
+    boolean hasFinalLocationLat();
     /**
-     * <code>optional string end_lat = 5;</code>
+     * <code>optional double final_location_lat = 5;</code>
      */
-    java.lang.String getEndLat();
-    /**
-     * <code>optional string end_lat = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getEndLatBytes();
+    double getFinalLocationLat();
 
     /**
-     * <code>optional string end_lon = 6;</code>
+     * <code>optional double final_location_lon = 6;</code>
      */
-    boolean hasEndLon();
+    boolean hasFinalLocationLon();
     /**
-     * <code>optional string end_lon = 6;</code>
+     * <code>optional double final_location_lon = 6;</code>
      */
-    java.lang.String getEndLon();
-    /**
-     * <code>optional string end_lon = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getEndLonBytes();
+    double getFinalLocationLon();
 
     /**
      * <code>optional string teams_url = 7;</code>
@@ -204,16 +194,14 @@ public final class Representations {
               tfmLive_ = input.readBool();
               break;
             }
-            case 42: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 41: {
               bitField0_ |= 0x00000010;
-              endLat_ = bs;
+              finalLocationLat_ = input.readDouble();
               break;
             }
-            case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 49: {
               bitField0_ |= 0x00000020;
-              endLon_ = bs;
+              finalLocationLon_ = input.readDouble();
               break;
             }
             case 58: {
@@ -340,88 +328,34 @@ public final class Representations {
       return tfmLive_;
     }
 
-    public static final int END_LAT_FIELD_NUMBER = 5;
-    private java.lang.Object endLat_;
+    public static final int FINAL_LOCATION_LAT_FIELD_NUMBER = 5;
+    private double finalLocationLat_;
     /**
-     * <code>optional string end_lat = 5;</code>
+     * <code>optional double final_location_lat = 5;</code>
      */
-    public boolean hasEndLat() {
+    public boolean hasFinalLocationLat() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional string end_lat = 5;</code>
+     * <code>optional double final_location_lat = 5;</code>
      */
-    public java.lang.String getEndLat() {
-      java.lang.Object ref = endLat_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          endLat_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string end_lat = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getEndLatBytes() {
-      java.lang.Object ref = endLat_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        endLat_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public double getFinalLocationLat() {
+      return finalLocationLat_;
     }
 
-    public static final int END_LON_FIELD_NUMBER = 6;
-    private java.lang.Object endLon_;
+    public static final int FINAL_LOCATION_LON_FIELD_NUMBER = 6;
+    private double finalLocationLon_;
     /**
-     * <code>optional string end_lon = 6;</code>
+     * <code>optional double final_location_lon = 6;</code>
      */
-    public boolean hasEndLon() {
+    public boolean hasFinalLocationLon() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional string end_lon = 6;</code>
+     * <code>optional double final_location_lon = 6;</code>
      */
-    public java.lang.String getEndLon() {
-      java.lang.Object ref = endLon_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          endLon_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string end_lon = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getEndLonBytes() {
-      java.lang.Object ref = endLon_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        endLon_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public double getFinalLocationLon() {
+      return finalLocationLon_;
     }
 
     public static final int TEAMS_URL_FIELD_NUMBER = 7;
@@ -597,8 +531,8 @@ public final class Representations {
       amountRaised_ = 0;
       winnerTeamId_ = 0;
       tfmLive_ = false;
-      endLat_ = "";
-      endLon_ = "";
+      finalLocationLat_ = 0D;
+      finalLocationLon_ = 0D;
       teamsUrl_ = "";
       facebookTokensUrl_ = "";
       authenticateUrl_ = "";
@@ -630,10 +564,10 @@ public final class Representations {
         output.writeBool(4, tfmLive_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getEndLatBytes());
+        output.writeDouble(5, finalLocationLat_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getEndLonBytes());
+        output.writeDouble(6, finalLocationLon_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeBytes(7, getTeamsUrlBytes());
@@ -674,11 +608,11 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getEndLatBytes());
+          .computeDoubleSize(5, finalLocationLat_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getEndLonBytes());
+          .computeDoubleSize(6, finalLocationLon_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
@@ -821,9 +755,9 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000004);
         tfmLive_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
-        endLat_ = "";
+        finalLocationLat_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000010);
-        endLon_ = "";
+        finalLocationLon_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000020);
         teamsUrl_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
@@ -880,11 +814,11 @@ public final class Representations {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.endLat_ = endLat_;
+        result.finalLocationLat_ = finalLocationLat_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.endLon_ = endLon_;
+        result.finalLocationLon_ = finalLocationLon_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
@@ -929,15 +863,11 @@ public final class Representations {
         if (other.hasTfmLive()) {
           setTfmLive(other.getTfmLive());
         }
-        if (other.hasEndLat()) {
-          bitField0_ |= 0x00000010;
-          endLat_ = other.endLat_;
-          onChanged();
+        if (other.hasFinalLocationLat()) {
+          setFinalLocationLat(other.getFinalLocationLat());
         }
-        if (other.hasEndLon()) {
-          bitField0_ |= 0x00000020;
-          endLon_ = other.endLon_;
-          onChanged();
+        if (other.hasFinalLocationLon()) {
+          setFinalLocationLon(other.getFinalLocationLon());
         }
         if (other.hasTeamsUrl()) {
           bitField0_ |= 0x00000040;
@@ -1114,154 +1044,66 @@ public final class Representations {
         return this;
       }
 
-      private java.lang.Object endLat_ = "";
+      private double finalLocationLat_ ;
       /**
-       * <code>optional string end_lat = 5;</code>
+       * <code>optional double final_location_lat = 5;</code>
        */
-      public boolean hasEndLat() {
+      public boolean hasFinalLocationLat() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional string end_lat = 5;</code>
+       * <code>optional double final_location_lat = 5;</code>
        */
-      public java.lang.String getEndLat() {
-        java.lang.Object ref = endLat_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            endLat_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public double getFinalLocationLat() {
+        return finalLocationLat_;
       }
       /**
-       * <code>optional string end_lat = 5;</code>
+       * <code>optional double final_location_lat = 5;</code>
        */
-      public com.google.protobuf.ByteString
-          getEndLatBytes() {
-        java.lang.Object ref = endLat_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          endLat_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string end_lat = 5;</code>
-       */
-      public Builder setEndLat(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        endLat_ = value;
+      public Builder setFinalLocationLat(double value) {
+        bitField0_ |= 0x00000010;
+        finalLocationLat_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string end_lat = 5;</code>
+       * <code>optional double final_location_lat = 5;</code>
        */
-      public Builder clearEndLat() {
+      public Builder clearFinalLocationLat() {
         bitField0_ = (bitField0_ & ~0x00000010);
-        endLat_ = getDefaultInstance().getEndLat();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string end_lat = 5;</code>
-       */
-      public Builder setEndLatBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        endLat_ = value;
+        finalLocationLat_ = 0D;
         onChanged();
         return this;
       }
 
-      private java.lang.Object endLon_ = "";
+      private double finalLocationLon_ ;
       /**
-       * <code>optional string end_lon = 6;</code>
+       * <code>optional double final_location_lon = 6;</code>
        */
-      public boolean hasEndLon() {
+      public boolean hasFinalLocationLon() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional string end_lon = 6;</code>
+       * <code>optional double final_location_lon = 6;</code>
        */
-      public java.lang.String getEndLon() {
-        java.lang.Object ref = endLon_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            endLon_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public double getFinalLocationLon() {
+        return finalLocationLon_;
       }
       /**
-       * <code>optional string end_lon = 6;</code>
+       * <code>optional double final_location_lon = 6;</code>
        */
-      public com.google.protobuf.ByteString
-          getEndLonBytes() {
-        java.lang.Object ref = endLon_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          endLon_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string end_lon = 6;</code>
-       */
-      public Builder setEndLon(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        endLon_ = value;
+      public Builder setFinalLocationLon(double value) {
+        bitField0_ |= 0x00000020;
+        finalLocationLon_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string end_lon = 6;</code>
+       * <code>optional double final_location_lon = 6;</code>
        */
-      public Builder clearEndLon() {
+      public Builder clearFinalLocationLon() {
         bitField0_ = (bitField0_ & ~0x00000020);
-        endLon_ = getDefaultInstance().getEndLon();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string end_lon = 6;</code>
-       */
-      public Builder setEndLonBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        endLon_ = value;
+        finalLocationLon_ = 0D;
         onChanged();
         return this;
       }
@@ -7449,39 +7291,39 @@ public final class Representations {
   static {
     java.lang.String[] descriptorData = {
       "\n(src/main/resources/representations.pro" +
-      "to\022!org.jailbreak.api.representations\"\346\001" +
+      "to\022!org.jailbreak.api.representations\"\374\001" +
       "\n\020JailbreakService\022\022\n\nstart_time\030\001 \001(\003\022\025" +
       "\n\ramount_raised\030\002 \001(\005\022\026\n\016winner_team_id\030" +
-      "\003 \001(\005\022\020\n\010tfm_live\030\004 \001(\010\022\017\n\007end_lat\030\005 \001(\t" +
-      "\022\017\n\007end_lon\030\006 \001(\t\022\021\n\tteams_url\030\007 \001(\t\022\033\n\023" +
-      "facebook_tokens_url\030\010 \001(\t\022\030\n\020authenticat" +
-      "e_url\030\t \001(\t\022\021\n\tusers_url\030\n \001(\t\"\266\002\n\004Team\022" +
-      "\n\n\002id\030\001 \001(\005\022\023\n\013team_number\030\002 \001(\005\022\021\n\tteam" +
-      "_name\030\003 \001(\t\022\r\n\005names\030\004 \001(\t\022\016\n\006avatar\030\005 \001",
-      "(\t\022\020\n\010tag_line\030\006 \001(\t\022\021\n\tstart_lat\030\007 \001(\001\022" +
-      "\021\n\tstart_lon\030\010 \001(\001\022\023\n\013current_lat\030\t \001(\001\022" +
-      "\023\n\013current_lon\030\n \001(\001\022F\n\nuniversity\030\013 \001(\016" +
-      "22.org.jailbreak.api.representations.Tea" +
-      "m.University\"1\n\nUniversity\022\007\n\003TCD\020\000\022\007\n\003U" +
-      "CD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003\"p\n\007Checkin\022\n\n\002id" +
-      "\030\001 \001(\005\022\020\n\010location\030\002 \001(\t\022\016\n\006status\030\003 \001(\t" +
-      "\022\013\n\003lat\030\004 \001(\001\022\013\n\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003" +
-      "\022\017\n\007team_id\030\007 \001(\005\":\n\021FacebookAuthToken\022\024" +
-      "\n\014access_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n",
-      "\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030" +
-      "\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_" +
-      "id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_l" +
-      "evel\030\003 \001(\01621.org.jailbreak.api.represent" +
-      "ations.User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\n" +
-      "first_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006g" +
-      "ender\030\007 \001(\0162..org.jailbreak.api.represen" +
-      "tations.User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n" +
-      "\006locale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016" +
-      "api_tokens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUs",
-      "erLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TR" +
-      "ACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022" +
-      "\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representation" +
-      "s"
+      "\003 \001(\005\022\020\n\010tfm_live\030\004 \001(\010\022\032\n\022final_locatio" +
+      "n_lat\030\005 \001(\001\022\032\n\022final_location_lon\030\006 \001(\001\022" +
+      "\021\n\tteams_url\030\007 \001(\t\022\033\n\023facebook_tokens_ur" +
+      "l\030\010 \001(\t\022\030\n\020authenticate_url\030\t \001(\t\022\021\n\tuse" +
+      "rs_url\030\n \001(\t\"\266\002\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013tea" +
+      "m_number\030\002 \001(\005\022\021\n\tteam_name\030\003 \001(\t\022\r\n\005nam",
+      "es\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t\022\020\n\010tag_line\030\006 \001" +
+      "(\t\022\021\n\tstart_lat\030\007 \001(\001\022\021\n\tstart_lon\030\010 \001(\001" +
+      "\022\023\n\013current_lat\030\t \001(\001\022\023\n\013current_lon\030\n \001" +
+      "(\001\022F\n\nuniversity\030\013 \001(\01622.org.jailbreak.a" +
+      "pi.representations.Team.University\"1\n\nUn" +
+      "iversity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004N" +
+      "UIG\020\003\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010location" +
+      "\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003l" +
+      "on\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005\"" +
+      ":\n\021FacebookAuthToken\022\024\n\014access_token\030\001 \001",
+      "(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_t" +
+      "oken\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003" +
+      " \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_c" +
+      "reated\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621.org.j" +
+      "ailbreak.api.representations.User.UserLe" +
+      "vel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021" +
+      "\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org." +
+      "jailbreak.api.representations.User.Gende" +
+      "r\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rf" +
+      "acebook_link\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001",
+      "(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERAD" +
+      "MIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020" +
+      "\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTH" +
+      "ER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7500,7 +7342,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_JailbreakService_descriptor,
-        new java.lang.String[] { "StartTime", "AmountRaised", "WinnerTeamId", "TfmLive", "EndLat", "EndLon", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
+        new java.lang.String[] { "StartTime", "AmountRaised", "WinnerTeamId", "TfmLive", "FinalLocationLat", "FinalLocationLon", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", });
     internal_static_org_jailbreak_api_representations_Team_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new
