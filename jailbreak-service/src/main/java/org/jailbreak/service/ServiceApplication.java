@@ -2,6 +2,7 @@ package org.jailbreak.service;
 
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
+import org.jailbreak.service.errors.GenericExceptionMapper;
 
 import io.dropwizard.Application;
 import io.dropwizard.auth.basic.BasicAuthProvider;
@@ -39,6 +40,7 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         // we must get our health checks inherit from InjectableHealthCheck in order for them to be injected
     	ApiTokenAuthenticator apiTokenAuth = this.guiceBundle.getInjector().getInstance(ApiTokenAuthenticator.class);
     	environment.jersey().register(new BasicAuthProvider<User>(apiTokenAuth, "AUTH"));
+    	environment.jersey().register(new GenericExceptionMapper());
     }
     
     private final MigrationsBundle<ServiceConfiguration> migrations = new MigrationsBundle<ServiceConfiguration>() {

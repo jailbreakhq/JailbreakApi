@@ -38,7 +38,7 @@ public class TeamsManagerImpl implements TeamsManager {
 		}
 
 		int new_id = dao.insert(team);
-		return this.getTeam(new_id).get();
+		return dao.getTeam(new_id).get();
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public Optional<Team> patchTeam(int id, Team newTeam) {
-		Optional<Team> maybeCurrent = dao.getTeam(newTeam.getId());
+		Optional<Team> maybeCurrent = dao.getTeam(id);
 		if (maybeCurrent.isPresent()) {
 			Team merged = maybeCurrent.get().toBuilder().mergeFrom(newTeam).build();
 			dao.update(id, merged);
