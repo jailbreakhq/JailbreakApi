@@ -5,3 +5,5 @@ sudo: false
 cache:
   directories:
     - '$HOME/.m2/repository'
+notifications:
+  slack: jailbreakhq:WSFGi4VPG5JlpA0PgU1fOsI2
