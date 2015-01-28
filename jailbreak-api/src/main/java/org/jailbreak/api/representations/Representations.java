@@ -1545,6 +1545,103 @@ public final class Representations {
      * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
      */
     org.jailbreak.api.representations.Representations.Team.University getUniversity();
+
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    boolean hasDescription();
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+
+    /**
+     * <code>optional int32 amount_raised_online = 13;</code>
+     */
+    boolean hasAmountRaisedOnline();
+    /**
+     * <code>optional int32 amount_raised_online = 13;</code>
+     */
+    int getAmountRaisedOnline();
+
+    /**
+     * <code>optional int32 amount_raised_offline = 14;</code>
+     */
+    boolean hasAmountRaisedOffline();
+    /**
+     * <code>optional int32 amount_raised_offline = 14;</code>
+     */
+    int getAmountRaisedOffline();
+
+    /**
+     * <code>optional double distance_to_x = 15;</code>
+     */
+    boolean hasDistanceToX();
+    /**
+     * <code>optional double distance_to_x = 15;</code>
+     */
+    double getDistanceToX();
+
+    /**
+     * <code>optional int32 countries = 16;</code>
+     */
+    boolean hasCountries();
+    /**
+     * <code>optional int32 countries = 16;</code>
+     */
+    int getCountries();
+
+    /**
+     * <code>optional int32 transports = 17;</code>
+     */
+    boolean hasTransports();
+    /**
+     * <code>optional int32 transports = 17;</code>
+     */
+    int getTransports();
+
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    boolean hasDonationsUrl();
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    java.lang.String getDonationsUrl();
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    com.google.protobuf.ByteString
+        getDonationsUrlBytes();
+
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    java.util.List<org.jailbreak.api.representations.Representations.Challenge> 
+        getChallengesList();
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    org.jailbreak.api.representations.Representations.Challenge getChallenges(int index);
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    int getChallengesCount();
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
+        getChallengesOrBuilderList();
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.Team}
@@ -1663,6 +1760,51 @@ public final class Representations {
               }
               break;
             }
+            case 98: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000800;
+              description_ = bs;
+              break;
+            }
+            case 104: {
+              bitField0_ |= 0x00001000;
+              amountRaisedOnline_ = input.readInt32();
+              break;
+            }
+            case 112: {
+              bitField0_ |= 0x00002000;
+              amountRaisedOffline_ = input.readInt32();
+              break;
+            }
+            case 121: {
+              bitField0_ |= 0x00004000;
+              distanceToX_ = input.readDouble();
+              break;
+            }
+            case 128: {
+              bitField0_ |= 0x00008000;
+              countries_ = input.readInt32();
+              break;
+            }
+            case 136: {
+              bitField0_ |= 0x00010000;
+              transports_ = input.readInt32();
+              break;
+            }
+            case 146: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00020000;
+              donationsUrl_ = bs;
+              break;
+            }
+            case 154: {
+              if (!((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+                challenges_ = new java.util.ArrayList<org.jailbreak.api.representations.Representations.Challenge>();
+                mutable_bitField0_ |= 0x00040000;
+              }
+              challenges_.add(input.readMessage(org.jailbreak.api.representations.Representations.Challenge.PARSER, extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1671,6 +1813,9 @@ public final class Representations {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+          challenges_ = java.util.Collections.unmodifiableList(challenges_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -1723,6 +1868,30 @@ public final class Representations {
        * <code>NUIG = 3;</code>
        */
       NUIG(3, 3),
+      /**
+       * <code>NUIM = 4;</code>
+       */
+      NUIM(4, 4),
+      /**
+       * <code>CIT = 5;</code>
+       */
+      CIT(5, 5),
+      /**
+       * <code>NCI = 6;</code>
+       */
+      NCI(6, 6),
+      /**
+       * <code>GMIT = 7;</code>
+       */
+      GMIT(7, 7),
+      /**
+       * <code>ITT = 8;</code>
+       */
+      ITT(8, 8),
+      /**
+       * <code>ITC = 9;</code>
+       */
+      ITC(9, 9),
       ;
 
       /**
@@ -1741,6 +1910,30 @@ public final class Representations {
        * <code>NUIG = 3;</code>
        */
       public static final int NUIG_VALUE = 3;
+      /**
+       * <code>NUIM = 4;</code>
+       */
+      public static final int NUIM_VALUE = 4;
+      /**
+       * <code>CIT = 5;</code>
+       */
+      public static final int CIT_VALUE = 5;
+      /**
+       * <code>NCI = 6;</code>
+       */
+      public static final int NCI_VALUE = 6;
+      /**
+       * <code>GMIT = 7;</code>
+       */
+      public static final int GMIT_VALUE = 7;
+      /**
+       * <code>ITT = 8;</code>
+       */
+      public static final int ITT_VALUE = 8;
+      /**
+       * <code>ITC = 9;</code>
+       */
+      public static final int ITC_VALUE = 9;
 
 
       public final int getNumber() { return value; }
@@ -1751,6 +1944,12 @@ public final class Representations {
           case 1: return UCD;
           case 2: return UCC;
           case 3: return NUIG;
+          case 4: return NUIM;
+          case 5: return CIT;
+          case 6: return NCI;
+          case 7: return GMIT;
+          case 8: return ITT;
+          case 9: return ITC;
           default: return null;
         }
       }
@@ -2076,6 +2275,200 @@ public final class Representations {
       return university_;
     }
 
+    public static final int DESCRIPTION_FIELD_NUMBER = 12;
+    private java.lang.Object description_;
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    public boolean hasDescription() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    public java.lang.String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          description_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string description = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        description_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int AMOUNT_RAISED_ONLINE_FIELD_NUMBER = 13;
+    private int amountRaisedOnline_;
+    /**
+     * <code>optional int32 amount_raised_online = 13;</code>
+     */
+    public boolean hasAmountRaisedOnline() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional int32 amount_raised_online = 13;</code>
+     */
+    public int getAmountRaisedOnline() {
+      return amountRaisedOnline_;
+    }
+
+    public static final int AMOUNT_RAISED_OFFLINE_FIELD_NUMBER = 14;
+    private int amountRaisedOffline_;
+    /**
+     * <code>optional int32 amount_raised_offline = 14;</code>
+     */
+    public boolean hasAmountRaisedOffline() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    /**
+     * <code>optional int32 amount_raised_offline = 14;</code>
+     */
+    public int getAmountRaisedOffline() {
+      return amountRaisedOffline_;
+    }
+
+    public static final int DISTANCE_TO_X_FIELD_NUMBER = 15;
+    private double distanceToX_;
+    /**
+     * <code>optional double distance_to_x = 15;</code>
+     */
+    public boolean hasDistanceToX() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    /**
+     * <code>optional double distance_to_x = 15;</code>
+     */
+    public double getDistanceToX() {
+      return distanceToX_;
+    }
+
+    public static final int COUNTRIES_FIELD_NUMBER = 16;
+    private int countries_;
+    /**
+     * <code>optional int32 countries = 16;</code>
+     */
+    public boolean hasCountries() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    /**
+     * <code>optional int32 countries = 16;</code>
+     */
+    public int getCountries() {
+      return countries_;
+    }
+
+    public static final int TRANSPORTS_FIELD_NUMBER = 17;
+    private int transports_;
+    /**
+     * <code>optional int32 transports = 17;</code>
+     */
+    public boolean hasTransports() {
+      return ((bitField0_ & 0x00010000) == 0x00010000);
+    }
+    /**
+     * <code>optional int32 transports = 17;</code>
+     */
+    public int getTransports() {
+      return transports_;
+    }
+
+    public static final int DONATIONS_URL_FIELD_NUMBER = 18;
+    private java.lang.Object donationsUrl_;
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    public boolean hasDonationsUrl() {
+      return ((bitField0_ & 0x00020000) == 0x00020000);
+    }
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    public java.lang.String getDonationsUrl() {
+      java.lang.Object ref = donationsUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          donationsUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string donations_url = 18;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDonationsUrlBytes() {
+      java.lang.Object ref = donationsUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        donationsUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHALLENGES_FIELD_NUMBER = 19;
+    private java.util.List<org.jailbreak.api.representations.Representations.Challenge> challenges_;
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    public java.util.List<org.jailbreak.api.representations.Representations.Challenge> getChallengesList() {
+      return challenges_;
+    }
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    public java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
+        getChallengesOrBuilderList() {
+      return challenges_;
+    }
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    public int getChallengesCount() {
+      return challenges_.size();
+    }
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    public org.jailbreak.api.representations.Representations.Challenge getChallenges(int index) {
+      return challenges_.get(index);
+    }
+    /**
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     */
+    public org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
+        int index) {
+      return challenges_.get(index);
+    }
+
     private void initFields() {
       id_ = 0;
       teamNumber_ = 0;
@@ -2088,6 +2481,14 @@ public final class Representations {
       currentLat_ = 0D;
       currentLon_ = 0D;
       university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+      description_ = "";
+      amountRaisedOnline_ = 0;
+      amountRaisedOffline_ = 0;
+      distanceToX_ = 0D;
+      countries_ = 0;
+      transports_ = 0;
+      donationsUrl_ = "";
+      challenges_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2134,6 +2535,30 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         output.writeEnum(11, university_.getNumber());
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        output.writeBytes(12, getDescriptionBytes());
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        output.writeInt32(13, amountRaisedOnline_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        output.writeInt32(14, amountRaisedOffline_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeDouble(15, distanceToX_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeInt32(16, countries_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        output.writeInt32(17, transports_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        output.writeBytes(18, getDonationsUrlBytes());
+      }
+      for (int i = 0; i < challenges_.size(); i++) {
+        output.writeMessage(19, challenges_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -2187,6 +2612,38 @@ public final class Representations {
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(11, university_.getNumber());
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(12, getDescriptionBytes());
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(13, amountRaisedOnline_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(14, amountRaisedOffline_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(15, distanceToX_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(16, countries_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(17, transports_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(18, getDonationsUrlBytes());
+      }
+      for (int i = 0; i < challenges_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, challenges_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2297,6 +2754,7 @@ public final class Representations {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getChallengesFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2327,6 +2785,26 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000200);
         university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
         bitField0_ = (bitField0_ & ~0x00000400);
+        description_ = "";
+        bitField0_ = (bitField0_ & ~0x00000800);
+        amountRaisedOnline_ = 0;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        amountRaisedOffline_ = 0;
+        bitField0_ = (bitField0_ & ~0x00002000);
+        distanceToX_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00004000);
+        countries_ = 0;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        transports_ = 0;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        donationsUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00020000);
+        if (challengesBuilder_ == null) {
+          challenges_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00040000);
+        } else {
+          challengesBuilder_.clear();
+        }
         return this;
       }
 
@@ -2399,6 +2877,43 @@ public final class Representations {
           to_bitField0_ |= 0x00000400;
         }
         result.university_ = university_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
+        result.description_ = description_;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
+        }
+        result.amountRaisedOnline_ = amountRaisedOnline_;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
+        }
+        result.amountRaisedOffline_ = amountRaisedOffline_;
+        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.distanceToX_ = distanceToX_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.countries_ = countries_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00010000;
+        }
+        result.transports_ = transports_;
+        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
+          to_bitField0_ |= 0x00020000;
+        }
+        result.donationsUrl_ = donationsUrl_;
+        if (challengesBuilder_ == null) {
+          if (((bitField0_ & 0x00040000) == 0x00040000)) {
+            challenges_ = java.util.Collections.unmodifiableList(challenges_);
+            bitField0_ = (bitField0_ & ~0x00040000);
+          }
+          result.challenges_ = challenges_;
+        } else {
+          result.challenges_ = challengesBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2455,6 +2970,57 @@ public final class Representations {
         }
         if (other.hasUniversity()) {
           setUniversity(other.getUniversity());
+        }
+        if (other.hasDescription()) {
+          bitField0_ |= 0x00000800;
+          description_ = other.description_;
+          onChanged();
+        }
+        if (other.hasAmountRaisedOnline()) {
+          setAmountRaisedOnline(other.getAmountRaisedOnline());
+        }
+        if (other.hasAmountRaisedOffline()) {
+          setAmountRaisedOffline(other.getAmountRaisedOffline());
+        }
+        if (other.hasDistanceToX()) {
+          setDistanceToX(other.getDistanceToX());
+        }
+        if (other.hasCountries()) {
+          setCountries(other.getCountries());
+        }
+        if (other.hasTransports()) {
+          setTransports(other.getTransports());
+        }
+        if (other.hasDonationsUrl()) {
+          bitField0_ |= 0x00020000;
+          donationsUrl_ = other.donationsUrl_;
+          onChanged();
+        }
+        if (challengesBuilder_ == null) {
+          if (!other.challenges_.isEmpty()) {
+            if (challenges_.isEmpty()) {
+              challenges_ = other.challenges_;
+              bitField0_ = (bitField0_ & ~0x00040000);
+            } else {
+              ensureChallengesIsMutable();
+              challenges_.addAll(other.challenges_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.challenges_.isEmpty()) {
+            if (challengesBuilder_.isEmpty()) {
+              challengesBuilder_.dispose();
+              challengesBuilder_ = null;
+              challenges_ = other.challenges_;
+              bitField0_ = (bitField0_ & ~0x00040000);
+              challengesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getChallengesFieldBuilder() : null;
+            } else {
+              challengesBuilder_.addAllMessages(other.challenges_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3012,6 +3578,558 @@ public final class Representations {
         university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
         onChanged();
         return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public boolean hasDescription() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            description_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        java.lang.Object ref = description_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          description_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000800;
+        description_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public Builder clearDescription() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        description_ = getDefaultInstance().getDescription();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string description = 12;</code>
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000800;
+        description_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int amountRaisedOnline_ ;
+      /**
+       * <code>optional int32 amount_raised_online = 13;</code>
+       */
+      public boolean hasAmountRaisedOnline() {
+        return ((bitField0_ & 0x00001000) == 0x00001000);
+      }
+      /**
+       * <code>optional int32 amount_raised_online = 13;</code>
+       */
+      public int getAmountRaisedOnline() {
+        return amountRaisedOnline_;
+      }
+      /**
+       * <code>optional int32 amount_raised_online = 13;</code>
+       */
+      public Builder setAmountRaisedOnline(int value) {
+        bitField0_ |= 0x00001000;
+        amountRaisedOnline_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 amount_raised_online = 13;</code>
+       */
+      public Builder clearAmountRaisedOnline() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        amountRaisedOnline_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int amountRaisedOffline_ ;
+      /**
+       * <code>optional int32 amount_raised_offline = 14;</code>
+       */
+      public boolean hasAmountRaisedOffline() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional int32 amount_raised_offline = 14;</code>
+       */
+      public int getAmountRaisedOffline() {
+        return amountRaisedOffline_;
+      }
+      /**
+       * <code>optional int32 amount_raised_offline = 14;</code>
+       */
+      public Builder setAmountRaisedOffline(int value) {
+        bitField0_ |= 0x00002000;
+        amountRaisedOffline_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 amount_raised_offline = 14;</code>
+       */
+      public Builder clearAmountRaisedOffline() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        amountRaisedOffline_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private double distanceToX_ ;
+      /**
+       * <code>optional double distance_to_x = 15;</code>
+       */
+      public boolean hasDistanceToX() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      /**
+       * <code>optional double distance_to_x = 15;</code>
+       */
+      public double getDistanceToX() {
+        return distanceToX_;
+      }
+      /**
+       * <code>optional double distance_to_x = 15;</code>
+       */
+      public Builder setDistanceToX(double value) {
+        bitField0_ |= 0x00004000;
+        distanceToX_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double distance_to_x = 15;</code>
+       */
+      public Builder clearDistanceToX() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        distanceToX_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private int countries_ ;
+      /**
+       * <code>optional int32 countries = 16;</code>
+       */
+      public boolean hasCountries() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      /**
+       * <code>optional int32 countries = 16;</code>
+       */
+      public int getCountries() {
+        return countries_;
+      }
+      /**
+       * <code>optional int32 countries = 16;</code>
+       */
+      public Builder setCountries(int value) {
+        bitField0_ |= 0x00008000;
+        countries_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 countries = 16;</code>
+       */
+      public Builder clearCountries() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        countries_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int transports_ ;
+      /**
+       * <code>optional int32 transports = 17;</code>
+       */
+      public boolean hasTransports() {
+        return ((bitField0_ & 0x00010000) == 0x00010000);
+      }
+      /**
+       * <code>optional int32 transports = 17;</code>
+       */
+      public int getTransports() {
+        return transports_;
+      }
+      /**
+       * <code>optional int32 transports = 17;</code>
+       */
+      public Builder setTransports(int value) {
+        bitField0_ |= 0x00010000;
+        transports_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 transports = 17;</code>
+       */
+      public Builder clearTransports() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        transports_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object donationsUrl_ = "";
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public boolean hasDonationsUrl() {
+        return ((bitField0_ & 0x00020000) == 0x00020000);
+      }
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public java.lang.String getDonationsUrl() {
+        java.lang.Object ref = donationsUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            donationsUrl_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDonationsUrlBytes() {
+        java.lang.Object ref = donationsUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          donationsUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public Builder setDonationsUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00020000;
+        donationsUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public Builder clearDonationsUrl() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        donationsUrl_ = getDefaultInstance().getDonationsUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string donations_url = 18;</code>
+       */
+      public Builder setDonationsUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00020000;
+        donationsUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<org.jailbreak.api.representations.Representations.Challenge> challenges_ =
+        java.util.Collections.emptyList();
+      private void ensureChallengesIsMutable() {
+        if (!((bitField0_ & 0x00040000) == 0x00040000)) {
+          challenges_ = new java.util.ArrayList<org.jailbreak.api.representations.Representations.Challenge>(challenges_);
+          bitField0_ |= 0x00040000;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.jailbreak.api.representations.Representations.Challenge, org.jailbreak.api.representations.Representations.Challenge.Builder, org.jailbreak.api.representations.Representations.ChallengeOrBuilder> challengesBuilder_;
+
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public java.util.List<org.jailbreak.api.representations.Representations.Challenge> getChallengesList() {
+        if (challengesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(challenges_);
+        } else {
+          return challengesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public int getChallengesCount() {
+        if (challengesBuilder_ == null) {
+          return challenges_.size();
+        } else {
+          return challengesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Challenge getChallenges(int index) {
+        if (challengesBuilder_ == null) {
+          return challenges_.get(index);
+        } else {
+          return challengesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder setChallenges(
+          int index, org.jailbreak.api.representations.Representations.Challenge value) {
+        if (challengesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChallengesIsMutable();
+          challenges_.set(index, value);
+          onChanged();
+        } else {
+          challengesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder setChallenges(
+          int index, org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
+        if (challengesBuilder_ == null) {
+          ensureChallengesIsMutable();
+          challenges_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          challengesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder addChallenges(org.jailbreak.api.representations.Representations.Challenge value) {
+        if (challengesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChallengesIsMutable();
+          challenges_.add(value);
+          onChanged();
+        } else {
+          challengesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder addChallenges(
+          int index, org.jailbreak.api.representations.Representations.Challenge value) {
+        if (challengesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChallengesIsMutable();
+          challenges_.add(index, value);
+          onChanged();
+        } else {
+          challengesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder addChallenges(
+          org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
+        if (challengesBuilder_ == null) {
+          ensureChallengesIsMutable();
+          challenges_.add(builderForValue.build());
+          onChanged();
+        } else {
+          challengesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder addChallenges(
+          int index, org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
+        if (challengesBuilder_ == null) {
+          ensureChallengesIsMutable();
+          challenges_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          challengesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder addAllChallenges(
+          java.lang.Iterable<? extends org.jailbreak.api.representations.Representations.Challenge> values) {
+        if (challengesBuilder_ == null) {
+          ensureChallengesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, challenges_);
+          onChanged();
+        } else {
+          challengesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder clearChallenges() {
+        if (challengesBuilder_ == null) {
+          challenges_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00040000);
+          onChanged();
+        } else {
+          challengesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public Builder removeChallenges(int index) {
+        if (challengesBuilder_ == null) {
+          ensureChallengesIsMutable();
+          challenges_.remove(index);
+          onChanged();
+        } else {
+          challengesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Challenge.Builder getChallengesBuilder(
+          int index) {
+        return getChallengesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
+          int index) {
+        if (challengesBuilder_ == null) {
+          return challenges_.get(index);  } else {
+          return challengesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
+           getChallengesOrBuilderList() {
+        if (challengesBuilder_ != null) {
+          return challengesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(challenges_);
+        }
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Challenge.Builder addChallengesBuilder() {
+        return getChallengesFieldBuilder().addBuilder(
+            org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Challenge.Builder addChallengesBuilder(
+          int index) {
+        return getChallengesFieldBuilder().addBuilder(
+            index, org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       */
+      public java.util.List<org.jailbreak.api.representations.Representations.Challenge.Builder> 
+           getChallengesBuilderList() {
+        return getChallengesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.jailbreak.api.representations.Representations.Challenge, org.jailbreak.api.representations.Representations.Challenge.Builder, org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
+          getChallengesFieldBuilder() {
+        if (challengesBuilder_ == null) {
+          challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.jailbreak.api.representations.Representations.Challenge, org.jailbreak.api.representations.Representations.Challenge.Builder, org.jailbreak.api.representations.Representations.ChallengeOrBuilder>(
+                  challenges_,
+                  ((bitField0_ & 0x00040000) == 0x00040000),
+                  getParentForChildren(),
+                  isClean());
+          challenges_ = null;
+        }
+        return challengesBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Team)
@@ -4046,6 +5164,1760 @@ public final class Representations {
     }
 
     // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Checkin)
+  }
+
+  public interface ChallengeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.Challenge)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    boolean hasTeamId();
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    int getTeamId();
+
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    boolean hasName();
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional bool completed = 4;</code>
+     */
+    boolean hasCompleted();
+    /**
+     * <code>optional bool completed = 4;</code>
+     */
+    boolean getCompleted();
+
+    /**
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     */
+    org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType();
+
+    /**
+     * <code>optional int64 completed_time = 6;</code>
+     */
+    boolean hasCompletedTime();
+    /**
+     * <code>optional int64 completed_time = 6;</code>
+     */
+    long getCompletedTime();
+  }
+  /**
+   * Protobuf type {@code org.jailbreak.api.representations.Challenge}
+   */
+  public static final class Challenge extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.Challenge)
+      ChallengeOrBuilder {
+    // Use Challenge.newBuilder() to construct.
+    private Challenge(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Challenge(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Challenge defaultInstance;
+    public static Challenge getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Challenge getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Challenge(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              teamId_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              name_ = bs;
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              completed_ = input.readBool();
+              break;
+            }
+            case 40: {
+              int rawValue = input.readEnum();
+              org.jailbreak.api.representations.Representations.Challenge.ChallengeType value = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(5, rawValue);
+              } else {
+                bitField0_ |= 0x00000010;
+                type_ = value;
+              }
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              completedTime_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Challenge_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Challenge_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.jailbreak.api.representations.Representations.Challenge.class, org.jailbreak.api.representations.Representations.Challenge.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Challenge> PARSER =
+        new com.google.protobuf.AbstractParser<Challenge>() {
+      public Challenge parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Challenge(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Challenge> getParserForType() {
+      return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code org.jailbreak.api.representations.Challenge.ChallengeType}
+     */
+    public enum ChallengeType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>BLINDFOLD = 1;</code>
+       */
+      BLINDFOLD(0, 1),
+      /**
+       * <code>PAPER_BOATS = 2;</code>
+       */
+      PAPER_BOATS(1, 2),
+      /**
+       * <code>EDUCATION = 3;</code>
+       */
+      EDUCATION(2, 3),
+      ;
+
+      /**
+       * <code>BLINDFOLD = 1;</code>
+       */
+      public static final int BLINDFOLD_VALUE = 1;
+      /**
+       * <code>PAPER_BOATS = 2;</code>
+       */
+      public static final int PAPER_BOATS_VALUE = 2;
+      /**
+       * <code>EDUCATION = 3;</code>
+       */
+      public static final int EDUCATION_VALUE = 3;
+
+
+      public final int getNumber() { return value; }
+
+      public static ChallengeType valueOf(int value) {
+        switch (value) {
+          case 1: return BLINDFOLD;
+          case 2: return PAPER_BOATS;
+          case 3: return EDUCATION;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ChallengeType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<ChallengeType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ChallengeType>() {
+              public ChallengeType findValueByNumber(int number) {
+                return ChallengeType.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.Challenge.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final ChallengeType[] VALUES = values();
+
+      public static ChallengeType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private ChallengeType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:org.jailbreak.api.representations.Challenge.ChallengeType)
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int TEAM_ID_FIELD_NUMBER = 2;
+    private int teamId_;
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    public boolean hasTeamId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    public int getTeamId() {
+      return teamId_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 3;
+    private java.lang.Object name_;
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int COMPLETED_FIELD_NUMBER = 4;
+    private boolean completed_;
+    /**
+     * <code>optional bool completed = 4;</code>
+     */
+    public boolean hasCompleted() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool completed = 4;</code>
+     */
+    public boolean getCompleted() {
+      return completed_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 5;
+    private org.jailbreak.api.representations.Representations.Challenge.ChallengeType type_;
+    /**
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     */
+    public org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType() {
+      return type_;
+    }
+
+    public static final int COMPLETED_TIME_FIELD_NUMBER = 6;
+    private long completedTime_;
+    /**
+     * <code>optional int64 completed_time = 6;</code>
+     */
+    public boolean hasCompletedTime() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional int64 completed_time = 6;</code>
+     */
+    public long getCompletedTime() {
+      return completedTime_;
+    }
+
+    private void initFields() {
+      id_ = 0;
+      teamId_ = 0;
+      name_ = "";
+      completed_ = false;
+      type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
+      completedTime_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, teamId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, completed_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeEnum(5, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt64(6, completedTime_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, teamId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, completed_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, completedTime_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Challenge parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.jailbreak.api.representations.Representations.Challenge prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.jailbreak.api.representations.Challenge}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.Challenge)
+        org.jailbreak.api.representations.Representations.ChallengeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Challenge_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Challenge_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.jailbreak.api.representations.Representations.Challenge.class, org.jailbreak.api.representations.Representations.Challenge.Builder.class);
+      }
+
+      // Construct using org.jailbreak.api.representations.Representations.Challenge.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        teamId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        completed_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        completedTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Challenge_descriptor;
+      }
+
+      public org.jailbreak.api.representations.Representations.Challenge getDefaultInstanceForType() {
+        return org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance();
+      }
+
+      public org.jailbreak.api.representations.Representations.Challenge build() {
+        org.jailbreak.api.representations.Representations.Challenge result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.jailbreak.api.representations.Representations.Challenge buildPartial() {
+        org.jailbreak.api.representations.Representations.Challenge result = new org.jailbreak.api.representations.Representations.Challenge(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.teamId_ = teamId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.completed_ = completed_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.completedTime_ = completedTime_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.jailbreak.api.representations.Representations.Challenge) {
+          return mergeFrom((org.jailbreak.api.representations.Representations.Challenge)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.jailbreak.api.representations.Representations.Challenge other) {
+        if (other == org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasTeamId()) {
+          setTeamId(other.getTeamId());
+        }
+        if (other.hasName()) {
+          bitField0_ |= 0x00000004;
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasCompleted()) {
+          setCompleted(other.getCompleted());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasCompletedTime()) {
+          setCompletedTime(other.getCompletedTime());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.jailbreak.api.representations.Representations.Challenge parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.jailbreak.api.representations.Representations.Challenge) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int teamId_ ;
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public boolean hasTeamId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public int getTeamId() {
+        return teamId_;
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public Builder setTeamId(int value) {
+        bitField0_ |= 0x00000002;
+        teamId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public Builder clearTeamId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        teamId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            name_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean completed_ ;
+      /**
+       * <code>optional bool completed = 4;</code>
+       */
+      public boolean hasCompleted() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bool completed = 4;</code>
+       */
+      public boolean getCompleted() {
+        return completed_;
+      }
+      /**
+       * <code>optional bool completed = 4;</code>
+       */
+      public Builder setCompleted(boolean value) {
+        bitField0_ |= 0x00000008;
+        completed_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool completed = 4;</code>
+       */
+      public Builder clearCompleted() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        completed_ = false;
+        onChanged();
+        return this;
+      }
+
+      private org.jailbreak.api.representations.Representations.Challenge.ChallengeType type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
+      /**
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType() {
+        return type_;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       */
+      public Builder setType(org.jailbreak.api.representations.Representations.Challenge.ChallengeType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000010;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
+        onChanged();
+        return this;
+      }
+
+      private long completedTime_ ;
+      /**
+       * <code>optional int64 completed_time = 6;</code>
+       */
+      public boolean hasCompletedTime() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional int64 completed_time = 6;</code>
+       */
+      public long getCompletedTime() {
+        return completedTime_;
+      }
+      /**
+       * <code>optional int64 completed_time = 6;</code>
+       */
+      public Builder setCompletedTime(long value) {
+        bitField0_ |= 0x00000020;
+        completedTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 completed_time = 6;</code>
+       */
+      public Builder clearCompletedTime() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        completedTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Challenge)
+    }
+
+    static {
+      defaultInstance = new Challenge(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Challenge)
+  }
+
+  public interface DonationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.Donation)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    boolean hasTeamId();
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    int getTeamId();
+
+    /**
+     * <code>optional int32 amount = 3;</code>
+     */
+    boolean hasAmount();
+    /**
+     * <code>optional int32 amount = 3;</code>
+     */
+    int getAmount();
+
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    boolean hasName();
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional int64 time = 5;</code>
+     */
+    boolean hasTime();
+    /**
+     * <code>optional int64 time = 5;</code>
+     */
+    long getTime();
+  }
+  /**
+   * Protobuf type {@code org.jailbreak.api.representations.Donation}
+   */
+  public static final class Donation extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.Donation)
+      DonationOrBuilder {
+    // Use Donation.newBuilder() to construct.
+    private Donation(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Donation(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Donation defaultInstance;
+    public static Donation getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Donation getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Donation(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              teamId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              amount_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000008;
+              name_ = bs;
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              time_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Donation_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.jailbreak.api.representations.Representations.Donation.class, org.jailbreak.api.representations.Representations.Donation.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Donation> PARSER =
+        new com.google.protobuf.AbstractParser<Donation>() {
+      public Donation parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Donation(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Donation> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int TEAM_ID_FIELD_NUMBER = 2;
+    private int teamId_;
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    public boolean hasTeamId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 team_id = 2;</code>
+     */
+    public int getTeamId() {
+      return teamId_;
+    }
+
+    public static final int AMOUNT_FIELD_NUMBER = 3;
+    private int amount_;
+    /**
+     * <code>optional int32 amount = 3;</code>
+     */
+    public boolean hasAmount() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int32 amount = 3;</code>
+     */
+    public int getAmount() {
+      return amount_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 4;
+    private java.lang.Object name_;
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIME_FIELD_NUMBER = 5;
+    private long time_;
+    /**
+     * <code>optional int64 time = 5;</code>
+     */
+    public boolean hasTime() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional int64 time = 5;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    private void initFields() {
+      id_ = 0;
+      teamId_ = 0;
+      amount_ = 0;
+      name_ = "";
+      time_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, teamId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, amount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt64(5, time_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, teamId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, amount_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, time_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.jailbreak.api.representations.Representations.Donation parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.jailbreak.api.representations.Representations.Donation prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.jailbreak.api.representations.Donation}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.Donation)
+        org.jailbreak.api.representations.Representations.DonationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Donation_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.jailbreak.api.representations.Representations.Donation.class, org.jailbreak.api.representations.Representations.Donation.Builder.class);
+      }
+
+      // Construct using org.jailbreak.api.representations.Representations.Donation.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        teamId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        amount_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        time_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Donation_descriptor;
+      }
+
+      public org.jailbreak.api.representations.Representations.Donation getDefaultInstanceForType() {
+        return org.jailbreak.api.representations.Representations.Donation.getDefaultInstance();
+      }
+
+      public org.jailbreak.api.representations.Representations.Donation build() {
+        org.jailbreak.api.representations.Representations.Donation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.jailbreak.api.representations.Representations.Donation buildPartial() {
+        org.jailbreak.api.representations.Representations.Donation result = new org.jailbreak.api.representations.Representations.Donation(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.id_ = id_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.teamId_ = teamId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.amount_ = amount_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.time_ = time_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.jailbreak.api.representations.Representations.Donation) {
+          return mergeFrom((org.jailbreak.api.representations.Representations.Donation)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.jailbreak.api.representations.Representations.Donation other) {
+        if (other == org.jailbreak.api.representations.Representations.Donation.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
+        if (other.hasTeamId()) {
+          setTeamId(other.getTeamId());
+        }
+        if (other.hasAmount()) {
+          setAmount(other.getAmount());
+        }
+        if (other.hasName()) {
+          bitField0_ |= 0x00000008;
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasTime()) {
+          setTime(other.getTime());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.jailbreak.api.representations.Representations.Donation parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.jailbreak.api.representations.Representations.Donation) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int teamId_ ;
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public boolean hasTeamId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public int getTeamId() {
+        return teamId_;
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public Builder setTeamId(int value) {
+        bitField0_ |= 0x00000002;
+        teamId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 team_id = 2;</code>
+       */
+      public Builder clearTeamId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        teamId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int amount_ ;
+      /**
+       * <code>optional int32 amount = 3;</code>
+       */
+      public boolean hasAmount() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int32 amount = 3;</code>
+       */
+      public int getAmount() {
+        return amount_;
+      }
+      /**
+       * <code>optional int32 amount = 3;</code>
+       */
+      public Builder setAmount(int value) {
+        bitField0_ |= 0x00000004;
+        amount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 amount = 3;</code>
+       */
+      public Builder clearAmount() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        amount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            name_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 4;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <code>optional int64 time = 5;</code>
+       */
+      public boolean hasTime() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional int64 time = 5;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>optional int64 time = 5;</code>
+       */
+      public Builder setTime(long value) {
+        bitField0_ |= 0x00000010;
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 time = 5;</code>
+       */
+      public Builder clearTime() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Donation)
+    }
+
+    static {
+      defaultInstance = new Donation(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Donation)
   }
 
   public interface FacebookAuthTokenOrBuilder extends
@@ -7267,6 +10139,16 @@ public final class Representations {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_jailbreak_api_representations_Challenge_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_jailbreak_api_representations_Challenge_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_jailbreak_api_representations_Donation_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -7298,32 +10180,47 @@ public final class Representations {
       "n_lat\030\005 \001(\001\022\032\n\022final_location_lon\030\006 \001(\001\022" +
       "\021\n\tteams_url\030\007 \001(\t\022\033\n\023facebook_tokens_ur" +
       "l\030\010 \001(\t\022\030\n\020authenticate_url\030\t \001(\t\022\021\n\tuse" +
-      "rs_url\030\n \001(\t\"\266\002\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013tea" +
+      "rs_url\030\n \001(\t\"\327\004\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013tea" +
       "m_number\030\002 \001(\005\022\021\n\tteam_name\030\003 \001(\t\022\r\n\005nam",
       "es\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t\022\020\n\010tag_line\030\006 \001" +
       "(\t\022\021\n\tstart_lat\030\007 \001(\001\022\021\n\tstart_lon\030\010 \001(\001" +
       "\022\023\n\013current_lat\030\t \001(\001\022\023\n\013current_lon\030\n \001" +
       "(\001\022F\n\nuniversity\030\013 \001(\01622.org.jailbreak.a" +
-      "pi.representations.Team.University\"1\n\nUn" +
-      "iversity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004N" +
-      "UIG\020\003\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010location" +
-      "\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003l" +
-      "on\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005\"" +
-      ":\n\021FacebookAuthToken\022\024\n\014access_token\030\001 \001",
-      "(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_t" +
-      "oken\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003" +
-      " \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_c" +
-      "reated\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621.org.j" +
-      "ailbreak.api.representations.User.UserLe" +
-      "vel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021" +
-      "\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org." +
-      "jailbreak.api.representations.User.Gende" +
-      "r\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rf" +
-      "acebook_link\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001",
-      "(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERAD" +
-      "MIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020" +
-      "\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTH" +
-      "ER\020\002B\021B\017Representations"
+      "pi.representations.Team.University\022\023\n\013de" +
+      "scription\030\014 \001(\t\022\034\n\024amount_raised_online\030" +
+      "\r \001(\005\022\035\n\025amount_raised_offline\030\016 \001(\005\022\025\n\r" +
+      "distance_to_x\030\017 \001(\001\022\021\n\tcountries\030\020 \001(\005\022\022" +
+      "\n\ntransports\030\021 \001(\005\022\025\n\rdonations_url\030\022 \001(" +
+      "\t\022@\n\nchallenges\030\023 \003(\0132,.org.jailbreak.ap",
+      "i.representations.Challenge\"i\n\nUniversit" +
+      "y\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003\022\010" +
+      "\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n\004GMIT\020\007\022\007\n\003" +
+      "ITT\020\010\022\007\n\003ITC\020\t\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n" +
+      "\010location\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004" +
+      " \001(\001\022\013\n\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_" +
+      "id\030\007 \001(\005\"\353\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022\017\n\007te" +
+      "am_id\030\002 \001(\005\022\014\n\004name\030\003 \001(\t\022\021\n\tcompleted\030\004" +
+      " \001(\010\022H\n\004type\030\005 \001(\0162:.org.jailbreak.api.r" +
+      "epresentations.Challenge.ChallengeType\022\026",
+      "\n\016completed_time\030\006 \001(\003\">\n\rChallengeType\022" +
+      "\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCA" +
+      "TION\020\003\"S\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007team_i" +
+      "d\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\014\n" +
+      "\004time\030\005 \001(\003\":\n\021FacebookAuthToken\022\024\n\014acce" +
+      "ss_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiTo" +
+      "ken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022" +
+      "\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001" +
+      "(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003" +
+      " \001(\01621.org.jailbreak.api.representations",
+      ".User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_" +
+      "name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030" +
+      "\007 \001(\0162..org.jailbreak.api.representation" +
+      "s.User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006local" +
+      "e\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_to" +
+      "kens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLeve" +
+      "l\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020" +
+      "\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEM" +
+      "ALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7348,27 +10245,39 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Team_descriptor,
-        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "StartLat", "StartLon", "CurrentLat", "CurrentLon", "University", });
+        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "StartLat", "StartLon", "CurrentLat", "CurrentLon", "University", "Description", "AmountRaisedOnline", "AmountRaisedOffline", "DistanceToX", "Countries", "Transports", "DonationsUrl", "Challenges", });
     internal_static_org_jailbreak_api_representations_Checkin_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Checkin_descriptor,
         new java.lang.String[] { "Id", "Location", "Status", "Lat", "Lon", "Time", "TeamId", });
-    internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
+    internal_static_org_jailbreak_api_representations_Challenge_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_org_jailbreak_api_representations_Challenge_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_org_jailbreak_api_representations_Challenge_descriptor,
+        new java.lang.String[] { "Id", "TeamId", "Name", "Completed", "Type", "CompletedTime", });
+    internal_static_org_jailbreak_api_representations_Donation_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_org_jailbreak_api_representations_Donation_descriptor,
+        new java.lang.String[] { "Id", "TeamId", "Amount", "Name", "Time", });
+    internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor,
         new java.lang.String[] { "AccessToken", "UserId", });
     internal_static_org_jailbreak_api_representations_ApiToken_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_org_jailbreak_api_representations_ApiToken_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_ApiToken_descriptor,
         new java.lang.String[] { "ApiToken", "UserId", "Expires", });
     internal_static_org_jailbreak_api_representations_User_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_org_jailbreak_api_representations_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_User_descriptor,

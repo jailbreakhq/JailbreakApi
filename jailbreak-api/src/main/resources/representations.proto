@@ -40,6 +40,14 @@ message Team {
 	optional double current_lat = 9;
 	optional double current_lon = 10;
 	optional University university = 11;
+	optional string description = 12;
+	optional int32 amount_raised_online = 13;
+	optional int32 amount_raised_offline = 14;
+	optional double distance_to_x = 15;
+	optional int32 countries = 16;
+	optional int32 transports = 17;
+	optional string donations_url = 18;
+ 	repeated Challenge challenges = 19;
 }
 
 message Checkin {
@@ -50,6 +58,30 @@ message Checkin {
 	optional double lon = 5;
 	optional int64 time = 6;
 	optional int32 team_id = 7;
+}
+
+message Challenge {
+	enum ChallengeType {
+		BLINDFOLD = 1;
+		PAPER_BOATS = 2;
+		EDUCATION = 3;
+		
+	}
+
+	optional int32 id = 1;
+	optional int32 team_id = 2;
+	optional string name = 3;
+	optional bool completed = 4;
+	optional ChallengeType type = 5;
+	optional int64 completed_time = 6;
+}
+
+message Donation {
+	optional int32 id = 1;
+	optional int32 team_id = 2;
+	optional int32 amount = 3;
+	optional string name = 4;
+	optional int64 time = 5;
 }
 
 message FacebookAuthToken {

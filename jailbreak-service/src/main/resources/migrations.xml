@@ -25,19 +25,19 @@
     		<column name="user_id" type="bigint">
     			<constraints primaryKey="true" nullable="false"></constraints>
     		</column>
-    		<column name="time_created" type="bigint"></column>
+    		<column name="time_created" type="bigint"/>
     		<column name="email" type="varchar(120)">
     			<constraints nullable="false"></constraints>
     		</column>
     		<column name="user_level" type="tinyint">
     			<constraints nullable="false"></constraints>
     		</column>
-    		<column name="first_name" type="varchar(25)"></column>
-    		<column name="last_name" type="varchar(25)"></column>
-    		<column name="gender" type="tinyint"></column>
-    		<column name="timezone" type="tinyint"></column>
-    		<column name="locale" type="char(10)"></column>
-    		<column name="facebook_link" type="text"></column>
+    		<column name="first_name" type="varchar(25)"/>
+    		<column name="last_name" type="varchar(25)"/>
+    		<column name="gender" type="tinyint"/>
+    		<column name="timezone" type="tinyint"/>
+    		<column name="locale" type="char(10)"/>
+    		<column name="facebook_link" type="text"/>
     	</createTable>
     </changeSet>
     <changeSet id="2" author="bakerke">
@@ -45,16 +45,16 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="team_number" type="int" />
+            <column name="team_number" type="int"/>
             <column name="team_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="names" type="varchar(255)"/>
             <column name="university" type="tinyint"/>
-            <column name="start_position" type="point" />
-        	<column name="current_position" type="point" />
-        	<column name="avatar" type="text" />
-        	<column name="tag_line" type="text" />
+            <column name="start_position" type="point"/>
+        	<column name="current_position" type="point"/>
+        	<column name="avatar" type="text"/>
+        	<column name="tag_line" type="text"/>
         </createTable>
         <createTable tableName="checkins">
             <column name="id" type="int" autoIncrement="true">
@@ -68,6 +68,40 @@
         </createTable>
         <createIndex tableName="checkins" indexName="team_id">
     		<column name="team_id" type="bigint"/>
+    	</createIndex>
+    </changeSet>
+    <changeSet id="3" author="kbaker">
+    	<addColumn tableName="teams">
+			<column name="amount_raised_online" type="int"/>
+			<column name="amount_raised_offline" type="int"/>
+			<column name="countries" type="int"/>
+			<column name="transports" type="int"/>
+			<column name="description" type="text"/>
+    	</addColumn>
+    	<createTable tableName="challenges">
+    		<column name="id" type="int" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="team_id" type="int"/>
+    		<column name="name" type="varchar(100)"/>
+    		<column name="completed" type="boolean" defaultValueBoolean="false"/>
+    		<column name="type" type="tinyint"/>
+    		<column name="completed_time" type="bigint"/>
+    	</createTable>
+    	<createIndex tableName="challenges" indexName="team_id_challenges">
+    		<column name="team_id" type="int"/>
+    	</createIndex>
+    	<createTable tableName="donations">
+    		<column name="id" type="int" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="team_id" type="int"/>
+    		<column name="amount" type="int"/>
+    		<column name="name" type="varchar(100)"/>
+    		<column name="time" type="bigint"/>
+    	</createTable>
+    	<createIndex tableName="donations" indexName="team_id_donations">
+    		<column name="team_id" type="int"/>
     	</createIndex>
     </changeSet>
     
