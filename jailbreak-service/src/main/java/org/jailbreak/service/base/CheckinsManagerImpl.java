@@ -25,8 +25,8 @@ public class CheckinsManagerImpl implements CheckinsManager {
 	}
 	
 	@Override
-	public Optional<Checkin> updateCheckin(int id, Checkin checkin) {
-		int result = dao.update(id, checkin);
+	public Optional<Checkin> updateCheckin(Checkin checkin) {
+		int result = dao.update(checkin);
 		if (result == 0) {
 			return Optional.of(checkin);
 		} else {

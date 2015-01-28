@@ -65,7 +65,7 @@ message Challenge {
 		BLINDFOLD = 1;
 		PAPER_BOATS = 2;
 		EDUCATION = 3;
-		
+		ALTRUISM = 4;
 	}
 
 	optional int32 id = 1;
@@ -77,11 +77,17 @@ message Challenge {
 }
 
 message Donation {
+	enum DonationType {
+		OFFLINE = 0;
+		ONLINE = 1;
+	}
+
 	optional int32 id = 1;
 	optional int32 team_id = 2;
 	optional int32 amount = 3;
 	optional string name = 4;
 	optional int64 time = 5;
+	optional DonationType type = 6;
 }
 
 message FacebookAuthToken {

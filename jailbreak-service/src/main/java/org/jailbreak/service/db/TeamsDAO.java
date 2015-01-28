@@ -16,12 +16,12 @@ import com.google.common.base.Optional;
 @RegisterMapper(TeamsMapper.class)
 public interface TeamsDAO {	
 	
-	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, start_position, current_position) VALUES (:name, :names, :team_number, :avatar, :tag_line, (:start_lon, :start_lat), (:current_long, :current_lat)")
+	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, start_position, current_position, university, amount_raised_online, amount_raised_offline, countries, transport, description) VALUES (:name, :names, :team_number, :avatar, :tag_line, (:start_lon, :start_lat), (:current_long, :current_lat), :university, :amount_raised_online, :amount_raised_offline, :countries, :transports, :description")
 	@GetGeneratedKeys
 	int insert(@BindProtobuf Team team);
 
-	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, start_position = (:start_lon, :start_lat), current_lat = (:current_lon, :current_lat), university = :university WHERE id = :cid")
-	int update(@Bind("cid") int id, @BindProtobuf Team team);
+	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, start_position = (:start_lon, :start_lat), current_lat = (:current_lon, :current_lat), university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_online, countries = :countries, transports = :transports, description = :description WHERE id = :id")
+	int update(@BindProtobuf Team team);
 	
 	@SqlUpdate("DELETE FROM teams WHERE id = :id")
 	int delete(@Bind("id") int id);

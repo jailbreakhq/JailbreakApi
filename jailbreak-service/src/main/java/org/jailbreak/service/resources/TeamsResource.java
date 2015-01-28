@@ -22,6 +22,7 @@ import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.errors.ApiDocs;
+import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
 
 import com.codahale.metrics.annotation.Timed;
@@ -68,7 +69,11 @@ public class TeamsResource {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
 		
-		return this.manager.updateTeam(id, team);
+		if (id != team.getId()) {
+			throw new BadRequestException("Team id in request body must match team id in path", ApiDocs.TEAMS_UPDATES);
+		}
+		
+		return this.manager.updateTeam(team);
 	}
 	
 	@PATCH
@@ -78,7 +83,15 @@ public class TeamsResource {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
 		
-		return this.manager.patchTeam(id, team);
+		if (!team.hasId()) {
+			team = team.toBuilder().setId(id).build();
+		}
+		
+		if (id != team.getId()) {
+			throw new BadRequestException("Team id in request body must match team id in path", ApiDocs.TEAMS_UPDATES);
+		}
+		
+		return this.manager.patchTeam(team);
 	}
 	
 	@DELETE

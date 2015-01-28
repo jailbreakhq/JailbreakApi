@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.University;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -20,6 +21,12 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		String start_y = r.getString("start_y");
 		String current_x = r.getString("current_x");
 		String current_y = r.getString("current_y");
+		University university = University.valueOf(r.getInt("university"));
+		int amount_raised_online = r.getInt("amount_raised_online");
+		int amount_raised_offline = r.getInt("amount_raised_offline");
+		int countries = r.getInt("countries");
+		int transports = r.getInt("transports");
+		String description = r.getString("description");
 		
 		return Team.newBuilder()
 				.setId(id)
@@ -32,6 +39,12 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setStartLon(Double.parseDouble(start_y))
 				.setCurrentLat(Double.parseDouble(current_x))
 				.setCurrentLon(Double.parseDouble(current_y))
+				.setUniversity(university)
+				.setAmountRaisedOnline(amount_raised_online)
+				.setAmountRaisedOffline(amount_raised_offline)
+				.setCountries(countries)
+				.setTransports(transports)
+				.setDescription(description)
 				.build();
 	}
 

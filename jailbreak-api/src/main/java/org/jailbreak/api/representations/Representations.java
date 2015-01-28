@@ -6185,6 +6185,15 @@ public final class Representations {
      * <code>optional int64 time = 5;</code>
      */
     long getTime();
+
+    /**
+     * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+     */
+    org.jailbreak.api.representations.Representations.Donation.DonationType getType();
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.Donation}
@@ -6264,6 +6273,17 @@ public final class Representations {
               time_ = input.readInt64();
               break;
             }
+            case 48: {
+              int rawValue = input.readEnum();
+              org.jailbreak.api.representations.Representations.Donation.DonationType value = org.jailbreak.api.representations.Representations.Donation.DonationType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(6, rawValue);
+              } else {
+                bitField0_ |= 0x00000020;
+                type_ = value;
+              }
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -6301,6 +6321,88 @@ public final class Representations {
     @java.lang.Override
     public com.google.protobuf.Parser<Donation> getParserForType() {
       return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code org.jailbreak.api.representations.Donation.DonationType}
+     */
+    public enum DonationType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>OFFLINE = 0;</code>
+       */
+      OFFLINE(0, 0),
+      /**
+       * <code>ONLINE = 1;</code>
+       */
+      ONLINE(1, 1),
+      ;
+
+      /**
+       * <code>OFFLINE = 0;</code>
+       */
+      public static final int OFFLINE_VALUE = 0;
+      /**
+       * <code>ONLINE = 1;</code>
+       */
+      public static final int ONLINE_VALUE = 1;
+
+
+      public final int getNumber() { return value; }
+
+      public static DonationType valueOf(int value) {
+        switch (value) {
+          case 0: return OFFLINE;
+          case 1: return ONLINE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<DonationType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<DonationType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<DonationType>() {
+              public DonationType findValueByNumber(int number) {
+                return DonationType.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.Donation.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final DonationType[] VALUES = values();
+
+      public static DonationType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private DonationType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:org.jailbreak.api.representations.Donation.DonationType)
     }
 
     private int bitField0_;
@@ -6406,12 +6508,28 @@ public final class Representations {
       return time_;
     }
 
+    public static final int TYPE_FIELD_NUMBER = 6;
+    private org.jailbreak.api.representations.Representations.Donation.DonationType type_;
+    /**
+     * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+     */
+    public org.jailbreak.api.representations.Representations.Donation.DonationType getType() {
+      return type_;
+    }
+
     private void initFields() {
       id_ = 0;
       teamId_ = 0;
       amount_ = 0;
       name_ = "";
       time_ = 0L;
+      type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6441,6 +6559,9 @@ public final class Representations {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeInt64(5, time_);
       }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeEnum(6, type_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -6469,6 +6590,10 @@ public final class Representations {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, time_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, type_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6597,6 +6722,8 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000008);
         time_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000010);
+        type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -6645,6 +6772,10 @@ public final class Representations {
           to_bitField0_ |= 0x00000010;
         }
         result.time_ = time_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.type_ = type_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -6677,6 +6808,9 @@ public final class Representations {
         }
         if (other.hasTime()) {
           setTime(other.getTime());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -6905,6 +7039,41 @@ public final class Representations {
       public Builder clearTime() {
         bitField0_ = (bitField0_ & ~0x00000010);
         time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private org.jailbreak.api.representations.Representations.Donation.DonationType type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
+      /**
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Donation.DonationType getType() {
+        return type_;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+       */
+      public Builder setType(org.jailbreak.api.representations.Representations.Donation.DonationType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000020;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 6;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
         onChanged();
         return this;
       }
@@ -10204,23 +10373,26 @@ public final class Representations {
       "epresentations.Challenge.ChallengeType\022\026",
       "\n\016completed_time\030\006 \001(\003\">\n\rChallengeType\022" +
       "\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCA" +
-      "TION\020\003\"S\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007team_i" +
-      "d\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\014\n" +
-      "\004time\030\005 \001(\003\":\n\021FacebookAuthToken\022\024\n\014acce" +
-      "ss_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiTo" +
-      "ken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022" +
-      "\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001" +
-      "(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003" +
-      " \001(\01621.org.jailbreak.api.representations",
-      ".User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_" +
-      "name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030" +
-      "\007 \001(\0162..org.jailbreak.api.representation" +
-      "s.User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006local" +
-      "e\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_to" +
-      "kens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLeve" +
-      "l\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020" +
-      "\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEM" +
-      "ALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
+      "TION\020\003\"\304\001\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007team_" +
+      "id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\014" +
+      "\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.jailbre" +
+      "ak.api.representations.Donation.Donation" +
+      "Type\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n\006ONL" +
+      "INE\020\001\":\n\021FacebookAuthToken\022\024\n\014access_tok" +
+      "en\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n" +
+      "\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007exp",
+      "ires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014" +
+      "time_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621" +
+      ".org.jailbreak.api.representations.User." +
+      "UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005" +
+      " \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162" +
+      "..org.jailbreak.api.representations.User" +
+      ".Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(" +
+      "\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_u" +
+      "rl\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nS" +
+      "UPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006N",
+      "ORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022" +
+      "\t\n\005OTHER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10263,7 +10435,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Donation_descriptor,
-        new java.lang.String[] { "Id", "TeamId", "Amount", "Name", "Time", });
+        new java.lang.String[] { "Id", "TeamId", "Amount", "Name", "Time", "Type", });
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_fieldAccessorTable = new

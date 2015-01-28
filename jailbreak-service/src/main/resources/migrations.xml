@@ -104,5 +104,10 @@
     		<column name="team_id" type="int"/>
     	</createIndex>
     </changeSet>
+    <changeSet id="4" author="kbaker">
+    	<addColumn tableName="donations">
+    		<column name="type" type="tinyint"></column>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

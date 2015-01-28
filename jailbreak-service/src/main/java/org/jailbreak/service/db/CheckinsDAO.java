@@ -20,8 +20,8 @@ public interface CheckinsDAO {
 	@GetGeneratedKeys
 	int insert(@BindProtobuf Checkin checkin);
 	
-	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, position = :position, time = :time, team_id = :team_id WHERE id = :cid")
-	int update(@Bind("cid") int id, @BindProtobuf Checkin checkin);
+	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, position = :position, time = :time, team_id = :team_id WHERE id = :id")
+	int update(@BindProtobuf Checkin checkin);
 	
 	@SqlQuery("SELECT *, position[0] as x, positon[1] as y FROM checkins WHERE AND id = :id")
 	@SingleValueResult(Checkin.class)
