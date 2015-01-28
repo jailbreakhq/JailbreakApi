@@ -48,13 +48,9 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
     	environment.jersey().register(new BasicAuthProvider<User>(apiTokenAuth, "AUTH"));
     	environment.jersey().register(new GenericExceptionMapper());
     	
-    	// Enable CORS headers
+    	// Enable Open CORS headers
     	Dynamic filter = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
-        
-    	// Add URL mapping
     	filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-        
-    	// Configure CORS parameters
     	filter.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,PUT,POST,DELETE,OPTIONS,HEAD");
         filter.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
         filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
