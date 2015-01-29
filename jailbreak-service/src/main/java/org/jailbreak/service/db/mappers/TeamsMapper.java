@@ -33,7 +33,6 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setTeamNumber(team_number)
 				.setTeamName(team_name)
 				.setNames(names)
-				.setAvatar(avatar)
 				.setStartLat(Double.parseDouble(start_x))
 				.setStartLon(Double.parseDouble(start_y))
 				.setCurrentLat(Double.parseDouble(current_x))
@@ -46,6 +45,10 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		
 		if (tag_line != null) {
 			builder.setTagLine(tag_line);
+		}
+		
+		if (avatar != null) {
+			builder.setAvatar(avatar);
 		}
 		
 		if (description != null) {
