@@ -19,15 +19,22 @@ public class CheckinsMapper implements ResultSetMapper<Checkin> {
 		long time = r.getLong("time");
 		int team_id = r.getInt("team_id");
 		
-		return Checkin.newBuilder()
+		Checkin.Builder builder = Checkin.newBuilder()
 				.setId(id)
-				.setLocation(location)
-				.setStatus(status)
 				.setLat(Double.parseDouble(lat))
 				.setLon(Double.parseDouble(lon))
 				.setTime(time)
-				.setTeamId(team_id)
-				.build();
+				.setTeamId(team_id);
+		
+		if (status != null) {
+			builder.setStatus(status);
+		}
+		
+		if (location != null) {
+			builder.setLocation(location);
+		}
+		
+		return builder.build();
 	}
 
 }

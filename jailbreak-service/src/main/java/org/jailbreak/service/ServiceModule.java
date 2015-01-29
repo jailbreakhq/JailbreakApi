@@ -9,16 +9,19 @@ import org.jailbreak.client.base.FacebookClientImpl;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
 import org.jailbreak.service.base.CheckinsManagerImpl;
+import org.jailbreak.service.base.DonationsManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
+import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.skife.jdbi.v2.DBI;
@@ -35,6 +38,7 @@ public class ServiceModule extends AbstractModule {
 	protected void configure() {
 		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
+		bind(DonationsManager.class).to(DonationsManagerImpl.class);
 		bind(UsersManager.class).to(UsersManagerImpl.class);
 		bind(ApiTokensManager.class).to(ApiTokensManagerImpl.class);
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
@@ -58,6 +62,12 @@ public class ServiceModule extends AbstractModule {
 	@Named("jailbreak.finalLocationLon")
 	public double provideEndLon(ServiceConfiguration config) {
 		return config.getJailbreakSettings().getFinalLocationLon();
+	}
+	
+	@Provides
+	@Named("stripe.webhook.secret")
+	public String provideStripeWebhookSecret(ServiceConfiguration config) {
+		return System.getenv("STRIPE_WEBHOOK_SECRET");
 	}
 	
 	@Provides
@@ -87,6 +97,11 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public CheckinsDAO provideCheckinsDAO(DBI jdbi) {
         return jdbi.onDemand(CheckinsDAO.class);
+	}
+	
+	@Provides
+	public DonationsDAO provideDonationsDAO(DBI jdbi) {
+        return jdbi.onDemand(DonationsDAO.class);
 	}
 
 }

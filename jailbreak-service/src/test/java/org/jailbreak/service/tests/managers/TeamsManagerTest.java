@@ -49,6 +49,7 @@ public class TeamsManagerTest {
 			.build();
 
 	private final Team team_patch = Team.newBuilder()
+			.setId(PATCH_ID)
 			.setTeamName("Super New Name")
 			.setNames("Kevin and Killian")
 			.setAvatar("http://test.com/new_avatar.jpg")
@@ -86,7 +87,7 @@ public class TeamsManagerTest {
 	@Test
 	public void testPatchTeam() {
 		TeamsManagerImpl manager = new TeamsManagerImpl(dao);
-		Optional<Team> result = manager.patchTeam(PATCH_ID, team_patch);
+		Optional<Team> result = manager.patchTeam(team_patch);
 		assertThat(result.get()).isEqualTo(team_after_patch);
 	}
 

@@ -18,6 +18,7 @@ import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.errors.ApiDocs;
+import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
@@ -62,7 +63,11 @@ public class CheckinsResource {
 			throw new ForbiddenException("You don't have the necessary permissions to update a checkin", ApiDocs.CHECKINS);
 		}
 		
-		return this.manager.updateCheckin(id, checkin);
+		if (id != checkin.getId()) {
+			throw new BadRequestException("Checkin id in request body must match checkin id in the url", ApiDocs.CHECKINS_UPDATE);
+		}
+		
+		return this.manager.updateCheckin(checkin);
 	}
 	
 }

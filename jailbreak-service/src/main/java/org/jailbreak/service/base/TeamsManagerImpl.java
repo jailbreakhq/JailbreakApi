@@ -42,8 +42,8 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 	
 	@Override
-	public Optional<Team> updateTeam(int id, Team team) {
-		int result = dao.update(id, team);
+	public Optional<Team> updateTeam(Team team) {
+		int result = dao.update(team);
 		if (result == 0) {
 			return Optional.of(team);
 		} else {
@@ -52,11 +52,11 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 	
 	@Override
-	public Optional<Team> patchTeam(int id, Team newTeam) {
-		Optional<Team> maybeCurrent = dao.getTeam(id);
+	public Optional<Team> patchTeam(Team newTeam) {
+		Optional<Team> maybeCurrent = dao.getTeam(newTeam.getId());
 		if (maybeCurrent.isPresent()) {
 			Team merged = maybeCurrent.get().toBuilder().mergeFrom(newTeam).build();
-			dao.update(id, merged);
+			dao.update(merged);
 			return Optional.of(merged);
 		}
 		return Optional.absent(); // returns Optional.absent if there is no team to update
