@@ -28,13 +28,12 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		int transports = r.getInt("transports");
 		String description = r.getString("description");
 		
-		return Team.newBuilder()
+		Team.Builder builder = Team.newBuilder()
 				.setId(id)
 				.setTeamNumber(team_number)
 				.setTeamName(team_name)
 				.setNames(names)
 				.setAvatar(avatar)
-				.setTagLine(tag_line)
 				.setStartLat(Double.parseDouble(start_x))
 				.setStartLon(Double.parseDouble(start_y))
 				.setCurrentLat(Double.parseDouble(current_x))
@@ -43,9 +42,17 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setAmountRaisedOnline(amount_raised_online)
 				.setAmountRaisedOffline(amount_raised_offline)
 				.setCountries(countries)
-				.setTransports(transports)
-				.setDescription(description)
-				.build();
+				.setTransports(transports);
+		
+		if (!tag_line.isEmpty()) {
+			builder.setTagLine(tag_line);
+		}
+		
+		if (!description.isEmpty()) {
+			builder.setDescription(description);
+		}
+		
+		return builder.build();
 	}
 
 }

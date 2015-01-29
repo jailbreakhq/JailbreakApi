@@ -18,14 +18,18 @@ public class DonationsMapper implements ResultSetMapper<Donation> {
 		long time = r.getLong("time");
 		DonationType type = DonationType.valueOf(r.getInt("type"));
 		
-		return Donation.newBuilder()
+		Donation.Builder builder = Donation.newBuilder()
 				.setId(id)
 				.setTeamId(team_id)
 				.setAmount(amount)
-				.setName(name)
 				.setTime(time)
-				.setType(type)
-				.build();
+				.setType(type);
+		
+		if (!name.isEmpty()) {
+			builder.setName(name);
+		}
+		
+		return builder.build();
 	}
 
 }
