@@ -25,7 +25,7 @@ public class DonationsMapper implements ResultSetMapper<Donation> {
 				.setTime(time)
 				.setType(type);
 		
-		if (!name.isEmpty()) {
+		if (name != null) {
 			builder.setName(name);
 		}
 		

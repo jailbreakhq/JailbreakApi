@@ -26,11 +26,11 @@ public class CheckinsMapper implements ResultSetMapper<Checkin> {
 				.setTime(time)
 				.setTeamId(team_id);
 		
-		if (!status.isEmpty()) {
+		if (status != null) {
 			builder.setStatus(status);
 		}
 		
-		if (!location.isEmpty()) {
+		if (location != null) {
 			builder.setLocation(location);
 		}
 		

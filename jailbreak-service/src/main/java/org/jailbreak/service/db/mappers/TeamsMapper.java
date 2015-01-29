@@ -44,11 +44,11 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setCountries(countries)
 				.setTransports(transports);
 		
-		if (!tag_line.isEmpty()) {
+		if (tag_line != null) {
 			builder.setTagLine(tag_line);
 		}
 		
-		if (!description.isEmpty()) {
+		if (description != null) {
 			builder.setDescription(description);
 		}
 		
