@@ -21,6 +21,7 @@ import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.skife.jdbi.v2.DBI;
@@ -64,6 +65,12 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
+	@Named("stripe.webhook.secret")
+	public String provideStripeWebhookSecret(ServiceConfiguration config) {
+		return System.getenv("STRIPE_WEBHOOK_SECRET");
+	}
+	
+	@Provides
 	private DBI getDatabaseConnection(ServiceConfiguration config, Environment env) throws ClassNotFoundException {
 		if (this.dbi == null) {
 			final DBIFactory factory = new DBIFactory();
@@ -90,6 +97,11 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public CheckinsDAO provideCheckinsDAO(DBI jdbi) {
         return jdbi.onDemand(CheckinsDAO.class);
+	}
+	
+	@Provides
+	public DonationsDAO provideDonationsDAO(DBI jdbi) {
+        return jdbi.onDemand(DonationsDAO.class);
 	}
 
 }

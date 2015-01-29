@@ -9,5 +9,6 @@ public class ApiDocs {
 	public final static String CHECKINS = "";
 	public static final String CHECKINS_UPDATE = "";
 	public static final String DONATIONS = "";
+	public static final String DONATIONS_WEBHOOK = "";
 		
 }
