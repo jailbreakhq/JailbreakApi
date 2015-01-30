@@ -32,5 +32,8 @@ public interface TeamsDAO {
 	
 	@SqlQuery("SELECT *, start_position[0] as start_x, start_position[1] start_y, current_position[0] as current_x, current_position[1] as current_y FROM teams")
 	List<Team> getTeams();
+
+	@SqlQuery("SELECT *, start_position[0] as start_x, start_position[1] start_y, current_position[0] as current_x, current_position[1] as current_y FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC LIMIT 10")
+	List<Team> getTopTenTeams();
 	
 }

@@ -29,6 +29,11 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 	
 	@Override
+	public List<Team> getTopTenTeams() {
+		return dao.getTopTenTeams();
+	}
+	
+	@Override
 	public Team addTeam(Team team) {
 		if (!team.hasCurrentLat() && !team.hasCurrentLon()) {
 			Team.Builder builder = team.toBuilder();

@@ -62,6 +62,12 @@ public class TeamsResource {
 		return manager.getTeam(id);
 	}
 	
+	@GET
+	@Path("/topten")
+	public List<Team> getTop10Teams() {
+		return manager.getTopTenTeams();
+	}
+	
 	@PUT
 	@Path("/{id}")
 	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, Team team) {
