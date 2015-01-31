@@ -81,6 +81,12 @@ message Donation {
 		OFFLINE = 0;
 		ONLINE = 1;
 	}
+	
+	message DonationsFilters {
+		optional int32 team_id = 1;
+		optional int64 since_time = 2;
+		optional int32 limit = 3;
+	}
 
 	optional int32 id = 1;
 	optional int32 team_id = 2;
