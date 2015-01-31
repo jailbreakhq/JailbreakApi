@@ -40,12 +40,19 @@ import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 public class DonationsResource {
 	
 	private final DonationsManager manager;
+	private final int defaultLimit;
+	private final int maxLimit;
 	private final String donationsWebhookSecret;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsResource.class);
 	
 	@Inject
-	public DonationsResource(DonationsManager manager, @Named("stripe.webhook.secret") String donationsWebhookSecret) {
+	public DonationsResource(DonationsManager manager, 
+			@Named("resources.defaultLimit") int defaultLimit,
+			@Named("resources.maxLimit") int maxLimit,
+			@Named("donations.webhook.secret") String donationsWebhookSecret) {
 		this.manager = manager;
+		this.defaultLimit = defaultLimit;
+		this.maxLimit = maxLimit;
 		this.donationsWebhookSecret = donationsWebhookSecret;
 	}
 	
@@ -57,6 +64,13 @@ public class DonationsResource {
 			DonationsFilters donationFilters;
 			try {
 				donationFilters = mapper.readValue(URLDecoder.decode(filters.get(), "UTF-8"), DonationsFilters.class);
+				if (donationFilters.hasLimit()) {
+					if (donationFilters.getLimit() > this.maxLimit) {
+						donationFilters = donationFilters.toBuilder().setLimit(this.maxLimit).build();
+					} else {
+						donationFilters = donationFilters.toBuilder().setLimit(this.defaultLimit).build();
+					}
+				}
 				return this.manager.getDonations(donationFilters);
 			} catch (IOException e) {
 				LOG.error(e.getMessage());

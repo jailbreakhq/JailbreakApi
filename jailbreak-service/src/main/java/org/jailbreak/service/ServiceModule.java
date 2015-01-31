@@ -65,9 +65,21 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	@Named("stripe.webhook.secret")
-	public String provideStripeWebhookSecret(ServiceConfiguration config) {
-		return System.getenv("STRIPE_WEBHOOK_SECRET");
+	@Named("resources.maxLimit")
+	public int provideResourcesMaxLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getMaxLimit();
+	}
+	
+	@Provides
+	@Named("resources.defaultLimit")
+	public int provideResourcesDefaultLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getDefaultLimit();
+	}
+	
+	@Provides
+	@Named("donations.webhook.secret")
+	public String provideDonationsWebhookSecret(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getDonationsWebhookSecret();
 	}
 	
 	@Provides
@@ -91,7 +103,7 @@ public class ServiceModule extends AbstractModule {
 	
 	@Provides
 	public TeamsDAO provideTeamsDAO(DBI jdbi) {
-        return dbi.onDemand(TeamsDAO.class);
+        return jdbi.onDemand(TeamsDAO.class);
 	}
 	
 	@Provides
