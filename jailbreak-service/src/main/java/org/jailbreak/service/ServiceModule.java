@@ -1,6 +1,11 @@
 package org.jailbreak.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import io.dropwizard.auth.Authenticator;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
 
@@ -25,6 +30,8 @@ import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -32,6 +39,7 @@ import com.google.inject.name.Named;
 
 public class ServiceModule extends AbstractModule {
 	
+	private Logger LOG = LoggerFactory.getLogger(ServiceModule.class);
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
 	
 	@Override
@@ -83,10 +91,21 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
+	public Connection getJDBCHandler(ServiceConfiguration config) {
+		DataSourceFactory ds = config.getDataSourceFactory();
+		try {
+			return DriverManager.getConnection(ds.getUrl(), ds.getUser(), ds.getPassword());
+		} catch (SQLException e) {
+			LOG.error("Error getting JDBC connection handler setup");
+		}
+		return null;
+	}
+	
+	@Provides
 	private DBI getDatabaseConnection(ServiceConfiguration config, Environment env) throws ClassNotFoundException {
 		if (this.dbi == null) {
 			final DBIFactory factory = new DBIFactory();
-			this.dbi = factory.build(env, config.getDataSourceFactory(), "mysql");
+			this.dbi = factory.build(env, config.getDataSourceFactory(), "postgres");
 		}
         return this.dbi;
 	}

@@ -50,6 +50,16 @@ public class SimplestSqlBuilderTest {
 	}
 	
 	@Test
+	public void testLimit() {
+		String expected = "SELECT * FROM donations LIMIT 10";
+		
+		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations")
+			.limit(10);
+		
+		assertThat(builder.build()).isEqualTo(expected);
+	}
+	
+	@Test
 	public void testOrderBySelect() {
 		String expected = "SELECT * FROM donations WHERE team_id = :team_id ORDER BY time DESC";
 		
@@ -73,7 +83,7 @@ public class SimplestSqlBuilderTest {
 	
 	@Test
 	public void testAll() {
-		String expected = "SELECT amount, team_id, name FROM donations WHERE time = :time AND name = :name ORDER BY team_id ASC, time DESC";
+		String expected = "SELECT amount, team_id, name FROM donations WHERE time = :time AND name = :name ORDER BY team_id ASC, time DESC LIMIT 25";
 		
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations")
 			.addColumn("amount")
@@ -82,7 +92,8 @@ public class SimplestSqlBuilderTest {
 			.addWhere("time = :time")
 			.addWhere("name = :name")
 			.addOrderBy("team_id", OrderBy.ASC)
-			.addOrderBy("time", OrderBy.DESC);
+			.addOrderBy("time", OrderBy.DESC)
+			.limit(25);
 		
 		assertThat(builder.build()).isEqualTo(expected);
 	}

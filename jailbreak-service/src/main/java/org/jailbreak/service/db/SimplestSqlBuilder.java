@@ -8,7 +8,7 @@ import com.google.common.collect.Lists;
  * Why in god's name are there no super simple java SQL select query 
  * builder out there?
  * 
- * sql-squiggle is the only one with the simple philosphy I want but it
+ * sql-squiggle is the only one with the simple philosophy I want but it
  * isn't on maven making it annoying to incorporate into a project
  * 
  * All I want are zero or a small number of dependencies.
@@ -30,10 +30,11 @@ public class SimplestSqlBuilder {
 		DESC, ASC;
 	}
 	
-	private final String table;
-	private final List<String> columns = Lists.newArrayList();
-	private final List<String> wheres = Lists.newArrayList();
-	private final List<String> orderBys = Lists.newArrayList();
+	private String table;
+	private Integer limit;
+	private List<String> columns = Lists.newArrayList();
+	private List<String> wheres = Lists.newArrayList();
+	private List<String> orderBys = Lists.newArrayList();
 	
 	public SimplestSqlBuilder(String table) {
 		this.table = table;
@@ -65,6 +66,12 @@ public class SimplestSqlBuilder {
 			this.orderBys.add(value + " ASC");
 		}
 	
+		return this;
+	}
+	
+	public SimplestSqlBuilder limit(int limit) {
+		this.limit = limit;
+		
 		return this;
 	}
 	
@@ -101,6 +108,10 @@ public class SimplestSqlBuilder {
 					builder.append(", ");
 				}
 			}
+		}
+		
+		if (limit != null) {
+			builder.append(" LIMIT " + limit);
 		}
 		
 		return builder.toString().trim();
