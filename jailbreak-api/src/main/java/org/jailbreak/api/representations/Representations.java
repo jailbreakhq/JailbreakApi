@@ -8813,20 +8813,6 @@ public final class Representations {
      */
     com.google.protobuf.ByteString
         getApiTokensUrlBytes();
-
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    boolean hasHref();
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    java.lang.String getHref();
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    com.google.protobuf.ByteString
-        getHrefBytes();
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.User}
@@ -8951,12 +8937,6 @@ public final class Representations {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000400;
               apiTokensUrl_ = bs;
-              break;
-            }
-            case 98: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000800;
-              href_ = bs;
               break;
             }
           }
@@ -9517,48 +9497,6 @@ public final class Representations {
       }
     }
 
-    public static final int HREF_FIELD_NUMBER = 12;
-    private java.lang.Object href_;
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    public boolean hasHref() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
-    }
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    public java.lang.String getHref() {
-      java.lang.Object ref = href_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          href_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string href = 12;</code>
-     */
-    public com.google.protobuf.ByteString
-        getHrefBytes() {
-      java.lang.Object ref = href_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        href_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private void initFields() {
       userId_ = 0L;
       timeCreated_ = 0L;
@@ -9571,7 +9509,6 @@ public final class Representations {
       locale_ = "";
       facebookLink_ = "";
       apiTokensUrl_ = "";
-      href_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -9618,9 +9555,6 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         output.writeBytes(11, getApiTokensUrlBytes());
-      }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeBytes(12, getHrefBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -9674,10 +9608,6 @@ public final class Representations {
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(11, getApiTokensUrlBytes());
-      }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(12, getHrefBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -9818,8 +9748,6 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000200);
         apiTokensUrl_ = "";
         bitField0_ = (bitField0_ & ~0x00000400);
-        href_ = "";
-        bitField0_ = (bitField0_ & ~0x00000800);
         return this;
       }
 
@@ -9892,10 +9820,6 @@ public final class Representations {
           to_bitField0_ |= 0x00000400;
         }
         result.apiTokensUrl_ = apiTokensUrl_;
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000800;
-        }
-        result.href_ = href_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -9955,11 +9879,6 @@ public final class Representations {
         if (other.hasApiTokensUrl()) {
           bitField0_ |= 0x00000400;
           apiTokensUrl_ = other.apiTokensUrl_;
-          onChanged();
-        }
-        if (other.hasHref()) {
-          bitField0_ |= 0x00000800;
-          href_ = other.href_;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -10611,82 +10530,6 @@ public final class Representations {
         return this;
       }
 
-      private java.lang.Object href_ = "";
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public boolean hasHref() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
-      }
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public java.lang.String getHref() {
-        java.lang.Object ref = href_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            href_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public com.google.protobuf.ByteString
-          getHrefBytes() {
-        java.lang.Object ref = href_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          href_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public Builder setHref(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000800;
-        href_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public Builder clearHref() {
-        bitField0_ = (bitField0_ & ~0x00000800);
-        href_ = getDefaultInstance().getHref();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string href = 12;</code>
-       */
-      public Builder setHrefBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000800;
-        href_ = value;
-        onChanged();
-        return this;
-      }
-
       // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.User)
     }
 
@@ -10794,7 +10637,7 @@ public final class Representations {
       "OFFLINE\020\000\022\n\n\006ONLINE\020\001\":\n\021FacebookAuthTok",
       "en\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(" +
       "\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user" +
-      "_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007u" +
+      "_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\247\003\n\004User\022\017\n\007u" +
       "ser_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nus" +
       "er_level\030\003 \001(\01621.org.jailbreak.api.repre" +
       "sentations.User.UserLevel\022\r\n\005email\030\004 \001(\t" +
@@ -10802,11 +10645,10 @@ public final class Representations {
       ">\n\006gender\030\007 \001(\0162..org.jailbreak.api.repr" +
       "esentations.User.Gender\022\020\n\010timezone\030\010 \001(" +
       "\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t",
-      "\022\026\n\016api_tokens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?" +
-      "\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013" +
-      "\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MAL" +
-      "E\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representa" +
-      "tions"
+      "\022\026\n\016api_tokens_url\030\013 \001(\t\"?\n\tUserLevel\022\016\n" +
+      "\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n" +
+      "\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020" +
+      "\001\022\t\n\005OTHER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10873,7 +10715,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_User_descriptor,
-        new java.lang.String[] { "UserId", "TimeCreated", "UserLevel", "Email", "FirstName", "LastName", "Gender", "Timezone", "Locale", "FacebookLink", "ApiTokensUrl", "Href", });
+        new java.lang.String[] { "UserId", "TimeCreated", "UserLevel", "Email", "FirstName", "LastName", "Gender", "Timezone", "Locale", "FacebookLink", "ApiTokensUrl", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

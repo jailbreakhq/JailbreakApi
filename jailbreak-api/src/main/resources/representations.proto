@@ -129,5 +129,4 @@ message User {
 	optional string locale = 9;
 	optional string facebook_link = 10;
 	optional string api_tokens_url = 11;
-	optional string href = 12;
 }
