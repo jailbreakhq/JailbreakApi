@@ -1,4 +1,4 @@
-package org.jailbreak.service;
+package org.jailbreak.service.config;
 
 import io.dropwizard.db.DataSourceFactory;
 

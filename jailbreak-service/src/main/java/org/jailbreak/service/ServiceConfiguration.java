@@ -8,6 +8,8 @@ import io.dropwizard.db.DataSourceFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.jailbreak.service.config.EnvironmentFactory;
+import org.jailbreak.service.config.HerokuDatabaseConfiguration;
 import org.jailbreak.service.config.JailbreakFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,14 @@ import org.slf4j.LoggerFactory;
 public class ServiceConfiguration extends Configuration {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ServiceConfiguration.class);
+	
+	// Environment Variables Settings
+	@NotNull
+	private EnvironmentFactory environmentSettings = new EnvironmentFactory();
+	
+	public EnvironmentFactory getEnvironmentSettings() {
+		return environmentSettings;
+	}
 	
 	// Jailbreak Competition Settings
 	@Valid

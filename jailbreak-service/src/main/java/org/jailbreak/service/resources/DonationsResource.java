@@ -2,6 +2,8 @@ package org.jailbreak.service.resources;
 
 import io.dropwizard.auth.Auth;
 
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,9 +13,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.jailbreak.api.representations.Representations.Donation;
+import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
 import org.jailbreak.service.auth.AuthHelper;
@@ -24,9 +28,11 @@ import org.jailbreak.service.errors.ForbiddenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 
 @Path(Paths.DONATIONS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -34,18 +40,45 @@ import com.google.inject.name.Named;
 public class DonationsResource {
 	
 	private final DonationsManager manager;
+	private final int defaultLimit;
+	private final int maxLimit;
 	private final String donationsWebhookSecret;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsResource.class);
 	
 	@Inject
-	public DonationsResource(DonationsManager manager, @Named("stripe.webhook.secret") String donationsWebhookSecret) {
+	public DonationsResource(DonationsManager manager, 
+			@Named("resources.defaultLimit") int defaultLimit,
+			@Named("resources.maxLimit") int maxLimit,
+			@Named("donations.webhook.secret") String donationsWebhookSecret) {
 		this.manager = manager;
+		this.defaultLimit = defaultLimit;
+		this.maxLimit = maxLimit;
 		this.donationsWebhookSecret = donationsWebhookSecret;
 	}
 	
 	@GET
-	public List<Donation> getDonation() {
-        return this.manager.getDonations();
+	public List<Donation> getDonation(@QueryParam("filters") Optional<String> filters) {
+		if (filters.isPresent()) {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new ProtobufModule());
+			DonationsFilters donationFilters;
+			try {
+				donationFilters = mapper.readValue(URLDecoder.decode(filters.get(), "UTF-8"), DonationsFilters.class);
+				if (donationFilters.hasLimit()) {
+					if (donationFilters.getLimit() > this.maxLimit) {
+						donationFilters = donationFilters.toBuilder().setLimit(this.maxLimit).build();
+					} else {
+						donationFilters = donationFilters.toBuilder().setLimit(this.defaultLimit).build();
+					}
+				}
+				return this.manager.getDonations(donationFilters);
+			} catch (IOException e) {
+				LOG.error(e.getMessage());
+				throw new BadRequestException("Donations filters were malformed. Could not parse JSON content in query param", ApiDocs.DONATIONS_FILTERS);
+			}
+		} else {
+			return this.manager.getDonations();
+		}
 	}
 	
 	@POST

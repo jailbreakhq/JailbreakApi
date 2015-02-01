@@ -1,6 +1,11 @@
 package org.jailbreak.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import io.dropwizard.auth.Authenticator;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
 
@@ -25,6 +30,8 @@ import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -32,7 +39,9 @@ import com.google.inject.name.Named;
 
 public class ServiceModule extends AbstractModule {
 	
+	private Logger LOG = LoggerFactory.getLogger(ServiceModule.class);
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
+	private Connection conn;
 	
 	@Override
 	protected void configure() {
@@ -65,16 +74,41 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	@Named("stripe.webhook.secret")
-	public String provideStripeWebhookSecret(ServiceConfiguration config) {
-		return System.getenv("STRIPE_WEBHOOK_SECRET");
+	@Named("resources.maxLimit")
+	public int provideResourcesMaxLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getMaxLimit();
+	}
+	
+	@Provides
+	@Named("resources.defaultLimit")
+	public int provideResourcesDefaultLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getDefaultLimit();
+	}
+	
+	@Provides
+	@Named("donations.webhook.secret")
+	public String provideDonationsWebhookSecret(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getDonationsWebhookSecret();
+	}
+	
+	@Provides
+	private Connection getJDBCHandler(ServiceConfiguration config) {
+		if (this.conn == null) {
+			DataSourceFactory ds = config.getDataSourceFactory();
+			try {
+				this.conn = DriverManager.getConnection(ds.getUrl(), ds.getUser(), ds.getPassword());
+			} catch (SQLException e) {
+				LOG.error("Error getting JDBC connection handler setup");
+			}
+		}
+		return this.conn;
 	}
 	
 	@Provides
 	private DBI getDatabaseConnection(ServiceConfiguration config, Environment env) throws ClassNotFoundException {
 		if (this.dbi == null) {
 			final DBIFactory factory = new DBIFactory();
-			this.dbi = factory.build(env, config.getDataSourceFactory(), "mysql");
+			this.dbi = factory.build(env, config.getDataSourceFactory(), "postgres");
 		}
         return this.dbi;
 	}
@@ -91,7 +125,7 @@ public class ServiceModule extends AbstractModule {
 	
 	@Provides
 	public TeamsDAO provideTeamsDAO(DBI jdbi) {
-        return dbi.onDemand(TeamsDAO.class);
+        return jdbi.onDemand(TeamsDAO.class);
 	}
 	
 	@Provides
@@ -100,8 +134,10 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	public DonationsDAO provideDonationsDAO(DBI jdbi) {
-        return jdbi.onDemand(DonationsDAO.class);
+	public DonationsDAO provideDonationsDAO(Connection conn) {
+        DonationsDAO dao = dbi.onDemand(DonationsDAO.class);
+        dao.conn = this.getJDBCHandler(null);
+        return dao;
 	}
 
 }
