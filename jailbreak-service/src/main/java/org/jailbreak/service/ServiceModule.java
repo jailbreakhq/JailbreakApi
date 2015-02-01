@@ -41,6 +41,7 @@ public class ServiceModule extends AbstractModule {
 	
 	private Logger LOG = LoggerFactory.getLogger(ServiceModule.class);
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
+	private Connection conn;
 	
 	@Override
 	protected void configure() {
@@ -91,14 +92,16 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	public Connection getJDBCHandler(ServiceConfiguration config) {
-		DataSourceFactory ds = config.getDataSourceFactory();
-		try {
-			return DriverManager.getConnection(ds.getUrl(), ds.getUser(), ds.getPassword());
-		} catch (SQLException e) {
-			LOG.error("Error getting JDBC connection handler setup");
+	private Connection getJDBCHandler(ServiceConfiguration config) {
+		if (this.conn == null) {
+			DataSourceFactory ds = config.getDataSourceFactory();
+			try {
+				this.conn = DriverManager.getConnection(ds.getUrl(), ds.getUser(), ds.getPassword());
+			} catch (SQLException e) {
+				LOG.error("Error getting JDBC connection handler setup");
+			}
 		}
-		return null;
+		return this.conn;
 	}
 	
 	@Provides
@@ -131,8 +134,10 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	public DonationsDAO provideDonationsDAO(DBI jdbi) {
-        return jdbi.onDemand(DonationsDAO.class);
+	public DonationsDAO provideDonationsDAO(Connection conn) {
+        DonationsDAO dao = dbi.onDemand(DonationsDAO.class);
+        dao.conn = this.getJDBCHandler(null);
+        return dao;
 	}
 
 }
