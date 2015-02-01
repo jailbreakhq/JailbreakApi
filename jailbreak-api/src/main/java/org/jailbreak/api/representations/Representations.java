@@ -1502,143 +1502,125 @@ public final class Representations {
         getTagLineBytes();
 
     /**
-     * <code>optional double start_lat = 7;</code>
-     */
-    boolean hasStartLat();
-    /**
-     * <code>optional double start_lat = 7;</code>
-     */
-    double getStartLat();
-
-    /**
-     * <code>optional double start_lon = 8;</code>
-     */
-    boolean hasStartLon();
-    /**
-     * <code>optional double start_lon = 8;</code>
-     */
-    double getStartLon();
-
-    /**
-     * <code>optional double current_lat = 9;</code>
+     * <code>optional double current_lat = 7;</code>
      */
     boolean hasCurrentLat();
     /**
-     * <code>optional double current_lat = 9;</code>
+     * <code>optional double current_lat = 7;</code>
      */
     double getCurrentLat();
 
     /**
-     * <code>optional double current_lon = 10;</code>
+     * <code>optional double current_lon = 8;</code>
      */
     boolean hasCurrentLon();
     /**
-     * <code>optional double current_lon = 10;</code>
+     * <code>optional double current_lon = 8;</code>
      */
     double getCurrentLon();
 
     /**
-     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
      */
     boolean hasUniversity();
     /**
-     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
      */
     org.jailbreak.api.representations.Representations.Team.University getUniversity();
 
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     boolean hasDescription();
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     java.lang.String getDescription();
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
 
     /**
-     * <code>optional int32 amount_raised_online = 13;</code>
+     * <code>optional int32 amount_raised_online = 11;</code>
      */
     boolean hasAmountRaisedOnline();
     /**
-     * <code>optional int32 amount_raised_online = 13;</code>
+     * <code>optional int32 amount_raised_online = 11;</code>
      */
     int getAmountRaisedOnline();
 
     /**
-     * <code>optional int32 amount_raised_offline = 14;</code>
+     * <code>optional int32 amount_raised_offline = 12;</code>
      */
     boolean hasAmountRaisedOffline();
     /**
-     * <code>optional int32 amount_raised_offline = 14;</code>
+     * <code>optional int32 amount_raised_offline = 12;</code>
      */
     int getAmountRaisedOffline();
 
     /**
-     * <code>optional double distance_to_x = 15;</code>
+     * <code>optional double distance_to_x = 13;</code>
      */
     boolean hasDistanceToX();
     /**
-     * <code>optional double distance_to_x = 15;</code>
+     * <code>optional double distance_to_x = 13;</code>
      */
     double getDistanceToX();
 
     /**
-     * <code>optional int32 countries = 16;</code>
+     * <code>optional int32 countries = 14;</code>
      */
     boolean hasCountries();
     /**
-     * <code>optional int32 countries = 16;</code>
+     * <code>optional int32 countries = 14;</code>
      */
     int getCountries();
 
     /**
-     * <code>optional int32 transports = 17;</code>
+     * <code>optional int32 transports = 15;</code>
      */
     boolean hasTransports();
     /**
-     * <code>optional int32 transports = 17;</code>
+     * <code>optional int32 transports = 15;</code>
      */
     int getTransports();
 
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     boolean hasDonationsUrl();
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     java.lang.String getDonationsUrl();
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     com.google.protobuf.ByteString
         getDonationsUrlBytes();
 
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     java.util.List<org.jailbreak.api.representations.Representations.Challenge> 
         getChallengesList();
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     org.jailbreak.api.representations.Representations.Challenge getChallenges(int index);
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     int getChallengesCount();
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
         getChallengesOrBuilderList();
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
         int index);
@@ -1731,76 +1713,66 @@ public final class Representations {
             }
             case 57: {
               bitField0_ |= 0x00000040;
-              startLat_ = input.readDouble();
+              currentLat_ = input.readDouble();
               break;
             }
             case 65: {
               bitField0_ |= 0x00000080;
-              startLon_ = input.readDouble();
-              break;
-            }
-            case 73: {
-              bitField0_ |= 0x00000100;
-              currentLat_ = input.readDouble();
-              break;
-            }
-            case 81: {
-              bitField0_ |= 0x00000200;
               currentLon_ = input.readDouble();
               break;
             }
-            case 88: {
+            case 72: {
               int rawValue = input.readEnum();
               org.jailbreak.api.representations.Representations.Team.University value = org.jailbreak.api.representations.Representations.Team.University.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(11, rawValue);
+                unknownFields.mergeVarintField(9, rawValue);
               } else {
-                bitField0_ |= 0x00000400;
+                bitField0_ |= 0x00000100;
                 university_ = value;
               }
               break;
             }
-            case 98: {
+            case 82: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000800;
+              bitField0_ |= 0x00000200;
               description_ = bs;
               break;
             }
-            case 104: {
-              bitField0_ |= 0x00001000;
+            case 88: {
+              bitField0_ |= 0x00000400;
               amountRaisedOnline_ = input.readInt32();
+              break;
+            }
+            case 96: {
+              bitField0_ |= 0x00000800;
+              amountRaisedOffline_ = input.readInt32();
+              break;
+            }
+            case 105: {
+              bitField0_ |= 0x00001000;
+              distanceToX_ = input.readDouble();
               break;
             }
             case 112: {
               bitField0_ |= 0x00002000;
-              amountRaisedOffline_ = input.readInt32();
-              break;
-            }
-            case 121: {
-              bitField0_ |= 0x00004000;
-              distanceToX_ = input.readDouble();
-              break;
-            }
-            case 128: {
-              bitField0_ |= 0x00008000;
               countries_ = input.readInt32();
               break;
             }
-            case 136: {
-              bitField0_ |= 0x00010000;
+            case 120: {
+              bitField0_ |= 0x00004000;
               transports_ = input.readInt32();
               break;
             }
-            case 146: {
+            case 130: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00020000;
+              bitField0_ |= 0x00008000;
               donationsUrl_ = bs;
               break;
             }
-            case 154: {
-              if (!((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+            case 138: {
+              if (!((mutable_bitField0_ & 0x00010000) == 0x00010000)) {
                 challenges_ = new java.util.ArrayList<org.jailbreak.api.representations.Representations.Challenge>();
-                mutable_bitField0_ |= 0x00040000;
+                mutable_bitField0_ |= 0x00010000;
               }
               challenges_.add(input.readMessage(org.jailbreak.api.representations.Representations.Challenge.PARSER, extensionRegistry));
               break;
@@ -1813,7 +1785,7 @@ public final class Representations {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
+        if (((mutable_bitField0_ & 0x00010000) == 0x00010000)) {
           challenges_ = java.util.Collections.unmodifiableList(challenges_);
         }
         this.unknownFields = unknownFields.build();
@@ -1888,10 +1860,6 @@ public final class Representations {
        * <code>ITT = 8;</code>
        */
       ITT(8, 8),
-      /**
-       * <code>ITC = 9;</code>
-       */
-      ITC(9, 9),
       ;
 
       /**
@@ -1930,10 +1898,6 @@ public final class Representations {
        * <code>ITT = 8;</code>
        */
       public static final int ITT_VALUE = 8;
-      /**
-       * <code>ITC = 9;</code>
-       */
-      public static final int ITC_VALUE = 9;
 
 
       public final int getNumber() { return value; }
@@ -1949,7 +1913,6 @@ public final class Representations {
           case 6: return NCI;
           case 7: return GMIT;
           case 8: return ITT;
-          case 9: return ITC;
           default: return null;
         }
       }
@@ -2200,91 +2163,61 @@ public final class Representations {
       }
     }
 
-    public static final int START_LAT_FIELD_NUMBER = 7;
-    private double startLat_;
+    public static final int CURRENT_LAT_FIELD_NUMBER = 7;
+    private double currentLat_;
     /**
-     * <code>optional double start_lat = 7;</code>
+     * <code>optional double current_lat = 7;</code>
      */
-    public boolean hasStartLat() {
+    public boolean hasCurrentLat() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional double start_lat = 7;</code>
-     */
-    public double getStartLat() {
-      return startLat_;
-    }
-
-    public static final int START_LON_FIELD_NUMBER = 8;
-    private double startLon_;
-    /**
-     * <code>optional double start_lon = 8;</code>
-     */
-    public boolean hasStartLon() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    /**
-     * <code>optional double start_lon = 8;</code>
-     */
-    public double getStartLon() {
-      return startLon_;
-    }
-
-    public static final int CURRENT_LAT_FIELD_NUMBER = 9;
-    private double currentLat_;
-    /**
-     * <code>optional double current_lat = 9;</code>
-     */
-    public boolean hasCurrentLat() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
-    }
-    /**
-     * <code>optional double current_lat = 9;</code>
+     * <code>optional double current_lat = 7;</code>
      */
     public double getCurrentLat() {
       return currentLat_;
     }
 
-    public static final int CURRENT_LON_FIELD_NUMBER = 10;
+    public static final int CURRENT_LON_FIELD_NUMBER = 8;
     private double currentLon_;
     /**
-     * <code>optional double current_lon = 10;</code>
+     * <code>optional double current_lon = 8;</code>
      */
     public boolean hasCurrentLon() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional double current_lon = 10;</code>
+     * <code>optional double current_lon = 8;</code>
      */
     public double getCurrentLon() {
       return currentLon_;
     }
 
-    public static final int UNIVERSITY_FIELD_NUMBER = 11;
+    public static final int UNIVERSITY_FIELD_NUMBER = 9;
     private org.jailbreak.api.representations.Representations.Team.University university_;
     /**
-     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
      */
     public boolean hasUniversity() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+     * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
      */
     public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
       return university_;
     }
 
-    public static final int DESCRIPTION_FIELD_NUMBER = 12;
+    public static final int DESCRIPTION_FIELD_NUMBER = 10;
     private java.lang.Object description_;
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     public boolean hasDescription() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
@@ -2301,7 +2234,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string description = 12;</code>
+     * <code>optional string description = 10;</code>
      */
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
@@ -2317,91 +2250,91 @@ public final class Representations {
       }
     }
 
-    public static final int AMOUNT_RAISED_ONLINE_FIELD_NUMBER = 13;
+    public static final int AMOUNT_RAISED_ONLINE_FIELD_NUMBER = 11;
     private int amountRaisedOnline_;
     /**
-     * <code>optional int32 amount_raised_online = 13;</code>
+     * <code>optional int32 amount_raised_online = 11;</code>
      */
     public boolean hasAmountRaisedOnline() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
-     * <code>optional int32 amount_raised_online = 13;</code>
+     * <code>optional int32 amount_raised_online = 11;</code>
      */
     public int getAmountRaisedOnline() {
       return amountRaisedOnline_;
     }
 
-    public static final int AMOUNT_RAISED_OFFLINE_FIELD_NUMBER = 14;
+    public static final int AMOUNT_RAISED_OFFLINE_FIELD_NUMBER = 12;
     private int amountRaisedOffline_;
     /**
-     * <code>optional int32 amount_raised_offline = 14;</code>
+     * <code>optional int32 amount_raised_offline = 12;</code>
      */
     public boolean hasAmountRaisedOffline() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
+      return ((bitField0_ & 0x00000800) == 0x00000800);
     }
     /**
-     * <code>optional int32 amount_raised_offline = 14;</code>
+     * <code>optional int32 amount_raised_offline = 12;</code>
      */
     public int getAmountRaisedOffline() {
       return amountRaisedOffline_;
     }
 
-    public static final int DISTANCE_TO_X_FIELD_NUMBER = 15;
+    public static final int DISTANCE_TO_X_FIELD_NUMBER = 13;
     private double distanceToX_;
     /**
-     * <code>optional double distance_to_x = 15;</code>
+     * <code>optional double distance_to_x = 13;</code>
      */
     public boolean hasDistanceToX() {
-      return ((bitField0_ & 0x00004000) == 0x00004000);
+      return ((bitField0_ & 0x00001000) == 0x00001000);
     }
     /**
-     * <code>optional double distance_to_x = 15;</code>
+     * <code>optional double distance_to_x = 13;</code>
      */
     public double getDistanceToX() {
       return distanceToX_;
     }
 
-    public static final int COUNTRIES_FIELD_NUMBER = 16;
+    public static final int COUNTRIES_FIELD_NUMBER = 14;
     private int countries_;
     /**
-     * <code>optional int32 countries = 16;</code>
+     * <code>optional int32 countries = 14;</code>
      */
     public boolean hasCountries() {
-      return ((bitField0_ & 0x00008000) == 0x00008000);
+      return ((bitField0_ & 0x00002000) == 0x00002000);
     }
     /**
-     * <code>optional int32 countries = 16;</code>
+     * <code>optional int32 countries = 14;</code>
      */
     public int getCountries() {
       return countries_;
     }
 
-    public static final int TRANSPORTS_FIELD_NUMBER = 17;
+    public static final int TRANSPORTS_FIELD_NUMBER = 15;
     private int transports_;
     /**
-     * <code>optional int32 transports = 17;</code>
+     * <code>optional int32 transports = 15;</code>
      */
     public boolean hasTransports() {
-      return ((bitField0_ & 0x00010000) == 0x00010000);
+      return ((bitField0_ & 0x00004000) == 0x00004000);
     }
     /**
-     * <code>optional int32 transports = 17;</code>
+     * <code>optional int32 transports = 15;</code>
      */
     public int getTransports() {
       return transports_;
     }
 
-    public static final int DONATIONS_URL_FIELD_NUMBER = 18;
+    public static final int DONATIONS_URL_FIELD_NUMBER = 16;
     private java.lang.Object donationsUrl_;
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     public boolean hasDonationsUrl() {
-      return ((bitField0_ & 0x00020000) == 0x00020000);
+      return ((bitField0_ & 0x00008000) == 0x00008000);
     }
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     public java.lang.String getDonationsUrl() {
       java.lang.Object ref = donationsUrl_;
@@ -2418,7 +2351,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string donations_url = 18;</code>
+     * <code>optional string donations_url = 16;</code>
      */
     public com.google.protobuf.ByteString
         getDonationsUrlBytes() {
@@ -2434,35 +2367,35 @@ public final class Representations {
       }
     }
 
-    public static final int CHALLENGES_FIELD_NUMBER = 19;
+    public static final int CHALLENGES_FIELD_NUMBER = 17;
     private java.util.List<org.jailbreak.api.representations.Representations.Challenge> challenges_;
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     public java.util.List<org.jailbreak.api.representations.Representations.Challenge> getChallengesList() {
       return challenges_;
     }
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     public java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
         getChallengesOrBuilderList() {
       return challenges_;
     }
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     public int getChallengesCount() {
       return challenges_.size();
     }
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     public org.jailbreak.api.representations.Representations.Challenge getChallenges(int index) {
       return challenges_.get(index);
     }
     /**
-     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+     * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
      */
     public org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
         int index) {
@@ -2476,8 +2409,6 @@ public final class Representations {
       names_ = "";
       avatar_ = "";
       tagLine_ = "";
-      startLat_ = 0D;
-      startLon_ = 0D;
       currentLat_ = 0D;
       currentLon_ = 0D;
       university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
@@ -2522,43 +2453,37 @@ public final class Representations {
         output.writeBytes(6, getTagLineBytes());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeDouble(7, startLat_);
+        output.writeDouble(7, currentLat_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeDouble(8, startLon_);
+        output.writeDouble(8, currentLon_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeDouble(9, currentLat_);
+        output.writeEnum(9, university_.getNumber());
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeDouble(10, currentLon_);
+        output.writeBytes(10, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeEnum(11, university_.getNumber());
+        output.writeInt32(11, amountRaisedOnline_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeBytes(12, getDescriptionBytes());
+        output.writeInt32(12, amountRaisedOffline_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeInt32(13, amountRaisedOnline_);
+        output.writeDouble(13, distanceToX_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeInt32(14, amountRaisedOffline_);
+        output.writeInt32(14, countries_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        output.writeDouble(15, distanceToX_);
+        output.writeInt32(15, transports_);
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
-        output.writeInt32(16, countries_);
-      }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        output.writeInt32(17, transports_);
-      }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
-        output.writeBytes(18, getDonationsUrlBytes());
+        output.writeBytes(16, getDonationsUrlBytes());
       }
       for (int i = 0; i < challenges_.size(); i++) {
-        output.writeMessage(19, challenges_.get(i));
+        output.writeMessage(17, challenges_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -2595,55 +2520,47 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(7, startLat_);
+          .computeDoubleSize(7, currentLat_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(8, startLon_);
+          .computeDoubleSize(8, currentLon_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(9, currentLat_);
+          .computeEnumSize(9, university_.getNumber());
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(10, currentLon_);
+          .computeBytesSize(10, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(11, university_.getNumber());
+          .computeInt32Size(11, amountRaisedOnline_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(12, getDescriptionBytes());
+          .computeInt32Size(12, amountRaisedOffline_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(13, amountRaisedOnline_);
+          .computeDoubleSize(13, distanceToX_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(14, amountRaisedOffline_);
+          .computeInt32Size(14, countries_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(15, distanceToX_);
+          .computeInt32Size(15, transports_);
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(16, countries_);
-      }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(17, transports_);
-      }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(18, getDonationsUrlBytes());
+          .computeBytesSize(16, getDonationsUrlBytes());
       }
       for (int i = 0; i < challenges_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(19, challenges_.get(i));
+          .computeMessageSize(17, challenges_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2775,33 +2692,29 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000010);
         tagLine_ = "";
         bitField0_ = (bitField0_ & ~0x00000020);
-        startLat_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        startLon_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000080);
         currentLat_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000040);
         currentLon_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000080);
         university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000100);
         description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000200);
         amountRaisedOnline_ = 0;
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00000400);
         amountRaisedOffline_ = 0;
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00000800);
         distanceToX_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         countries_ = 0;
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         transports_ = 0;
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         donationsUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         if (challengesBuilder_ == null) {
           challenges_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00040000);
+          bitField0_ = (bitField0_ & ~0x00010000);
         } else {
           challengesBuilder_.clear();
         }
@@ -2860,55 +2773,47 @@ public final class Representations {
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.startLat_ = startLat_;
+        result.currentLat_ = currentLat_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.startLon_ = startLon_;
+        result.currentLon_ = currentLon_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.currentLat_ = currentLat_;
+        result.university_ = university_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
         }
-        result.currentLon_ = currentLon_;
+        result.description_ = description_;
         if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.university_ = university_;
+        result.amountRaisedOnline_ = amountRaisedOnline_;
         if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.description_ = description_;
+        result.amountRaisedOffline_ = amountRaisedOffline_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00001000;
         }
-        result.amountRaisedOnline_ = amountRaisedOnline_;
+        result.distanceToX_ = distanceToX_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.amountRaisedOffline_ = amountRaisedOffline_;
+        result.countries_ = countries_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00004000;
         }
-        result.distanceToX_ = distanceToX_;
+        result.transports_ = transports_;
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00008000;
         }
-        result.countries_ = countries_;
-        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
-          to_bitField0_ |= 0x00010000;
-        }
-        result.transports_ = transports_;
-        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
-          to_bitField0_ |= 0x00020000;
-        }
         result.donationsUrl_ = donationsUrl_;
         if (challengesBuilder_ == null) {
-          if (((bitField0_ & 0x00040000) == 0x00040000)) {
+          if (((bitField0_ & 0x00010000) == 0x00010000)) {
             challenges_ = java.util.Collections.unmodifiableList(challenges_);
-            bitField0_ = (bitField0_ & ~0x00040000);
+            bitField0_ = (bitField0_ & ~0x00010000);
           }
           result.challenges_ = challenges_;
         } else {
@@ -2956,12 +2861,6 @@ public final class Representations {
           tagLine_ = other.tagLine_;
           onChanged();
         }
-        if (other.hasStartLat()) {
-          setStartLat(other.getStartLat());
-        }
-        if (other.hasStartLon()) {
-          setStartLon(other.getStartLon());
-        }
         if (other.hasCurrentLat()) {
           setCurrentLat(other.getCurrentLat());
         }
@@ -2972,7 +2871,7 @@ public final class Representations {
           setUniversity(other.getUniversity());
         }
         if (other.hasDescription()) {
-          bitField0_ |= 0x00000800;
+          bitField0_ |= 0x00000200;
           description_ = other.description_;
           onChanged();
         }
@@ -2992,7 +2891,7 @@ public final class Representations {
           setTransports(other.getTransports());
         }
         if (other.hasDonationsUrl()) {
-          bitField0_ |= 0x00020000;
+          bitField0_ |= 0x00008000;
           donationsUrl_ = other.donationsUrl_;
           onChanged();
         }
@@ -3000,7 +2899,7 @@ public final class Representations {
           if (!other.challenges_.isEmpty()) {
             if (challenges_.isEmpty()) {
               challenges_ = other.challenges_;
-              bitField0_ = (bitField0_ & ~0x00040000);
+              bitField0_ = (bitField0_ & ~0x00010000);
             } else {
               ensureChallengesIsMutable();
               challenges_.addAll(other.challenges_);
@@ -3013,7 +2912,7 @@ public final class Representations {
               challengesBuilder_.dispose();
               challengesBuilder_ = null;
               challenges_ = other.challenges_;
-              bitField0_ = (bitField0_ & ~0x00040000);
+              bitField0_ = (bitField0_ & ~0x00010000);
               challengesBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getChallengesFieldBuilder() : null;
@@ -3417,97 +3316,33 @@ public final class Representations {
         return this;
       }
 
-      private double startLat_ ;
+      private double currentLat_ ;
       /**
-       * <code>optional double start_lat = 7;</code>
+       * <code>optional double current_lat = 7;</code>
        */
-      public boolean hasStartLat() {
+      public boolean hasCurrentLat() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional double start_lat = 7;</code>
-       */
-      public double getStartLat() {
-        return startLat_;
-      }
-      /**
-       * <code>optional double start_lat = 7;</code>
-       */
-      public Builder setStartLat(double value) {
-        bitField0_ |= 0x00000040;
-        startLat_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional double start_lat = 7;</code>
-       */
-      public Builder clearStartLat() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        startLat_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private double startLon_ ;
-      /**
-       * <code>optional double start_lon = 8;</code>
-       */
-      public boolean hasStartLon() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
-      }
-      /**
-       * <code>optional double start_lon = 8;</code>
-       */
-      public double getStartLon() {
-        return startLon_;
-      }
-      /**
-       * <code>optional double start_lon = 8;</code>
-       */
-      public Builder setStartLon(double value) {
-        bitField0_ |= 0x00000080;
-        startLon_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional double start_lon = 8;</code>
-       */
-      public Builder clearStartLon() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        startLon_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private double currentLat_ ;
-      /**
-       * <code>optional double current_lat = 9;</code>
-       */
-      public boolean hasCurrentLat() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
-      }
-      /**
-       * <code>optional double current_lat = 9;</code>
+       * <code>optional double current_lat = 7;</code>
        */
       public double getCurrentLat() {
         return currentLat_;
       }
       /**
-       * <code>optional double current_lat = 9;</code>
+       * <code>optional double current_lat = 7;</code>
        */
       public Builder setCurrentLat(double value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000040;
         currentLat_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional double current_lat = 9;</code>
+       * <code>optional double current_lat = 7;</code>
        */
       public Builder clearCurrentLat() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000040);
         currentLat_ = 0D;
         onChanged();
         return this;
@@ -3515,31 +3350,31 @@ public final class Representations {
 
       private double currentLon_ ;
       /**
-       * <code>optional double current_lon = 10;</code>
+       * <code>optional double current_lon = 8;</code>
        */
       public boolean hasCurrentLon() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>optional double current_lon = 10;</code>
+       * <code>optional double current_lon = 8;</code>
        */
       public double getCurrentLon() {
         return currentLon_;
       }
       /**
-       * <code>optional double current_lon = 10;</code>
+       * <code>optional double current_lon = 8;</code>
        */
       public Builder setCurrentLon(double value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000080;
         currentLon_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional double current_lon = 10;</code>
+       * <code>optional double current_lon = 8;</code>
        */
       public Builder clearCurrentLon() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000080);
         currentLon_ = 0D;
         onChanged();
         return this;
@@ -3547,34 +3382,34 @@ public final class Representations {
 
       private org.jailbreak.api.representations.Representations.Team.University university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
       /**
-       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
        */
       public boolean hasUniversity() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
        */
       public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
         return university_;
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
        */
       public Builder setUniversity(org.jailbreak.api.representations.Representations.Team.University value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000100;
         university_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Team.University university = 11;</code>
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 9;</code>
        */
       public Builder clearUniversity() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000100);
         university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
         onChanged();
         return this;
@@ -3582,13 +3417,13 @@ public final class Representations {
 
       private java.lang.Object description_ = "";
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public boolean hasDescription() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -3605,7 +3440,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -3621,36 +3456,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public Builder setDescription(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000200;
         description_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000200);
         description_ = getDefaultInstance().getDescription();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string description = 12;</code>
+       * <code>optional string description = 10;</code>
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000200;
         description_ = value;
         onChanged();
         return this;
@@ -3658,31 +3493,31 @@ public final class Representations {
 
       private int amountRaisedOnline_ ;
       /**
-       * <code>optional int32 amount_raised_online = 13;</code>
+       * <code>optional int32 amount_raised_online = 11;</code>
        */
       public boolean hasAmountRaisedOnline() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
-       * <code>optional int32 amount_raised_online = 13;</code>
+       * <code>optional int32 amount_raised_online = 11;</code>
        */
       public int getAmountRaisedOnline() {
         return amountRaisedOnline_;
       }
       /**
-       * <code>optional int32 amount_raised_online = 13;</code>
+       * <code>optional int32 amount_raised_online = 11;</code>
        */
       public Builder setAmountRaisedOnline(int value) {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00000400;
         amountRaisedOnline_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 amount_raised_online = 13;</code>
+       * <code>optional int32 amount_raised_online = 11;</code>
        */
       public Builder clearAmountRaisedOnline() {
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00000400);
         amountRaisedOnline_ = 0;
         onChanged();
         return this;
@@ -3690,31 +3525,31 @@ public final class Representations {
 
       private int amountRaisedOffline_ ;
       /**
-       * <code>optional int32 amount_raised_offline = 14;</code>
+       * <code>optional int32 amount_raised_offline = 12;</code>
        */
       public boolean hasAmountRaisedOffline() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00000800) == 0x00000800);
       }
       /**
-       * <code>optional int32 amount_raised_offline = 14;</code>
+       * <code>optional int32 amount_raised_offline = 12;</code>
        */
       public int getAmountRaisedOffline() {
         return amountRaisedOffline_;
       }
       /**
-       * <code>optional int32 amount_raised_offline = 14;</code>
+       * <code>optional int32 amount_raised_offline = 12;</code>
        */
       public Builder setAmountRaisedOffline(int value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00000800;
         amountRaisedOffline_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 amount_raised_offline = 14;</code>
+       * <code>optional int32 amount_raised_offline = 12;</code>
        */
       public Builder clearAmountRaisedOffline() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00000800);
         amountRaisedOffline_ = 0;
         onChanged();
         return this;
@@ -3722,31 +3557,31 @@ public final class Representations {
 
       private double distanceToX_ ;
       /**
-       * <code>optional double distance_to_x = 15;</code>
+       * <code>optional double distance_to_x = 13;</code>
        */
       public boolean hasDistanceToX() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       /**
-       * <code>optional double distance_to_x = 15;</code>
+       * <code>optional double distance_to_x = 13;</code>
        */
       public double getDistanceToX() {
         return distanceToX_;
       }
       /**
-       * <code>optional double distance_to_x = 15;</code>
+       * <code>optional double distance_to_x = 13;</code>
        */
       public Builder setDistanceToX(double value) {
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00001000;
         distanceToX_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional double distance_to_x = 15;</code>
+       * <code>optional double distance_to_x = 13;</code>
        */
       public Builder clearDistanceToX() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         distanceToX_ = 0D;
         onChanged();
         return this;
@@ -3754,31 +3589,31 @@ public final class Representations {
 
       private int countries_ ;
       /**
-       * <code>optional int32 countries = 16;</code>
+       * <code>optional int32 countries = 14;</code>
        */
       public boolean hasCountries() {
-        return ((bitField0_ & 0x00008000) == 0x00008000);
+        return ((bitField0_ & 0x00002000) == 0x00002000);
       }
       /**
-       * <code>optional int32 countries = 16;</code>
+       * <code>optional int32 countries = 14;</code>
        */
       public int getCountries() {
         return countries_;
       }
       /**
-       * <code>optional int32 countries = 16;</code>
+       * <code>optional int32 countries = 14;</code>
        */
       public Builder setCountries(int value) {
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00002000;
         countries_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 countries = 16;</code>
+       * <code>optional int32 countries = 14;</code>
        */
       public Builder clearCountries() {
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         countries_ = 0;
         onChanged();
         return this;
@@ -3786,31 +3621,31 @@ public final class Representations {
 
       private int transports_ ;
       /**
-       * <code>optional int32 transports = 17;</code>
+       * <code>optional int32 transports = 15;</code>
        */
       public boolean hasTransports() {
-        return ((bitField0_ & 0x00010000) == 0x00010000);
+        return ((bitField0_ & 0x00004000) == 0x00004000);
       }
       /**
-       * <code>optional int32 transports = 17;</code>
+       * <code>optional int32 transports = 15;</code>
        */
       public int getTransports() {
         return transports_;
       }
       /**
-       * <code>optional int32 transports = 17;</code>
+       * <code>optional int32 transports = 15;</code>
        */
       public Builder setTransports(int value) {
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x00004000;
         transports_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 transports = 17;</code>
+       * <code>optional int32 transports = 15;</code>
        */
       public Builder clearTransports() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         transports_ = 0;
         onChanged();
         return this;
@@ -3818,13 +3653,13 @@ public final class Representations {
 
       private java.lang.Object donationsUrl_ = "";
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public boolean hasDonationsUrl() {
-        return ((bitField0_ & 0x00020000) == 0x00020000);
+        return ((bitField0_ & 0x00008000) == 0x00008000);
       }
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public java.lang.String getDonationsUrl() {
         java.lang.Object ref = donationsUrl_;
@@ -3841,7 +3676,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public com.google.protobuf.ByteString
           getDonationsUrlBytes() {
@@ -3857,36 +3692,36 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public Builder setDonationsUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00020000;
+  bitField0_ |= 0x00008000;
         donationsUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public Builder clearDonationsUrl() {
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         donationsUrl_ = getDefaultInstance().getDonationsUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string donations_url = 18;</code>
+       * <code>optional string donations_url = 16;</code>
        */
       public Builder setDonationsUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00020000;
+  bitField0_ |= 0x00008000;
         donationsUrl_ = value;
         onChanged();
         return this;
@@ -3895,9 +3730,9 @@ public final class Representations {
       private java.util.List<org.jailbreak.api.representations.Representations.Challenge> challenges_ =
         java.util.Collections.emptyList();
       private void ensureChallengesIsMutable() {
-        if (!((bitField0_ & 0x00040000) == 0x00040000)) {
+        if (!((bitField0_ & 0x00010000) == 0x00010000)) {
           challenges_ = new java.util.ArrayList<org.jailbreak.api.representations.Representations.Challenge>(challenges_);
-          bitField0_ |= 0x00040000;
+          bitField0_ |= 0x00010000;
          }
       }
 
@@ -3905,7 +3740,7 @@ public final class Representations {
           org.jailbreak.api.representations.Representations.Challenge, org.jailbreak.api.representations.Representations.Challenge.Builder, org.jailbreak.api.representations.Representations.ChallengeOrBuilder> challengesBuilder_;
 
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public java.util.List<org.jailbreak.api.representations.Representations.Challenge> getChallengesList() {
         if (challengesBuilder_ == null) {
@@ -3915,7 +3750,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public int getChallengesCount() {
         if (challengesBuilder_ == null) {
@@ -3925,7 +3760,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public org.jailbreak.api.representations.Representations.Challenge getChallenges(int index) {
         if (challengesBuilder_ == null) {
@@ -3935,7 +3770,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder setChallenges(
           int index, org.jailbreak.api.representations.Representations.Challenge value) {
@@ -3952,7 +3787,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder setChallenges(
           int index, org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
@@ -3966,7 +3801,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder addChallenges(org.jailbreak.api.representations.Representations.Challenge value) {
         if (challengesBuilder_ == null) {
@@ -3982,7 +3817,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder addChallenges(
           int index, org.jailbreak.api.representations.Representations.Challenge value) {
@@ -3999,7 +3834,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder addChallenges(
           org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
@@ -4013,7 +3848,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder addChallenges(
           int index, org.jailbreak.api.representations.Representations.Challenge.Builder builderForValue) {
@@ -4027,7 +3862,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder addAllChallenges(
           java.lang.Iterable<? extends org.jailbreak.api.representations.Representations.Challenge> values) {
@@ -4042,12 +3877,12 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder clearChallenges() {
         if (challengesBuilder_ == null) {
           challenges_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00040000);
+          bitField0_ = (bitField0_ & ~0x00010000);
           onChanged();
         } else {
           challengesBuilder_.clear();
@@ -4055,7 +3890,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public Builder removeChallenges(int index) {
         if (challengesBuilder_ == null) {
@@ -4068,14 +3903,14 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public org.jailbreak.api.representations.Representations.Challenge.Builder getChallengesBuilder(
           int index) {
         return getChallengesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public org.jailbreak.api.representations.Representations.ChallengeOrBuilder getChallengesOrBuilder(
           int index) {
@@ -4085,7 +3920,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public java.util.List<? extends org.jailbreak.api.representations.Representations.ChallengeOrBuilder> 
            getChallengesOrBuilderList() {
@@ -4096,14 +3931,14 @@ public final class Representations {
         }
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public org.jailbreak.api.representations.Representations.Challenge.Builder addChallengesBuilder() {
         return getChallengesFieldBuilder().addBuilder(
             org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance());
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public org.jailbreak.api.representations.Representations.Challenge.Builder addChallengesBuilder(
           int index) {
@@ -4111,7 +3946,7 @@ public final class Representations {
             index, org.jailbreak.api.representations.Representations.Challenge.getDefaultInstance());
       }
       /**
-       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 19;</code>
+       * <code>repeated .org.jailbreak.api.representations.Challenge challenges = 17;</code>
        */
       public java.util.List<org.jailbreak.api.representations.Representations.Challenge.Builder> 
            getChallengesBuilderList() {
@@ -4124,7 +3959,7 @@ public final class Representations {
           challengesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               org.jailbreak.api.representations.Representations.Challenge, org.jailbreak.api.representations.Representations.Challenge.Builder, org.jailbreak.api.representations.Representations.ChallengeOrBuilder>(
                   challenges_,
-                  ((bitField0_ & 0x00040000) == 0x00040000),
+                  ((bitField0_ & 0x00010000) == 0x00010000),
                   getParentForChildren(),
                   isClean());
           challenges_ = null;
@@ -10925,54 +10760,53 @@ public final class Representations {
       "n_lat\030\005 \001(\001\022\032\n\022final_location_lon\030\006 \001(\001\022" +
       "\021\n\tteams_url\030\007 \001(\t\022\033\n\023facebook_tokens_ur" +
       "l\030\010 \001(\t\022\030\n\020authenticate_url\030\t \001(\t\022\021\n\tuse" +
-      "rs_url\030\n \001(\t\"\327\004\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013tea" +
+      "rs_url\030\n \001(\t\"\250\004\n\004Team\022\n\n\002id\030\001 \001(\005\022\023\n\013tea" +
       "m_number\030\002 \001(\005\022\021\n\tteam_name\030\003 \001(\t\022\r\n\005nam",
       "es\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t\022\020\n\010tag_line\030\006 \001" +
-      "(\t\022\021\n\tstart_lat\030\007 \001(\001\022\021\n\tstart_lon\030\010 \001(\001" +
-      "\022\023\n\013current_lat\030\t \001(\001\022\023\n\013current_lon\030\n \001" +
-      "(\001\022F\n\nuniversity\030\013 \001(\01622.org.jailbreak.a" +
-      "pi.representations.Team.University\022\023\n\013de" +
-      "scription\030\014 \001(\t\022\034\n\024amount_raised_online\030" +
-      "\r \001(\005\022\035\n\025amount_raised_offline\030\016 \001(\005\022\025\n\r" +
-      "distance_to_x\030\017 \001(\001\022\021\n\tcountries\030\020 \001(\005\022\022" +
-      "\n\ntransports\030\021 \001(\005\022\025\n\rdonations_url\030\022 \001(" +
-      "\t\022@\n\nchallenges\030\023 \003(\0132,.org.jailbreak.ap",
-      "i.representations.Challenge\"i\n\nUniversit" +
-      "y\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003\022\010" +
-      "\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n\004GMIT\020\007\022\007\n\003" +
-      "ITT\020\010\022\007\n\003ITC\020\t\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n" +
-      "\010location\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004" +
-      " \001(\001\022\013\n\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_" +
-      "id\030\007 \001(\005\"\371\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022\017\n\007te" +
-      "am_id\030\002 \001(\005\022\014\n\004name\030\003 \001(\t\022\021\n\tcompleted\030\004" +
-      " \001(\010\022H\n\004type\030\005 \001(\0162:.org.jailbreak.api.r" +
-      "epresentations.Challenge.ChallengeType\022\026",
-      "\n\016completed_time\030\006 \001(\003\"L\n\rChallengeType\022" +
-      "\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCA" +
-      "TION\020\003\022\014\n\010ALTRUISM\020\004\"\305\002\n\010Donation\022\n\n\002id\030" +
-      "\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014" +
-      "\n\004name\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\016" +
-      "28.org.jailbreak.api.representations.Don" +
-      "ation.DonationType\032\177\n\020DonationsFilters\022\017" +
-      "\n\007team_id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(\003\022F\n\004t" +
-      "ype\030\003 \001(\01628.org.jailbreak.api.representa" +
-      "tions.Donation.DonationType\"\'\n\014DonationT",
-      "ype\022\013\n\007OFFLINE\020\000\022\n\n\006ONLINE\020\001\":\n\021Facebook" +
-      "AuthToken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_" +
-      "id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022" +
-      "\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004Us" +
-      "er\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(" +
-      "\003\022E\n\nuser_level\030\003 \001(\01621.org.jailbreak.ap" +
-      "i.representations.User.UserLevel\022\r\n\005emai" +
-      "l\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name" +
-      "\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org.jailbreak.a" +
-      "pi.representations.User.Gender\022\020\n\010timezo",
-      "ne\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_lin" +
-      "k\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001(\t\022\014\n\004href\030" +
-      "\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005AD" +
-      "MIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender" +
-      "\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Rep" +
-      "resentations"
+      "(\t\022\023\n\013current_lat\030\007 \001(\001\022\023\n\013current_lon\030\010" +
+      " \001(\001\022F\n\nuniversity\030\t \001(\01622.org.jailbreak" +
+      ".api.representations.Team.University\022\023\n\013" +
+      "description\030\n \001(\t\022\034\n\024amount_raised_onlin" +
+      "e\030\013 \001(\005\022\035\n\025amount_raised_offline\030\014 \001(\005\022\025" +
+      "\n\rdistance_to_x\030\r \001(\001\022\021\n\tcountries\030\016 \001(\005" +
+      "\022\022\n\ntransports\030\017 \001(\005\022\025\n\rdonations_url\030\020 " +
+      "\001(\t\022@\n\nchallenges\030\021 \003(\0132,.org.jailbreak." +
+      "api.representations.Challenge\"`\n\nUnivers",
+      "ity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003" +
+      "\022\010\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n\004GMIT\020\007\022\007" +
+      "\n\003ITT\020\010\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010locati" +
+      "on\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n" +
+      "\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(" +
+      "\005\"\371\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022\017\n\007team_id\030\002" +
+      " \001(\005\022\014\n\004name\030\003 \001(\t\022\021\n\tcompleted\030\004 \001(\010\022H\n" +
+      "\004type\030\005 \001(\0162:.org.jailbreak.api.represen" +
+      "tations.Challenge.ChallengeType\022\026\n\016compl" +
+      "eted_time\030\006 \001(\003\"L\n\rChallengeType\022\r\n\tBLIN",
+      "DFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCATION\020\003\022" +
+      "\014\n\010ALTRUISM\020\004\"\305\002\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017" +
+      "\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030" +
+      "\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org." +
+      "jailbreak.api.representations.Donation.D" +
+      "onationType\032\177\n\020DonationsFilters\022\017\n\007team_" +
+      "id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(\003\022F\n\004type\030\003 \001" +
+      "(\01628.org.jailbreak.api.representations.D" +
+      "onation.DonationType\"\'\n\014DonationType\022\013\n\007" +
+      "OFFLINE\020\000\022\n\n\006ONLINE\020\001\":\n\021FacebookAuthTok",
+      "en\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(" +
+      "\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user" +
+      "_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004User\022\017\n\007u" +
+      "ser_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nus" +
+      "er_level\030\003 \001(\01621.org.jailbreak.api.repre" +
+      "sentations.User.UserLevel\022\r\n\005email\030\004 \001(\t" +
+      "\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022" +
+      ">\n\006gender\030\007 \001(\0162..org.jailbreak.api.repr" +
+      "esentations.User.Gender\022\020\n\010timezone\030\010 \001(" +
+      "\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t",
+      "\022\026\n\016api_tokens_url\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?" +
+      "\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013" +
+      "\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MAL" +
+      "E\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representa" +
+      "tions"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10997,7 +10831,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Team_descriptor,
-        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "StartLat", "StartLon", "CurrentLat", "CurrentLon", "University", "Description", "AmountRaisedOnline", "AmountRaisedOffline", "DistanceToX", "Countries", "Transports", "DonationsUrl", "Challenges", });
+        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "CurrentLat", "CurrentLon", "University", "Description", "AmountRaisedOnline", "AmountRaisedOffline", "DistanceToX", "Countries", "Transports", "DonationsUrl", "Challenges", });
     internal_static_org_jailbreak_api_representations_Checkin_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable = new

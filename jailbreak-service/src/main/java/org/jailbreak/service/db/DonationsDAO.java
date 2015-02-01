@@ -38,7 +38,7 @@ public abstract class DonationsDAO {
 	@SqlUpdate("DELETE FROM donations WHERE id = :id")
 	public abstract int delete(@Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM donations WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM donations WHERE id = :id")
 	@SingleValueResult(Donation.class)
 	public abstract Optional<Donation> getDonation(@Bind("id") int id);
 	

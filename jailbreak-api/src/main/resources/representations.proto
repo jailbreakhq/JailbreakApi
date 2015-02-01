@@ -26,7 +26,6 @@ message Team {
 		NCI = 6;
 		GMIT = 7;
 		ITT = 8;
-		ITC = 9;
 	}
 	
 	optional int32 id = 1;
@@ -35,19 +34,17 @@ message Team {
 	optional string names = 4;
 	optional string avatar = 5;
 	optional string tag_line = 6;
-	optional double start_lat = 7;
-	optional double start_lon = 8;
-	optional double current_lat = 9;
-	optional double current_lon = 10;
-	optional University university = 11;
-	optional string description = 12;
-	optional int32 amount_raised_online = 13;
-	optional int32 amount_raised_offline = 14;
-	optional double distance_to_x = 15;
-	optional int32 countries = 16;
-	optional int32 transports = 17;
-	optional string donations_url = 18;
- 	repeated Challenge challenges = 19;
+	optional double current_lat = 7;
+	optional double current_lon = 8;
+	optional University university = 9;
+	optional string description = 10;
+	optional int32 amount_raised_online = 11;
+	optional int32 amount_raised_offline = 12;
+	optional double distance_to_x = 13;
+	optional int32 countries = 14;
+	optional int32 transports = 15;
+	optional string donations_url = 16;
+ 	repeated Challenge challenges = 17;
 }
 
 message Checkin {

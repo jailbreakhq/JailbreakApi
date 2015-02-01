@@ -25,8 +25,6 @@ public class TeamsManagerTest {
 			.setNames("Kevin and Jack")
 			.setAvatar("http://test.com/avatar.jpg")
 			.setTagLine("Lorem ispum...")
-			.setStartLat(53.2734)
-			.setStartLon(-7.7783)
 			.setUniversity(University.TCD)
 			.build();
 
@@ -43,8 +41,6 @@ public class TeamsManagerTest {
 			.setNames("Kevin and Jack")
 			.setAvatar("http://test.com/avatar.jpg")
 			.setTagLine("Lorem ispum...")
-			.setStartLat(53.2734)
-			.setStartLon(-7.7783)
 			.setUniversity(University.TCD)
 			.build();
 
@@ -62,8 +58,6 @@ public class TeamsManagerTest {
 			.setNames("Kevin and Killian")
 			.setAvatar("http://test.com/new_avatar.jpg")
 			.setTagLine("Lorem ispum....")
-			.setStartLat(53.2734)
-			.setStartLon(-7.7783)
 			.setUniversity(University.TCD)
 			.build();
 

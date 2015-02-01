@@ -2,8 +2,6 @@ package org.jailbreak.service.resources;
 
 import io.dropwizard.auth.Auth;
 
-import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -28,11 +26,9 @@ import org.jailbreak.service.errors.ForbiddenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 
 @Path(Paths.DONATIONS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
