@@ -6437,20 +6437,11 @@ public final class Representations {
       long getSinceTime();
 
       /**
-       * <code>optional int32 limit = 3;</code>
-       */
-      boolean hasLimit();
-      /**
-       * <code>optional int32 limit = 3;</code>
-       */
-      int getLimit();
-
-      /**
-       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
        */
       boolean hasType();
       /**
-       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
        */
       org.jailbreak.api.representations.Representations.Donation.DonationType getType();
     }
@@ -6517,17 +6508,12 @@ public final class Representations {
                 break;
               }
               case 24: {
-                bitField0_ |= 0x00000004;
-                limit_ = input.readInt32();
-                break;
-              }
-              case 32: {
                 int rawValue = input.readEnum();
                 org.jailbreak.api.representations.Representations.Donation.DonationType value = org.jailbreak.api.representations.Representations.Donation.DonationType.valueOf(rawValue);
                 if (value == null) {
-                  unknownFields.mergeVarintField(4, rawValue);
+                  unknownFields.mergeVarintField(3, rawValue);
                 } else {
-                  bitField0_ |= 0x00000008;
+                  bitField0_ |= 0x00000004;
                   type_ = value;
                 }
                 break;
@@ -6602,31 +6588,16 @@ public final class Representations {
         return sinceTime_;
       }
 
-      public static final int LIMIT_FIELD_NUMBER = 3;
-      private int limit_;
+      public static final int TYPE_FIELD_NUMBER = 3;
+      private org.jailbreak.api.representations.Representations.Donation.DonationType type_;
       /**
-       * <code>optional int32 limit = 3;</code>
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
        */
-      public boolean hasLimit() {
+      public boolean hasType() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional int32 limit = 3;</code>
-       */
-      public int getLimit() {
-        return limit_;
-      }
-
-      public static final int TYPE_FIELD_NUMBER = 4;
-      private org.jailbreak.api.representations.Representations.Donation.DonationType type_;
-      /**
-       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
-       */
-      public boolean hasType() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+       * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
        */
       public org.jailbreak.api.representations.Representations.Donation.DonationType getType() {
         return type_;
@@ -6635,7 +6606,6 @@ public final class Representations {
       private void initFields() {
         teamId_ = 0;
         sinceTime_ = 0L;
-        limit_ = 0;
         type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
       }
       private byte memoizedIsInitialized = -1;
@@ -6658,10 +6628,7 @@ public final class Representations {
           output.writeInt64(2, sinceTime_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          output.writeInt32(3, limit_);
-        }
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          output.writeEnum(4, type_.getNumber());
+          output.writeEnum(3, type_.getNumber());
         }
         getUnknownFields().writeTo(output);
       }
@@ -6682,11 +6649,7 @@ public final class Representations {
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt32Size(3, limit_);
-        }
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(4, type_.getNumber());
+            .computeEnumSize(3, type_.getNumber());
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -6809,10 +6772,8 @@ public final class Representations {
           bitField0_ = (bitField0_ & ~0x00000001);
           sinceTime_ = 0L;
           bitField0_ = (bitField0_ & ~0x00000002);
-          limit_ = 0;
-          bitField0_ = (bitField0_ & ~0x00000004);
           type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000004);
           return this;
         }
 
@@ -6852,10 +6813,6 @@ public final class Representations {
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
-          result.limit_ = limit_;
-          if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-            to_bitField0_ |= 0x00000008;
-          }
           result.type_ = type_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
@@ -6878,9 +6835,6 @@ public final class Representations {
           }
           if (other.hasSinceTime()) {
             setSinceTime(other.getSinceTime());
-          }
-          if (other.hasLimit()) {
-            setLimit(other.getLimit());
           }
           if (other.hasType()) {
             setType(other.getType());
@@ -6976,68 +6930,36 @@ public final class Representations {
           return this;
         }
 
-        private int limit_ ;
+        private org.jailbreak.api.representations.Representations.Donation.DonationType type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
         /**
-         * <code>optional int32 limit = 3;</code>
+         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
          */
-        public boolean hasLimit() {
+        public boolean hasType() {
           return ((bitField0_ & 0x00000004) == 0x00000004);
         }
         /**
-         * <code>optional int32 limit = 3;</code>
-         */
-        public int getLimit() {
-          return limit_;
-        }
-        /**
-         * <code>optional int32 limit = 3;</code>
-         */
-        public Builder setLimit(int value) {
-          bitField0_ |= 0x00000004;
-          limit_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>optional int32 limit = 3;</code>
-         */
-        public Builder clearLimit() {
-          bitField0_ = (bitField0_ & ~0x00000004);
-          limit_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private org.jailbreak.api.representations.Representations.Donation.DonationType type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
-        /**
-         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
-         */
-        public boolean hasType() {
-          return ((bitField0_ & 0x00000008) == 0x00000008);
-        }
-        /**
-         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
          */
         public org.jailbreak.api.representations.Representations.Donation.DonationType getType() {
           return type_;
         }
         /**
-         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
          */
         public Builder setType(org.jailbreak.api.representations.Representations.Donation.DonationType value) {
           if (value == null) {
             throw new NullPointerException();
           }
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000004;
           type_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 4;</code>
+         * <code>optional .org.jailbreak.api.representations.Donation.DonationType type = 3;</code>
          */
         public Builder clearType() {
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000004);
           type_ = org.jailbreak.api.representations.Representations.Donation.DonationType.OFFLINE;
           onChanged();
           return this;
@@ -11027,30 +10949,30 @@ public final class Representations {
       "epresentations.Challenge.ChallengeType\022\026",
       "\n\016completed_time\030\006 \001(\003\"L\n\rChallengeType\022" +
       "\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCA" +
-      "TION\020\003\022\014\n\010ALTRUISM\020\004\"\325\002\n\010Donation\022\n\n\002id\030" +
+      "TION\020\003\022\014\n\010ALTRUISM\020\004\"\305\002\n\010Donation\022\n\n\002id\030" +
       "\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014" +
       "\n\004name\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\016" +
       "28.org.jailbreak.api.representations.Don" +
-      "ation.DonationType\032\216\001\n\020DonationsFilters\022" +
-      "\017\n\007team_id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(\003\022\r\n\005" +
-      "limit\030\003 \001(\005\022F\n\004type\030\004 \001(\01628.org.jailbrea" +
-      "k.api.representations.Donation.DonationT",
-      "ype\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n\006ONLI" +
-      "NE\020\001\":\n\021FacebookAuthToken\022\024\n\014access_toke" +
-      "n\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\t" +
-      "api_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expi" +
-      "res\030\003 \001(\003\"\265\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014t" +
-      "ime_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621." +
-      "org.jailbreak.api.representations.User.U" +
-      "serLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 " +
-      "\001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162." +
-      ".org.jailbreak.api.representations.User.",
-      "Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t" +
-      "\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_ur" +
-      "l\030\013 \001(\t\022\014\n\004href\030\014 \001(\t\"?\n\tUserLevel\022\016\n\nSU" +
-      "PERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NO" +
-      "RMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t" +
-      "\n\005OTHER\020\002B\021B\017Representations"
+      "ation.DonationType\032\177\n\020DonationsFilters\022\017" +
+      "\n\007team_id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(\003\022F\n\004t" +
+      "ype\030\003 \001(\01628.org.jailbreak.api.representa" +
+      "tions.Donation.DonationType\"\'\n\014DonationT",
+      "ype\022\013\n\007OFFLINE\020\000\022\n\n\006ONLINE\020\001\":\n\021Facebook" +
+      "AuthToken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_" +
+      "id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022" +
+      "\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\265\003\n\004Us" +
+      "er\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(" +
+      "\003\022E\n\nuser_level\030\003 \001(\01621.org.jailbreak.ap" +
+      "i.representations.User.UserLevel\022\r\n\005emai" +
+      "l\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name" +
+      "\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org.jailbreak.a" +
+      "pi.representations.User.Gender\022\020\n\010timezo",
+      "ne\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_lin" +
+      "k\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001(\t\022\014\n\004href\030" +
+      "\014 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005AD" +
+      "MIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender" +
+      "\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Rep" +
+      "resentations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11099,7 +11021,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Donation_DonationsFilters_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Donation_DonationsFilters_descriptor,
-        new java.lang.String[] { "TeamId", "SinceTime", "Limit", "Type", });
+        new java.lang.String[] { "TeamId", "SinceTime", "Type", });
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_fieldAccessorTable = new

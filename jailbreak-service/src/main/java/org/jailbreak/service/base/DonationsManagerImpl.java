@@ -57,8 +57,8 @@ public class DonationsManagerImpl implements DonationsManager {
 	}
 	
 	@Override
-	public List<Donation> getDonations(DonationsFilters filters) {
-		return this.dao.getFilteredDonations(filters);
+	public List<Donation> getDonations(int limit, DonationsFilters filters) {
+		return this.dao.getFilteredDonations(limit, filters);
 	}
 
 	@Override
