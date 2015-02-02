@@ -109,5 +109,8 @@
     		<column name="type" type="tinyint"></column>
     	</addColumn>
     </changeSet>
+    <changeSet id="5" author="kbaker">
+    	<dropColumn tableName="teams" columnName="start_position" />
+    </changeSet>
     
 </databaseChangeLog>

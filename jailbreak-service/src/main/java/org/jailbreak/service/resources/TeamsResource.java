@@ -13,6 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -28,6 +29,7 @@ import org.jailbreak.service.errors.ForbiddenException;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 @Path("/teams")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -35,15 +37,21 @@ import com.google.inject.Inject;
 public class TeamsResource {
 	
 	private final TeamsManager manager;
+	private final int defaultLimit;
+	private final int maxLimit;
 	
 	@Inject
-	public TeamsResource(TeamsManager manager) {
+	public TeamsResource(TeamsManager manager,
+			@Named("resources.defaultLimit") int defaultLimit,
+			@Named("resources.maxLimit") int maxLimit) {
 		this.manager = manager;
+		this.defaultLimit = defaultLimit;
+		this.maxLimit = maxLimit;
 	}
 	
 	@GET
 	@Timed
-	public List<Team> getTeams() {
+	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit) {
         return this.manager.getTeams();
 	}
 	

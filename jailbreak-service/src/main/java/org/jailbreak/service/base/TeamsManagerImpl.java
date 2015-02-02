@@ -35,13 +35,6 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public Team addTeam(Team team) {
-		if (!team.hasCurrentLat() && !team.hasCurrentLon()) {
-			Team.Builder builder = team.toBuilder();
-			builder.setCurrentLat(team.getStartLat());
-			builder.setCurrentLon(team.getCurrentLon());
-			team = builder.build();
-		}
-
 		int new_id = dao.insert(team);
 		return dao.getTeam(new_id).get();
 	}

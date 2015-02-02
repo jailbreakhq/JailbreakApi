@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
+import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.DonationsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
@@ -37,14 +38,14 @@ public abstract class DonationsDAO {
 	@SqlUpdate("DELETE FROM donations WHERE id = :id")
 	public abstract int delete(@Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM donations WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM donations WHERE id = :id")
 	@SingleValueResult(Donation.class)
 	public abstract Optional<Donation> getDonation(@Bind("id") int id);
 	
 	@SqlQuery("SELECT * FROM donations ORDER BY time DESC")
 	public abstract List<Donation> getDonations();
 	
-	public List<Donation> getFilteredDonations(DonationsFilters filters) {
+	public List<Donation> getFilteredDonations(int limit, DonationsFilters filters) {
 		// Build query and bind in params
 		Map<String, Object> bindParams = Maps.newHashMap();
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations");
@@ -61,9 +62,9 @@ public abstract class DonationsDAO {
 			builder.addWhere("type = :type");
 			bindParams.put("type", filters.getType().ordinal());
 		}
-		if (filters.hasLimit()) {
-			builder.limit(filters.getLimit());
-		}
+		builder.addOrderBy("time", OrderBy.DESC);
+		builder.limit(limit);
+		
 		String queryString = builder.build();
 		
 		LOG.debug("getFilteredDonations: " + queryString);

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.Gender;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
-import org.jailbreak.service.resources.Paths;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -35,7 +34,6 @@ public class UsersMapper implements ResultSetMapper<User> {
 				.setTimezone(timezone)
 				.setLocale(locale)
 				.setFacebookLink(facebook_link)
-				.setHref(Paths.USERS_PATH + "/" + user_id)
 				.build();
 	}
 

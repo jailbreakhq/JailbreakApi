@@ -2,8 +2,6 @@ package org.jailbreak.service.resources;
 
 import io.dropwizard.auth.Auth;
 
-import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -28,11 +26,9 @@ import org.jailbreak.service.errors.ForbiddenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 
 @Path(Paths.DONATIONS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -57,25 +53,12 @@ public class DonationsResource {
 	}
 	
 	@GET
-	public List<Donation> getDonation(@QueryParam("filters") Optional<String> filters) {
-		if (filters.isPresent()) {
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.registerModule(new ProtobufModule());
-			DonationsFilters donationFilters;
-			try {
-				donationFilters = mapper.readValue(URLDecoder.decode(filters.get(), "UTF-8"), DonationsFilters.class);
-				if (donationFilters.hasLimit()) {
-					if (donationFilters.getLimit() > this.maxLimit) {
-						donationFilters = donationFilters.toBuilder().setLimit(this.maxLimit).build();
-					} else {
-						donationFilters = donationFilters.toBuilder().setLimit(this.defaultLimit).build();
-					}
-				}
-				return this.manager.getDonations(donationFilters);
-			} catch (IOException e) {
-				LOG.error(e.getMessage());
-				throw new BadRequestException("Donations filters were malformed. Could not parse JSON content in query param", ApiDocs.DONATIONS_FILTERS);
-			}
+	public List<Donation> getDonation(@QueryParam("limit") Optional<Integer> maybeLimit, @QueryParam("filters") Optional<String> maybeFilters) {
+		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
+		
+		if (maybeFilters.isPresent()) {
+			DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
+			return this.manager.getDonations(limit, filters);
 		} else {
 			return this.manager.getDonations();
 		}
