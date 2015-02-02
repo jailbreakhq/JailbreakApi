@@ -48,7 +48,7 @@ public abstract class TeamsDAO {
 	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC LIMIT 10")
 	public abstract List<Team> getTopTenTeams();
 	
-	public List<Team> getFilteredTeams(int limit, TeamsFilters filters) {
+	public List<Team> getFilteredTeams(int limit, TeamsFilters filters) throws SQLException {
 		Map<String, Object> bindParams = Maps.newHashMap();
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("teams")
 				.addColumn("*")
@@ -83,9 +83,8 @@ public abstract class TeamsDAO {
 			return results;
 		} catch (SQLException e) {
 			LOG.error("SQL Error executing query getFilteredDonations " + e.getMessage());
+			throw e;
 		}
-		
-		return Lists.newArrayListWithCapacity(0);
 	}
 	
 }

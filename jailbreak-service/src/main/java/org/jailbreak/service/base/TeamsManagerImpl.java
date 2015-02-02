@@ -1,6 +1,9 @@
 package org.jailbreak.service.base;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
@@ -31,7 +34,11 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public List<Team> getTeams(int limit, TeamsFilters filters) {
-		return dao.getFilteredTeams(limit, filters);
+		try {
+			return dao.getFilteredTeams(limit, filters);
+		} catch (SQLException e) {
+			throw new WebApplicationException();
+		}
 	}
 	
 	@Override
