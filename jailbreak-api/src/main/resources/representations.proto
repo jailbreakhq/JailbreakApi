@@ -47,7 +47,6 @@ message Team {
 	optional int32 transports = 15;
 	optional string donations_url = 16;
  	repeated Challenge challenges = 17;
- 	optional string about_us = 18;
 }
 
 message Checkin {
