@@ -136,8 +136,10 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	public TeamsDAO provideTeamsDAO(DBI jdbi) {
-        return jdbi.onDemand(TeamsDAO.class);
+	public TeamsDAO provideTeamsDAO(Connection conn) {
+		TeamsDAO dao = dbi.onDemand(TeamsDAO.class);
+        dao.conn = this.getJDBCHandler(null);
+        return dao;
 	}
 	
 	@Provides

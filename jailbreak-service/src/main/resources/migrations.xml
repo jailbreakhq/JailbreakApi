@@ -112,5 +112,10 @@
     <changeSet id="5" author="kbaker">
     	<dropColumn tableName="teams" columnName="start_position" />
     </changeSet>
+    <changeSet id="6" author="kbaker">
+    	<addColumn tableName="teams">
+    		<column name="featured" type="boolean" defaultValueBoolean="false"></column>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

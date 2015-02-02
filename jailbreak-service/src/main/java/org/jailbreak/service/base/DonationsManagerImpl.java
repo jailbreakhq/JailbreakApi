@@ -1,6 +1,9 @@
 package org.jailbreak.service.base;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
@@ -58,7 +61,11 @@ public class DonationsManagerImpl implements DonationsManager {
 	
 	@Override
 	public List<Donation> getDonations(int limit, DonationsFilters filters) {
-		return this.dao.getFilteredDonations(limit, filters);
+		try {
+			return this.dao.getFilteredDonations(limit, filters);
+		} catch (SQLException e) {
+			throw new WebApplicationException();
+		}
 	}
 
 	@Override

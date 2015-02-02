@@ -47,6 +47,13 @@ message Team {
 	optional int32 transports = 15;
 	optional string donations_url = 16;
  	repeated Challenge challenges = 17;
+ 	optional bool featured = 18;
+ 	
+ 	message TeamsFilters {
+ 		optional int32 team_number = 1;
+ 		optional University university = 2;
+ 		optional bool featured = 3;
+ 	}
 }
 
 message Checkin {

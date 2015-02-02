@@ -45,7 +45,7 @@ public abstract class DonationsDAO {
 	@SqlQuery("SELECT * FROM donations ORDER BY time DESC")
 	public abstract List<Donation> getDonations();
 	
-	public List<Donation> getFilteredDonations(int limit, DonationsFilters filters) {
+	public List<Donation> getFilteredDonations(int limit, DonationsFilters filters) throws SQLException {
 		// Build query and bind in params
 		Map<String, Object> bindParams = Maps.newHashMap();
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations");
@@ -67,17 +67,16 @@ public abstract class DonationsDAO {
 		
 		String queryString = builder.build();
 		
-		LOG.debug("getFilteredDonations: " + queryString);
+		LOG.debug("getFilteredDonations SQL: " + queryString);
 		
 		try {
 			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
 			List<Donation> results = query.executeQuery(new DonationsMapper());
 			return results;
 		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations");
+			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
+			throw e;
 		}
-		
-		return Lists.newArrayListWithCapacity(0);
 	}
 	
 }

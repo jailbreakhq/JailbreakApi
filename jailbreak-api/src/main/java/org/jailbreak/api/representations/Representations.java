@@ -1782,18 +1782,13 @@ public final class Representations {
         int index);
 
     /**
-     * <code>optional string about_us = 18;</code>
+     * <code>optional bool featured = 18;</code>
      */
-    boolean hasAboutUs();
+    boolean hasFeatured();
     /**
-     * <code>optional string about_us = 18;</code>
+     * <code>optional bool featured = 18;</code>
      */
-    java.lang.String getAboutUs();
-    /**
-     * <code>optional string about_us = 18;</code>
-     */
-    com.google.protobuf.ByteString
-        getAboutUsBytes();
+    boolean getFeatured();
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.Team}
@@ -1947,10 +1942,9 @@ public final class Representations {
               challenges_.add(input.readMessage(org.jailbreak.api.representations.Representations.Challenge.PARSER, extensionRegistry));
               break;
             }
-            case 146: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 144: {
               bitField0_ |= 0x00010000;
-              aboutUs_ = bs;
+              featured_ = input.readBool();
               break;
             }
           }
@@ -2138,6 +2132,568 @@ public final class Representations {
       }
 
       // @@protoc_insertion_point(enum_scope:org.jailbreak.api.representations.Team.University)
+    }
+
+    public interface TeamsFiltersOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:org.jailbreak.api.representations.Team.TeamsFilters)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>optional int32 team_number = 1;</code>
+       */
+      boolean hasTeamNumber();
+      /**
+       * <code>optional int32 team_number = 1;</code>
+       */
+      int getTeamNumber();
+
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+       */
+      boolean hasUniversity();
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+       */
+      org.jailbreak.api.representations.Representations.Team.University getUniversity();
+
+      /**
+       * <code>optional bool featured = 3;</code>
+       */
+      boolean hasFeatured();
+      /**
+       * <code>optional bool featured = 3;</code>
+       */
+      boolean getFeatured();
+    }
+    /**
+     * Protobuf type {@code org.jailbreak.api.representations.Team.TeamsFilters}
+     */
+    public static final class TeamsFilters extends
+        com.google.protobuf.GeneratedMessage implements
+        // @@protoc_insertion_point(message_implements:org.jailbreak.api.representations.Team.TeamsFilters)
+        TeamsFiltersOrBuilder {
+      // Use TeamsFilters.newBuilder() to construct.
+      private TeamsFilters(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private TeamsFilters(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final TeamsFilters defaultInstance;
+      public static TeamsFilters getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public TeamsFilters getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private TeamsFilters(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                teamNumber_ = input.readInt32();
+                break;
+              }
+              case 16: {
+                int rawValue = input.readEnum();
+                org.jailbreak.api.representations.Representations.Team.University value = org.jailbreak.api.representations.Representations.Team.University.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(2, rawValue);
+                } else {
+                  bitField0_ |= 0x00000002;
+                  university_ = value;
+                }
+                break;
+              }
+              case 24: {
+                bitField0_ |= 0x00000004;
+                featured_ = input.readBool();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_TeamsFilters_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.jailbreak.api.representations.Representations.Team.TeamsFilters.class, org.jailbreak.api.representations.Representations.Team.TeamsFilters.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<TeamsFilters> PARSER =
+          new com.google.protobuf.AbstractParser<TeamsFilters>() {
+        public TeamsFilters parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new TeamsFilters(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<TeamsFilters> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      public static final int TEAM_NUMBER_FIELD_NUMBER = 1;
+      private int teamNumber_;
+      /**
+       * <code>optional int32 team_number = 1;</code>
+       */
+      public boolean hasTeamNumber() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 team_number = 1;</code>
+       */
+      public int getTeamNumber() {
+        return teamNumber_;
+      }
+
+      public static final int UNIVERSITY_FIELD_NUMBER = 2;
+      private org.jailbreak.api.representations.Representations.Team.University university_;
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+       */
+      public boolean hasUniversity() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+       */
+      public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
+        return university_;
+      }
+
+      public static final int FEATURED_FIELD_NUMBER = 3;
+      private boolean featured_;
+      /**
+       * <code>optional bool featured = 3;</code>
+       */
+      public boolean hasFeatured() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional bool featured = 3;</code>
+       */
+      public boolean getFeatured() {
+        return featured_;
+      }
+
+      private void initFields() {
+        teamNumber_ = 0;
+        university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+        featured_ = false;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeInt32(1, teamNumber_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeEnum(2, university_.getNumber());
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          output.writeBool(3, featured_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, teamNumber_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(2, university_.getNumber());
+        }
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(3, featured_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.jailbreak.api.representations.Representations.Team.TeamsFilters parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.jailbreak.api.representations.Representations.Team.TeamsFilters prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code org.jailbreak.api.representations.Team.TeamsFilters}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:org.jailbreak.api.representations.Team.TeamsFilters)
+          org.jailbreak.api.representations.Representations.Team.TeamsFiltersOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_TeamsFilters_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.jailbreak.api.representations.Representations.Team.TeamsFilters.class, org.jailbreak.api.representations.Representations.Team.TeamsFilters.Builder.class);
+        }
+
+        // Construct using org.jailbreak.api.representations.Representations.Team.TeamsFilters.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          teamNumber_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          featured_ = false;
+          bitField0_ = (bitField0_ & ~0x00000004);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.jailbreak.api.representations.Representations.internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor;
+        }
+
+        public org.jailbreak.api.representations.Representations.Team.TeamsFilters getDefaultInstanceForType() {
+          return org.jailbreak.api.representations.Representations.Team.TeamsFilters.getDefaultInstance();
+        }
+
+        public org.jailbreak.api.representations.Representations.Team.TeamsFilters build() {
+          org.jailbreak.api.representations.Representations.Team.TeamsFilters result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.jailbreak.api.representations.Representations.Team.TeamsFilters buildPartial() {
+          org.jailbreak.api.representations.Representations.Team.TeamsFilters result = new org.jailbreak.api.representations.Representations.Team.TeamsFilters(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.teamNumber_ = teamNumber_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.university_ = university_;
+          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+            to_bitField0_ |= 0x00000004;
+          }
+          result.featured_ = featured_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.jailbreak.api.representations.Representations.Team.TeamsFilters) {
+            return mergeFrom((org.jailbreak.api.representations.Representations.Team.TeamsFilters)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.jailbreak.api.representations.Representations.Team.TeamsFilters other) {
+          if (other == org.jailbreak.api.representations.Representations.Team.TeamsFilters.getDefaultInstance()) return this;
+          if (other.hasTeamNumber()) {
+            setTeamNumber(other.getTeamNumber());
+          }
+          if (other.hasUniversity()) {
+            setUniversity(other.getUniversity());
+          }
+          if (other.hasFeatured()) {
+            setFeatured(other.getFeatured());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.jailbreak.api.representations.Representations.Team.TeamsFilters parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.jailbreak.api.representations.Representations.Team.TeamsFilters) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private int teamNumber_ ;
+        /**
+         * <code>optional int32 team_number = 1;</code>
+         */
+        public boolean hasTeamNumber() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional int32 team_number = 1;</code>
+         */
+        public int getTeamNumber() {
+          return teamNumber_;
+        }
+        /**
+         * <code>optional int32 team_number = 1;</code>
+         */
+        public Builder setTeamNumber(int value) {
+          bitField0_ |= 0x00000001;
+          teamNumber_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 team_number = 1;</code>
+         */
+        public Builder clearTeamNumber() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          teamNumber_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private org.jailbreak.api.representations.Representations.Team.University university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+        /**
+         * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+         */
+        public boolean hasUniversity() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+         */
+        public org.jailbreak.api.representations.Representations.Team.University getUniversity() {
+          return university_;
+        }
+        /**
+         * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+         */
+        public Builder setUniversity(org.jailbreak.api.representations.Representations.Team.University value) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          bitField0_ |= 0x00000002;
+          university_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional .org.jailbreak.api.representations.Team.University university = 2;</code>
+         */
+        public Builder clearUniversity() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          university_ = org.jailbreak.api.representations.Representations.Team.University.TCD;
+          onChanged();
+          return this;
+        }
+
+        private boolean featured_ ;
+        /**
+         * <code>optional bool featured = 3;</code>
+         */
+        public boolean hasFeatured() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        /**
+         * <code>optional bool featured = 3;</code>
+         */
+        public boolean getFeatured() {
+          return featured_;
+        }
+        /**
+         * <code>optional bool featured = 3;</code>
+         */
+        public Builder setFeatured(boolean value) {
+          bitField0_ |= 0x00000004;
+          featured_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bool featured = 3;</code>
+         */
+        public Builder clearFeatured() {
+          bitField0_ = (bitField0_ & ~0x00000004);
+          featured_ = false;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:org.jailbreak.api.representations.Team.TeamsFilters)
+      }
+
+      static {
+        defaultInstance = new TeamsFilters(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:org.jailbreak.api.representations.Team.TeamsFilters)
     }
 
     private int bitField0_;
@@ -2578,46 +3134,19 @@ public final class Representations {
       return challenges_.get(index);
     }
 
-    public static final int ABOUT_US_FIELD_NUMBER = 18;
-    private java.lang.Object aboutUs_;
+    public static final int FEATURED_FIELD_NUMBER = 18;
+    private boolean featured_;
     /**
-     * <code>optional string about_us = 18;</code>
+     * <code>optional bool featured = 18;</code>
      */
-    public boolean hasAboutUs() {
+    public boolean hasFeatured() {
       return ((bitField0_ & 0x00010000) == 0x00010000);
     }
     /**
-     * <code>optional string about_us = 18;</code>
+     * <code>optional bool featured = 18;</code>
      */
-    public java.lang.String getAboutUs() {
-      java.lang.Object ref = aboutUs_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          aboutUs_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string about_us = 18;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAboutUsBytes() {
-      java.lang.Object ref = aboutUs_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        aboutUs_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public boolean getFeatured() {
+      return featured_;
     }
 
     private void initFields() {
@@ -2638,7 +3167,7 @@ public final class Representations {
       transports_ = 0;
       donationsUrl_ = "";
       challenges_ = java.util.Collections.emptyList();
-      aboutUs_ = "";
+      featured_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2705,7 +3234,7 @@ public final class Representations {
         output.writeMessage(17, challenges_.get(i));
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        output.writeBytes(18, getAboutUsBytes());
+        output.writeBool(18, featured_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2786,7 +3315,7 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(18, getAboutUsBytes());
+          .computeBoolSize(18, featured_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2944,7 +3473,7 @@ public final class Representations {
         } else {
           challengesBuilder_.clear();
         }
-        aboutUs_ = "";
+        featured_ = false;
         bitField0_ = (bitField0_ & ~0x00020000);
         return this;
       }
@@ -3050,7 +3579,7 @@ public final class Representations {
         if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
           to_bitField0_ |= 0x00010000;
         }
-        result.aboutUs_ = aboutUs_;
+        result.featured_ = featured_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3153,10 +3682,8 @@ public final class Representations {
             }
           }
         }
-        if (other.hasAboutUs()) {
-          bitField0_ |= 0x00020000;
-          aboutUs_ = other.aboutUs_;
-          onChanged();
+        if (other.hasFeatured()) {
+          setFeatured(other.getFeatured());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4204,78 +4731,34 @@ public final class Representations {
         return challengesBuilder_;
       }
 
-      private java.lang.Object aboutUs_ = "";
+      private boolean featured_ ;
       /**
-       * <code>optional string about_us = 18;</code>
+       * <code>optional bool featured = 18;</code>
        */
-      public boolean hasAboutUs() {
+      public boolean hasFeatured() {
         return ((bitField0_ & 0x00020000) == 0x00020000);
       }
       /**
-       * <code>optional string about_us = 18;</code>
+       * <code>optional bool featured = 18;</code>
        */
-      public java.lang.String getAboutUs() {
-        java.lang.Object ref = aboutUs_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            aboutUs_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public boolean getFeatured() {
+        return featured_;
       }
       /**
-       * <code>optional string about_us = 18;</code>
+       * <code>optional bool featured = 18;</code>
        */
-      public com.google.protobuf.ByteString
-          getAboutUsBytes() {
-        java.lang.Object ref = aboutUs_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          aboutUs_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string about_us = 18;</code>
-       */
-      public Builder setAboutUs(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00020000;
-        aboutUs_ = value;
+      public Builder setFeatured(boolean value) {
+        bitField0_ |= 0x00020000;
+        featured_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string about_us = 18;</code>
+       * <code>optional bool featured = 18;</code>
        */
-      public Builder clearAboutUs() {
+      public Builder clearFeatured() {
         bitField0_ = (bitField0_ & ~0x00020000);
-        aboutUs_ = getDefaultInstance().getAboutUs();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string about_us = 18;</code>
-       */
-      public Builder setAboutUsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00020000;
-        aboutUs_ = value;
+        featured_ = false;
         onChanged();
         return this;
       }
@@ -10865,6 +11348,11 @@ public final class Representations {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_jailbreak_api_representations_Team_TeamsFilters_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_org_jailbreak_api_representations_Checkin_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -10917,7 +11405,7 @@ public final class Representations {
       "\021\n\tteams_url\030\007 \001(\t\022\033\n\023facebook_tokens_ur" +
       "l\030\010 \001(\t\022\030\n\020authenticate_url\030\t \001(\t\022\021\n\tuse" +
       "rs_url\030\n \001(\t\022\032\n\022start_location_lat\030\013 \001(\001" +
-      "\022\032\n\022start_location_lon\030\014 \001(\001\"\272\004\n\004Team\022\n\n",
+      "\022\032\n\022start_location_lon\030\014 \001(\001\"\271\005\n\004Team\022\n\n",
       "\002id\030\001 \001(\005\022\023\n\013team_number\030\002 \001(\005\022\021\n\tteam_n" +
       "ame\030\003 \001(\t\022\r\n\005names\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t" +
       "\022\020\n\010tag_line\030\006 \001(\t\022\023\n\013current_lat\030\007 \001(\001\022" +
@@ -10929,41 +11417,44 @@ public final class Representations {
       "\tcountries\030\016 \001(\005\022\022\n\ntransports\030\017 \001(\005\022\025\n\r" +
       "donations_url\030\020 \001(\t\022@\n\nchallenges\030\021 \003(\0132",
       ",.org.jailbreak.api.representations.Chal" +
-      "lenge\022\020\n\010about_us\030\022 \001(\t\"`\n\nUniversity\022\007\n" +
-      "\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020\003\022\010\n\004NU" +
-      "IM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n\004GMIT\020\007\022\007\n\003ITT\020" +
-      "\010\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010location\030\002 \001" +
-      "(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003lon\030\005" +
-      " \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005\"\371\001\n\t" +
-      "Challenge\022\n\n\002id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022\014" +
-      "\n\004name\030\003 \001(\t\022\021\n\tcompleted\030\004 \001(\010\022H\n\004type\030" +
-      "\005 \001(\0162:.org.jailbreak.api.representation",
-      "s.Challenge.ChallengeType\022\026\n\016completed_t" +
-      "ime\030\006 \001(\003\"L\n\rChallengeType\022\r\n\tBLINDFOLD\020" +
-      "\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCATION\020\003\022\014\n\010ALT" +
-      "RUISM\020\004\"\305\002\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007team" +
-      "_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022" +
-      "\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.jailbr" +
-      "eak.api.representations.Donation.Donatio" +
-      "nType\032\177\n\020DonationsFilters\022\017\n\007team_id\030\001 \001" +
-      "(\005\022\022\n\nsince_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.o" +
-      "rg.jailbreak.api.representations.Donatio",
-      "n.DonationType\"\'\n\014DonationType\022\013\n\007OFFLIN" +
-      "E\020\000\022\n\n\006ONLINE\020\001\":\n\021FacebookAuthToken\022\024\n\014" +
-      "access_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010A" +
-      "piToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 " +
-      "\001(\003\022\017\n\007expires\030\003 \001(\003\"\247\003\n\004User\022\017\n\007user_id" +
-      "\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_lev" +
-      "el\030\003 \001(\01621.org.jailbreak.api.representat" +
-      "ions.User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfi" +
-      "rst_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gen" +
-      "der\030\007 \001(\0162..org.jailbreak.api.representa",
-      "tions.User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006l" +
-      "ocale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016ap" +
-      "i_tokens_url\030\013 \001(\t\"?\n\tUserLevel\022\016\n\nSUPER" +
-      "ADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMA" +
-      "L\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005O" +
-      "THER\020\002B\021B\017Representations"
+      "lenge\022\020\n\010featured\030\022 \001(\010\032}\n\014TeamsFilters\022" +
+      "\023\n\013team_number\030\001 \001(\005\022F\n\nuniversity\030\002 \001(\016" +
+      "22.org.jailbreak.api.representations.Tea" +
+      "m.University\022\020\n\010featured\030\003 \001(\010\"`\n\nUniver" +
+      "sity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022\010\n\004NUIG\020" +
+      "\003\022\010\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n\004GMIT\020\007\022" +
+      "\007\n\003ITT\020\010\"p\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010locat" +
+      "ion\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013" +
+      "\n\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001",
+      "(\005\"\371\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022\017\n\007team_id\030" +
+      "\002 \001(\005\022\014\n\004name\030\003 \001(\t\022\021\n\tcompleted\030\004 \001(\010\022H" +
+      "\n\004type\030\005 \001(\0162:.org.jailbreak.api.represe" +
+      "ntations.Challenge.ChallengeType\022\026\n\016comp" +
+      "leted_time\030\006 \001(\003\"L\n\rChallengeType\022\r\n\tBLI" +
+      "NDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCATION\020\003" +
+      "\022\014\n\010ALTRUISM\020\004\"\305\002\n\010Donation\022\n\n\002id\030\001 \001(\005\022" +
+      "\017\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name" +
+      "\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org" +
+      ".jailbreak.api.representations.Donation.",
+      "DonationType\032\177\n\020DonationsFilters\022\017\n\007team" +
+      "_id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(\003\022F\n\004type\030\003 " +
+      "\001(\01628.org.jailbreak.api.representations." +
+      "Donation.DonationType\"\'\n\014DonationType\022\013\n" +
+      "\007OFFLINE\020\000\022\n\n\006ONLINE\020\001\":\n\021FacebookAuthTo" +
+      "ken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001" +
+      "(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022\017\n\007use" +
+      "r_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\247\003\n\004User\022\017\n\007" +
+      "user_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nu" +
+      "ser_level\030\003 \001(\01621.org.jailbreak.api.repr",
+      "esentations.User.UserLevel\022\r\n\005email\030\004 \001(" +
+      "\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t" +
+      "\022>\n\006gender\030\007 \001(\0162..org.jailbreak.api.rep" +
+      "resentations.User.Gender\022\020\n\010timezone\030\010 \001" +
+      "(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(" +
+      "\t\022\026\n\016api_tokens_url\030\013 \001(\t\"?\n\tUserLevel\022\016" +
+      "\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n" +
+      "\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006FEMALE" +
+      "\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10988,7 +11479,13 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Team_descriptor,
-        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "CurrentLat", "CurrentLon", "University", "Description", "AmountRaisedOnline", "AmountRaisedOffline", "DistanceToX", "Countries", "Transports", "DonationsUrl", "Challenges", "AboutUs", });
+        new java.lang.String[] { "Id", "TeamNumber", "TeamName", "Names", "Avatar", "TagLine", "CurrentLat", "CurrentLon", "University", "Description", "AmountRaisedOnline", "AmountRaisedOffline", "DistanceToX", "Countries", "Transports", "DonationsUrl", "Challenges", "Featured", });
+    internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor =
+      internal_static_org_jailbreak_api_representations_Team_descriptor.getNestedTypes().get(0);
+    internal_static_org_jailbreak_api_representations_Team_TeamsFilters_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_org_jailbreak_api_representations_Team_TeamsFilters_descriptor,
+        new java.lang.String[] { "TeamNumber", "University", "Featured", });
     internal_static_org_jailbreak_api_representations_Checkin_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_org_jailbreak_api_representations_Checkin_fieldAccessorTable = new

@@ -25,6 +25,7 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		int countries = r.getInt("countries");
 		int transports = r.getInt("transports");
 		String description = r.getString("description");
+		boolean featured = r.getBoolean("featured");
 		
 		Team.Builder builder = Team.newBuilder()
 				.setId(id)
@@ -37,7 +38,8 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setAmountRaisedOnline(amount_raised_online)
 				.setAmountRaisedOffline(amount_raised_offline)
 				.setCountries(countries)
-				.setTransports(transports);
+				.setTransports(transports)
+				.setFeatured(featured);
 		
 		if (tag_line != null) {
 			builder.setTagLine(tag_line);
