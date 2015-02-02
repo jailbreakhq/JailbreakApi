@@ -3,6 +3,7 @@ package org.jailbreak.service.base;
 import java.util.List;
 
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.TeamsDAO;
 
@@ -26,6 +27,11 @@ public class TeamsManagerImpl implements TeamsManager {
 	@Override
 	public List<Team> getTeams() {
 		return dao.getTeams();
+	}
+	
+	@Override
+	public List<Team> getTeams(int limit, TeamsFilters filters) {
+		return dao.getFilteredTeams(limit, filters);
 	}
 	
 	@Override

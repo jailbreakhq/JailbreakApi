@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
 import org.jailbreak.service.core.TeamsManager;
@@ -51,7 +52,13 @@ public class TeamsResource {
 	
 	@GET
 	@Timed
-	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit) {
+	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
+			@QueryParam("filters") Optional<String> maybeFilters) {
+		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
+		if (maybeFilters.isPresent()) {
+			TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), TeamsFilters.class);
+			return this.manager.getTeams(limit, filters);
+		}
         return this.manager.getTeams();
 	}
 	

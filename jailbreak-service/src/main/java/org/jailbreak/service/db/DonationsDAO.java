@@ -67,14 +67,14 @@ public abstract class DonationsDAO {
 		
 		String queryString = builder.build();
 		
-		LOG.debug("getFilteredDonations: " + queryString);
+		LOG.debug("getFilteredDonations SQL: " + queryString);
 		
 		try {
 			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
 			List<Donation> results = query.executeQuery(new DonationsMapper());
 			return results;
 		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations");
+			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
 		}
 		
 		return Lists.newArrayListWithCapacity(0);

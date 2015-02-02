@@ -53,7 +53,8 @@ public class DonationsResource {
 	}
 	
 	@GET
-	public List<Donation> getDonation(@QueryParam("limit") Optional<Integer> maybeLimit, @QueryParam("filters") Optional<String> maybeFilters) {
+	public List<Donation> getDonation(@QueryParam("limit") Optional<Integer> maybeLimit,
+			@QueryParam("filters") Optional<String> maybeFilters) {
 		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
 		
 		if (maybeFilters.isPresent()) {
