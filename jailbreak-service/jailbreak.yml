@@ -47,5 +47,7 @@ logging:
 
 jailbreak:
   startTime: 1425632400
+  startLocationLat: 53.3418
+  startLocationLon: -6.3098
   finalLocationLat: 41.902916
   finalLocationLon: 12.453389

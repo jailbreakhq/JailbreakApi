@@ -62,6 +62,18 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
+	@Named("jailbreak.startLocationLat")
+	public double provideStartLat(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getStartLocationLat();
+	}
+	
+	@Provides
+	@Named("jailbreak.startLocationLon")
+	public double provideStartLon(ServiceConfiguration config) {
+		return config.getJailbreakSettings().getStartLocationLon();
+	}
+	
+	@Provides
 	@Named("jailbreak.finalLocationLat")
 	public double provideEndLat(ServiceConfiguration config) {
 		return config.getJailbreakSettings().getFinalLocationLat();

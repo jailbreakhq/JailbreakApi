@@ -12,6 +12,14 @@ public class JailbreakFactory {
     
     @NotNull
     @JsonProperty
+    private double startLocationLat;
+    
+    @NotNull
+    @JsonProperty
+    private double startLocationLon;
+    
+    @NotNull
+    @JsonProperty
     private double finalLocationLat;
     
     @NotNull
@@ -22,8 +30,16 @@ public class JailbreakFactory {
     	return startTime;
     }
     
+    public double getStartLocationLat() {
+    	return startLocationLat;
+    }
+    
+    public double getStartLocationLon() {
+    	return startLocationLon;
+    }
+    
     public double getFinalLocationLat() {
-    	return finalLocationLon;
+    	return finalLocationLat;
     }
     
     public double getFinalLocationLon() {

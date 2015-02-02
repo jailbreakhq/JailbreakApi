@@ -13,6 +13,8 @@ message JailbreakService {
 	optional string facebook_tokens_url = 8;
 	optional string authenticate_url = 9;
 	optional string users_url = 10;
+	optional double start_location_lat = 11;
+	optional double start_location_lon = 12;
 }
 
 message Team {
@@ -45,6 +47,7 @@ message Team {
 	optional int32 transports = 15;
 	optional string donations_url = 16;
  	repeated Challenge challenges = 17;
+ 	optional string about_us = 18;
 }
 
 message Checkin {
