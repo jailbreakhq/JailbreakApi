@@ -13,15 +13,8 @@ deploy:
   provider: heroku
   api_key:
     secure: NHy/FwsqBZqAaT9I4IfagsGUDF4Cyf/8Edp+UPwCRE9wXI/9tOlylIsMvr5JXyi3E1k2wwNqzzR83HfV3Y4ZdlwWvj5URkbvt6JaID1hcYCaH14bD2JcXCeA3o1E/oFDoNV4MCDR04uRbkzPkWNN6uJAyakAPBXAhoWV9FyxIxc=
-  app: jailbreak-api-qa
+  app:
+    master: jailbreak-api-qa
+    production: jailbreak-api-prod
   on:
     repo: jailbreakhq/JailbreakApi
-    branch: master
-deploy:
-  provider: heroku
-  api_key:
-    secure: NHy/FwsqBZqAaT9I4IfagsGUDF4Cyf/8Edp+UPwCRE9wXI/9tOlylIsMvr5JXyi3E1k2wwNqzzR83HfV3Y4ZdlwWvj5URkbvt6JaID1hcYCaH14bD2JcXCeA3o1E/oFDoNV4MCDR04uRbkzPkWNN6uJAyakAPBXAhoWV9FyxIxc=
-  app: jailbreak-api-prod
-  on:
-    repo: jailbreakhq/JailbreakApi
-    branch: production
