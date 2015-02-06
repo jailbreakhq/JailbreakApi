@@ -76,5 +76,10 @@ public class DonationsManagerImpl implements DonationsManager {
 		else
 			return false;
 	}
+	
+	@Override
+	public int getTotalRaised() {
+		return dao.getDonationsTotalAmount();
+	}
 
 }

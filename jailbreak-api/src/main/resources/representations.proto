@@ -48,6 +48,9 @@ message Team {
 	optional string donations_url = 16;
  	repeated Challenge challenges = 17;
  	optional bool featured = 18;
+ 	optional string slug = 19;
+ 	optional string video = 20;
+ 	optional string avatar_large = 21;
  	
  	message TeamsFilters {
  		optional int32 team_number = 1;

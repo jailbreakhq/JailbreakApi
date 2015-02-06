@@ -83,6 +83,12 @@ public class TeamsResource {
 		return manager.getTopTenTeams();
 	}
 	
+	@GET
+	@Path("/slug/{slug}")
+	public Optional<Team> getTeamSlug(@PathParam("slug") String slug) {
+		return manager.getTeamSlug(slug);
+	}
+	
 	@PUT
 	@Path("/{id}")
 	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, Team team) {

@@ -1,8 +1,10 @@
 package org.jailbreak.service;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import io.dropwizard.auth.Authenticator;
 import io.dropwizard.db.DataSourceFactory;
@@ -33,6 +35,7 @@ import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.slugify.Slugify;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Named;
@@ -42,6 +45,7 @@ public class ServiceModule extends AbstractModule {
 	private Logger LOG = LoggerFactory.getLogger(ServiceModule.class);
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
 	private Connection conn;
+	private Slugify slg;
 	
 	@Override
 	protected void configure() {
@@ -152,6 +156,21 @@ public class ServiceModule extends AbstractModule {
         DonationsDAO dao = dbi.onDemand(DonationsDAO.class);
         dao.conn = this.getJDBCHandler(null);
         return dao;
+	}
+	
+	@Provides
+	public Slugify provideSlugify() {
+		if (this.slg == null) {
+			try {
+				this.slg = new Slugify();
+				HashMap<String, String> replacements = new HashMap<String, String>();
+				replacements.put("&", "and");
+				this.slg.setCustomReplacements(replacements);
+			} catch (IOException e) {
+				LOG.error("Slugify threw IOException: " + e.getMessage());
+			}
+		}
+		return this.slg;
 	}
 
 }

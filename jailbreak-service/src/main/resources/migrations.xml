@@ -4,7 +4,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="1" author="kbaker">
     	<createTable tableName="api_tokens">
@@ -116,6 +116,31 @@
     	<addColumn tableName="teams">
     		<column name="featured" type="boolean" defaultValueBoolean="false"></column>
     	</addColumn>
+    </changeSet>
+    <changeSet id="7" author="kbaker">
+    	<addColumn tableName="teams">
+    		<column name="slug" type="varchar(100)" afterColumn="names">
+    			<constraints unique="true" uniqueConstraintName="slug" initiallyDeferred="true"></constraints>
+    		</column>
+    		<column name="video" type="text" />
+    		<column name="avatar_large" type="text" />
+    	</addColumn>
+    	
+    	<createIndex indexName="idx_slug" tableName="teams" unique="true">
+	        <column name="slug" type="varchar(100)"/>
+	    </createIndex>
+    	
+    	<modifyDataType columnName="tag_line" newDataType="varchar(200)" tableName="teams" />
+    	<addNotNullConstraint columnDataType="int" columnName="team_number" tableName="teams" />
+    	<addNotNullConstraint columnDataType="varchar(255)" columnName="names" tableName="teams" />
+    	
+    	<addDefaultValue columnDataType="int" defaultValue="0" columnName="amount_raised_online" tableName="teams" />
+    	<addDefaultValue columnDataType="int" defaultValue="0" columnName="amount_raised_offline" tableName="teams" />
+    	<addDefaultValue columnDataType="int" defaultValue="0" columnName="countries" tableName="teams" />
+    	<addDefaultValue columnDataType="int" defaultValue="0" columnName="transports" tableName="teams" />
+    </changeSet>
+    <changeSet id="8" author="kbaker">
+    	<addNotNullConstraint columnDataType="varchar(100)" columnName="slug" tableName="teams" />
     </changeSet>
     
 </databaseChangeLog>
