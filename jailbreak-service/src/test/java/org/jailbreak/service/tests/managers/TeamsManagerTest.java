@@ -21,8 +21,8 @@ public class TeamsManagerTest {
 
 	private TeamsDAO dao;// = mock(TeamsDAO.class, new OptionalAnswer());
 	private Slugify slg;
-	private double startLat = 53.3418;
-	private double startLon = -6.3098;
+	private double startLat = 53.348857;
+	private double startLon = -6.285844;
 	
 	private final Team team_unsaved = Team.newBuilder()
 			.setTeamNumber(5)

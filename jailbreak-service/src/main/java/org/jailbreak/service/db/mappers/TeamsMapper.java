@@ -45,23 +45,23 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setFeatured(featured)
 				.setSlug(slug);
 		
-		if (tag_line != null) {
+		if (tag_line != null && !tag_line.isEmpty()) {
 			builder.setTagLine(tag_line);
 		}
 		
-		if (avatar != null) {
+		if (avatar != null && !avatar.isEmpty()) {
 			builder.setAvatar(avatar);
 		}
 		
-		if (description != null) {
+		if (description != null && !description.isEmpty()) {
 			builder.setDescription(description);
 		}
 		
-		if (video != null) {
+		if (video != null && !video.isEmpty()) {
 			builder.setVideo(video);
 		}
 		
-		if (avatar_large != null) {
+		if (avatar_large != null && !avatar_large.isEmpty()) {
 			builder.setAvatarLarge(avatar_large);
 		}
 		
