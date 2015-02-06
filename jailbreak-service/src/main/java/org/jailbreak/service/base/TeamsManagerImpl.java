@@ -10,21 +10,37 @@ import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.TeamsDAO;
 
+import com.github.slugify.Slugify;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 public class TeamsManagerImpl implements TeamsManager {
 	
 	private final TeamsDAO dao;
+	private final Slugify slugify;
+	private final double startLat;
+	private final double startLon;
 	
 	@Inject
-	public TeamsManagerImpl(TeamsDAO dao) {
+	public TeamsManagerImpl(TeamsDAO dao,
+			Slugify slugify,
+			@Named("jailbreak.startLocationLat") double startLat,
+			@Named("jailbreak.startLocationLon") double startLon) {
 		this.dao = dao;
+		this.slugify = slugify;
+		this.startLat = startLat;
+		this.startLon = startLon;
 	}
 
 	@Override
 	public Optional<Team> getTeam(int id) {
 		return dao.getTeam(id);
+	}
+	
+	@Override
+	public Optional<Team> getTeamSlug(String slug) {
+		return dao.getTeamSlug(slug);
 	}
 
 	@Override
@@ -48,6 +64,22 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public Team addTeam(Team team) {
+		Team.Builder builder = team.toBuilder();
+		
+		if (!team.hasCurrentLat()) {
+			builder.setCurrentLat(this.startLat);
+		}
+		
+		if (!team.hasCurrentLon()) {
+			builder.setCurrentLon(this.startLon);
+		}
+		
+		if (!team.hasSlug()) {
+			String slug = slugify.slugify(team.getTeamName());
+			builder.setSlug(slug);
+		}
+		
+		team = builder.build();
 		int new_id = dao.insert(team);
 		return dao.getTeam(new_id).get();
 	}

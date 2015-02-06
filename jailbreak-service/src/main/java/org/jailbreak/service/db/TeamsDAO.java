@@ -41,6 +41,10 @@ public abstract class TeamsDAO {
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeam(@Bind("id") int id);
 	
+	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams WHERE slug = :slug")
+	@SingleValueResult(Team.class)
+	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
+	
 	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams")
 	public abstract List<Team> getTeams();
 

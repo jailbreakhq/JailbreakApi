@@ -10,6 +10,7 @@ import com.google.common.base.Optional;
 public interface TeamsManager {
 	
 	public Optional<Team> getTeam(int id);
+	public Optional<Team> getTeamSlug(String slug);
 	public List<Team> getTeams();
 	public List<Team> getTeams(int limit, TeamsFilters filters);
 	public Team addTeam(Team team);
