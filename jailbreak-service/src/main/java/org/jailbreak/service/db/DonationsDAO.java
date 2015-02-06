@@ -44,6 +44,9 @@ public abstract class DonationsDAO {
 	@SqlQuery("SELECT * FROM donations ORDER BY time DESC")
 	public abstract List<Donation> getDonations();
 	
+	@SqlQuery("SELECT SUM(amount) FROM donations")
+	public abstract int getDonationsTotalAmount();
+	
 	public List<Donation> getFilteredDonations(int limit, DonationsFilters filters) throws SQLException {
 		// Build query and bind in params
 		Map<String, Object> bindParams = Maps.newHashMap();

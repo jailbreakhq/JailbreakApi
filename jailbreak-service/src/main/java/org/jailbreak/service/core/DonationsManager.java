@@ -16,5 +16,7 @@ public interface DonationsManager {
 	public List<Donation> getDonations(int limit, DonationsFilters donationFilters);
 	public Donation createDonation(Donation donation);
 	public boolean deleteDonation(int id);
+	
+	public int getTotalRaised();
 
 }

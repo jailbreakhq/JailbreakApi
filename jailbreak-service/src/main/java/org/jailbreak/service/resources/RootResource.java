@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.JailbreakService;
+import org.jailbreak.service.core.DonationsManager;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -17,6 +18,7 @@ import com.google.inject.name.Named;
 @Produces({MediaType.APPLICATION_JSON})
 public class RootResource {
 	
+	private final DonationsManager donationsManager;
 	private final long startTime;
 	private final double startLat;
 	private final double startLon;
@@ -24,11 +26,13 @@ public class RootResource {
 	private final double finalLon;
 	
 	@Inject
-	public RootResource(@Named("jailbreak.startTime") long startTime,
+	public RootResource(DonationsManager donationsManager,
+			@Named("jailbreak.startTime") long startTime,
 			@Named("jailbreak.startLocationLat") double startLat,
 			@Named("jailbreak.startLocationLon") double startLon,
 			@Named("jailbreak.finalLocationLat") double finalLat,
 			@Named("jailbreak.finalLocationLon") double finalLon) {
+		this.donationsManager = donationsManager;
 		this.startTime = startTime;
 		this.startLat = startLat;
 		this.startLon = startLon;
@@ -45,7 +49,10 @@ public class RootResource {
 		    path = path.substring(0, path.length() - 1);
 		}
 		
+		int amountRaised = donationsManager.getTotalRaised();
+		
         return JailbreakService.newBuilder()
+        	.setAmountRaised(amountRaised)
     		.setStartTime(startTime)
     		.setStartLocationLat(startLat)
     		.setStartLocationLon(startLon)
