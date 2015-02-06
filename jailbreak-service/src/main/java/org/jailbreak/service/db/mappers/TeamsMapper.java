@@ -26,6 +26,9 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		int transports = r.getInt("transports");
 		String description = r.getString("description");
 		boolean featured = r.getBoolean("featured");
+		String slug = r.getString("slug");
+		String video = r.getString("video");
+		String avatar_large = r.getString("avatar_large");
 		
 		Team.Builder builder = Team.newBuilder()
 				.setId(id)
@@ -39,7 +42,8 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setAmountRaisedOffline(amount_raised_offline)
 				.setCountries(countries)
 				.setTransports(transports)
-				.setFeatured(featured);
+				.setFeatured(featured)
+				.setSlug(slug);
 		
 		if (tag_line != null) {
 			builder.setTagLine(tag_line);
@@ -51,6 +55,14 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		
 		if (description != null) {
 			builder.setDescription(description);
+		}
+		
+		if (video != null) {
+			builder.setVideo(video);
+		}
+		
+		if (avatar_large != null) {
+			builder.setAvatarLarge(avatar_large);
 		}
 		
 		return builder.build();
