@@ -6,9 +6,11 @@ import java.util.List;
 import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Donation;
+import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Donation.DonationType;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.service.core.DonationsManager;
+import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.DonationsDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +21,13 @@ import com.google.inject.Inject;
 public class DonationsManagerImpl implements DonationsManager {
 	
 	private final DonationsDAO dao;
+	private final TeamsManager teams;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsManagerImpl.class);
 	
 	@Inject
-	public DonationsManagerImpl(DonationsDAO dao) {
+	public DonationsManagerImpl(DonationsDAO dao, TeamsManager teams) {
 		this.dao = dao;
+		this.teams = teams;
 	}
 
 	@Override
@@ -54,6 +58,23 @@ public class DonationsManagerImpl implements DonationsManager {
 					.build();
 		}
 		int newId = this.dao.insert(donation);
+		
+		
+		// update the count on the teams object
+		if (donation.hasTeamId()) {
+			Optional<Team> maybeTeam = teams.getTeam(donation.getTeamId());
+			if (maybeTeam.isPresent()) {
+				Team team = maybeTeam.get();
+				LOG.info("Old amount raised online: " + team.getAmountRaisedOnline()/100 + " euro");
+				LOG.info("Updating team " + team.getId() + " amount +" + donation.getAmount()/100 + " euro");
+				team = team.toBuilder()
+					.setAmountRaisedOnline(team.getAmountRaisedOnline() + donation.getAmount())
+					.build();
+				LOG.info("New amount raised online: " + team.getAmountRaisedOnline()/100 + " euro");
+				teams.updateTeam(team);
+			}
+		}
+		
 		return this.dao.getDonation(newId).get(); // return full object with defaults set by DB
 	}
 	
