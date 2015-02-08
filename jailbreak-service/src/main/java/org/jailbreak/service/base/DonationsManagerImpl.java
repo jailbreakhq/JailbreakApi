@@ -65,8 +65,8 @@ public class DonationsManagerImpl implements DonationsManager {
 	}
 
 	@Override
-	public List<Donation> getDonations() {
-		return this.dao.getDonations();
+	public List<Donation> getDonations(int limit) {
+		return this.dao.getDonations(limit);
 	}
 	
 	@Override

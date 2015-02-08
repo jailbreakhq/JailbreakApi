@@ -41,8 +41,8 @@ public abstract class DonationsDAO {
 	@SingleValueResult(Donation.class)
 	public abstract Optional<Donation> getDonation(@Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM donations ORDER BY time DESC")
-	public abstract List<Donation> getDonations();
+	@SqlQuery("SELECT * FROM donations ORDER BY time DESC LIMIT :limit")
+	public abstract List<Donation> getDonations(@Bind("limit") int limit);
 	
 	@SqlQuery("SELECT SUM(amount) FROM donations")
 	public abstract int getDonationsTotalAmount();

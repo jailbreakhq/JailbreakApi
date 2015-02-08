@@ -61,7 +61,7 @@ public class DonationsResource {
 			DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
 			return this.manager.getDonations(limit, filters);
 		} else {
-			return this.manager.getDonations();
+			return this.manager.getDonations(limit);
 		}
 	}
 	
