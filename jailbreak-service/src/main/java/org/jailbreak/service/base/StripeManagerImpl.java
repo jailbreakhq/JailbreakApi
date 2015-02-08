@@ -43,13 +43,23 @@ public class StripeManagerImpl implements StripeManager {
 		LOG.info("Request charge to stripe successful");
 		
 		// create a donation record since the Charge.create didn't spew exceptions
-		Donation donation = Donation.newBuilder()
+		Donation.Builder builder = Donation.newBuilder()
 				.setTeamId(request.getTeamId())
 				.setAmount(request.getAmount())
 				.setEmail(request.getEmail())
-				.setName(request.getName())
-				.setType(DonationType.ONLINE)
-				.build();
+				.setType(DonationType.ONLINE);
+		
+		if (request.hasName()) {
+			builder.setName(request.getName());
+		} else {
+			builder.setName("Anonymous");
+		}
+		
+		if (!request.getBacker()) {
+			builder.setName("Anonymous");
+		}
+		
+		Donation donation = builder.build();
 		donations.createDonation(donation);
 		
 		return true;

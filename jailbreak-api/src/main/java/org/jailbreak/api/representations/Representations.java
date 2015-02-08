@@ -8982,6 +8982,15 @@ public final class Representations {
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>optional bool backer = 6;</code>
+     */
+    boolean hasBacker();
+    /**
+     * <code>optional bool backer = 6;</code>
+     */
+    boolean getBacker();
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.StripeChargeRequest}
@@ -9061,6 +9070,11 @@ public final class Representations {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000010;
               name_ = bs;
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              backer_ = input.readBool();
               break;
             }
           }
@@ -9259,12 +9273,28 @@ public final class Representations {
       }
     }
 
+    public static final int BACKER_FIELD_NUMBER = 6;
+    private boolean backer_;
+    /**
+     * <code>optional bool backer = 6;</code>
+     */
+    public boolean hasBacker() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional bool backer = 6;</code>
+     */
+    public boolean getBacker() {
+      return backer_;
+    }
+
     private void initFields() {
       token_ = "";
       amount_ = 0;
       teamId_ = 0;
       email_ = "";
       name_ = "";
+      backer_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -9294,6 +9324,9 @@ public final class Representations {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getNameBytes());
       }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBool(6, backer_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -9322,6 +9355,10 @@ public final class Representations {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, backer_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -9450,6 +9487,8 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000008);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        backer_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -9498,6 +9537,10 @@ public final class Representations {
           to_bitField0_ |= 0x00000010;
         }
         result.name_ = name_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.backer_ = backer_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -9534,6 +9577,9 @@ public final class Representations {
           bitField0_ |= 0x00000010;
           name_ = other.name_;
           onChanged();
+        }
+        if (other.hasBacker()) {
+          setBacker(other.getBacker());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -9850,6 +9896,38 @@ public final class Representations {
   }
   bitField0_ |= 0x00000010;
         name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean backer_ ;
+      /**
+       * <code>optional bool backer = 6;</code>
+       */
+      public boolean hasBacker() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional bool backer = 6;</code>
+       */
+      public boolean getBacker() {
+        return backer_;
+      }
+      /**
+       * <code>optional bool backer = 6;</code>
+       */
+      public Builder setBacker(boolean value) {
+        bitField0_ |= 0x00000020;
+        backer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool backer = 6;</code>
+       */
+      public Builder clearBacker() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        backer_ = false;
         onChanged();
         return this;
       }
@@ -13021,23 +13099,24 @@ public final class Representations {
       "ince_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.jail" +
       "break.api.representations.Donation.Donat" +
       "ionType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n\006" +
-      "ONLINE\020\001\"b\n\023StripeChargeRequest\022\r\n\005token" +
+      "ONLINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005token" +
       "\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001(\005\022" +
-      "\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\":\n\021Facebook" +
-      "AuthToken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007user_",
-      "id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(\t\022" +
-      "\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\247\003\n\004Us" +
-      "er\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_created\030\002 \001(" +
-      "\003\022E\n\nuser_level\030\003 \001(\01621.org.jailbreak.ap" +
-      "i.representations.User.UserLevel\022\r\n\005emai" +
-      "l\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_name" +
-      "\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org.jailbreak.a" +
-      "pi.representations.User.Gender\022\020\n\010timezo" +
-      "ne\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_lin" +
-      "k\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001(\t\"?\n\tUserL",
-      "evel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACK" +
-      "ER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006" +
-      "FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
+      "\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backer\030\006" +
+      " \001(\010\":\n\021FacebookAuthToken\022\024\n\014access_toke",
+      "n\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\t" +
+      "api_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expi" +
+      "res\030\003 \001(\003\"\247\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014t" +
+      "ime_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621." +
+      "org.jailbreak.api.representations.User.U" +
+      "serLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 " +
+      "\001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162." +
+      ".org.jailbreak.api.representations.User." +
+      "Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t" +
+      "\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_ur",
+      "l\030\013 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005" +
+      "ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gend" +
+      "er\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017R" +
+      "epresentations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -13098,7 +13177,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_StripeChargeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_StripeChargeRequest_descriptor,
-        new java.lang.String[] { "Token", "Amount", "TeamId", "Email", "Name", });
+        new java.lang.String[] { "Token", "Amount", "TeamId", "Email", "Name", "Backer", });
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_org_jailbreak_api_representations_FacebookAuthToken_fieldAccessorTable = new

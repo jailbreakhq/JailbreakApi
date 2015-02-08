@@ -112,6 +112,7 @@ message StripeChargeRequest {
 	optional int32 team_id = 3;
 	optional string email = 4;
 	optional string name = 5;
+	optional bool backer = 6;
 }
 
 message FacebookAuthToken {
