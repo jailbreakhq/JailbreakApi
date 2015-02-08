@@ -27,11 +27,11 @@ public abstract class TeamsDAO {
 	public Connection conn;
 	private final Logger LOG = LoggerFactory.getLogger(TeamsDAO.class);
 	
-	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, current_position, university, amount_raised_online, amount_raised_offline, countries, transport, description, featured, slug, video, avatar_large) VALUES (:name, :names, :team_number, :avatar, :tag_line, (:current_long, :current_lat), :university, :amount_raised_online, :amount_raised_offline, :countries, :transports, :description, :featured, :slug, :video, :avatar_large")
+	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, current_position, university, amount_raised_online, amount_raised_offline, countries, transport, description, featured, slug, video, avatar_large) VALUES (:name, :names, :team_number, :avatar, :tag_line, (:current_lon, :current_lat), :university, :amount_raised_online, :amount_raised_offline, :countries, :transports, :description, :featured, :slug, :video, :avatar_large")
 	@GetGeneratedKeys
 	public abstract int insert(@BindProtobuf Team team);
 
-	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, current_lat = (:current_lon, :current_lat), university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_online, countries = :countries, transports = :transports, description = :description, featured = :featured, slug= :slug, video = :video, avatar_large = :avatar_large WHERE id = :id")
+	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_online, countries = :countries, transports = :transports, description = :description, featured = :featured, slug= :slug, video = :video, avatar_large = :avatar_large WHERE id = :id")
 	public abstract int update(@BindProtobuf Team team);
 	
 	@SqlUpdate("DELETE FROM teams WHERE id = :id")
