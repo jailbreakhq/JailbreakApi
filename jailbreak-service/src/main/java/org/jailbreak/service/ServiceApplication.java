@@ -56,6 +56,9 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
         filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
         filter.setInitParameter("allowCredentials", "true");
+        
+        // request mandatory environment variables - causes runtime errors early if missing
+        configuration.getEnvironmentSettings().requestAllManadtory();
     }
     
     private final MigrationsBundle<ServiceConfiguration> migrations = new MigrationsBundle<ServiceConfiguration>() {

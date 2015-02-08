@@ -142,5 +142,10 @@
     <changeSet id="8" author="kbaker">
     	<addNotNullConstraint columnDataType="varchar(100)" columnName="slug" tableName="teams" />
     </changeSet>
+    <changeSet id="9" author="kbaker">
+    	<addColumn tableName="donations">
+    		<column name="email" type="varchar(255)" />
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

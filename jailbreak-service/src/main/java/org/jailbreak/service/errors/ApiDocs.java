@@ -15,5 +15,7 @@ public class ApiDocs {
 	public static final String DONATIONS = "";
 	public static final String DONATIONS_WEBHOOK = "";
 	public static final String DONATIONS_FILTERS = "";
+	
+	public static final String STRIPE = "";
 		
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Donation;
+import org.jailbreak.api.representations.Representations.Donation.DonationType;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.db.DonationsDAO;
@@ -38,8 +39,17 @@ public class DonationsManagerImpl implements DonationsManager {
 	
 	@Override
 	public Donation createDonation(Donation donation) {
+		if (!donation.hasTime()) {
+			donation = donation.toBuilder()
+					.setTime(System.currentTimeMillis()/1000L)
+					.build();
+		}
+		if (!donation.hasType()) {
+			donation = donation.toBuilder()
+					.setType(DonationType.ONLINE)
+					.build();
+		}
 		int newId = this.dao.insert(donation);
-		
 		return this.dao.getDonation(newId).get(); // return full object with defaults set by DB
 	}
 	
