@@ -17,6 +17,7 @@ public class DonationsMapper implements ResultSetMapper<Donation> {
 		String name = r.getString("name");
 		long time = r.getLong("time");
 		DonationType type = DonationType.valueOf(r.getInt("type"));
+		String email = r.getString("email");
 		
 		Donation.Builder builder = Donation.newBuilder()
 				.setId(id)
@@ -27,6 +28,10 @@ public class DonationsMapper implements ResultSetMapper<Donation> {
 		
 		if (name != null) {
 			builder.setName(name);
+		}
+		
+		if (email != null) {
+			builder.setEmail(email);
 		}
 		
 		return builder.build();

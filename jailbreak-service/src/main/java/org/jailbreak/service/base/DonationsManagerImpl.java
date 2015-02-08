@@ -6,9 +6,12 @@ import java.util.List;
 import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Donation;
+import org.jailbreak.api.representations.Representations.Donation.DonationType;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.db.DonationsDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
@@ -16,6 +19,7 @@ import com.google.inject.Inject;
 public class DonationsManagerImpl implements DonationsManager {
 	
 	private final DonationsDAO dao;
+	private final Logger LOG = LoggerFactory.getLogger(DonationsManagerImpl.class);
 	
 	@Inject
 	public DonationsManagerImpl(DonationsDAO dao) {
@@ -38,8 +42,18 @@ public class DonationsManagerImpl implements DonationsManager {
 	
 	@Override
 	public Donation createDonation(Donation donation) {
+		LOG.info("Creating donatino for amount " + donation.getAmount());
+		if (!donation.hasTime()) {
+			donation = donation.toBuilder()
+					.setTime(System.currentTimeMillis()/1000L)
+					.build();
+		}
+		if (!donation.hasType()) {
+			donation = donation.toBuilder()
+					.setType(DonationType.ONLINE)
+					.build();
+		}
 		int newId = this.dao.insert(donation);
-		
 		return this.dao.getDonation(newId).get(); // return full object with defaults set by DB
 	}
 	
@@ -55,8 +69,8 @@ public class DonationsManagerImpl implements DonationsManager {
 	}
 
 	@Override
-	public List<Donation> getDonations() {
-		return this.dao.getDonations();
+	public List<Donation> getDonations(int limit) {
+		return this.dao.getDonations(limit);
 	}
 	
 	@Override

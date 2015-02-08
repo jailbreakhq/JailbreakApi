@@ -27,11 +27,11 @@ public abstract class DonationsDAO {
 	public Connection conn;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsDAO.class);
 	
-	@SqlUpdate("INSERT INTO donations VALUES(null, :team_id, :amount, :name, :time, :type)")
+	@SqlUpdate("INSERT INTO donations (team_id, amount, name, time, type, email) VALUES(:team_id, :amount, :name, :time, :type, :email)")
 	@GetGeneratedKeys
 	public abstract int insert(@BindProtobuf Donation donation);
 	
-	@SqlUpdate("UPDATE donations SET team_id = :team_id, amount = :amount, name = :name, time = :time, type = :type WHERE id = :id")
+	@SqlUpdate("UPDATE donations SET team_id = :team_id, amount = :amount, name = :name, time = :time, type = :type, email = :email WHERE id = :id")
 	public abstract int update(@BindProtobuf Donation donation);
 	
 	@SqlUpdate("DELETE FROM donations WHERE id = :id")
@@ -41,8 +41,8 @@ public abstract class DonationsDAO {
 	@SingleValueResult(Donation.class)
 	public abstract Optional<Donation> getDonation(@Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM donations ORDER BY time DESC")
-	public abstract List<Donation> getDonations();
+	@SqlQuery("SELECT * FROM donations ORDER BY time DESC LIMIT :limit")
+	public abstract List<Donation> getDonations(@Bind("limit") int limit);
 	
 	@SqlQuery("SELECT SUM(amount) FROM donations")
 	public abstract int getDonationsTotalAmount();
