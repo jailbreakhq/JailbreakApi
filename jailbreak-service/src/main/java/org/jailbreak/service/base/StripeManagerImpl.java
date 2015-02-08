@@ -49,7 +49,7 @@ public class StripeManagerImpl implements StripeManager {
 				.setEmail(request.getEmail())
 				.setType(DonationType.ONLINE);
 		
-		if (request.hasName()) {
+		if (request.hasName() && !request.getName().isEmpty()) {
 			builder.setName(request.getName());
 		} else {
 			builder.setName("Anonymous");
