@@ -12,6 +12,8 @@ import org.jailbreak.api.representations.Representations.StripeChargeRequest;
 import org.jailbreak.service.core.StripeManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.AppException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.stripe.exception.StripeException;
@@ -22,6 +24,7 @@ import com.stripe.exception.StripeException;
 public class StripeResource {
 	
 	private final StripeManager manager;
+	private final Logger LOG = LoggerFactory.getLogger(StripeResource.class);
 	
 	@Inject
 	public StripeResource(StripeManager manager) {
@@ -34,6 +37,7 @@ public class StripeResource {
 			manager.chargeCard(request);
 			return Response.status(Status.NO_CONTENT).build();
 		} catch (StripeException e) {
+			LOG.info("Charge failure: name: " + request.getEmail() + " amount: " + request.getAmount() + " message: "+ e.getMessage());
 			throw new AppException(500, e.getMessage(), ApiDocs.STRIPE);
 		}
 	}

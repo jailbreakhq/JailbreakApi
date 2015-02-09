@@ -7,7 +7,6 @@ import org.jailbreak.api.representations.Representations.Donation.DonationType;
 import org.jailbreak.api.representations.Representations.StripeChargeRequest;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.StripeManager;
-import org.jailbreak.service.core.TeamsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
