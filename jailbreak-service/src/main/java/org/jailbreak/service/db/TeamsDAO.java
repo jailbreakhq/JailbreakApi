@@ -45,7 +45,7 @@ public abstract class TeamsDAO {
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
 	
-	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams")
+	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC")
 	public abstract List<Team> getTeams();
 
 	@SqlQuery("SELECT *, current_position[0] as current_x, current_position[1] as current_y FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC LIMIT 10")
