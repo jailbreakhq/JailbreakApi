@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 public class DonationsManagerImpl implements DonationsManager {
@@ -115,6 +116,23 @@ public class DonationsManagerImpl implements DonationsManager {
 	@Override
 	public int getTotalRaised() {
 		return dao.getDonationsTotalAmount();
+	}
+
+	@Override
+	public List<Donation> filterPrivateFields(List<Donation> donations) {
+		// Useful method that removes private fields from objects so that we don't leak
+		// sensitive information over the public API
+		List<Donation> filtered = Lists.newArrayListWithCapacity(donations.size());
+		for (Donation donation : donations) {
+			Donation.Builder builder = donation.toBuilder();
+			
+			if (donation.hasEmail()) {
+				builder.clearEmail();
+			}
+			
+			filtered.add(builder.build());
+		}
+		return filtered;
 	}
 
 }

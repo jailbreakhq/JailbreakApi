@@ -18,5 +18,6 @@ public interface DonationsManager {
 	public boolean deleteDonation(int id);
 	
 	public int getTotalRaised();
-
+	
+	public List<Donation> filterPrivateFields(List<Donation> donations);
 }

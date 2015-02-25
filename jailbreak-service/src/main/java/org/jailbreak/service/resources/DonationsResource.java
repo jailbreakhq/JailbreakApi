@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -57,12 +58,15 @@ public class DonationsResource {
 			@QueryParam("filters") Optional<String> maybeFilters) {
 		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
 		
+		List<Donation> donations = Lists.newArrayList();
 		if (maybeFilters.isPresent()) {
 			DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
-			return this.manager.getDonations(limit, filters);
+			donations = this.manager.getDonations(limit, filters);
 		} else {
-			return this.manager.getDonations(limit);
+			donations = this.manager.getDonations(limit);
 		}
+		
+		return this.manager.filterPrivateFields(donations);
 	}
 	
 	@POST
