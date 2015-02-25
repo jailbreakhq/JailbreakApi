@@ -6291,43 +6291,29 @@ public final class Representations {
     int getTeamId();
 
     /**
-     * <code>optional string name = 3;</code>
-     */
-    boolean hasName();
-    /**
-     * <code>optional string name = 3;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>optional string name = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>optional bool completed = 4;</code>
+     * <code>optional bool completed = 3;</code>
      */
     boolean hasCompleted();
     /**
-     * <code>optional bool completed = 4;</code>
+     * <code>optional bool completed = 3;</code>
      */
     boolean getCompleted();
 
     /**
-     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
      */
     boolean hasType();
     /**
-     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
      */
     org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType();
 
     /**
-     * <code>optional int64 completed_time = 6;</code>
+     * <code>optional int64 completed_time = 5;</code>
      */
     boolean hasCompletedTime();
     /**
-     * <code>optional int64 completed_time = 6;</code>
+     * <code>optional int64 completed_time = 5;</code>
      */
     long getCompletedTime();
   }
@@ -6393,30 +6379,24 @@ public final class Representations {
               teamId_ = input.readInt32();
               break;
             }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 24: {
               bitField0_ |= 0x00000004;
-              name_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
               completed_ = input.readBool();
               break;
             }
-            case 40: {
+            case 32: {
               int rawValue = input.readEnum();
               org.jailbreak.api.representations.Representations.Challenge.ChallengeType value = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(5, rawValue);
+                unknownFields.mergeVarintField(4, rawValue);
               } else {
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000008;
                 type_ = value;
               }
               break;
             }
-            case 48: {
-              bitField0_ |= 0x00000020;
+            case 40: {
+              bitField0_ |= 0x00000010;
               completedTime_ = input.readInt64();
               break;
             }
@@ -6590,88 +6570,46 @@ public final class Representations {
       return teamId_;
     }
 
-    public static final int NAME_FIELD_NUMBER = 3;
-    private java.lang.Object name_;
+    public static final int COMPLETED_FIELD_NUMBER = 3;
+    private boolean completed_;
     /**
-     * <code>optional string name = 3;</code>
+     * <code>optional bool completed = 3;</code>
      */
-    public boolean hasName() {
+    public boolean hasCompleted() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional string name = 3;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          name_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string name = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int COMPLETED_FIELD_NUMBER = 4;
-    private boolean completed_;
-    /**
-     * <code>optional bool completed = 4;</code>
-     */
-    public boolean hasCompleted() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional bool completed = 4;</code>
+     * <code>optional bool completed = 3;</code>
      */
     public boolean getCompleted() {
       return completed_;
     }
 
-    public static final int TYPE_FIELD_NUMBER = 5;
+    public static final int TYPE_FIELD_NUMBER = 4;
     private org.jailbreak.api.representations.Representations.Challenge.ChallengeType type_;
     /**
-     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
      */
     public boolean hasType() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+     * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
      */
     public org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType() {
       return type_;
     }
 
-    public static final int COMPLETED_TIME_FIELD_NUMBER = 6;
+    public static final int COMPLETED_TIME_FIELD_NUMBER = 5;
     private long completedTime_;
     /**
-     * <code>optional int64 completed_time = 6;</code>
+     * <code>optional int64 completed_time = 5;</code>
      */
     public boolean hasCompletedTime() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional int64 completed_time = 6;</code>
+     * <code>optional int64 completed_time = 5;</code>
      */
     public long getCompletedTime() {
       return completedTime_;
@@ -6680,7 +6618,6 @@ public final class Representations {
     private void initFields() {
       id_ = 0;
       teamId_ = 0;
-      name_ = "";
       completed_ = false;
       type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
       completedTime_ = 0L;
@@ -6705,16 +6642,13 @@ public final class Representations {
         output.writeInt32(2, teamId_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNameBytes());
+        output.writeBool(3, completed_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, completed_);
+        output.writeEnum(4, type_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeEnum(5, type_.getNumber());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt64(6, completedTime_);
+        output.writeInt64(5, completedTime_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6735,19 +6669,15 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNameBytes());
+          .computeBoolSize(3, completed_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, completed_);
+          .computeEnumSize(4, type_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, type_.getNumber());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, completedTime_);
+          .computeInt64Size(5, completedTime_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6870,14 +6800,12 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000001);
         teamId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         completed_ = false;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         completedTime_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -6917,17 +6845,13 @@ public final class Representations {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.name_ = name_;
+        result.completed_ = completed_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.completed_ = completed_;
+        result.type_ = type_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
-        }
-        result.type_ = type_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
         }
         result.completedTime_ = completedTime_;
         result.bitField0_ = to_bitField0_;
@@ -6951,11 +6875,6 @@ public final class Representations {
         }
         if (other.hasTeamId()) {
           setTeamId(other.getTeamId());
-        }
-        if (other.hasName()) {
-          bitField0_ |= 0x00000004;
-          name_ = other.name_;
-          onChanged();
         }
         if (other.hasCompleted()) {
           setCompleted(other.getCompleted());
@@ -7057,109 +6976,33 @@ public final class Representations {
         return this;
       }
 
-      private java.lang.Object name_ = "";
+      private boolean completed_ ;
       /**
-       * <code>optional string name = 3;</code>
+       * <code>optional bool completed = 3;</code>
        */
-      public boolean hasName() {
+      public boolean hasCompleted() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional string name = 3;</code>
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 3;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 3;</code>
-       */
-      public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string name = 3;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private boolean completed_ ;
-      /**
-       * <code>optional bool completed = 4;</code>
-       */
-      public boolean hasCompleted() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional bool completed = 4;</code>
+       * <code>optional bool completed = 3;</code>
        */
       public boolean getCompleted() {
         return completed_;
       }
       /**
-       * <code>optional bool completed = 4;</code>
+       * <code>optional bool completed = 3;</code>
        */
       public Builder setCompleted(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         completed_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool completed = 4;</code>
+       * <code>optional bool completed = 3;</code>
        */
       public Builder clearCompleted() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         completed_ = false;
         onChanged();
         return this;
@@ -7167,34 +7010,34 @@ public final class Representations {
 
       private org.jailbreak.api.representations.Representations.Challenge.ChallengeType type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
       /**
-       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
        */
       public boolean hasType() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
        */
       public org.jailbreak.api.representations.Representations.Challenge.ChallengeType getType() {
         return type_;
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
        */
       public Builder setType(org.jailbreak.api.representations.Representations.Challenge.ChallengeType value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         type_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 5;</code>
+       * <code>optional .org.jailbreak.api.representations.Challenge.ChallengeType type = 4;</code>
        */
       public Builder clearType() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         type_ = org.jailbreak.api.representations.Representations.Challenge.ChallengeType.BLINDFOLD;
         onChanged();
         return this;
@@ -7202,31 +7045,31 @@ public final class Representations {
 
       private long completedTime_ ;
       /**
-       * <code>optional int64 completed_time = 6;</code>
+       * <code>optional int64 completed_time = 5;</code>
        */
       public boolean hasCompletedTime() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional int64 completed_time = 6;</code>
+       * <code>optional int64 completed_time = 5;</code>
        */
       public long getCompletedTime() {
         return completedTime_;
       }
       /**
-       * <code>optional int64 completed_time = 6;</code>
+       * <code>optional int64 completed_time = 5;</code>
        */
       public Builder setCompletedTime(long value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         completedTime_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 completed_time = 6;</code>
+       * <code>optional int64 completed_time = 5;</code>
        */
       public Builder clearCompletedTime() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         completedTime_ = 0L;
         onChanged();
         return this;
@@ -13084,39 +12927,38 @@ public final class Representations {
       "\022\010\n\004GMIT\020\007\022\007\n\003ITT\020\010\"p\n\007Checkin\022\n\n\002id\030\001 \001" +
       "(\005\022\020\n\010location\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003",
       "lat\030\004 \001(\001\022\013\n\003lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007" +
-      "team_id\030\007 \001(\005\"\371\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022" +
-      "\017\n\007team_id\030\002 \001(\005\022\014\n\004name\030\003 \001(\t\022\021\n\tcomple" +
-      "ted\030\004 \001(\010\022H\n\004type\030\005 \001(\0162:.org.jailbreak." +
-      "api.representations.Challenge.ChallengeT" +
-      "ype\022\026\n\016completed_time\030\006 \001(\003\"L\n\rChallenge" +
-      "Type\022\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\t" +
-      "EDUCATION\020\003\022\014\n\010ALTRUISM\020\004\"\324\002\n\010Donation\022\n" +
-      "\n\002id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 " +
-      "\001(\005\022\014\n\004name\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030",
-      "\006 \001(\01628.org.jailbreak.api.representation" +
-      "s.Donation.DonationType\022\r\n\005email\030\007 \001(\t\032\177" +
-      "\n\020DonationsFilters\022\017\n\007team_id\030\001 \001(\005\022\022\n\ns" +
-      "ince_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.jail" +
-      "break.api.representations.Donation.Donat" +
-      "ionType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n\006" +
-      "ONLINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005token" +
-      "\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001(\005\022" +
-      "\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backer\030\006" +
-      " \001(\010\":\n\021FacebookAuthToken\022\024\n\014access_toke",
-      "n\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\t" +
-      "api_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expi" +
-      "res\030\003 \001(\003\"\247\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014t" +
-      "ime_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\01621." +
-      "org.jailbreak.api.representations.User.U" +
-      "serLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030\005 " +
-      "\001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162." +
-      ".org.jailbreak.api.representations.User." +
-      "Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t" +
-      "\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_ur",
-      "l\030\013 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005" +
-      "ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gend" +
-      "er\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017R" +
-      "epresentations"
+      "team_id\030\007 \001(\005\"\353\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022" +
+      "\017\n\007team_id\030\002 \001(\005\022\021\n\tcompleted\030\003 \001(\010\022H\n\004t" +
+      "ype\030\004 \001(\0162:.org.jailbreak.api.representa" +
+      "tions.Challenge.ChallengeType\022\026\n\016complet" +
+      "ed_time\030\005 \001(\003\"L\n\rChallengeType\022\r\n\tBLINDF" +
+      "OLD\020\001\022\017\n\013PAPER_BOATS\020\002\022\r\n\tEDUCATION\020\003\022\014\n" +
+      "\010ALTRUISM\020\004\"\324\002\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007" +
+      "team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 " +
+      "\001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.ja",
+      "ilbreak.api.representations.Donation.Don" +
+      "ationType\022\r\n\005email\030\007 \001(\t\032\177\n\020DonationsFil" +
+      "ters\022\017\n\007team_id\030\001 \001(\005\022\022\n\nsince_time\030\002 \001(" +
+      "\003\022F\n\004type\030\003 \001(\01628.org.jailbreak.api.repr" +
+      "esentations.Donation.DonationType\"\'\n\014Don" +
+      "ationType\022\013\n\007OFFLINE\020\000\022\n\n\006ONLINE\020\001\"r\n\023St" +
+      "ripeChargeRequest\022\r\n\005token\030\001 \001(\t\022\016\n\006amou" +
+      "nt\030\002 \001(\005\022\017\n\007team_id\030\003 \001(\005\022\r\n\005email\030\004 \001(\t" +
+      "\022\014\n\004name\030\005 \001(\t\022\016\n\006backer\030\006 \001(\010\":\n\021Facebo" +
+      "okAuthToken\022\024\n\014access_token\030\001 \001(\t\022\017\n\007use",
+      "r_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tapi_token\030\001 \001(" +
+      "\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expires\030\003 \001(\003\"\247\003\n\004" +
+      "User\022\017\n\007user_id\030\001 \001(\003\022\024\n\014time_created\030\002 " +
+      "\001(\003\022E\n\nuser_level\030\003 \001(\01621.org.jailbreak." +
+      "api.representations.User.UserLevel\022\r\n\005em" +
+      "ail\030\004 \001(\t\022\022\n\nfirst_name\030\005 \001(\t\022\021\n\tlast_na" +
+      "me\030\006 \001(\t\022>\n\006gender\030\007 \001(\0162..org.jailbreak" +
+      ".api.representations.User.Gender\022\020\n\010time" +
+      "zone\030\010 \001(\005\022\016\n\006locale\030\t \001(\t\022\025\n\rfacebook_l" +
+      "ink\030\n \001(\t\022\026\n\016api_tokens_url\030\013 \001(\t\"?\n\tUse",
+      "rLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRA" +
+      "CKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n" +
+      "\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -13159,7 +13001,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Challenge_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Challenge_descriptor,
-        new java.lang.String[] { "Id", "TeamId", "Name", "Completed", "Type", "CompletedTime", });
+        new java.lang.String[] { "Id", "TeamId", "Completed", "Type", "CompletedTime", });
     internal_static_org_jailbreak_api_representations_Donation_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_org_jailbreak_api_representations_Donation_fieldAccessorTable = new

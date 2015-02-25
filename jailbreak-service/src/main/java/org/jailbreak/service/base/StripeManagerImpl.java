@@ -42,27 +42,32 @@ public class StripeManagerImpl implements StripeManager {
 		Charge.create(chargeParams);
 		LOG.info("Request charge to stripe successful");
 		
-		boolean result = true; // the donation was processed ensure no erros after this point make the user think the donation failed
+		boolean result = true; // the donation was processed ensure no errors after this point make the user think the donation failed
 		
 		// create a donation record since the Charge.create didn't spew exceptions
-		Donation.Builder builder = Donation.newBuilder()
-				.setTeamId(request.getTeamId())
-				.setAmount(request.getAmount())
-				.setEmail(request.getEmail())
-				.setType(DonationType.ONLINE);
-		
-		if (request.hasName() && !request.getName().isEmpty()) {
-			builder.setName(request.getName());
-		} else {
-			builder.setName("Anonymous");
+		try {
+			Donation.Builder builder = Donation.newBuilder()
+					.setTeamId(request.getTeamId())
+					.setAmount(request.getAmount())
+					.setEmail(request.getEmail())
+					.setType(DonationType.ONLINE);
+			
+			if (request.hasName() && !request.getName().isEmpty()) {
+				builder.setName(request.getName());
+			} else {
+				builder.setName("Anonymous");
+			}
+			
+			if (!request.getBacker()) {
+				builder.setName("Anonymous");
+			}
+			
+			Donation donation = builder.build();
+			donations.createDonation(donation);
+		} catch (Exception e) {
+			// bury exception if any in the logs - the stripe charge was successful so we want to return a positive result
+			LOG.error("Error handling donation post charge actions: " + e.getMessage());
 		}
-		
-		if (!request.getBacker()) {
-			builder.setName("Anonymous");
-		}
-		
-		Donation donation = builder.build();
-		donations.createDonation(donation);
 		
 		return result;
 	}

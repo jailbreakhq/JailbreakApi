@@ -79,10 +79,9 @@ message Challenge {
 
 	optional int32 id = 1;
 	optional int32 team_id = 2;
-	optional string name = 3;
-	optional bool completed = 4;
-	optional ChallengeType type = 5;
-	optional int64 completed_time = 6;
+	optional bool completed = 3;
+	optional ChallengeType type = 4;
+	optional int64 completed_time = 5;
 }
 
 message Donation {
