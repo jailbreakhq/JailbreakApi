@@ -9,6 +9,7 @@ import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.DonationsMapper;
+import org.jailbreak.service.db.mappers.RowCountMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -50,6 +51,43 @@ public abstract class DonationsDAO {
 	public List<Donation> getFilteredDonations(int limit, DonationsFilters filters) throws SQLException {
 		// Build query and bind in params
 		Map<String, Object> bindParams = Maps.newHashMap();
+		SimplestSqlBuilder builder = applyWhereFilters(filters, bindParams);
+		builder.addOrderBy("time", OrderBy.DESC);
+		builder.limit(limit);
+		String queryString = builder.build();
+		
+		LOG.debug("getFilteredDonations SQL: " + queryString);
+		
+		try {
+			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+			List<Donation> results = query.executeQuery(new DonationsMapper());
+			return results;
+		} catch (SQLException e) {
+			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
+			throw e;
+		}
+	}
+	
+	public int countFilteredDonations(DonationsFilters filters) throws SQLException {
+		// Build query and bind in params
+		Map<String, Object> bindParams = Maps.newHashMap();
+		SimplestSqlBuilder builder = applyWhereFilters(filters, bindParams);
+		builder.addColumn("COUNT(*) as count");
+		String queryString = builder.build();
+		
+		LOG.debug("countFilteredDonations SQL: " + queryString);
+		
+		try {
+			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+			Integer count = query.executeQuery(new RowCountMapper()).get(0);
+			return count;
+		} catch (SQLException e) {
+			LOG.error("SQL Error executing query countFilteredDonations: " + e.getMessage());
+			throw e;
+		}
+	}
+	
+	private SimplestSqlBuilder applyWhereFilters(DonationsFilters filters, Map<String, Object> bindParams) {
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations");
 		
 		if (filters.hasTeamId()) {
@@ -64,21 +102,8 @@ public abstract class DonationsDAO {
 			builder.addWhere("type = :type");
 			bindParams.put("type", filters.getType().ordinal());
 		}
-		builder.addOrderBy("time", OrderBy.DESC);
-		builder.limit(limit);
 		
-		String queryString = builder.build();
-		
-		LOG.debug("getFilteredDonations SQL: " + queryString);
-		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			List<Donation> results = query.executeQuery(new DonationsMapper());
-			return results;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
-			throw e;
-		}
+		return builder;
 	}
 	
 }

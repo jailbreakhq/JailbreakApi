@@ -29,19 +29,10 @@ public class EnvironmentFactory {
     	return envValue;
     }
     
-    public String getDonationsWebhookSecret() {
-    	String envValue = System.getenv("DONATIONS_WEBHOOK_SECRET");
-    	if (envValue == null) {
-    		throw new RuntimeException("DONATIONS_WEBHOOK_SECRET environment variable is not set. It is a required environment variable.");
-    	}
-    	return envValue;
-    }
-
 	public void requestAllManadtory() {
 		// this method will trigger runtime exceptions if the ENV variables are empty
 		// it is called at start-up time so that we discover these problems early
 		this.getStripeSecretKey();
-		this.getDonationsWebhookSecret();
 	}
 
 }

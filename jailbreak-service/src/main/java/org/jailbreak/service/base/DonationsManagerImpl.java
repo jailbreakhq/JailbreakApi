@@ -103,6 +103,15 @@ public class DonationsManagerImpl implements DonationsManager {
 			throw new WebApplicationException();
 		}
 	}
+	
+	@Override
+	public int getTotalCount(DonationsFilters filters) {
+		try {
+			return this.dao.countFilteredDonations(filters);
+		} catch (SQLException e) {
+			throw new WebApplicationException();
+		}
+	}
 
 	@Override
 	public boolean deleteDonation(int id) {

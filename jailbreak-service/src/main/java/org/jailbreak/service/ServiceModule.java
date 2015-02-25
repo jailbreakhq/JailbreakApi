@@ -111,12 +111,6 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	@Named("donations.webhook.secret")
-	public String provideDonationsWebhookSecret(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getDonationsWebhookSecret();
-	}
-	
-	@Provides
 	private Connection getJDBCHandler(ServiceConfiguration config) {
 		if (this.conn == null) {
 			DataSourceFactory ds = config.getDataSourceFactory();
