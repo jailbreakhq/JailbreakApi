@@ -31,12 +31,25 @@ public class StripeManagerImpl implements StripeManager {
 	
 	@Override
 	public boolean chargeCard(StripeChargeRequest request) throws StripeException {
+		String from_source;
+		if (request.hasName()) {
+			from_source = request.getName();
+		} else if (request.hasEmail()) {
+			from_source = request.getEmail();
+		} else {
+			from_source = "donator";
+		}
+		
 		Map<String, Object> chargeParams = Maps.newHashMap();
 		chargeParams.put("amount", request.getAmount());
 		chargeParams.put("currency", "EUR");
 		chargeParams.put("card", request.getToken());
-		chargeParams.put("description", "Online donation from " + request.getName());
+		chargeParams.put("description", "Online donation from " + from_source + ". Thank you!");
 		chargeParams.put("statement_descriptor", "JailbreakHQ donation");
+		
+		if (request.hasEmail()) {
+			chargeParams.put("receipt_email", request.getEmail());
+		}
 		
 		LOG.info("Sending charge request to stripe of amount " + request.getAmount()/100 + " euro");
 		Charge.create(chargeParams);
