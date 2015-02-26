@@ -13,12 +13,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.api.representations.Representations.User.UserLevel;
-import org.jailbreak.service.auth.AuthHelper;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
@@ -27,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -38,31 +39,35 @@ public class DonationsResource {
 	private final DonationsManager manager;
 	private final int defaultLimit;
 	private final int maxLimit;
-	private final String donationsWebhookSecret;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsResource.class);
 	
 	@Inject
 	public DonationsResource(DonationsManager manager, 
 			@Named("resources.defaultLimit") int defaultLimit,
-			@Named("resources.maxLimit") int maxLimit,
-			@Named("donations.webhook.secret") String donationsWebhookSecret) {
+			@Named("resources.maxLimit") int maxLimit) {
 		this.manager = manager;
 		this.defaultLimit = defaultLimit;
 		this.maxLimit = maxLimit;
-		this.donationsWebhookSecret = donationsWebhookSecret;
 	}
 	
 	@GET
-	public List<Donation> getDonation(@QueryParam("limit") Optional<Integer> maybeLimit,
+	public Response getDonations(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
 		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
 		
+		DonationsFilters filters;
 		if (maybeFilters.isPresent()) {
-			DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
-			return this.manager.getDonations(limit, filters);
+			filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
 		} else {
-			return this.manager.getDonations(limit);
+			filters = DonationsFilters.newBuilder().build();
 		}
+		
+		List<Donation> donations = this.manager.getDonations(limit, filters);
+		int totalCount = this.manager.getTotalCount(filters);
+		
+		donations = this.manager.filterPrivateFields(donations);
+		
+		return Response.ok(donations).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
 	
 	@POST
@@ -73,25 +78,7 @@ public class DonationsResource {
 		
 		return this.manager.createDonation(donation);
 	}
-	
-	@POST
-	@Path("/{secret}")
-	public Donation donationsWebhook(@PathParam("secret") String pathSecret, Donation donation) {
-		String error = "You don't have the correct auth token to access this resource";
-		if (donationsWebhookSecret.isEmpty()) {
-			LOG.error("The donations webhook secret config value is not set. Refusing all connections");
-			throw new ForbiddenException(error, ApiDocs.DONATIONS_WEBHOOK);
-		}
-		
-		if (AuthHelper.areEqualConstantTime(pathSecret, donationsWebhookSecret)) {
-			throw new ForbiddenException(error, ApiDocs.DONATIONS_WEBHOOK);
-		}
-		
-		LOG.info("Recieved and processing donations webhook");
-		
-		return this.manager.createDonation(donation);
-	}
-	
+
 	@GET
 	@Path("/{id}")
 	public Optional<Donation> getDonation(@PathParam("id") int id) {

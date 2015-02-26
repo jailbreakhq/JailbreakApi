@@ -10,13 +10,17 @@ import com.google.common.base.Optional;
 public interface DonationsManager {
 	
 	public Optional<Donation> getDonation(int id);
-	public boolean updateDonation(Donation donation);
-	public Optional<Donation> patchDonation(Donation donation);
-	public List<Donation> getDonations(int limit);
-	public List<Donation> getDonations(int limit, DonationsFilters donationFilters);
+	
 	public Donation createDonation(Donation donation);
+	public Optional<Donation> patchDonation(Donation donation);
+	public boolean updateDonation(Donation donation);
 	public boolean deleteDonation(int id);
 	
+	public List<Donation> getDonations(int limit);
+	public List<Donation> getDonations(int limit, DonationsFilters donationFilters);
+	public int getTotalCount(DonationsFilters filters);
+	
 	public int getTotalRaised();
-
+	public List<Donation> filterPrivateFields(List<Donation> donations);
+	
 }
