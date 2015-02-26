@@ -54,8 +54,9 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
     	filter.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,PUT,POST,DELETE,OPTIONS,HEAD");
         filter.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
         filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
-        filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
-        filter.setInitParameter("allowCredentials", "true");
+        filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_HEADERS_HEADER, "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
+        filter.setInitParameter("allowedCredentials", "true");
+        filter.setInitParameter("exposedHeaders", "X-Total-Count");
         
         // request mandatory environment variables - causes runtime errors early if missing
         configuration.getEnvironmentSettings().requestAllManadtory();
