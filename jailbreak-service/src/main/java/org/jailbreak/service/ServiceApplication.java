@@ -56,7 +56,7 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
         filter.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_HEADERS_HEADER, "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
         filter.setInitParameter("allowedCredentials", "true");
-        filter.setInitParameter("exposedHeaders", "X-Total-Count");
+        filter.setInitParameter("exposedHeaders", "X-Total-Count"); // stupid syntax - don't change
         
         // request mandatory environment variables - causes runtime errors early if missing
         configuration.getEnvironmentSettings().requestAllManadtory();
