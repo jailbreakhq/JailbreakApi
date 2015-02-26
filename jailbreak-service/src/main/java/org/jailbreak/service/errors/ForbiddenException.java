@@ -1,7 +1,7 @@
 package org.jailbreak.service.errors;
 
 @SuppressWarnings("serial")
-public class ForbiddenException extends AppException {
+public class ForbiddenException extends BaseException {
 
 	private final static int CODE = 403;
 	

@@ -3,12 +3,11 @@ package org.jailbreak.service.base;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.ws.rs.WebApplicationException;
-
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.TeamsDAO;
+import org.jailbreak.service.errors.AppException;
 
 import com.github.slugify.Slugify;
 import com.google.common.base.Optional;
@@ -53,7 +52,7 @@ public class TeamsManagerImpl implements TeamsManager {
 		try {
 			return dao.getFilteredTeams(limit, filters);
 		} catch (SQLException e) {
-			throw new WebApplicationException();
+			throw new AppException("Database error getting teams", e);
 		}
 	}
 	

@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response.Status;
 
 import org.jailbreak.api.representations.Representations.StripeChargeRequest;
 import org.jailbreak.service.core.StripeManager;
-import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +36,8 @@ public class StripeResource {
 			manager.chargeCard(request);
 			return Response.status(Status.NO_CONTENT).build();
 		} catch (StripeException e) {
-			LOG.info("Charge failure: name: " + request.getEmail() + " amount: " + request.getAmount() + " message: "+ e.getMessage());
-			throw new AppException(500, e.getMessage(), ApiDocs.STRIPE);
+			LOG.error("Charge failure: name: " + request.getEmail() + " amount: " + request.getAmount() + " message: "+ e.getMessage());
+			throw new AppException(e.getMessage(), e);
 		}
 	}
 

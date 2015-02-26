@@ -3,7 +3,6 @@ package org.jailbreak.service.base;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.ws.rs.WebApplicationException;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Team;
@@ -12,6 +11,7 @@ import org.jailbreak.api.representations.Representations.Donation.DonationsFilte
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.DonationsDAO;
+import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,7 +100,7 @@ public class DonationsManagerImpl implements DonationsManager {
 		try {
 			return this.dao.getFilteredDonations(limit, filters);
 		} catch (SQLException e) {
-			throw new WebApplicationException();
+			throw new AppException("Database error retrieving donations count", e);
 		}
 	}
 	
@@ -109,7 +109,7 @@ public class DonationsManagerImpl implements DonationsManager {
 		try {
 			return this.dao.countFilteredDonations(filters);
 		} catch (SQLException e) {
-			throw new WebApplicationException();
+			throw new AppException("Database error retrieving donations count", e);
 		}
 	}
 

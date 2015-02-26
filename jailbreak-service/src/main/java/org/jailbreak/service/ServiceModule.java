@@ -10,6 +10,9 @@ import io.dropwizard.auth.Authenticator;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
+import net.kencochrane.raven.Raven;
+import net.kencochrane.raven.RavenFactory;
+import net.kencochrane.raven.dsn.Dsn;
 
 import org.jailbreak.client.FacebookClient;
 import org.jailbreak.client.base.FacebookClientImpl;
@@ -48,6 +51,7 @@ public class ServiceModule extends AbstractModule {
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
 	private Connection conn;
 	private Slugify slg;
+	private Raven raven;
 	
 	@Override
 	protected void configure() {
@@ -106,8 +110,17 @@ public class ServiceModule extends AbstractModule {
 	
 	@Provides
 	@Named("stripe.secret.key")
-	public String providesStripeSecretKey(ServiceConfiguration config) {
+	public String provideStripeSecretKey(ServiceConfiguration config) {
 		return config.getEnvironmentSettings().getStripeSecretKey();
+	}
+	
+	@Provides
+	public Raven provideRaven(ServiceConfiguration config) {
+		if (raven == null) {
+			String dsn = config.getEnvironmentSettings().getSentryDSN();
+			raven = RavenFactory.ravenInstance(new Dsn(dsn));
+		}
+		return raven;
 	}
 	
 	@Provides

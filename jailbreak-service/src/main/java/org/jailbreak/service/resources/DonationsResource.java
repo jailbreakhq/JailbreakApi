@@ -23,11 +23,8 @@ import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -39,7 +36,6 @@ public class DonationsResource {
 	private final DonationsManager manager;
 	private final int defaultLimit;
 	private final int maxLimit;
-	private final Logger LOG = LoggerFactory.getLogger(DonationsResource.class);
 	
 	@Inject
 	public DonationsResource(DonationsManager manager, 

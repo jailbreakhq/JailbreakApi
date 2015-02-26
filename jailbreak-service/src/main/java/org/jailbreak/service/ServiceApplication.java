@@ -5,6 +5,8 @@ import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration.Dynamic;
 
+import net.kencochrane.raven.Raven;
+
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
@@ -45,8 +47,9 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         // we don't need to add resources, tasks, healthchecks or providers
         // we must get our health checks inherit from InjectableHealthCheck in order for them to be injected
     	ApiTokenAuthenticator apiTokenAuth = this.guiceBundle.getInjector().getInstance(ApiTokenAuthenticator.class);
+    	Raven raven = this.guiceBundle.getInjector().getInstance(Raven.class);
     	environment.jersey().register(new BasicAuthProvider<User>(apiTokenAuth, "AUTH"));
-    	environment.jersey().register(new GenericExceptionMapper());
+    	environment.jersey().register(new GenericExceptionMapper(raven));
     	
     	// Enable Open CORS headers
     	Dynamic filter = environment.servlets().addFilter("CORS", CrossOriginFilter.class);

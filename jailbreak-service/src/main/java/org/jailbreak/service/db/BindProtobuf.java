@@ -27,6 +27,7 @@ public @interface BindProtobuf {
 		
 		private final Logger LOG = LoggerFactory.getLogger(ProtobufBinderFactory.class);
 		
+		@SuppressWarnings("rawtypes")
 		public Binder build(Annotation annotation) {
 			return new Binder<BindProtobuf, com.google.protobuf.GeneratedMessage>() {
 				public void bind(SQLStatement q, BindProtobuf bind, com.google.protobuf.GeneratedMessage arg) {
