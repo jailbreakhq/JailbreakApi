@@ -57,7 +57,7 @@ public class TeamsResource {
 		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
 		TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
         
-		return this.manager.getTeams(limit, filters);
+		return this.manager.getTeams(limit+150, filters); // TODO: fix limit issues
 	}
 	
 	@POST
