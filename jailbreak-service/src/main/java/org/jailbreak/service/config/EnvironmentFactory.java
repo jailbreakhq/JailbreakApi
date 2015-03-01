@@ -1,9 +1,13 @@
 package org.jailbreak.service.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class EnvironmentFactory {
 	
 	private final int DEFAULT_LIMIT = 10;
 	private final int MAX_LIMIT = 20;
+	private final Logger LOG = LoggerFactory.getLogger(EnvironmentFactory.class);
 	
     public int getDefaultLimit() {
     	String envValue = System.getenv("DEFAULT_LIMIT");
@@ -31,10 +35,22 @@ public class EnvironmentFactory {
     
     public String getSentryDSN() {
     	String envValue = System.getenv("SENTRY_DSN");
-    	if (envValue == null) {
-    		throw new RuntimeException("SENTRY_DSN environment variable is not set. It is a requried environment varialbe.");
+    	if (envValue == null && this.getSentryEnabled()) {
+    		throw new RuntimeException("SENTRY_DSN environment variable is not set. It is a requried environment varialbe when env var SENTRY_ENABLED is true.");
     	}
     	return envValue;
+    }
+    
+    public boolean getSentryEnabled() {
+    	boolean result;
+    	
+    	String envValue = System.getenv("SENTRY_ENABLED");
+    	if (envValue == null) {
+    		result = true;
+    	} else {
+    		result = Boolean.parseBoolean(envValue);
+    	}
+    	return result;
     }
     
 	public void requestAllManadtory() {

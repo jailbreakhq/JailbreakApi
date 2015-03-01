@@ -147,5 +147,10 @@
     		<column name="email" type="varchar(255)" />
     	</addColumn>
     </changeSet>
+    <changeSet id="10" author="kbaker">
+    	<addColumn tableName="teams">
+    		<column name="last_checkin_id" type="int" />
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

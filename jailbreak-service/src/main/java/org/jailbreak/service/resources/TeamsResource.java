@@ -78,12 +78,6 @@ public class TeamsResource {
 	}
 	
 	@GET
-	@Path("/topten")
-	public List<Team> getTop10Teams() {
-		return manager.getTopTenTeams();
-	}
-	
-	@GET
 	@Path("/slug/{slug}")
 	public Optional<Team> getTeamSlug(@PathParam("slug") String slug) {
 		return manager.getTeamSlug(slug);
@@ -98,6 +92,11 @@ public class TeamsResource {
 		
 		if (id != team.getId()) {
 			throw new BadRequestException("Team id in request body must match team id in path", ApiDocs.TEAMS_UPDATES);
+		}
+		
+		if (team.hasLastCheckin()) {
+			// cannot update last checkin field - ignore it on PUT requests
+			team = team.toBuilder().clearLastCheckin().build();
 		}
 		
 		return this.manager.updateTeam(team);
@@ -116,6 +115,11 @@ public class TeamsResource {
 		
 		if (id != team.getId()) {
 			throw new BadRequestException("Team id in request body must match team id in path", ApiDocs.TEAMS_UPDATES);
+		}
+		
+		if (team.hasLastCheckin()) {
+			// throw error instead of ignoring because clients should send the minimum number of fields on PATCH requests
+			throw new BadRequestException("You cannot update the last checkin field on team. You can only create new checkins", ApiDocs.TEAMS_UPDATES);
 		}
 		
 		return this.manager.patchTeam(team);

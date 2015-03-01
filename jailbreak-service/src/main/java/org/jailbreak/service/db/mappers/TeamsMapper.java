@@ -16,37 +16,38 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		String team_name = r.getString("team_name");
 		String names = r.getString("names");
 		String avatar = r.getString("avatar");
-		String tag_line = r.getString("tag_line");
-		String current_x = r.getString("current_x");
-		String current_y = r.getString("current_y");
+		String tagLine = r.getString("tag_line");
 		University university = University.valueOf(r.getInt("university"));
-		int amount_raised_online = r.getInt("amount_raised_online");
-		int amount_raised_offline = r.getInt("amount_raised_offline");
+		int amountRaisedOnline = r.getInt("amount_raised_online");
+		int amountRaisedOffline = r.getInt("amount_raised_offline");
 		int countries = r.getInt("countries");
 		int transports = r.getInt("transports");
 		String description = r.getString("description");
 		boolean featured = r.getBoolean("featured");
 		String slug = r.getString("slug");
 		String video = r.getString("video");
-		String avatar_large = r.getString("avatar_large");
+		String avatarLarge = r.getString("avatar_large");
+		int lastCheckinId = r.getInt("last_checkin_id");
 		
 		Team.Builder builder = Team.newBuilder()
 				.setId(id)
 				.setTeamNumber(team_number)
 				.setTeamName(team_name)
 				.setNames(names)
-				.setCurrentLat(Double.parseDouble(current_x))
-				.setCurrentLon(Double.parseDouble(current_y))
 				.setUniversity(university)
-				.setAmountRaisedOnline(amount_raised_online)
-				.setAmountRaisedOffline(amount_raised_offline)
+				.setAmountRaisedOnline(amountRaisedOnline)
+				.setAmountRaisedOffline(amountRaisedOffline)
 				.setCountries(countries)
 				.setTransports(transports)
 				.setFeatured(featured)
 				.setSlug(slug);
 		
-		if (tag_line != null && !tag_line.isEmpty()) {
-			builder.setTagLine(tag_line);
+		if (lastCheckinId != 0) {
+			builder.setLastCheckinId(lastCheckinId);
+		}
+		
+		if (tagLine != null && !tagLine.isEmpty()) {
+			builder.setTagLine(tagLine);
 		}
 		
 		if (avatar != null && !avatar.isEmpty()) {
@@ -61,8 +62,8 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 			builder.setVideo(video);
 		}
 		
-		if (avatar_large != null && !avatar_large.isEmpty()) {
-			builder.setAvatarLarge(avatar_large);
+		if (avatarLarge != null && !avatarLarge.isEmpty()) {
+			builder.setAvatarLarge(avatarLarge);
 		}
 		
 		return builder.build();
