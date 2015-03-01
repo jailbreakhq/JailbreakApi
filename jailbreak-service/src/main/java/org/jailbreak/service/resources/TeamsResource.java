@@ -55,11 +55,9 @@ public class TeamsResource {
 	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
 		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		if (maybeFilters.isPresent()) {
-			TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), TeamsFilters.class);
-			return this.manager.getTeams(limit, filters);
-		}
-        return this.manager.getTeams();
+		TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
+        
+		return this.manager.getTeams(limit, filters);
 	}
 	
 	@POST

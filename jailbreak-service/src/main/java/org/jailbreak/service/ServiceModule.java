@@ -20,6 +20,7 @@ import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
 import org.jailbreak.service.base.CheckinsManagerImpl;
 import org.jailbreak.service.base.DonationsManagerImpl;
+import org.jailbreak.service.base.EventsManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.StripeManagerImpl;
 import org.jailbreak.service.base.TeamsManagerImpl;
@@ -27,6 +28,7 @@ import org.jailbreak.service.base.UsersManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.DonationsManager;
+import org.jailbreak.service.core.EventsManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.StripeManager;
 import org.jailbreak.service.core.TeamsManager;
@@ -56,6 +58,7 @@ public class ServiceModule extends AbstractModule {
 	
 	@Override
 	protected void configure() {
+		bind(EventsManager.class).to(EventsManagerImpl.class);
 		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
 		bind(DonationsManager.class).to(DonationsManagerImpl.class);
@@ -108,6 +111,18 @@ public class ServiceModule extends AbstractModule {
 	@Named("resources.defaultLimit")
 	public int provideResourcesDefaultLimit(ServiceConfiguration config) {
 		return config.getEnvironmentSettings().getDefaultLimit();
+	}
+	
+	@Provides
+	@Named("resources.events.maxLimit")
+	public int provideEventsResourceMaxLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getEventsMaxLimit();
+	}
+	
+	@Provides
+	@Named("resources.events.defaultLimit")
+	public int provideEventsResourceDefaultLimit(ServiceConfiguration config) {
+		return config.getEnvironmentSettings().getEventsDefaultLimit();
 	}
 	
 	@Provides

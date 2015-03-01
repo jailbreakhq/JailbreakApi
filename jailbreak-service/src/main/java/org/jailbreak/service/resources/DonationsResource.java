@@ -50,13 +50,7 @@ public class DonationsResource {
 	public Response getDonations(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
 		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		
-		DonationsFilters filters;
-		if (maybeFilters.isPresent()) {
-			filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters.get(), DonationsFilters.class);
-		} else {
-			filters = DonationsFilters.newBuilder().build();
-		}
+		DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, DonationsFilters.class, DonationsFilters.newBuilder().build(), ApiDocs.DONATIONS_FILTERS);
 		
 		List<Donation> donations = this.manager.getDonations(limit, filters);
 		int totalCount = this.manager.getTotalCount(filters);
