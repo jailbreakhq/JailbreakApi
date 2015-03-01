@@ -45,10 +45,10 @@ public abstract class TeamsDAO {
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
 	
-	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC")
+	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
 	public abstract List<Team> getTeams();
 
-	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online+amount_raised_offline) DESC LIMIT 10")
+	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC LIMIT 10")
 	public abstract List<Team> getTopTenTeams();
 	
 	public List<Team> getFilteredTeams(int limit, TeamsFilters filters) throws SQLException {
@@ -70,7 +70,7 @@ public abstract class TeamsDAO {
 			bindParams.put("featured", filters.getFeatured());
 		}
 		
-		builder.addOrderBy("id", OrderBy.DESC);
+		builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.DESC);
 		builder.limit(limit);
 		
 		String queryString = builder.build();
