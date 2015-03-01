@@ -6,7 +6,9 @@ import static org.mockito.Mockito.*;
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.University;
 import org.jailbreak.service.base.TeamsManagerImpl;
+import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.db.TeamsDAO;
+import org.jailbreak.service.helpers.DistanceHelper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,8 +21,10 @@ public class TeamsManagerTest {
 	private final static int PATCH_ID = 2;
 	private final static String TEAM_NAME = "Super & Awesome Team";
 
-	private TeamsDAO dao;// = mock(TeamsDAO.class, new OptionalAnswer());
+	private TeamsDAO dao;
+	private CheckinsManager checkinsManager;
 	private Slugify slg;
+	private DistanceHelper distanceHelper;
 	private double startLat = 53.348857;
 	private double startLon = -6.285844;
 	
@@ -35,8 +39,6 @@ public class TeamsManagerTest {
 
 	private final Team team_after_creation = team_unsaved.toBuilder()
 			.setId(SAVE_ID)
-			.setCurrentLat(startLat)
-			.setCurrentLon(startLon)
 			.setSlug("super-and-awesome-team")
 			.build();
 
@@ -70,7 +72,10 @@ public class TeamsManagerTest {
 	@Before
 	public void setup() {
 		dao = mock(TeamsDAO.class);
+		checkinsManager = mock(CheckinsManager.class);
 		slg = mock(Slugify.class);
+		distanceHelper = mock(DistanceHelper.class);
+		
 		when(dao.insert(any(Team.class))).thenReturn(SAVE_ID);
 		when(dao.getTeam(eq(SAVE_ID))).thenReturn(Optional.of(team_after_creation));
 		when(dao.getTeam(eq(PATCH_ID))).thenReturn(Optional.of(team_pre_patch));
@@ -80,14 +85,14 @@ public class TeamsManagerTest {
 	@Test
 	public void testAddTeam() {
 		// test that addTeam sets save id and sets current lat/lon
-		TeamsManagerImpl manager = new TeamsManagerImpl(dao, slg, startLat, startLon);
+		TeamsManagerImpl manager = new TeamsManagerImpl(dao, checkinsManager, slg, distanceHelper, startLat, startLon);
 		Team result = manager.addTeam(team_unsaved);
 		assertThat(result).isEqualTo(team_after_creation);
 	}
 
 	@Test
 	public void testPatchTeam() {
-		TeamsManagerImpl manager = new TeamsManagerImpl(dao, slg, startLat, startLon);
+		TeamsManagerImpl manager = new TeamsManagerImpl(dao, checkinsManager, slg, distanceHelper, startLat, startLon);
 		Optional<Team> result = manager.patchTeam(team_patch);
 		assertThat(result.get()).isEqualTo(team_after_patch);
 	}

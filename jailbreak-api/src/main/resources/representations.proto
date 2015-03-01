@@ -36,13 +36,10 @@ message Team {
 	optional string names = 4;
 	optional string avatar = 5;
 	optional string tag_line = 6;
-	optional double current_lat = 7;
-	optional double current_lon = 8;
 	optional University university = 9;
 	optional string description = 10;
 	optional int32 amount_raised_online = 11;
 	optional int32 amount_raised_offline = 12;
-	optional double distance_to_x = 13;
 	optional int32 countries = 14;
 	optional int32 transports = 15;
 	optional string donations_url = 16;
@@ -51,6 +48,8 @@ message Team {
  	optional string slug = 19;
  	optional string video = 20;
  	optional string avatar_large = 21;
+ 	optional int32 last_checkin_id = 22;
+ 	optional Checkin last_checkin = 23;
  	
  	message TeamsFilters {
  		optional int32 team_number = 1;
@@ -67,6 +66,7 @@ message Checkin {
 	optional double lon = 5;
 	optional int64 time = 6;
 	optional int32 team_id = 7;
+	optional double distance_to_x = 8;
 }
 
 message Challenge {

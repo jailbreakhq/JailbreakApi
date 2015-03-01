@@ -10,8 +10,12 @@ public interface CheckinsManager {
 	
 	Checkin createCheckin(Checkin checkin);
 	Optional<Checkin> updateCheckin(Checkin checkin);
+	
 	Optional<Checkin> getCheckin(int id);
-	Optional<Checkin> getTeamCheckin(int team_id, int id);
-	List<Checkin> getTeamCheckins(int team_id);
+	List<Checkin> getCheckins(List<Integer> ids);
+	
+	Optional<Checkin> getTeamCheckin(int teamId, int id);
+	Optional<Checkin> getLastTeamCheckin(int teamId);
+	List<Checkin> getTeamCheckins(int teamId);
 
 }

@@ -36,18 +36,21 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
 			message = "Internal Server Error";
 			
 			// Report the full detailed error to sentry
-			EventBuilder eventBuilder = new EventBuilder()
-				.setTimestamp(new Date())
-				.setLevel(Event.Level.ERROR);
-			
-			if (ex instanceof AppException) {
-				// AppException wraps errors thrown inside the API to provide user useful context
-				Exception original = ((AppException) ex).getOriginalException();
-				eventBuilder.addSentryInterface(new ExceptionInterface(original));
-			} else {
-				eventBuilder.addSentryInterface(new ExceptionInterface(ex));
+			if (raven != null) {
+				EventBuilder eventBuilder = new EventBuilder()
+					.setTimestamp(new Date())
+					.setLevel(Event.Level.ERROR)
+					.setMessage(ex.getMessage());
+				
+				if (ex instanceof AppException) {
+					// AppException wraps errors thrown inside the API to provide user useful context
+					Exception original = ((AppException) ex).getOriginalException();
+					eventBuilder.addSentryInterface(new ExceptionInterface(original));
+				} else {
+					eventBuilder.addSentryInterface(new ExceptionInterface(ex));
+				}
+				raven.sendEvent(eventBuilder.build());
 			}
-			raven.sendEvent(eventBuilder.build());
 			
 		} else if (status_code == Response.Status.NOT_FOUND.getStatusCode()) {
 			message = "Object not found";

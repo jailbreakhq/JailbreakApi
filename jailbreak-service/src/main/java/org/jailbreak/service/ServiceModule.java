@@ -36,6 +36,7 @@ import org.jailbreak.service.db.CheckinsDAO;
 import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
+import org.jailbreak.service.helpers.DistanceHelper;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +65,7 @@ public class ServiceModule extends AbstractModule {
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
 		bind(FacebookClient.class).to(FacebookClientImpl.class);
 		bind(Authenticator.class).to(ApiTokenAuthenticator.class);
+		bind(DistanceHelper.class);
 	}
 	
 	@Provides
@@ -117,8 +119,12 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public Raven provideRaven(ServiceConfiguration config) {
 		if (raven == null) {
-			String dsn = config.getEnvironmentSettings().getSentryDSN();
-			raven = RavenFactory.ravenInstance(new Dsn(dsn));
+			if (config.getEnvironmentSettings().getSentryEnabled()) {
+				String dsn = config.getEnvironmentSettings().getSentryDSN();
+				raven = RavenFactory.ravenInstance(new Dsn(dsn));
+			} else {
+				LOG.info("Sentry is disabled");
+			}
 		}
 		return raven;
 	}
