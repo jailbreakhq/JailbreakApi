@@ -3,7 +3,6 @@ package org.jailbreak.service.resources;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,13 +21,17 @@ public class ResourcesHelper {
 		return limit;
 	}
 	
-	public static <T> T decodeUrlEncodedJson(String data, Class<T> klass) throws BadRequestException {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new ProtobufModule());
-		try {
-			return mapper.readValue(URLDecoder.decode(data, "UTF-8"), klass);
-		} catch (IllegalArgumentException | IOException e) {
-			throw new BadRequestException("Donations filters were malformed. Could not parse JSON content in query param", ApiDocs.DONATIONS_FILTERS);
+	public static <T> T decodeUrlEncodedJson(Optional<String> maybeData, Class<T> klass, T nullObject, String docs_link) throws BadRequestException {
+		if (maybeData.isPresent()) {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.registerModule(new ProtobufModule());
+			try {
+				return mapper.readValue(URLDecoder.decode(maybeData.get(), "UTF-8"), klass);
+			} catch (IllegalArgumentException | IOException e) {
+				throw new BadRequestException("Filters were malformed. Could not parse JSON content in query param", docs_link);
+			}
+		} else {
+			return nullObject;
 		}
 	}
 

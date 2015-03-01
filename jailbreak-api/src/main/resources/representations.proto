@@ -84,6 +84,111 @@ message Challenge {
 	optional int64 completed_time = 5;
 }
 
+message Event {
+	enum EventType {
+		LINK = 0;
+		CHECKIN = 1;
+		DONATE = 2;
+		TWITTER = 3;
+		FACEBOOK = 4;
+		VINE = 5;
+		INSTAGRAM = 6;
+	}
+
+	optional int32 id = 1;
+	optional EventType type = 2;
+	optional int64 time = 3;
+	optional int32 object_id = 4;
+	optional int32 team_id = 5;
+	
+	optional Link link = 6;
+	optional Checkin checkin = 7;
+	optional Donate	donate = 8;
+	optional Twitter twitter = 9;
+	optional Facebook facebook = 10;
+	optional Vine vine = 11;
+	optional Instagram instagram = 12;
+	
+	message EventsFilters {
+		optional EventType type = 1;
+		optional int32 beforeId = 2;
+		optional int32 afterId = 3;
+		optional int32 teamId = 4;
+	}
+}
+
+message Link {
+	optional int32 id = 1;
+	optional string url = 2;
+	optional string link_text = 3;
+	optional string description = 4;
+	optional string photoUrl = 5;
+}
+
+message Donate {
+	optional int32 id = 1;
+	optional string description = 2;
+	optional string link_text = 3;
+	optional int32 team_id = 4;
+	optional Team team = 5;
+}
+
+message Twitter {
+	optional int32 id = 1;
+	optional int64 tweet_id = 2;
+	optional string tweet = 3;
+	optional string tweet_html = 4;
+	optional int64 time = 5;
+	optional string photo_url = 6;
+	optional string in_reply_to = 7;
+	optional int32 twitter_user_id = 8;
+	optional string twitter_user_name = 9;
+	optional string twitter_user_photo = 10;
+	optional int32 team_id = 11;
+	optional Team team = 12;
+}
+
+message Facebook {
+	optional int32 id = 1;
+	optional int64 facebook_id = 2;
+	optional string url = 3;
+	optional string message = 4;
+	optional string link_url = 5;
+	optional string photo_url = 6;
+	optional int64 time = 7;
+	optional string page_name = 8;
+	optional int32 team_id = 9;
+	optional Team team = 10;
+}
+
+message Vine {
+	optional int32 id = 1;
+	optional string description = 2;
+	optional string url = 3;
+	optional string thumbnail_url = 4;
+	optional string iframe_html = 5;
+	optional string author_name = 6;
+	optional string author_url = 7;
+	optional string author_photo_url = 8;
+	optional int64 time = 9;
+	optional int32 team_id = 10;
+	optional Team team = 11;
+}
+
+message Instagram {
+	optional int32 id = 1;
+	optional int32 instagram_id = 2;
+	optional string description = 3;
+	optional string url = 4;
+	optional string thumbnail_url = 5;
+	optional string author_name = 6;
+	optional string author_url = 7;
+	optional string author_photo_url = 8;
+	optional int64 time = 9;
+	optional int32 team_id = 10;
+	optional Team team = 11;
+}
+
 message Donation {
 	enum DonationType {
 		OFFLINE = 0;

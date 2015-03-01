@@ -1,18 +1,15 @@
 package org.jailbreak.service.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class EnvironmentFactory {
 	
-	private final int DEFAULT_LIMIT = 10;
-	private final int MAX_LIMIT = 20;
-	private final Logger LOG = LoggerFactory.getLogger(EnvironmentFactory.class);
+	private final int DEAFULT_DEFAULT_LIMIT = 10;
+	private final int DEFAULT_MAX_LIMIT = 20;
+	private final int DEFAULT_EVENTS_MAX_LIMIT = 50;
 	
     public int getDefaultLimit() {
     	String envValue = System.getenv("DEFAULT_LIMIT");
     	if (envValue == null)
-    		return DEFAULT_LIMIT;
+    		return DEAFULT_DEFAULT_LIMIT;
     	else
     		return Integer.parseInt(envValue);
     }
@@ -20,7 +17,23 @@ public class EnvironmentFactory {
     public int getMaxLimit() {
     	String envValue = System.getenv("MAX_LIMIT");
     	if (envValue == null)
-    		return MAX_LIMIT;
+    		return DEFAULT_MAX_LIMIT;
+    	else
+    		return Integer.parseInt(envValue);
+    }
+    
+    public int getEventsDefaultLimit() {
+    	String envValue = System.getenv("EVENTS_DEFAULT_LIMIT");
+    	if (envValue == null)
+    		return DEAFULT_DEFAULT_LIMIT;
+    	else
+    		return Integer.parseInt(envValue);
+    }
+    
+    public int getEventsMaxLimit() {
+    	String envValue = System.getenv("EVENTS_MAX_LIMIT");
+    	if (envValue == null)
+    		return DEFAULT_EVENTS_MAX_LIMIT;
     	else
     		return Integer.parseInt(envValue);
     }

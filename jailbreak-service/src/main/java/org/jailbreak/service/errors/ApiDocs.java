@@ -6,7 +6,11 @@ public class ApiDocs {
 	
 	public final static String USERS = "";
 	
+	public final static String EVENTS = "";
+	public final static String EVENTS_FILTERS = "";
+	
 	public final static String TEAMS = "";
+	public final static String TEAMS_FILTERS = "";
 	public final static String TEAMS_UPDATES = "";
 	
 	public final static String CHECKINS = "";
