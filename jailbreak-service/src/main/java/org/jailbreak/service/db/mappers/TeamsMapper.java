@@ -7,10 +7,15 @@ import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.University;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TeamsMapper implements ResultSetMapper<Team> {
 	
+	private final Logger LOG = LoggerFactory.getLogger(TeamsMapper.class);
+	
 	public Team map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+		// Limited Team Object Attributes
 		int id = r.getInt("id");
 		int team_number = r.getInt("team_number");
 		String team_name = r.getString("team_name");
@@ -22,11 +27,8 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		int amountRaisedOffline = r.getInt("amount_raised_offline");
 		int countries = r.getInt("countries");
 		int transports = r.getInt("transports");
-		String description = r.getString("description");
 		boolean featured = r.getBoolean("featured");
 		String slug = r.getString("slug");
-		String video = r.getString("video");
-		String avatarLarge = r.getString("avatar_large");
 		int lastCheckinId = r.getInt("last_checkin_id");
 		
 		Team.Builder builder = Team.newBuilder()
@@ -54,17 +56,35 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 			builder.setAvatar(avatar);
 		}
 		
-		if (description != null && !description.isEmpty()) {
-			builder.setDescription(description);
+		
+		// Full Team Object Attributes
+		boolean fullTeam = true;
+		try {
+			// simple test that will fail on the limited team object result set
+			r.getString("description");
+		} catch (SQLException e) {
+			// Burying SQLException because we maybe trying to map a limited team instead of a full team
+			fullTeam = false;
 		}
 		
-		if (video != null && !video.isEmpty()) {
-			builder.setVideo(video);
+		if (fullTeam) {
+			String description = r.getString("description");
+			String video = r.getString("video");
+			String avatarLarge = r.getString("avatar_large");
+			
+			if (description != null && !description.isEmpty()) {
+				builder.setDescription(description);
+			}
+			
+			if (video != null && !video.isEmpty()) {
+				builder.setVideo(video);
+			}
+			
+			if (avatarLarge != null && !avatarLarge.isEmpty()) {
+				builder.setAvatarLarge(avatarLarge);
+			}
 		}
 		
-		if (avatarLarge != null && !avatarLarge.isEmpty()) {
-			builder.setAvatarLarge(avatarLarge);
-		}
 		
 		return builder.build();
 	}

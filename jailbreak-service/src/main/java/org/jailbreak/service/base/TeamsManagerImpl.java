@@ -3,6 +3,7 @@ package org.jailbreak.service.base;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.api.representations.Representations.Team;
@@ -16,6 +17,7 @@ import org.jailbreak.service.helpers.DistanceHelper;
 import com.github.slugify.Slugify;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.newrelic.deps.com.google.common.collect.Lists;
@@ -68,6 +70,11 @@ public class TeamsManagerImpl implements TeamsManager {
 	public Optional<Team> getTeamSlug(String slug) {
 		return dao.getTeamSlug(slug);
 	}
+	
+	@Override
+	public Optional<Team> getLimitedTeam(int id) {
+		return dao.getLimitedTeam(id);
+	}
 
 	@Override
 	public List<Team> getTeams() {
@@ -86,6 +93,18 @@ public class TeamsManagerImpl implements TeamsManager {
 		}
 		
 		return annotateTeamsWithCheckins(teams);
+	}
+	
+	@Override
+	public HashMap<Integer, Team> getLimitedTeams(Set<Integer> ids) {
+		List<Team> teams = dao.getLimitedTeams(ids);
+		HashMap<Integer, Team> map = Maps.newHashMapWithExpectedSize(teams.size());
+		
+		for (Team team : teams) {
+			map.put(team.getId(), team);
+		}
+		
+		return map;
 	}
 	
 	@Override
@@ -144,13 +163,8 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 	
 	private List<Team> annotateTeamsWithCheckins(List<Team> teams) {
-		List<Integer> ids = lastCheckinIds(teams);
-		List<Checkin> checkins = checkinsManager.getCheckins(ids);
-		
-		HashMap<Integer, Checkin> map = Maps.newHashMap();
-		for (Checkin checkin : checkins) {
-			map.put(checkin.getId(), checkin);
-		}
+		Set<Integer> ids = lastCheckinIds(teams);
+		HashMap<Integer, Checkin> map = checkinsManager.getCheckins(ids);
 		
 		List<Team> newTeams = Lists.newArrayListWithCapacity(teams.size());
 		for (Team team : teams) {
@@ -167,8 +181,8 @@ public class TeamsManagerImpl implements TeamsManager {
 		return newTeams;
 	}
 	
-	private List<Integer> lastCheckinIds(List<Team> teams) {
-		List<Integer> ids = Lists.newArrayListWithCapacity(teams.size());
+	private Set<Integer> lastCheckinIds(List<Team> teams) {
+		Set<Integer> ids = Sets.newHashSetWithExpectedSize(teams.size());
 		for (Team team : teams) {
 			if (team.hasLastCheckinId()) {
 				ids.add(team.getLastCheckinId());

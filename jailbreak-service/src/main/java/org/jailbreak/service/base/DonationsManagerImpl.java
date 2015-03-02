@@ -1,8 +1,9 @@
 package org.jailbreak.service.base;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Team;
@@ -17,23 +18,32 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 public class DonationsManagerImpl implements DonationsManager {
 	
 	private final DonationsDAO dao;
-	private final TeamsManager teams;
+	private final TeamsManager teamsManager;
 	private final Logger LOG = LoggerFactory.getLogger(DonationsManagerImpl.class);
 	
 	@Inject
-	public DonationsManagerImpl(DonationsDAO dao, TeamsManager teams) {
+	public DonationsManagerImpl(DonationsDAO dao, TeamsManager teamsManager) {
 		this.dao = dao;
-		this.teams = teams;
+		this.teamsManager = teamsManager;
 	}
 
 	@Override
 	public Optional<Donation> getDonation(int id) {
-		return this.dao.getDonation(id);
+		Optional<Donation> donation = this.dao.getDonation(id);
+		
+		if (donation.isPresent()) {
+			List<Donation> donationList = Lists.newArrayList(donation.get());
+			List<Donation> annotatedList = annotateDonationsWithTeams(donationList);
+			donation = Optional.of(annotatedList.get(0));
+		}
+		
+		return donation;
 	}
 
 	@Override
@@ -63,7 +73,7 @@ public class DonationsManagerImpl implements DonationsManager {
 		
 		// update the count on the teams object
 		if (donation.hasTeamId()) {
-			Optional<Team> maybeTeam = teams.getTeam(donation.getTeamId());
+			Optional<Team> maybeTeam = teamsManager.getTeam(donation.getTeamId());
 			if (maybeTeam.isPresent()) {
 				Team team = maybeTeam.get();
 				LOG.info("Old amount raised online: " + team.getAmountRaisedOnline()/100 + " euro");
@@ -72,7 +82,7 @@ public class DonationsManagerImpl implements DonationsManager {
 					.setAmountRaisedOnline(team.getAmountRaisedOnline() + donation.getAmount())
 					.build();
 				LOG.info("New amount raised online: " + team.getAmountRaisedOnline()/100 + " euro");
-				teams.updateTeam(team);
+				teamsManager.updateTeam(team);
 			}
 		}
 		
@@ -92,13 +102,15 @@ public class DonationsManagerImpl implements DonationsManager {
 
 	@Override
 	public List<Donation> getDonations(int limit) {
-		return this.dao.getDonations(limit);
+		return annotateDonationsWithTeams(this.dao.getDonations(limit));
 	}
 	
 	@Override
 	public List<Donation> getDonations(int limit, DonationsFilters filters) {
 		try {
-			return this.dao.getFilteredDonations(limit, filters);
+			List<Donation> donations = this.dao.getFilteredDonations(limit, filters);
+			
+			return annotateDonationsWithTeams(donations);
 		} catch (SQLException e) {
 			throw new AppException("Database error retrieving donations count", e);
 		}
@@ -142,6 +154,35 @@ public class DonationsManagerImpl implements DonationsManager {
 			filtered.add(builder.build());
 		}
 		return filtered;
+	}
+	
+	private List<Donation> annotateDonationsWithTeams(List<Donation> donations) {
+		Set<Integer> ids = teamIds(donations);
+		HashMap<Integer, Team> map = teamsManager.getLimitedTeams(ids);
+		
+		List<Donation> newDonations = Lists.newArrayListWithCapacity(donations.size());
+		for (Donation donation : donations) {
+			if (donation.hasTeamId()) {
+				int teamId = donation.getTeamId();
+				if (map.containsKey(teamId)) {
+					newDonations.add(donation.toBuilder().setTeam(map.get(teamId)).build());
+				}
+			} else {
+				newDonations.add(donation);
+			}
+		}
+		
+		return newDonations;
+	}
+	
+	private Set<Integer> teamIds(List<Donation> donations) {
+		Set<Integer> ids = Sets.newHashSetWithExpectedSize(donations.size());
+		for (Donation donation : donations) {
+			if (donation.hasTeamId()) {
+				ids.add(donation.getTeamId());
+			}
+		}
+		return ids;
 	}
 
 }

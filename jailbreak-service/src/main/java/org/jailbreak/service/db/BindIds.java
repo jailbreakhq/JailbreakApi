@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.List;
+import java.util.Set;
 
 import org.skife.jdbi.v2.SQLStatement;
 import org.skife.jdbi.v2.sqlobject.Binder;
@@ -23,8 +23,8 @@ public @interface BindIds {
 		
 		@SuppressWarnings("rawtypes")
 		public Binder build(Annotation annotation) {
-			return new Binder<BindIds, List<Integer>>() {
-				public void bind(SQLStatement<?> q, BindIds bind, List<Integer> ids) {
+			return new Binder<BindIds, Set<Integer>>() {
+				public void bind(SQLStatement<?> q, BindIds bind, Set<Integer> ids) {
 					Array idsArray;
 					try {
 						// it is extremely important that we bind in 
