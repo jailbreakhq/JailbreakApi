@@ -67,6 +67,7 @@ message Checkin {
 	optional int64 time = 6;
 	optional int32 team_id = 7;
 	optional double distance_to_x = 8;
+	optional Team team = 9;
 }
 
 message Challenge {

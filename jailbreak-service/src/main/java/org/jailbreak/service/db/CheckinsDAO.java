@@ -24,7 +24,7 @@ public interface CheckinsDAO {
 	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, position = :position, time = :time, team_id = :team_id WHERE id = :id")
 	int update(@BindProtobuf Checkin checkin);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE AND id = :id")
+	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE id = :id")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getCheckin(@Bind("id") int id);
 	

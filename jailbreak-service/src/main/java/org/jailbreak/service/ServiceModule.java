@@ -25,6 +25,7 @@ import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.StripeManagerImpl;
 import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
+import org.jailbreak.service.base.YoutubesManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.DonationsManager;
@@ -33,12 +34,14 @@ import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.StripeManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
+import org.jailbreak.service.core.YoutubesManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
 import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.EventsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
+import org.jailbreak.service.db.YoutubeDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -60,16 +63,20 @@ public class ServiceModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(EventsManager.class).to(EventsManagerImpl.class);
-		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
+		bind(YoutubesManager.class).to(YoutubesManagerImpl.class);
+		
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
+		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
+		bind(DistanceHelper.class);
+		
 		bind(DonationsManager.class).to(DonationsManagerImpl.class);
 		bind(StripeManager.class).to(StripeManagerImpl.class);
+		
 		bind(UsersManager.class).to(UsersManagerImpl.class);
 		bind(ApiTokensManager.class).to(ApiTokensManagerImpl.class);
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
 		bind(FacebookClient.class).to(FacebookClientImpl.class);
 		bind(Authenticator.class).to(ApiTokenAuthenticator.class);
-		bind(DistanceHelper.class);
 	}
 	
 	@Provides
@@ -200,6 +207,12 @@ public class ServiceModule extends AbstractModule {
 	public EventsDAO provideEventsDAO(Connection conn) {
 		EventsDAO dao = dbi.onDemand(EventsDAO.class);
         dao.conn = this.getJDBCHandler(null);
+        return dao;
+	}
+	
+	@Provides
+	public YoutubeDAO provideYoutubeDAO(Connection conn) {
+		YoutubeDAO dao = dbi.onDemand(YoutubeDAO.class);
         return dao;
 	}
 	
