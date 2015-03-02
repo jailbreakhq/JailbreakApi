@@ -10,7 +10,11 @@ import java.util.Set;
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.api.representations.Representations.Donate;
 import org.jailbreak.api.representations.Representations.Event;
+import org.jailbreak.api.representations.Representations.Facebook;
+import org.jailbreak.api.representations.Representations.Instagram;
 import org.jailbreak.api.representations.Representations.Link;
+import org.jailbreak.api.representations.Representations.Twitter;
+import org.jailbreak.api.representations.Representations.Vine;
 import org.jailbreak.api.representations.Representations.Youtube;
 import org.jailbreak.api.representations.Representations.Event.EventType;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
@@ -19,7 +23,11 @@ import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.events.DonateEventsManager;
 import org.jailbreak.service.core.events.EventsManager;
+import org.jailbreak.service.core.events.FacebookEventsManager;
+import org.jailbreak.service.core.events.InstagramEventsManager;
 import org.jailbreak.service.core.events.LinkEventsManager;
+import org.jailbreak.service.core.events.TwitterEventsManager;
+import org.jailbreak.service.core.events.VineEventsManager;
 import org.jailbreak.service.core.events.YoutubeEventsManager;
 import org.jailbreak.service.db.dao.events.EventsDAO;
 import org.jailbreak.service.errors.AppException;
@@ -35,9 +43,13 @@ public class EventsManagerImpl implements EventsManager {
 	private final EventsDAO dao;
 	private final TeamsManager teamsManager;
 	private final CheckinsManager checkinsManager;
-	private final YoutubeEventsManager youtubesManager;
 	private final DonateEventsManager donatesManager;
 	private final LinkEventsManager linksManager;
+	private final YoutubeEventsManager youtubesManager;
+	private final FacebookEventsManager facebookManager;
+	private final TwitterEventsManager twitterManager;
+	private final InstagramEventsManager instagramManager;
+	private final VineEventsManager vineManager;
 	private final Logger LOG = LoggerFactory.getLogger(EventsManagerImpl.class);
 	
 	@Inject
@@ -46,13 +58,21 @@ public class EventsManagerImpl implements EventsManager {
 			CheckinsManager checkinsManager,
 			YoutubeEventsManager youtubesManager,
 			DonateEventsManager donatesManager,
-			LinkEventsManager linksManager) {
+			LinkEventsManager linksManager,
+			FacebookEventsManager facebookManager,
+			TwitterEventsManager twitterManager,
+			InstagramEventsManager instagramManager,
+			VineEventsManager vineManager) {
 		this.dao = dao;
 		this.teamsManager = teamsManager;
 		this.checkinsManager = checkinsManager;
 		this.youtubesManager = youtubesManager;
 		this.donatesManager = donatesManager;
 		this.linksManager = linksManager;
+		this.facebookManager = facebookManager;
+		this.twitterManager = twitterManager;
+		this.instagramManager = instagramManager;
+		this.vineManager = vineManager;
 	}
 	
 	@Override
@@ -79,39 +99,9 @@ public class EventsManagerImpl implements EventsManager {
 	}
 	
 	private List<Event> annotateEvents(List<Event> events) {
-		// Divide them up into their event types
-		List<Event> linkEvents = Lists.newArrayList();
-		List<Event> donateEvents = Lists.newArrayList();
-		List<Event> checkinEvents = Lists.newArrayList();
-		List<Event> youtubeEvents = Lists.newArrayList();
+		List<Event.Builder> builders = annotateEventsObjects(events);
 		
-		for (Event event : events) {
-			if (event.getType() == EventType.LINK) {
-				linkEvents.add(event);
-			} else if (event.getType() == EventType.DONATE) {
-				donateEvents.add(event);
-			} else if (event.getType() == EventType.CHECKIN) {
-				checkinEvents.add(event);
-			} else if (event.getType() == EventType.YOUTUBE) {
-				youtubeEvents.add(event);
-			}
-		}
-		
-		// Go fetch object data and annotate event
-		List<Event.Builder> linkBuilders = annotateLinkEvents(linkEvents);
-		List<Event.Builder> donateBuilders = annotateDonateEvents(donateEvents);
-		List<Event.Builder> checkinBuilders = annotateCheckinEvents(checkinEvents);
-		List<Event.Builder> youtubeBuilders = annotateYoutubeEvents(youtubeEvents);
-		
-		// Combine all the events types together again and sort by event time
-		List<Event.Builder> combinedEvents = Lists.newArrayList();
-		
-		combinedEvents.addAll(linkBuilders);
-		combinedEvents.addAll(donateBuilders);
-		combinedEvents.addAll(checkinBuilders);
-		combinedEvents.addAll(youtubeBuilders);
-		
-		Collections.sort(combinedEvents, new Comparator<Event.Builder>() {
+		Collections.sort(builders, new Comparator<Event.Builder>() {
 			@Override
 			public int compare(Event.Builder e1, Event.Builder e2) {
 				Long time1 = Long.valueOf(e1.getTime());
@@ -122,101 +112,156 @@ public class EventsManagerImpl implements EventsManager {
 		
 		// Annotate any events with a team id with their team data
 		HashMap<Integer, Team> teamsMap = teamsManager.getLimitedTeams(getTeamIds(events));
+		List<Event> finalEvents = Lists.newArrayListWithCapacity(events.size());
 		
-		for(Team team : teamsMap.values()) {
-			LOG.info("Team " + team.getId() + " " + team.getNames());
-		}
+		LOG.info("Annotating " + events.size() + " events with the data from " + teamsMap.size() + " teams.");
 		
-		for (Event.Builder event : combinedEvents) {
+		for (Event.Builder event : builders) {
 			if (event.hasTeamId()) {
 				int teamId = event.getTeamId();
 						
-				if (event.getType() == EventType.YOUTUBE) {
-					Youtube.Builder youtube = event.getYoutube().toBuilder();
-					youtube.setTeamId(teamId);
-					if (teamsMap.containsKey(teamId)) {
-						youtube.setTeam(teamsMap.get(teamId));
-					}
-					event.setYoutube(youtube);
-				} else if (event.getType() == EventType.CHECKIN) {
+				switch(event.getType().getNumber()) {
+				case EventType.CHECKIN_VALUE:
 					Checkin.Builder checkin = event.getCheckin().toBuilder();
-					checkin.setTeamId(teamId);
 					if (teamsMap.containsKey(teamId)) {
 						checkin.setTeam(teamsMap.get(teamId));
 					}
 					event.setCheckin(checkin);
-				} else if (event.getType() == EventType.DONATE) {
+					break;
+					
+				case EventType.DONATE_VALUE:
 					Donate.Builder donate = event.getDonate().toBuilder();
-					donate.setTeamId(teamId);
 					if (teamsMap.containsKey(teamId)) {
 						donate.setTeam(teamsMap.get(teamId));
 					}
 					event.setDonate(donate);
+					break;
+					
+				case EventType.TWITTER_VALUE:
+					Twitter.Builder twitter = event.getTwitter().toBuilder();
+					if (teamsMap.containsKey(teamId)) {
+						twitter.setTeam(teamsMap.get(teamId));
+					}
+					event.setTwitter(twitter);
+					break;
+					
+				case EventType.FACEBOOK_VALUE:
+					Facebook.Builder facebook = event.getFacebook().toBuilder();
+					if (teamsMap.containsKey(teamId)) {
+						facebook.setTeam(teamsMap.get(teamId));
+					}
+					event.setFacebook(facebook);
+					break;
+					
+				case EventType.VINE_VALUE:
+					Vine.Builder vine = event.getVine().toBuilder();
+					if (teamsMap.containsKey(teamId)) {
+						vine.setTeam(teamsMap.get(teamId));
+					}
+					event.setVine(vine);
+					break;
+					
+				case EventType.INSTAGRAM_VALUE:
+					Instagram.Builder insta = event.getInstagram().toBuilder();
+					if (teamsMap.containsKey(teamId)) {
+						insta.setTeam(teamsMap.get(teamId));
+					}
+					event.setInstagram(insta);
+					break;
+			
+				case EventType.YOUTUBE_VALUE:
+					Youtube.Builder youtube = event.getYoutube().toBuilder();
+					if (teamsMap.containsKey(teamId)) {
+						youtube.setTeam(teamsMap.get(teamId));
+					}
+					event.setYoutube(youtube);
+					break;
 				}
 			}
+			
+			finalEvents.add(event.build());
 		}
 		
-		return buildEvents(combinedEvents);
+		return finalEvents;
 	}
 	
-	private List<Event.Builder> annotateYoutubeEvents(List<Event> events) {
-		HashMap<Integer, Youtube> youtubes = youtubesManager.getYoutubes(getObjectIds(events));
+	private List<Event.Builder> annotateEventsObjects(List<Event> events) {
+		LOG.info("Annotating " + events.size() + " events with their full object data");
+		
+		HashMap<Integer, Checkin> checkins = checkinsManager.getCheckins(getObjectIds(events, EventType.CHECKIN));
+		HashMap<Integer, Donate> donates = donatesManager.getDonateEvents(getObjectIds(events, EventType.DONATE));
+		HashMap<Integer, Link> links = linksManager.getLinkEvents(getObjectIds(events, EventType.LINK));
+		HashMap<Integer, Facebook> facebooks = facebookManager.getFacebookEvents(getObjectIds(events, EventType.FACEBOOK));
+		HashMap<Integer, Twitter> twitters = twitterManager.getTwitterEvents(getObjectIds(events, EventType.TWITTER));
+		HashMap<Integer, Instagram> instagrams = instagramManager.getInstagramEvents(getObjectIds(events, EventType.INSTAGRAM));
+		HashMap<Integer, Vine> vines = vineManager.getVineEvents(getObjectIds(events, EventType.VINE));
+		HashMap<Integer, Youtube> youtubes = youtubesManager.getYoutubeEvents(getObjectIds(events, EventType.YOUTUBE));
+		
 		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
 		for (Event event : events) {
-			if (youtubes.containsKey(event.getObjectId())) {
-				Event.Builder builder = event.toBuilder().setYoutube(youtubes.get(event.getObjectId()));
-				builders.add(builder);
+			switch(event.getType().getNumber()) {
+			case EventType.LINK_VALUE:
+				if (links.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setLink(links.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.CHECKIN_VALUE:
+				if (checkins.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setCheckin(checkins.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.DONATE_VALUE:
+				if (donates.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setDonate(donates.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.TWITTER_VALUE:
+				if (twitters.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setTwitter(twitters.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.FACEBOOK_VALUE:
+				if (facebooks.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setFacebook(facebooks.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.VINE_VALUE:
+				if (vines.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setVine(vines.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			case EventType.INSTAGRAM_VALUE:
+				if (instagrams.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setInstagram(instagrams.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+		
+			case EventType.YOUTUBE_VALUE:
+				if (youtubes.containsKey(event.getObjectId())) {
+					Event.Builder builder = event.toBuilder().setYoutube(youtubes.get(event.getObjectId()));
+					builders.add(builder);
+				}
+				break;
+				
+			default:
+				builders.add(event.toBuilder());
 			}
-			// if no matching youtube object ignore whole object
+			
 		}
 		return builders;
-	}
-	
-	private List<Event.Builder> annotateLinkEvents(List<Event> events) {
-		HashMap<Integer, Link> ls = linksManager.getLinkEvents(getObjectIds(events));
-		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events) {
-			if (ls.containsKey(event.getObjectId())) {
-				Event.Builder builder = event.toBuilder().setLink(ls.get(event.getObjectId()));
-				builders.add(builder);
-			}
-			// if no matching link object ignore whole object
-		}
-		return builders;
-	}
-	
-	private List<Event.Builder> annotateDonateEvents(List<Event> events) {
-		HashMap<Integer, Donate> ls = donatesManager.getDonateEvents(getObjectIds(events));
-		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events) {
-			if (ls.containsKey(event.getObjectId())) {
-				Event.Builder builder = event.toBuilder().setDonate(ls.get(event.getObjectId()));
-				builders.add(builder);
-			}
-			// if no matching link object ignore whole object
-		}
-		return builders;
-	}
-	
-	private List<Event.Builder> annotateCheckinEvents(List<Event> events) {
-		HashMap<Integer, Checkin> checkins = checkinsManager.getCheckins(getObjectIds(events));
-		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events) {
-			if (checkins.containsKey(event.getObjectId())) {
-				Event.Builder builder = event.toBuilder().setCheckin(checkins.get(event.getObjectId()));
-				builders.add(builder);
-			}
-			// if no matching checkin object ignore whole object
-		}
-		return builders;
-	}
-	
-	private List<Event> buildEvents(List<Event.Builder> builders) {
-		List<Event> events = Lists.newArrayListWithCapacity(builders.size());
-		for (Event.Builder builder : builders) {
-			events.add(builder.build());
-		}
-		return events;
 	}
 	
 	private Set<Integer> getTeamIds(List<Event> events) {
@@ -229,10 +274,12 @@ public class EventsManagerImpl implements EventsManager {
 		return ids;
 	}
 	
-	private Set<Integer> getObjectIds(List<Event> events) {
+	private Set<Integer> getObjectIds(List<Event> events, EventType type) {
 		Set<Integer> ids = Sets.newHashSet();
 		for (Event event : events) {
-			ids.add(event.getObjectId());
+			if (event.getType() == type) {
+				ids.add(event.getObjectId());
+			}
 		}
 		return ids;
 	}
