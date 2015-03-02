@@ -1,4 +1,4 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
+import org.jailbreak.service.db.BindProtobuf;
+import org.jailbreak.service.db.ManualStatement;
+import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.DonationsMapper;
 import org.jailbreak.service.db.mappers.RowCountMapper;
@@ -58,14 +61,9 @@ public abstract class DonationsDAO {
 		
 		LOG.debug("getFilteredDonations SQL: " + queryString);
 		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			List<Donation> results = query.executeQuery(new DonationsMapper());
-			return results;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
-			throw e;
-		}
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		List<Donation> results = query.executeQuery(new DonationsMapper());
+		return results;
 	}
 	
 	public int countFilteredDonations(DonationsFilters filters) throws SQLException {
@@ -77,14 +75,9 @@ public abstract class DonationsDAO {
 		
 		LOG.debug("countFilteredDonations SQL: " + queryString);
 		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			Integer count = query.executeQuery(new RowCountMapper()).get(0);
-			return count;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query countFilteredDonations: " + e.getMessage());
-			throw e;
-		}
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		Integer count = query.executeQuery(new RowCountMapper()).get(0);
+		return count;
 	}
 	
 	private SimplestSqlBuilder applyWhereFilters(DonationsFilters filters, Map<String, Object> bindParams) {

@@ -1,8 +1,9 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.util.List;
 
 import org.jailbreak.api.representations.Representations.User;
+import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.mappers.UsersMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;

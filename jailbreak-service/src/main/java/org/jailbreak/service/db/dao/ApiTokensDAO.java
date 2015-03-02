@@ -1,8 +1,9 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.util.List;
 
 import org.jailbreak.api.representations.Representations.ApiToken;
+import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.mappers.ApiTokensMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;

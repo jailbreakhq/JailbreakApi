@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.service.core.CheckinsManager;
-import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.dao.CheckinsDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 
 import com.google.common.base.Optional;
@@ -49,6 +49,10 @@ public class CheckinsManagerImpl implements CheckinsManager {
 	
 	@Override
 	public HashMap<Integer, Checkin> getCheckins(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMap();
+		}
+		
 		List<Checkin> checkins = this.addDistanceToX(this.dao.getCheckins(ids));
 		
 		HashMap<Integer, Checkin> map = Maps.newHashMap();

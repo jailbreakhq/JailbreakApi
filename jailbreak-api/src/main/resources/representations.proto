@@ -67,6 +67,7 @@ message Checkin {
 	optional int64 time = 6;
 	optional int32 team_id = 7;
 	optional double distance_to_x = 8;
+	optional Team team = 9;
 }
 
 message Challenge {
@@ -93,6 +94,7 @@ message Event {
 		FACEBOOK = 4;
 		VINE = 5;
 		INSTAGRAM = 6;
+		YOUTUBE = 7;
 	}
 
 	optional int32 id = 1;
@@ -108,6 +110,7 @@ message Event {
 	optional Facebook facebook = 10;
 	optional Vine vine = 11;
 	optional Instagram instagram = 12;
+	optional Youtube youtube = 13;
 	
 	message EventsFilters {
 		optional EventType type = 1;
@@ -127,8 +130,8 @@ message Link {
 
 message Donate {
 	optional int32 id = 1;
-	optional string description = 2;
-	optional string link_text = 3;
+	optional string link_text = 2;
+	optional string description = 3;
 	optional int32 team_id = 4;
 	optional Team team = 5;
 }
@@ -150,7 +153,7 @@ message Twitter {
 
 message Facebook {
 	optional int32 id = 1;
-	optional int64 facebook_id = 2;
+	optional string facebook_id = 2;
 	optional string url = 3;
 	optional string message = 4;
 	optional string link_url = 5;
@@ -177,7 +180,7 @@ message Vine {
 
 message Instagram {
 	optional int32 id = 1;
-	optional int32 instagram_id = 2;
+	optional string instagram_id = 2;
 	optional string description = 3;
 	optional string url = 4;
 	optional string thumbnail_url = 5;
@@ -185,6 +188,19 @@ message Instagram {
 	optional string author_url = 7;
 	optional string author_photo_url = 8;
 	optional int64 time = 9;
+	optional int32 team_id = 10;
+	optional Team team = 11;
+}
+
+message Youtube {
+	optional int32 id = 1;
+	optional string title = 2;
+	optional string description = 3;
+	optional string url = 4;
+	optional string thumbnail_url = 5;
+	optional string iframe_html = 6;
+	optional string author_name = 7;
+	optional string author_url = 8;
 	optional int32 team_id = 10;
 	optional Team team = 11;
 }

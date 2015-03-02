@@ -7,12 +7,8 @@ import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.University;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TeamsMapper implements ResultSetMapper<Team> {
-	
-	private final Logger LOG = LoggerFactory.getLogger(TeamsMapper.class);
 	
 	public Team map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		// Limited Team Object Attributes

@@ -1,9 +1,11 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.service.db.BindIds;
+import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.mappers.CheckinsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
@@ -24,7 +26,7 @@ public interface CheckinsDAO {
 	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, position = :position, time = :time, team_id = :team_id WHERE id = :id")
 	int update(@BindProtobuf Checkin checkin);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE AND id = :id")
+	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE id = :id")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getCheckin(@Bind("id") int id);
 	

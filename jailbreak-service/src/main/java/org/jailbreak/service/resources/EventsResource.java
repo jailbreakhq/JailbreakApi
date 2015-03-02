@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.jailbreak.api.representations.Representations.Event;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
-import org.jailbreak.service.core.EventsManager;
+import org.jailbreak.service.core.events.EventsManager;
 import org.jailbreak.service.errors.ApiDocs;
 
 import com.google.common.base.Optional;
@@ -41,7 +41,7 @@ public class EventsResource {
 		
 		EventsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, EventsFilters.class, EventsFilters.newBuilder().build(), ApiDocs.EVENTS_FILTERS);
 		
-		return this.manager.getEvents(limit, filters);
+		return manager.filterPrivateFields(manager.getEvents(limit, filters));
 	}
 
 }

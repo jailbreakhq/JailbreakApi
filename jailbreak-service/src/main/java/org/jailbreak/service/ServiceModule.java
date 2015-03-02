@@ -20,24 +20,46 @@ import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
 import org.jailbreak.service.base.CheckinsManagerImpl;
 import org.jailbreak.service.base.DonationsManagerImpl;
-import org.jailbreak.service.base.EventsManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.StripeManagerImpl;
 import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
+import org.jailbreak.service.base.events.DonateEventsManagerImpl;
+import org.jailbreak.service.base.events.EventsManagerImpl;
+import org.jailbreak.service.base.events.FacebookEventsManagerImpl;
+import org.jailbreak.service.base.events.InstagramEventsManagerImpl;
+import org.jailbreak.service.base.events.LinkEventsManagerImpl;
+import org.jailbreak.service.base.events.TwitterEventsManagerImpl;
+import org.jailbreak.service.base.events.VineEventsManagerImpl;
+import org.jailbreak.service.base.events.YoutubeEventsManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.DonationsManager;
-import org.jailbreak.service.core.EventsManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.StripeManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
-import org.jailbreak.service.db.ApiTokensDAO;
-import org.jailbreak.service.db.CheckinsDAO;
-import org.jailbreak.service.db.DonationsDAO;
-import org.jailbreak.service.db.TeamsDAO;
-import org.jailbreak.service.db.UsersDAO;
+import org.jailbreak.service.core.events.DonateEventsManager;
+import org.jailbreak.service.core.events.EventsManager;
+import org.jailbreak.service.core.events.FacebookEventsManager;
+import org.jailbreak.service.core.events.InstagramEventsManager;
+import org.jailbreak.service.core.events.LinkEventsManager;
+import org.jailbreak.service.core.events.TwitterEventsManager;
+import org.jailbreak.service.core.events.VineEventsManager;
+import org.jailbreak.service.core.events.YoutubeEventsManager;
+import org.jailbreak.service.db.dao.ApiTokensDAO;
+import org.jailbreak.service.db.dao.CheckinsDAO;
+import org.jailbreak.service.db.dao.DonationsDAO;
+import org.jailbreak.service.db.dao.TeamsDAO;
+import org.jailbreak.service.db.dao.UsersDAO;
+import org.jailbreak.service.db.dao.events.DonateEventsDAO;
+import org.jailbreak.service.db.dao.events.EventsDAO;
+import org.jailbreak.service.db.dao.events.FacebookEventsDAO;
+import org.jailbreak.service.db.dao.events.InstagramEventsDAO;
+import org.jailbreak.service.db.dao.events.LinkEventsDAO;
+import org.jailbreak.service.db.dao.events.TwitterEventsDAO;
+import org.jailbreak.service.db.dao.events.VineEventsDAO;
+import org.jailbreak.service.db.dao.events.YoutubeEventsDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -59,16 +81,26 @@ public class ServiceModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(EventsManager.class).to(EventsManagerImpl.class);
-		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
+		bind(LinkEventsManager.class).to(LinkEventsManagerImpl.class);
+		bind(DonateEventsManager.class).to(DonateEventsManagerImpl.class);
+		bind(TwitterEventsManager.class).to(TwitterEventsManagerImpl.class);
+		bind(FacebookEventsManager.class).to(FacebookEventsManagerImpl.class);
+		bind(InstagramEventsManager.class).to(InstagramEventsManagerImpl.class);
+		bind(VineEventsManager.class).to(VineEventsManagerImpl.class);
+		bind(YoutubeEventsManager.class).to(YoutubeEventsManagerImpl.class);
+		
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
+		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
+		bind(DistanceHelper.class);
+		
 		bind(DonationsManager.class).to(DonationsManagerImpl.class);
 		bind(StripeManager.class).to(StripeManagerImpl.class);
+		
 		bind(UsersManager.class).to(UsersManagerImpl.class);
 		bind(ApiTokensManager.class).to(ApiTokensManagerImpl.class);
 		bind(SecureTokenGenerator.class).to(SecureTokenGeneratorImpl.class);
 		bind(FacebookClient.class).to(FacebookClientImpl.class);
 		bind(Authenticator.class).to(ApiTokenAuthenticator.class);
-		bind(DistanceHelper.class);
 	}
 	
 	@Provides
@@ -193,6 +225,48 @@ public class ServiceModule extends AbstractModule {
         DonationsDAO dao = dbi.onDemand(DonationsDAO.class);
         dao.conn = this.getJDBCHandler(null);
         return dao;
+	}
+	
+	@Provides
+	public EventsDAO provideEventsDAO(Connection conn) {
+		EventsDAO dao = dbi.onDemand(EventsDAO.class);
+        dao.conn = this.getJDBCHandler(null);
+        return dao;
+	}
+	
+	@Provides
+	public YoutubeEventsDAO provideYoutubeEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(YoutubeEventsDAO.class);
+	}
+	
+	@Provides
+	public DonateEventsDAO provideDonateEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(DonateEventsDAO.class);
+	}
+	
+	@Provides
+	public LinkEventsDAO provideLinkEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(LinkEventsDAO.class);
+	}
+	
+	@Provides
+	public TwitterEventsDAO provideTwitterEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(TwitterEventsDAO.class);
+	}
+	
+	@Provides
+	public FacebookEventsDAO provideFacebookEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(FacebookEventsDAO.class);
+	}
+	
+	@Provides
+	public InstagramEventsDAO provideInstagramEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(InstagramEventsDAO.class);
+	}
+	
+	@Provides
+	public VineEventsDAO provideVineEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(VineEventsDAO.class);
 	}
 	
 	@Provides

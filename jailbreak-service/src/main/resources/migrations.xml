@@ -152,5 +152,133 @@
     		<column name="last_checkin_id" type="int" />
     	</addColumn>
     </changeSet>
+    <changeSet id="11" author="kbaker">
+    	<!--  Main Events Stream Table -->
+    	<createTable tableName="events">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="smallint">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="object_id" type="int">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="time" type="bigint"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    	<createIndex indexName="idx_team_id" tableName="events">
+	        <column name="team_id" type="int"/>
+	    </createIndex>
+	    <createIndex indexName="idx_event_time" tableName="events">
+	        <column name="time" type="bigint"/>
+	    </createIndex>
+	   <!-- Link Table -->
+	   <createTable tableName="events_link">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="url" type="text">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="link_text" type="varchar(50)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="photo_url" type="text"/>
+    	</createTable>
+    	<!-- Donate Table -->
+	    <createTable tableName="events_donate">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="link_text" type="varchar(50)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    	<!-- Twitter Table -->
+	    <createTable tableName="events_twitter">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="tweet_id" type="bigint">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="tweet" type="varchar(255)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="tweet_html" type="text"/>
+            <column name="time" type="bigint"/>
+            <column name="photo_url" type="text"/>
+            <column name="in_reply_to" type="varchar(50)"/>
+            <column name="twitter_user_id" type="int"/>
+            <column name="twitter_user_name" type="varchar(50)"/>
+            <column name="twitter_user_photo" type="text"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    	<!-- Twitter Table -->
+	    <createTable tableName="events_facebook">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="facebook_id" type="varchar(100)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="url" type="text"/>
+            <column name="message" type="text"/>
+            <column name="link_url" type="text"/>
+            <column name="photo_url" type="text"/>
+            <column name="time" type="bigint"/>
+            <column name="page_name" type="varchar(100)"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    	<!-- Vine Table -->
+	    <createTable tableName="events_vine">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="url" type="text"/>
+            <column name="thumbnail_url" type="text"/>
+            <column name="iframe_html" type="text"/>
+            <column name="author_name" type="varchar(100)"/>
+            <column name="author_url" type="text"/>
+            <column name="author_photo_url" type="text"/>
+            <column name="time" type="bigint"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    	<!-- Instagram Table -->
+	    <createTable tableName="events_instagram">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="instagram_id" type="varchar(100)"/>
+            <column name="description" type="text"/>
+            <column name="url" type="text"/>
+            <column name="thumbnail_url" type="text"/>
+            <column name="author_name" type="varchar(100)"/>
+            <column name="author_url" type="text"/>
+            <column name="author_photo_url" type="text"/>
+            <column name="time" type="bigint"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    </changeSet>
+    <changeSet id="12" author="kbaker">
+    	<createTable tableName="events_youtube">
+    		<column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)"/>
+            <column name="description" type="text"/>
+            <column name="url" type="text"/>
+            <column name="thumbnail_url" type="text"/>
+            <column name="iframe_html" type="text"/>
+            <column name="author_name" type="varchar(100)"/>
+            <column name="author_url" type="text"/>
+            <column name="team_id" type="int"/>
+    	</createTable>
+    </changeSet>
     
 </databaseChangeLog>

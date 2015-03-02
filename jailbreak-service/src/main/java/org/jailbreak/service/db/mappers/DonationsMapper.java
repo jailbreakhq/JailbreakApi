@@ -21,10 +21,13 @@ public class DonationsMapper implements ResultSetMapper<Donation> {
 		
 		Donation.Builder builder = Donation.newBuilder()
 				.setId(id)
-				.setTeamId(team_id)
 				.setAmount(amount)
 				.setTime(time)
 				.setType(type);
+		
+		if (team_id != 0) {
+			builder.setTeamId(team_id);
+		}
 		
 		if (name != null) {
 			builder.setName(name);
