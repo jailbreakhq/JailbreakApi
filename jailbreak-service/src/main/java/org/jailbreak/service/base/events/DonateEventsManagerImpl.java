@@ -1,11 +1,11 @@
-package org.jailbreak.service.base;
+package org.jailbreak.service.base.events;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Donate;
-import org.jailbreak.service.core.DonateEventsManager;
+import org.jailbreak.service.core.events.DonateEventsManager;
 import org.jailbreak.service.db.dao.events.DonateEventsDAO;
 
 import com.google.common.base.Optional;

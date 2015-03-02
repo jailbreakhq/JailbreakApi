@@ -1,4 +1,4 @@
-package org.jailbreak.service.base;
+package org.jailbreak.service.base.events;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -16,11 +16,11 @@ import org.jailbreak.api.representations.Representations.Event.EventType;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.service.core.CheckinsManager;
-import org.jailbreak.service.core.DonateEventsManager;
-import org.jailbreak.service.core.EventsManager;
-import org.jailbreak.service.core.LinkEventsManager;
 import org.jailbreak.service.core.TeamsManager;
-import org.jailbreak.service.core.YoutubeEventsManager;
+import org.jailbreak.service.core.events.DonateEventsManager;
+import org.jailbreak.service.core.events.EventsManager;
+import org.jailbreak.service.core.events.LinkEventsManager;
+import org.jailbreak.service.core.events.YoutubeEventsManager;
 import org.jailbreak.service.db.dao.events.EventsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;

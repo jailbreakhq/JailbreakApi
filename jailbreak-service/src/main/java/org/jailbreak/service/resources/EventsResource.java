@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.jailbreak.api.representations.Representations.Event;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
-import org.jailbreak.service.core.EventsManager;
+import org.jailbreak.service.core.events.EventsManager;
 import org.jailbreak.service.errors.ApiDocs;
 
 import com.google.common.base.Optional;

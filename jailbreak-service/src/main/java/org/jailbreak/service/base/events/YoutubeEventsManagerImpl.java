@@ -1,11 +1,11 @@
-package org.jailbreak.service.base;
+package org.jailbreak.service.base.events;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Youtube;
-import org.jailbreak.service.core.YoutubeEventsManager;
+import org.jailbreak.service.core.events.YoutubeEventsManager;
 import org.jailbreak.service.db.dao.events.YoutubeEventsDAO;
 
 import com.google.common.base.Optional;

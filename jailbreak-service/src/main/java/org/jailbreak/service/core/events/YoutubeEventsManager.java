@@ -1,4 +1,4 @@
-package org.jailbreak.service.core;
+package org.jailbreak.service.core.events;
 
 
 import java.util.HashMap;
