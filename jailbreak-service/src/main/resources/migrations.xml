@@ -266,7 +266,7 @@
     	</createTable>
     </changeSet>
     <changeSet id="12" author="kbaker">
-    	<createTable tableName="events_instagram">
+    	<createTable tableName="events_youtube">
     		<column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
