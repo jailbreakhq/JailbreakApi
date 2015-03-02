@@ -9,4 +9,6 @@ public interface EventsManager {
 	
 	public List<Event> getEvents(int limit, EventsFilters filters);
 
+	public List<Event> filterPrivateFields(List<Event> events);
+
 }

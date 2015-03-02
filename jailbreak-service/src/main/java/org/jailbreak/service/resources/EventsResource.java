@@ -41,7 +41,7 @@ public class EventsResource {
 		
 		EventsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, EventsFilters.class, EventsFilters.newBuilder().build(), ApiDocs.EVENTS_FILTERS);
 		
-		return this.manager.getEvents(limit, filters);
+		return manager.filterPrivateFields(manager.getEvents(limit, filters));
 	}
 
 }

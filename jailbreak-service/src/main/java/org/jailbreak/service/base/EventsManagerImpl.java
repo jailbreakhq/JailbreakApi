@@ -9,6 +9,7 @@ import org.jailbreak.service.core.EventsManager;
 import org.jailbreak.service.db.EventsDAO;
 import org.jailbreak.service.errors.AppException;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 public class EventsManagerImpl implements EventsManager {
@@ -27,6 +28,19 @@ public class EventsManagerImpl implements EventsManager {
 		} catch (SQLException e) {
 			throw new AppException("Database error retrieving events", e);
 		}
+	}
+	
+	@Override
+	public List<Event> filterPrivateFields(List<Event> events) {
+		List<Event> filtered = Lists.newArrayListWithCapacity(events.size());
+		for (Event event : events) {
+			Event.Builder builder = event.toBuilder();
+			
+			builder.clearObjectId();
+			
+			filtered.add(builder.build());
+		}
+		return filtered;
 	}
 
 }
