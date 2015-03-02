@@ -249,7 +249,7 @@
             <column name="time" type="bigint"/>
             <column name="team_id" type="int"/>
     	</createTable>
-    	<!-- Vine Table -->
+    	<!-- Instagram Table -->
 	    <createTable tableName="events_instagram">
     		<column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
