@@ -1,6 +1,7 @@
 package org.jailbreak.service.db;
 
 import java.util.List;
+import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.service.db.mappers.CheckinsMapper;
@@ -28,7 +29,7 @@ public interface CheckinsDAO {
 	Optional<Checkin> getCheckin(@Bind("id") int id);
 	
 	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE id = ANY (:idList)")
-	List<Checkin> getCheckins(@BindIds List<Integer> ids);
+	List<Checkin> getCheckins(@BindIds Set<Integer> ids);
 	
 	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE team_id = :team_id AND id = :id")
 	@SingleValueResult(Checkin.class)

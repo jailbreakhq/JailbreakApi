@@ -1,6 +1,8 @@
 package org.jailbreak.service.core;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 
@@ -12,7 +14,7 @@ public interface CheckinsManager {
 	Optional<Checkin> updateCheckin(Checkin checkin);
 	
 	Optional<Checkin> getCheckin(int id);
-	List<Checkin> getCheckins(List<Integer> ids);
+	HashMap<Integer, Checkin> getCheckins(Set<Integer> ids);
 	
 	Optional<Checkin> getTeamCheckin(int teamId, int id);
 	Optional<Checkin> getLastTeamCheckin(int teamId);
