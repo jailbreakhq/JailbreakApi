@@ -58,14 +58,9 @@ public abstract class DonationsDAO {
 		
 		LOG.debug("getFilteredDonations SQL: " + queryString);
 		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			List<Donation> results = query.executeQuery(new DonationsMapper());
-			return results;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations: " + e.getMessage());
-			throw e;
-		}
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		List<Donation> results = query.executeQuery(new DonationsMapper());
+		return results;
 	}
 	
 	public int countFilteredDonations(DonationsFilters filters) throws SQLException {
@@ -77,14 +72,9 @@ public abstract class DonationsDAO {
 		
 		LOG.debug("countFilteredDonations SQL: " + queryString);
 		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			Integer count = query.executeQuery(new RowCountMapper()).get(0);
-			return count;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query countFilteredDonations: " + e.getMessage());
-			throw e;
-		}
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		Integer count = query.executeQuery(new RowCountMapper()).get(0);
+		return count;
 	}
 	
 	private SimplestSqlBuilder applyWhereFilters(DonationsFilters filters, Map<String, Object> bindParams) {

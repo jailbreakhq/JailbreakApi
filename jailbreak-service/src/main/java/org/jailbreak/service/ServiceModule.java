@@ -36,6 +36,7 @@ import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
 import org.jailbreak.service.db.DonationsDAO;
+import org.jailbreak.service.db.EventsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
@@ -191,6 +192,13 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public DonationsDAO provideDonationsDAO(Connection conn) {
         DonationsDAO dao = dbi.onDemand(DonationsDAO.class);
+        dao.conn = this.getJDBCHandler(null);
+        return dao;
+	}
+	
+	@Provides
+	public EventsDAO provideEventsDAO(Connection conn) {
+		EventsDAO dao = dbi.onDemand(EventsDAO.class);
         dao.conn = this.getJDBCHandler(null);
         return dao;
 	}
