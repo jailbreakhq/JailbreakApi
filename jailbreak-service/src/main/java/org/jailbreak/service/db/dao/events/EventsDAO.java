@@ -1,4 +1,4 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao.events;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,9 +7,11 @@ import java.util.Map;
 
 import org.jailbreak.api.representations.Representations.Event;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
+import org.jailbreak.service.db.ManualStatement;
+import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
-import org.jailbreak.service.db.mappers.EventsMapper;
 import org.jailbreak.service.db.mappers.RowCountMapper;
+import org.jailbreak.service.db.mappers.events.EventsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;

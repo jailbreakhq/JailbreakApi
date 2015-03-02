@@ -1,10 +1,11 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao.events;
 
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Donate;
-import org.jailbreak.service.db.mappers.DonateEventsMapper;
+import org.jailbreak.service.db.BindIds;
+import org.jailbreak.service.db.mappers.events.DonateEventsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;

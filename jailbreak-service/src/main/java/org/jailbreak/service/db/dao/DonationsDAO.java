@@ -1,4 +1,4 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
+import org.jailbreak.service.db.BindProtobuf;
+import org.jailbreak.service.db.ManualStatement;
+import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.DonationsMapper;
 import org.jailbreak.service.db.mappers.RowCountMapper;

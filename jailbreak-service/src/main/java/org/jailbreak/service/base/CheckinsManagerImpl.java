@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.service.core.CheckinsManager;
-import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.dao.CheckinsDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 
 import com.google.common.base.Optional;

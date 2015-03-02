@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Donate;
 import org.jailbreak.service.core.DonateEventsManager;
-import org.jailbreak.service.db.DonateEventsDAO;
+import org.jailbreak.service.db.dao.events.DonateEventsDAO;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;

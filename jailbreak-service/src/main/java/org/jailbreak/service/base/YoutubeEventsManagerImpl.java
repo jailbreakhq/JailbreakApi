@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Youtube;
 import org.jailbreak.service.core.YoutubeEventsManager;
-import org.jailbreak.service.db.YoutubeEventsDAO;
+import org.jailbreak.service.db.dao.events.YoutubeEventsDAO;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

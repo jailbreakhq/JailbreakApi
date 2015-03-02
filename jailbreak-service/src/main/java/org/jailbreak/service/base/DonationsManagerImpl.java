@@ -11,7 +11,7 @@ import org.jailbreak.api.representations.Representations.Donation.DonationType;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.TeamsManager;
-import org.jailbreak.service.db.DonationsDAO;
+import org.jailbreak.service.db.dao.DonationsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

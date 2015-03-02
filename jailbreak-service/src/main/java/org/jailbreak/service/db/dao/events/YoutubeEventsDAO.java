@@ -1,10 +1,11 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao.events;
 
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Youtube;
-import org.jailbreak.service.db.mappers.YoutubeEventsMapper;
+import org.jailbreak.service.db.BindIds;
+import org.jailbreak.service.db.mappers.events.YoutubeEventsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;

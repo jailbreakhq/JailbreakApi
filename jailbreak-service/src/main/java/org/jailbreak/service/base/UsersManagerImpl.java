@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.core.UsersManager;
-import org.jailbreak.service.db.UsersDAO;
+import org.jailbreak.service.db.dao.UsersDAO;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

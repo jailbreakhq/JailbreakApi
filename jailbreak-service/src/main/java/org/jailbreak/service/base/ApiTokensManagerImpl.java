@@ -6,7 +6,7 @@ import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.client.FacebookClient;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.UsersManager;
-import org.jailbreak.service.db.ApiTokensDAO;
+import org.jailbreak.service.db.dao.ApiTokensDAO;
 import org.jailbreak.service.errors.auth.ApiTokenExpiredException;
 
 import com.google.common.base.Optional;

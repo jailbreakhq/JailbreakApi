@@ -1,4 +1,4 @@
-package org.jailbreak.service.db.mappers;
+package org.jailbreak.service.db.mappers.events;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

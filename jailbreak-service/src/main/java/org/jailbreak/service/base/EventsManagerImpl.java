@@ -21,7 +21,7 @@ import org.jailbreak.service.core.EventsManager;
 import org.jailbreak.service.core.LinkEventsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.YoutubeEventsManager;
-import org.jailbreak.service.db.EventsDAO;
+import org.jailbreak.service.db.dao.events.EventsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Link;
 import org.jailbreak.service.core.LinkEventsManager;
-import org.jailbreak.service.db.LinkEventsDAO;
+import org.jailbreak.service.db.dao.events.LinkEventsDAO;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;

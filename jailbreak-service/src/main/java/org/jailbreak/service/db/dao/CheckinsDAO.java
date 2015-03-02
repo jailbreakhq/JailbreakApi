@@ -1,9 +1,11 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.service.db.BindIds;
+import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.mappers.CheckinsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;

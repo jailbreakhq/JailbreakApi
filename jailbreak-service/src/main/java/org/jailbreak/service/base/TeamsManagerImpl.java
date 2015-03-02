@@ -10,7 +10,7 @@ import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.TeamsManager;
-import org.jailbreak.service.db.TeamsDAO;
+import org.jailbreak.service.db.dao.TeamsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.jailbreak.service.helpers.DistanceHelper;
 

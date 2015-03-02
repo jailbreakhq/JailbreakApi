@@ -1,4 +1,4 @@
-package org.jailbreak.service.db;
+package org.jailbreak.service.db.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,6 +8,10 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
+import org.jailbreak.service.db.BindIds;
+import org.jailbreak.service.db.BindProtobuf;
+import org.jailbreak.service.db.ManualStatement;
+import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.TeamsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
