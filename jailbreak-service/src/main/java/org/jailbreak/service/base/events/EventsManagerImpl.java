@@ -114,7 +114,7 @@ public class EventsManagerImpl implements EventsManager {
 		HashMap<Integer, Team> teamsMap = teamsManager.getLimitedTeams(getTeamIds(events));
 		List<Event> finalEvents = Lists.newArrayListWithCapacity(events.size());
 		
-		LOG.info("Annotating " + events.size() + " events with the data from " + teamsMap.size() + " teams.");
+		LOG.debug("Annotating " + events.size() + " events with the data from " + teamsMap.size() + " teams.");
 		
 		for (Event.Builder event : builders) {
 			if (event.hasTeamId()) {
@@ -186,7 +186,7 @@ public class EventsManagerImpl implements EventsManager {
 	}
 	
 	private List<Event.Builder> annotateEventsObjects(List<Event> events) {
-		LOG.info("Annotating " + events.size() + " events with their full object data");
+		LOG.debug("Annotating " + events.size() + " events with their full object data");
 		
 		HashMap<Integer, Checkin> checkins = checkinsManager.getCheckins(getObjectIds(events, EventType.CHECKIN));
 		HashMap<Integer, Donate> donates = donatesManager.getDonateEvents(getObjectIds(events, EventType.DONATE));
