@@ -125,7 +125,7 @@ message Link {
 	optional string url = 2;
 	optional string link_text = 3;
 	optional string description = 4;
-	optional string photoUrl = 5;
+	optional string photo_url = 5;
 }
 
 message Donate {

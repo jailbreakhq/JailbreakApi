@@ -10448,15 +10448,15 @@ public final class Representations {
         getDescriptionBytes();
 
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     boolean hasPhotoUrl();
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     java.lang.String getPhotoUrl();
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     com.google.protobuf.ByteString
         getPhotoUrlBytes();
@@ -10723,16 +10723,16 @@ public final class Representations {
       }
     }
 
-    public static final int PHOTOURL_FIELD_NUMBER = 5;
+    public static final int PHOTO_URL_FIELD_NUMBER = 5;
     private java.lang.Object photoUrl_;
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     public boolean hasPhotoUrl() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     public java.lang.String getPhotoUrl() {
       java.lang.Object ref = photoUrl_;
@@ -10749,7 +10749,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string photoUrl = 5;</code>
+     * <code>optional string photo_url = 5;</code>
      */
     public com.google.protobuf.ByteString
         getPhotoUrlBytes() {
@@ -11332,13 +11332,13 @@ public final class Representations {
 
       private java.lang.Object photoUrl_ = "";
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public boolean hasPhotoUrl() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public java.lang.String getPhotoUrl() {
         java.lang.Object ref = photoUrl_;
@@ -11355,7 +11355,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public com.google.protobuf.ByteString
           getPhotoUrlBytes() {
@@ -11371,7 +11371,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public Builder setPhotoUrl(
           java.lang.String value) {
@@ -11384,7 +11384,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public Builder clearPhotoUrl() {
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -11393,7 +11393,7 @@ public final class Representations {
         return this;
       }
       /**
-       * <code>optional string photoUrl = 5;</code>
+       * <code>optional string photo_url = 5;</code>
        */
       public Builder setPhotoUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -27469,71 +27469,71 @@ public final class Representations {
       "\010after_id\030\003 \001(\005\022\017\n\007team_id\030\004 \001(\005\"o\n\tEven" +
       "tType\022\010\n\004LINK\020\000\022\013\n\007CHECKIN\020\001\022\n\n\006DONATE\020\002",
       "\022\013\n\007TWITTER\020\003\022\014\n\010FACEBOOK\020\004\022\010\n\004VINE\020\005\022\r\n" +
-      "\tINSTAGRAM\020\006\022\013\n\007YOUTUBE\020\007\"Y\n\004Link\022\n\n\002id\030" +
+      "\tINSTAGRAM\020\006\022\013\n\007YOUTUBE\020\007\"Z\n\004Link\022\n\n\002id\030" +
       "\001 \001(\005\022\013\n\003url\030\002 \001(\t\022\021\n\tlink_text\030\003 \001(\t\022\023\n" +
-      "\013description\030\004 \001(\t\022\020\n\010photoUrl\030\005 \001(\t\"\204\001\n" +
-      "\006Donate\022\n\n\002id\030\001 \001(\005\022\021\n\tlink_text\030\002 \001(\t\022\023" +
-      "\n\013description\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n\004" +
-      "team\030\005 \001(\0132\'.org.jailbreak.api.represent" +
-      "ations.Team\"\230\002\n\007Twitter\022\n\n\002id\030\001 \001(\005\022\020\n\010t" +
-      "weet_id\030\002 \001(\003\022\r\n\005tweet\030\003 \001(\t\022\022\n\ntweet_ht" +
-      "ml\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022\021\n\tphoto_url\030\006 \001(",
-      "\t\022\023\n\013in_reply_to\030\007 \001(\t\022\027\n\017twitter_user_i" +
-      "d\030\010 \001(\005\022\031\n\021twitter_user_name\030\t \001(\t\022\032\n\022tw" +
-      "itter_user_photo\030\n \001(\t\022\017\n\007team_id\030\013 \001(\005\022" +
-      "5\n\004team\030\014 \001(\0132\'.org.jailbreak.api.repres" +
-      "entations.Team\"\327\001\n\010Facebook\022\n\n\002id\030\001 \001(\005\022" +
-      "\023\n\013facebook_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\017\n\007mes" +
-      "sage\030\004 \001(\t\022\020\n\010link_url\030\005 \001(\t\022\021\n\tphoto_ur" +
-      "l\030\006 \001(\t\022\014\n\004time\030\007 \001(\003\022\021\n\tpage_name\030\010 \001(\t" +
-      "\022\017\n\007team_id\030\t \001(\005\0225\n\004team\030\n \001(\0132\'.org.ja" +
-      "ilbreak.api.representations.Team\"\371\001\n\004Vin",
-      "e\022\n\n\002id\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\022\013\n\003ur" +
-      "l\030\003 \001(\t\022\025\n\rthumbnail_url\030\004 \001(\t\022\023\n\013iframe" +
-      "_html\030\005 \001(\t\022\023\n\013author_name\030\006 \001(\t\022\022\n\nauth" +
-      "or_url\030\007 \001(\t\022\030\n\020author_photo_url\030\010 \001(\t\022\014" +
-      "\n\004time\030\t \001(\003\022\017\n\007team_id\030\n \001(\005\0225\n\004team\030\013 " +
-      "\001(\0132\'.org.jailbreak.api.representations." +
-      "Team\"\377\001\n\tInstagram\022\n\n\002id\030\001 \001(\005\022\024\n\014instag" +
-      "ram_id\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\013\n\003url" +
-      "\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n\013author_" +
-      "name\030\006 \001(\t\022\022\n\nauthor_url\030\007 \001(\t\022\030\n\020author",
-      "_photo_url\030\010 \001(\t\022\014\n\004time\030\t \001(\003\022\017\n\007team_i" +
-      "d\030\n \001(\005\0225\n\004team\030\013 \001(\0132\'.org.jailbreak.ap" +
-      "i.representations.Team\"\343\001\n\007Youtube\022\n\n\002id" +
-      "\030\001 \001(\005\022\r\n\005title\030\002 \001(\t\022\023\n\013description\030\003 \001" +
-      "(\t\022\013\n\003url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023" +
-      "\n\013iframe_html\030\006 \001(\t\022\023\n\013author_name\030\007 \001(\t" +
-      "\022\022\n\nauthor_url\030\010 \001(\t\022\017\n\007team_id\030\n \001(\005\0225\n" +
-      "\004team\030\013 \001(\0132\'.org.jailbreak.api.represen" +
-      "tations.Team\"\213\003\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n" +
-      "\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004",
-      " \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.j" +
+      "\013description\030\004 \001(\t\022\021\n\tphoto_url\030\005 \001(\t\"\204\001" +
+      "\n\006Donate\022\n\n\002id\030\001 \001(\005\022\021\n\tlink_text\030\002 \001(\t\022" +
+      "\023\n\013description\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n" +
+      "\004team\030\005 \001(\0132\'.org.jailbreak.api.represen" +
+      "tations.Team\"\230\002\n\007Twitter\022\n\n\002id\030\001 \001(\005\022\020\n\010" +
+      "tweet_id\030\002 \001(\003\022\r\n\005tweet\030\003 \001(\t\022\022\n\ntweet_h" +
+      "tml\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022\021\n\tphoto_url\030\006 \001",
+      "(\t\022\023\n\013in_reply_to\030\007 \001(\t\022\027\n\017twitter_user_" +
+      "id\030\010 \001(\005\022\031\n\021twitter_user_name\030\t \001(\t\022\032\n\022t" +
+      "witter_user_photo\030\n \001(\t\022\017\n\007team_id\030\013 \001(\005" +
+      "\0225\n\004team\030\014 \001(\0132\'.org.jailbreak.api.repre" +
+      "sentations.Team\"\327\001\n\010Facebook\022\n\n\002id\030\001 \001(\005" +
+      "\022\023\n\013facebook_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\017\n\007me" +
+      "ssage\030\004 \001(\t\022\020\n\010link_url\030\005 \001(\t\022\021\n\tphoto_u" +
+      "rl\030\006 \001(\t\022\014\n\004time\030\007 \001(\003\022\021\n\tpage_name\030\010 \001(" +
+      "\t\022\017\n\007team_id\030\t \001(\005\0225\n\004team\030\n \001(\0132\'.org.j" +
+      "ailbreak.api.representations.Team\"\371\001\n\004Vi",
+      "ne\022\n\n\002id\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\022\013\n\003u" +
+      "rl\030\003 \001(\t\022\025\n\rthumbnail_url\030\004 \001(\t\022\023\n\013ifram" +
+      "e_html\030\005 \001(\t\022\023\n\013author_name\030\006 \001(\t\022\022\n\naut" +
+      "hor_url\030\007 \001(\t\022\030\n\020author_photo_url\030\010 \001(\t\022" +
+      "\014\n\004time\030\t \001(\003\022\017\n\007team_id\030\n \001(\005\0225\n\004team\030\013" +
+      " \001(\0132\'.org.jailbreak.api.representations" +
+      ".Team\"\377\001\n\tInstagram\022\n\n\002id\030\001 \001(\005\022\024\n\014insta" +
+      "gram_id\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\013\n\003ur" +
+      "l\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n\013author" +
+      "_name\030\006 \001(\t\022\022\n\nauthor_url\030\007 \001(\t\022\030\n\020autho",
+      "r_photo_url\030\010 \001(\t\022\014\n\004time\030\t \001(\003\022\017\n\007team_" +
+      "id\030\n \001(\005\0225\n\004team\030\013 \001(\0132\'.org.jailbreak.a" +
+      "pi.representations.Team\"\343\001\n\007Youtube\022\n\n\002i" +
+      "d\030\001 \001(\005\022\r\n\005title\030\002 \001(\t\022\023\n\013description\030\003 " +
+      "\001(\t\022\013\n\003url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022" +
+      "\023\n\013iframe_html\030\006 \001(\t\022\023\n\013author_name\030\007 \001(" +
+      "\t\022\022\n\nauthor_url\030\010 \001(\t\022\017\n\007team_id\030\n \001(\005\0225" +
+      "\n\004team\030\013 \001(\0132\'.org.jailbreak.api.represe" +
+      "ntations.Team\"\213\003\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017" +
+      "\n\007team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030",
+      "\004 \001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org." +
+      "jailbreak.api.representations.Donation.D" +
+      "onationType\022\r\n\005email\030\007 \001(\t\0225\n\004team\030\010 \001(\013" +
+      "2\'.org.jailbreak.api.representations.Tea" +
+      "m\032\177\n\020DonationsFilters\022\017\n\007team_id\030\001 \001(\005\022\022" +
+      "\n\nsince_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.j" +
       "ailbreak.api.representations.Donation.Do" +
-      "nationType\022\r\n\005email\030\007 \001(\t\0225\n\004team\030\010 \001(\0132" +
-      "\'.org.jailbreak.api.representations.Team" +
-      "\032\177\n\020DonationsFilters\022\017\n\007team_id\030\001 \001(\005\022\022\n" +
-      "\nsince_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.ja" +
-      "ilbreak.api.representations.Donation.Don" +
-      "ationType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n" +
-      "\n\006ONLINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005tok" +
-      "en\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001(",
-      "\005\022\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backer" +
-      "\030\006 \001(\010\":\n\021FacebookAuthToken\022\024\n\014access_to" +
-      "ken\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021" +
-      "\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007ex" +
-      "pires\030\003 \001(\003\"\247\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024\n" +
-      "\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\0162" +
-      "1.org.jailbreak.api.representations.User" +
-      ".UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name\030" +
-      "\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(\016" +
-      "2..org.jailbreak.api.representations.Use",
-      "r.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t \001" +
-      "(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens_" +
-      "url\030\013 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022\t" +
-      "\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Ge" +
-      "nder\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B" +
-      "\017Representations"
+      "nationType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022" +
+      "\n\n\006ONLINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005to" +
+      "ken\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001",
+      "(\005\022\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backe" +
+      "r\030\006 \001(\010\":\n\021FacebookAuthToken\022\024\n\014access_t" +
+      "oken\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022" +
+      "\021\n\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007e" +
+      "xpires\030\003 \001(\003\"\247\003\n\004User\022\017\n\007user_id\030\001 \001(\003\022\024" +
+      "\n\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003 \001(\016" +
+      "21.org.jailbreak.api.representations.Use" +
+      "r.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_name" +
+      "\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007 \001(" +
+      "\0162..org.jailbreak.api.representations.Us",
+      "er.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale\030\t " +
+      "\001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tokens" +
+      "_url\030\013 \001(\t\"?\n\tUserLevel\022\016\n\nSUPERADMIN\020\000\022" +
+      "\t\n\005ADMIN\020\001\022\013\n\007TRACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006G" +
+      "ender\022\010\n\004MALE\020\000\022\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021" +
+      "B\017Representations"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
