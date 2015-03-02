@@ -97,6 +97,9 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public HashMap<Integer, Team> getLimitedTeams(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMap();
+		}
 		List<Team> teams = dao.getLimitedTeams(ids);
 		HashMap<Integer, Team> map = Maps.newHashMapWithExpectedSize(teams.size());
 		

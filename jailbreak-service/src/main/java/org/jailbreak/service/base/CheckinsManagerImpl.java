@@ -49,6 +49,10 @@ public class CheckinsManagerImpl implements CheckinsManager {
 	
 	@Override
 	public HashMap<Integer, Checkin> getCheckins(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMap();
+		}
+		
 		List<Checkin> checkins = this.addDistanceToX(this.dao.getCheckins(ids));
 		
 		HashMap<Integer, Checkin> map = Maps.newHashMap();
