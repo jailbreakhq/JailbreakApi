@@ -12,8 +12,6 @@ import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.jailbreak.service.helpers.DistanceHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.slugify.Slugify;
 import com.google.common.base.Optional;
@@ -30,7 +28,6 @@ public class TeamsManagerImpl implements TeamsManager {
 	private final DistanceHelper distanceHelper;
 	private final double startLat;
 	private final double startLon;
-	private final Logger LOG = LoggerFactory.getLogger(TeamsManagerImpl.class);
 	
 	@Inject
 	public TeamsManagerImpl(TeamsDAO dao,
@@ -152,7 +149,6 @@ public class TeamsManagerImpl implements TeamsManager {
 		
 		HashMap<Integer, Checkin> map = Maps.newHashMap();
 		for (Checkin checkin : checkins) {
-			LOG.info("Adding checkin " + checkin.getId());
 			map.put(checkin.getId(), checkin);
 		}
 		

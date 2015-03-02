@@ -111,9 +111,9 @@ message Event {
 	
 	message EventsFilters {
 		optional EventType type = 1;
-		optional int32 beforeId = 2;
-		optional int32 afterId = 3;
-		optional int32 teamId = 4;
+		optional int32 before_id = 2;
+		optional int32 after_id = 3;
+		optional int32 team_id = 4;
 	}
 }
 
