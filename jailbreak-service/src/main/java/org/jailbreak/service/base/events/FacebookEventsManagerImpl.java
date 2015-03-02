@@ -28,6 +28,10 @@ public class FacebookEventsManagerImpl implements FacebookEventsManager {
 
 	@Override
 	public HashMap<Integer, Facebook> getFacebookEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Facebook> map = Maps.newHashMap();
 		List<Facebook> Facebooks = dao.getFacebookEvents(ids);
 		for(Facebook Facebook : Facebooks) {

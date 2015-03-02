@@ -28,6 +28,10 @@ public class YoutubeEventsManagerImpl implements YoutubeEventsManager {
 
 	@Override
 	public HashMap<Integer, Youtube> getYoutubeEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Youtube> map = Maps.newHashMap();
 		List<Youtube> youtubes = dao.getYoutubes(ids);
 		for(Youtube youtube : youtubes) {

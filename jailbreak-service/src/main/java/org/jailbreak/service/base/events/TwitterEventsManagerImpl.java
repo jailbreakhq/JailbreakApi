@@ -28,6 +28,10 @@ public class TwitterEventsManagerImpl implements TwitterEventsManager {
 
 	@Override
 	public HashMap<Integer, Twitter> getTwitterEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Twitter> map = Maps.newHashMap();
 		List<Twitter> Twitters = dao.getTwitterEvents(ids);
 		for(Twitter Twitter : Twitters) {

@@ -28,6 +28,10 @@ public class DonateEventsManagerImpl implements DonateEventsManager {
 
 	@Override
 	public HashMap<Integer, Donate> getDonateEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		List<Donate> ds = dao.getDonateEvents(ids);
 		HashMap<Integer, Donate> map = Maps.newHashMap();
 		for (Donate d : ds) {

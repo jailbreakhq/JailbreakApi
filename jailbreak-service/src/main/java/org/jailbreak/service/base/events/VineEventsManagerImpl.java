@@ -28,6 +28,10 @@ public class VineEventsManagerImpl implements VineEventsManager {
 
 	@Override
 	public HashMap<Integer, Vine> getVineEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Vine> map = Maps.newHashMap();
 		List<Vine> Vines = dao.getVines(ids);
 		for(Vine Vine : Vines) {

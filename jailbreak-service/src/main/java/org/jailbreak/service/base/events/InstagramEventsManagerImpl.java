@@ -28,6 +28,10 @@ public class InstagramEventsManagerImpl implements InstagramEventsManager {
 
 	@Override
 	public HashMap<Integer, Instagram> getInstagramEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Instagram> map = Maps.newHashMap();
 		List<Instagram> Instagrams = dao.getInstagrams(ids);
 		for(Instagram Instagram : Instagrams) {

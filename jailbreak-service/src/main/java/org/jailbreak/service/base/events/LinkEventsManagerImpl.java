@@ -28,6 +28,10 @@ public class LinkEventsManagerImpl implements LinkEventsManager {
 
 	@Override
 	public HashMap<Integer, Link> getLinkEvents(Set<Integer> ids) {
+		if (ids.isEmpty()) {
+			return Maps.newHashMapWithExpectedSize(0);
+		}
+		
 		HashMap<Integer, Link> map = Maps.newHashMap();
 		List<Link> links = dao.getLinks(ids);
 		for(Link link : links) {
