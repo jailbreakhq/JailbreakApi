@@ -22,12 +22,12 @@ public class YoutubeEventsManagerImpl implements YoutubeEventsManager {
 	}
 
 	@Override
-	public Optional<Youtube> getYoutube(int id) {
+	public Optional<Youtube> getYoutubeEvent(int id) {
 		return dao.getYoutube(id);
 	}
 
 	@Override
-	public HashMap<Integer, Youtube> getYoutubes(Set<Integer> ids) {
+	public HashMap<Integer, Youtube> getYoutubeEvents(Set<Integer> ids) {
 		HashMap<Integer, Youtube> map = Maps.newHashMap();
 		List<Youtube> youtubes = dao.getYoutubes(ids);
 		for(Youtube youtube : youtubes) {

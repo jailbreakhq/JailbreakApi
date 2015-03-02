@@ -26,7 +26,11 @@ import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
 import org.jailbreak.service.base.events.DonateEventsManagerImpl;
 import org.jailbreak.service.base.events.EventsManagerImpl;
+import org.jailbreak.service.base.events.FacebookEventsManagerImpl;
+import org.jailbreak.service.base.events.InstagramEventsManagerImpl;
 import org.jailbreak.service.base.events.LinkEventsManagerImpl;
+import org.jailbreak.service.base.events.TwitterEventsManagerImpl;
+import org.jailbreak.service.base.events.VineEventsManagerImpl;
 import org.jailbreak.service.base.events.YoutubeEventsManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
@@ -37,7 +41,11 @@ import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.core.events.DonateEventsManager;
 import org.jailbreak.service.core.events.EventsManager;
+import org.jailbreak.service.core.events.FacebookEventsManager;
+import org.jailbreak.service.core.events.InstagramEventsManager;
 import org.jailbreak.service.core.events.LinkEventsManager;
+import org.jailbreak.service.core.events.TwitterEventsManager;
+import org.jailbreak.service.core.events.VineEventsManager;
 import org.jailbreak.service.core.events.YoutubeEventsManager;
 import org.jailbreak.service.db.dao.ApiTokensDAO;
 import org.jailbreak.service.db.dao.CheckinsDAO;
@@ -46,7 +54,11 @@ import org.jailbreak.service.db.dao.TeamsDAO;
 import org.jailbreak.service.db.dao.UsersDAO;
 import org.jailbreak.service.db.dao.events.DonateEventsDAO;
 import org.jailbreak.service.db.dao.events.EventsDAO;
+import org.jailbreak.service.db.dao.events.FacebookEventsDAO;
+import org.jailbreak.service.db.dao.events.InstagramEventsDAO;
 import org.jailbreak.service.db.dao.events.LinkEventsDAO;
+import org.jailbreak.service.db.dao.events.TwitterEventsDAO;
+import org.jailbreak.service.db.dao.events.VineEventsDAO;
 import org.jailbreak.service.db.dao.events.YoutubeEventsDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 import org.skife.jdbi.v2.DBI;
@@ -71,6 +83,10 @@ public class ServiceModule extends AbstractModule {
 		bind(EventsManager.class).to(EventsManagerImpl.class);
 		bind(LinkEventsManager.class).to(LinkEventsManagerImpl.class);
 		bind(DonateEventsManager.class).to(DonateEventsManagerImpl.class);
+		bind(TwitterEventsManager.class).to(TwitterEventsManagerImpl.class);
+		bind(FacebookEventsManager.class).to(FacebookEventsManagerImpl.class);
+		bind(InstagramEventsManager.class).to(InstagramEventsManagerImpl.class);
+		bind(VineEventsManager.class).to(VineEventsManagerImpl.class);
 		bind(YoutubeEventsManager.class).to(YoutubeEventsManagerImpl.class);
 		
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
@@ -231,6 +247,26 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	public LinkEventsDAO provideLinkEventsDAO(DBI jdbi) {
         return jdbi.onDemand(LinkEventsDAO.class);
+	}
+	
+	@Provides
+	public TwitterEventsDAO provideTwitterEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(TwitterEventsDAO.class);
+	}
+	
+	@Provides
+	public FacebookEventsDAO provideFacebookEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(FacebookEventsDAO.class);
+	}
+	
+	@Provides
+	public InstagramEventsDAO provideInstagramEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(InstagramEventsDAO.class);
+	}
+	
+	@Provides
+	public VineEventsDAO provideVineEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(VineEventsDAO.class);
 	}
 	
 	@Provides

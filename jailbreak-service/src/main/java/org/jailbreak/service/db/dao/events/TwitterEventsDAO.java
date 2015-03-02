@@ -18,7 +18,7 @@ public interface TwitterEventsDAO {
 	
 	@SqlQuery("SELECT * FROM events_twitter WHERE AND id = :id")
 	@SingleValueResult(Twitter.class)
-	Optional<Twitter> getTwitterEvents(@Bind("id") int id);
+	Optional<Twitter> getTwitterEvent(@Bind("id") int id);
 	
 	@SqlQuery("SELECT * FROM events_twitter WHERE id = ANY (:idList)")
 	List<Twitter> getTwitterEvents(@BindIds Set<Integer> ids);
