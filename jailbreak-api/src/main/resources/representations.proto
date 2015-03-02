@@ -208,6 +208,7 @@ message Donation {
 	optional int64 time = 5;
 	optional DonationType type = 6;
 	optional string email = 7;
+	optional Team team = 8;
 }
 
 message StripeChargeRequest {

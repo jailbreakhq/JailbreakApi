@@ -41,12 +41,12 @@ public abstract class TeamsDAO {
 	@SqlQuery("SELECT * FROM teams WHERE id = :id")
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeam(@Bind("id") int id);
-			
-	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, position FROM teams WHERE id = :id")
+	
+	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, last_checkin_id FROM teams WHERE id = :id")
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getLimitedTeam(@Bind("id") int id);
 	
-	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, position FROM teams WHERE id = ANY (:idList)")
+	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, last_checkin_id FROM teams WHERE id = ANY (:idList)")
 	@SingleValueResult(Team.class)
 	public abstract List<Team> getLimitedTeams(@BindIds Set<Integer> ids);
 	
