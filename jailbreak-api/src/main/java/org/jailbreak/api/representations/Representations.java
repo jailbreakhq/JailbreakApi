@@ -11044,32 +11044,32 @@ public final class Representations {
     int getId();
 
     /**
-     * <code>optional string description = 2;</code>
-     */
-    boolean hasDescription();
-    /**
-     * <code>optional string description = 2;</code>
-     */
-    java.lang.String getDescription();
-    /**
-     * <code>optional string description = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getDescriptionBytes();
-
-    /**
-     * <code>optional string link_text = 3;</code>
+     * <code>optional string link_text = 2;</code>
      */
     boolean hasLinkText();
     /**
-     * <code>optional string link_text = 3;</code>
+     * <code>optional string link_text = 2;</code>
      */
     java.lang.String getLinkText();
     /**
-     * <code>optional string link_text = 3;</code>
+     * <code>optional string link_text = 2;</code>
      */
     com.google.protobuf.ByteString
         getLinkTextBytes();
+
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    boolean hasDescription();
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
 
     /**
      * <code>optional int32 team_id = 4;</code>
@@ -11153,13 +11153,13 @@ public final class Representations {
             case 18: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              description_ = bs;
+              linkText_ = bs;
               break;
             }
             case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              linkText_ = bs;
+              description_ = bs;
               break;
             }
             case 32: {
@@ -11235,58 +11235,16 @@ public final class Representations {
       return id_;
     }
 
-    public static final int DESCRIPTION_FIELD_NUMBER = 2;
-    private java.lang.Object description_;
+    public static final int LINK_TEXT_FIELD_NUMBER = 2;
+    private java.lang.Object linkText_;
     /**
-     * <code>optional string description = 2;</code>
+     * <code>optional string link_text = 2;</code>
      */
-    public boolean hasDescription() {
+    public boolean hasLinkText() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional string description = 2;</code>
-     */
-    public java.lang.String getDescription() {
-      java.lang.Object ref = description_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          description_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string description = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getDescriptionBytes() {
-      java.lang.Object ref = description_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        description_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int LINK_TEXT_FIELD_NUMBER = 3;
-    private java.lang.Object linkText_;
-    /**
-     * <code>optional string link_text = 3;</code>
-     */
-    public boolean hasLinkText() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional string link_text = 3;</code>
+     * <code>optional string link_text = 2;</code>
      */
     public java.lang.String getLinkText() {
       java.lang.Object ref = linkText_;
@@ -11303,7 +11261,7 @@ public final class Representations {
       }
     }
     /**
-     * <code>optional string link_text = 3;</code>
+     * <code>optional string link_text = 2;</code>
      */
     public com.google.protobuf.ByteString
         getLinkTextBytes() {
@@ -11313,6 +11271,48 @@ public final class Representations {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         linkText_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 3;
+    private java.lang.Object description_;
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    public boolean hasDescription() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    public java.lang.String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          description_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string description = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        description_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -11357,8 +11357,8 @@ public final class Representations {
 
     private void initFields() {
       id_ = 0;
-      description_ = "";
       linkText_ = "";
+      description_ = "";
       teamId_ = 0;
       team_ = org.jailbreak.api.representations.Representations.Team.getDefaultInstance();
     }
@@ -11379,10 +11379,10 @@ public final class Representations {
         output.writeInt32(1, id_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getDescriptionBytes());
+        output.writeBytes(2, getLinkTextBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getLinkTextBytes());
+        output.writeBytes(3, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, teamId_);
@@ -11405,11 +11405,11 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getDescriptionBytes());
+          .computeBytesSize(2, getLinkTextBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getLinkTextBytes());
+          .computeBytesSize(3, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -11539,9 +11539,9 @@ public final class Representations {
         super.clear();
         id_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        description_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         linkText_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        description_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         teamId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -11586,11 +11586,11 @@ public final class Representations {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.description_ = description_;
+        result.linkText_ = linkText_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.linkText_ = linkText_;
+        result.description_ = description_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -11622,14 +11622,14 @@ public final class Representations {
         if (other.hasId()) {
           setId(other.getId());
         }
-        if (other.hasDescription()) {
+        if (other.hasLinkText()) {
           bitField0_ |= 0x00000002;
-          description_ = other.description_;
+          linkText_ = other.linkText_;
           onChanged();
         }
-        if (other.hasLinkText()) {
+        if (other.hasDescription()) {
           bitField0_ |= 0x00000004;
-          linkText_ = other.linkText_;
+          description_ = other.description_;
           onChanged();
         }
         if (other.hasTeamId()) {
@@ -11697,91 +11697,15 @@ public final class Representations {
         return this;
       }
 
-      private java.lang.Object description_ = "";
+      private java.lang.Object linkText_ = "";
       /**
-       * <code>optional string description = 2;</code>
+       * <code>optional string link_text = 2;</code>
        */
-      public boolean hasDescription() {
+      public boolean hasLinkText() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional string description = 2;</code>
-       */
-      public java.lang.String getDescription() {
-        java.lang.Object ref = description_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            description_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string description = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getDescriptionBytes() {
-        java.lang.Object ref = description_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          description_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string description = 2;</code>
-       */
-      public Builder setDescription(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        description_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string description = 2;</code>
-       */
-      public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        description_ = getDefaultInstance().getDescription();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string description = 2;</code>
-       */
-      public Builder setDescriptionBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        description_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object linkText_ = "";
-      /**
-       * <code>optional string link_text = 3;</code>
-       */
-      public boolean hasLinkText() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string link_text = 3;</code>
+       * <code>optional string link_text = 2;</code>
        */
       public java.lang.String getLinkText() {
         java.lang.Object ref = linkText_;
@@ -11798,7 +11722,7 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string link_text = 3;</code>
+       * <code>optional string link_text = 2;</code>
        */
       public com.google.protobuf.ByteString
           getLinkTextBytes() {
@@ -11814,37 +11738,113 @@ public final class Representations {
         }
       }
       /**
-       * <code>optional string link_text = 3;</code>
+       * <code>optional string link_text = 2;</code>
        */
       public Builder setLinkText(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         linkText_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string link_text = 3;</code>
+       * <code>optional string link_text = 2;</code>
        */
       public Builder clearLinkText() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         linkText_ = getDefaultInstance().getLinkText();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string link_text = 3;</code>
+       * <code>optional string link_text = 2;</code>
        */
       public Builder setLinkTextBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         linkText_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public boolean hasDescription() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            description_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        java.lang.Object ref = description_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          description_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        description_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public Builder clearDescription() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        description_ = getDefaultInstance().getDescription();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string description = 3;</code>
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        description_ = value;
         onChanged();
         return this;
       }
@@ -13862,13 +13862,18 @@ public final class Representations {
     int getId();
 
     /**
-     * <code>optional int64 facebook_id = 2;</code>
+     * <code>optional string facebook_id = 2;</code>
      */
     boolean hasFacebookId();
     /**
-     * <code>optional int64 facebook_id = 2;</code>
+     * <code>optional string facebook_id = 2;</code>
      */
-    long getFacebookId();
+    java.lang.String getFacebookId();
+    /**
+     * <code>optional string facebook_id = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFacebookIdBytes();
 
     /**
      * <code>optional string url = 3;</code>
@@ -14028,9 +14033,10 @@ public final class Representations {
               id_ = input.readInt32();
               break;
             }
-            case 16: {
+            case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              facebookId_ = input.readInt64();
+              facebookId_ = bs;
               break;
             }
             case 26: {
@@ -14142,18 +14148,45 @@ public final class Representations {
     }
 
     public static final int FACEBOOK_ID_FIELD_NUMBER = 2;
-    private long facebookId_;
+    private java.lang.Object facebookId_;
     /**
-     * <code>optional int64 facebook_id = 2;</code>
+     * <code>optional string facebook_id = 2;</code>
      */
     public boolean hasFacebookId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional int64 facebook_id = 2;</code>
+     * <code>optional string facebook_id = 2;</code>
      */
-    public long getFacebookId() {
-      return facebookId_;
+    public java.lang.String getFacebookId() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          facebookId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string facebook_id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFacebookIdBytes() {
+      java.lang.Object ref = facebookId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        facebookId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int URL_FIELD_NUMBER = 3;
@@ -14419,7 +14452,7 @@ public final class Representations {
 
     private void initFields() {
       id_ = 0;
-      facebookId_ = 0L;
+      facebookId_ = "";
       url_ = "";
       message_ = "";
       linkUrl_ = "";
@@ -14446,7 +14479,7 @@ public final class Representations {
         output.writeInt32(1, id_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, facebookId_);
+        output.writeBytes(2, getFacebookIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getUrlBytes());
@@ -14487,7 +14520,7 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, facebookId_);
+          .computeBytesSize(2, getFacebookIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -14641,7 +14674,7 @@ public final class Representations {
         super.clear();
         id_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        facebookId_ = 0L;
+        facebookId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         url_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -14755,7 +14788,9 @@ public final class Representations {
           setId(other.getId());
         }
         if (other.hasFacebookId()) {
-          setFacebookId(other.getFacebookId());
+          bitField0_ |= 0x00000002;
+          facebookId_ = other.facebookId_;
+          onChanged();
         }
         if (other.hasUrl()) {
           bitField0_ |= 0x00000004;
@@ -14850,34 +14885,78 @@ public final class Representations {
         return this;
       }
 
-      private long facebookId_ ;
+      private java.lang.Object facebookId_ = "";
       /**
-       * <code>optional int64 facebook_id = 2;</code>
+       * <code>optional string facebook_id = 2;</code>
        */
       public boolean hasFacebookId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional int64 facebook_id = 2;</code>
+       * <code>optional string facebook_id = 2;</code>
        */
-      public long getFacebookId() {
-        return facebookId_;
+      public java.lang.String getFacebookId() {
+        java.lang.Object ref = facebookId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            facebookId_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int64 facebook_id = 2;</code>
+       * <code>optional string facebook_id = 2;</code>
        */
-      public Builder setFacebookId(long value) {
-        bitField0_ |= 0x00000002;
+      public com.google.protobuf.ByteString
+          getFacebookIdBytes() {
+        java.lang.Object ref = facebookId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          facebookId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string facebook_id = 2;</code>
+       */
+      public Builder setFacebookId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
         facebookId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 facebook_id = 2;</code>
+       * <code>optional string facebook_id = 2;</code>
        */
       public Builder clearFacebookId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        facebookId_ = 0L;
+        facebookId_ = getDefaultInstance().getFacebookId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string facebook_id = 2;</code>
+       */
+      public Builder setFacebookIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        facebookId_ = value;
         onChanged();
         return this;
       }
@@ -17308,13 +17387,18 @@ public final class Representations {
     int getId();
 
     /**
-     * <code>optional int32 instagram_id = 2;</code>
+     * <code>optional string instagram_id = 2;</code>
      */
     boolean hasInstagramId();
     /**
-     * <code>optional int32 instagram_id = 2;</code>
+     * <code>optional string instagram_id = 2;</code>
      */
-    int getInstagramId();
+    java.lang.String getInstagramId();
+    /**
+     * <code>optional string instagram_id = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getInstagramIdBytes();
 
     /**
      * <code>optional string description = 3;</code>
@@ -17488,9 +17572,10 @@ public final class Representations {
               id_ = input.readInt32();
               break;
             }
-            case 16: {
+            case 18: {
+              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              instagramId_ = input.readInt32();
+              instagramId_ = bs;
               break;
             }
             case 26: {
@@ -17608,18 +17693,45 @@ public final class Representations {
     }
 
     public static final int INSTAGRAM_ID_FIELD_NUMBER = 2;
-    private int instagramId_;
+    private java.lang.Object instagramId_;
     /**
-     * <code>optional int32 instagram_id = 2;</code>
+     * <code>optional string instagram_id = 2;</code>
      */
     public boolean hasInstagramId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional int32 instagram_id = 2;</code>
+     * <code>optional string instagram_id = 2;</code>
      */
-    public int getInstagramId() {
-      return instagramId_;
+    public java.lang.String getInstagramId() {
+      java.lang.Object ref = instagramId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          instagramId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string instagram_id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInstagramIdBytes() {
+      java.lang.Object ref = instagramId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        instagramId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int DESCRIPTION_FIELD_NUMBER = 3;
@@ -17927,7 +18039,7 @@ public final class Representations {
 
     private void initFields() {
       id_ = 0;
-      instagramId_ = 0;
+      instagramId_ = "";
       description_ = "";
       url_ = "";
       thumbnailUrl_ = "";
@@ -17955,7 +18067,7 @@ public final class Representations {
         output.writeInt32(1, id_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, instagramId_);
+        output.writeBytes(2, getInstagramIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getDescriptionBytes());
@@ -17999,7 +18111,7 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, instagramId_);
+          .computeBytesSize(2, getInstagramIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -18157,7 +18269,7 @@ public final class Representations {
         super.clear();
         id_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        instagramId_ = 0;
+        instagramId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         description_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -18277,7 +18389,9 @@ public final class Representations {
           setId(other.getId());
         }
         if (other.hasInstagramId()) {
-          setInstagramId(other.getInstagramId());
+          bitField0_ |= 0x00000002;
+          instagramId_ = other.instagramId_;
+          onChanged();
         }
         if (other.hasDescription()) {
           bitField0_ |= 0x00000004;
@@ -18377,34 +18491,78 @@ public final class Representations {
         return this;
       }
 
-      private int instagramId_ ;
+      private java.lang.Object instagramId_ = "";
       /**
-       * <code>optional int32 instagram_id = 2;</code>
+       * <code>optional string instagram_id = 2;</code>
        */
       public boolean hasInstagramId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional int32 instagram_id = 2;</code>
+       * <code>optional string instagram_id = 2;</code>
        */
-      public int getInstagramId() {
-        return instagramId_;
+      public java.lang.String getInstagramId() {
+        java.lang.Object ref = instagramId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            instagramId_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int32 instagram_id = 2;</code>
+       * <code>optional string instagram_id = 2;</code>
        */
-      public Builder setInstagramId(int value) {
-        bitField0_ |= 0x00000002;
+      public com.google.protobuf.ByteString
+          getInstagramIdBytes() {
+        java.lang.Object ref = instagramId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          instagramId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string instagram_id = 2;</code>
+       */
+      public Builder setInstagramId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
         instagramId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 instagram_id = 2;</code>
+       * <code>optional string instagram_id = 2;</code>
        */
       public Builder clearInstagramId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        instagramId_ = 0;
+        instagramId_ = getDefaultInstance().getInstagramId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string instagram_id = 2;</code>
+       */
+      public Builder setInstagramIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        instagramId_ = value;
         onChanged();
         return this;
       }
@@ -25156,8 +25314,8 @@ public final class Representations {
       "\005\022\r\n\tINSTAGRAM\020\006\"Y\n\004Link\022\n\n\002id\030\001 \001(\005\022\013\n\003" +
       "url\030\002 \001(\t\022\021\n\tlink_text\030\003 \001(\t\022\023\n\013descript",
       "ion\030\004 \001(\t\022\020\n\010photoUrl\030\005 \001(\t\"\204\001\n\006Donate\022\n" +
-      "\n\002id\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\022\021\n\tlink_" +
-      "text\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n\004team\030\005 \001(" +
+      "\n\002id\030\001 \001(\005\022\021\n\tlink_text\030\002 \001(\t\022\023\n\013descrip" +
+      "tion\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n\004team\030\005 \001(" +
       "\0132\'.org.jailbreak.api.representations.Te" +
       "am\"\230\002\n\007Twitter\022\n\n\002id\030\001 \001(\005\022\020\n\010tweet_id\030\002" +
       " \001(\003\022\r\n\005tweet\030\003 \001(\t\022\022\n\ntweet_html\030\004 \001(\t\022" +
@@ -25167,7 +25325,7 @@ public final class Representations {
       "r_photo\030\n \001(\t\022\017\n\007team_id\030\013 \001(\005\0225\n\004team\030\014",
       " \001(\0132\'.org.jailbreak.api.representations" +
       ".Team\"\327\001\n\010Facebook\022\n\n\002id\030\001 \001(\005\022\023\n\013facebo" +
-      "ok_id\030\002 \001(\003\022\013\n\003url\030\003 \001(\t\022\017\n\007message\030\004 \001(" +
+      "ok_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\017\n\007message\030\004 \001(" +
       "\t\022\020\n\010link_url\030\005 \001(\t\022\021\n\tphoto_url\030\006 \001(\t\022\014" +
       "\n\004time\030\007 \001(\003\022\021\n\tpage_name\030\010 \001(\t\022\017\n\007team_" +
       "id\030\t \001(\005\0225\n\004team\030\n \001(\0132\'.org.jailbreak.a" +
@@ -25179,7 +25337,7 @@ public final class Representations {
       "\001(\003\022\017\n\007team_id\030\n \001(\005\0225\n\004team\030\013 \001(\0132\'.org" +
       ".jailbreak.api.representations.Team\"\377\001\n\t" +
       "Instagram\022\n\n\002id\030\001 \001(\005\022\024\n\014instagram_id\030\002 " +
-      "\001(\005\022\023\n\013description\030\003 \001(\t\022\013\n\003url\030\004 \001(\t\022\025\n" +
+      "\001(\t\022\023\n\013description\030\003 \001(\t\022\013\n\003url\030\004 \001(\t\022\025\n" +
       "\rthumbnail_url\030\005 \001(\t\022\023\n\013author_name\030\006 \001(" +
       "\t\022\022\n\nauthor_url\030\007 \001(\t\022\030\n\020author_photo_ur" +
       "l\030\010 \001(\t\022\014\n\004time\030\t \001(\003\022\017\n\007team_id\030\n \001(\005\0225" +
@@ -25278,7 +25436,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_Donate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_Donate_descriptor,
-        new java.lang.String[] { "Id", "Description", "LinkText", "TeamId", "Team", });
+        new java.lang.String[] { "Id", "LinkText", "Description", "TeamId", "Team", });
     internal_static_org_jailbreak_api_representations_Twitter_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_org_jailbreak_api_representations_Twitter_fieldAccessorTable = new

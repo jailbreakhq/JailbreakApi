@@ -127,8 +127,8 @@ message Link {
 
 message Donate {
 	optional int32 id = 1;
-	optional string description = 2;
-	optional string link_text = 3;
+	optional string link_text = 2;
+	optional string description = 3;
 	optional int32 team_id = 4;
 	optional Team team = 5;
 }
@@ -150,7 +150,7 @@ message Twitter {
 
 message Facebook {
 	optional int32 id = 1;
-	optional int64 facebook_id = 2;
+	optional string facebook_id = 2;
 	optional string url = 3;
 	optional string message = 4;
 	optional string link_url = 5;
@@ -177,7 +177,7 @@ message Vine {
 
 message Instagram {
 	optional int32 id = 1;
-	optional int32 instagram_id = 2;
+	optional string instagram_id = 2;
 	optional string description = 3;
 	optional string url = 4;
 	optional string thumbnail_url = 5;
