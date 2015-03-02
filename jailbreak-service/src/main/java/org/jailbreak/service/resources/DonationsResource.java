@@ -86,6 +86,11 @@ public class DonationsResource {
 			throw new BadRequestException("The donation id in the request body must match the id in the URL", ApiDocs.DONATIONS);
 		}
 		
+		if (donation.hasTeam()) {
+			// ignore team attribute when updating donation
+			donation = donation.toBuilder().clearTeam().build();
+		}
+		
 		boolean result = this.manager.updateDonation(donation);
 		if(result)
 			return Optional.of(donation);
