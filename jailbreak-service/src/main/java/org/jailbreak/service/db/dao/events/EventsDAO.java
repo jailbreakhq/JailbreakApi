@@ -76,7 +76,7 @@ public abstract class EventsDAO {
 			bindParams.put("type", filters.getType().ordinal());
 		}
 		if (filters.hasBeforeId()) {
-			builder.addWhere("id < :beforeId");
+			builder.addWhere("id < :before_id");
 			bindParams.put("before_id", filters.getBeforeId());
 		}
 		if (filters.hasAfterId()) {
