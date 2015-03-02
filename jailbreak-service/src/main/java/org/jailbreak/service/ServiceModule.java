@@ -19,29 +19,35 @@ import org.jailbreak.client.base.FacebookClientImpl;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
 import org.jailbreak.service.base.ApiTokensManagerImpl;
 import org.jailbreak.service.base.CheckinsManagerImpl;
+import org.jailbreak.service.base.DonateEventsManagerImpl;
 import org.jailbreak.service.base.DonationsManagerImpl;
 import org.jailbreak.service.base.EventsManagerImpl;
+import org.jailbreak.service.base.LinkEventsManagerImpl;
 import org.jailbreak.service.base.SecureTokenGeneratorImpl;
 import org.jailbreak.service.base.StripeManagerImpl;
 import org.jailbreak.service.base.TeamsManagerImpl;
 import org.jailbreak.service.base.UsersManagerImpl;
-import org.jailbreak.service.base.YoutubesManagerImpl;
+import org.jailbreak.service.base.YoutubeEventsManagerImpl;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.CheckinsManager;
+import org.jailbreak.service.core.DonateEventsManager;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.EventsManager;
+import org.jailbreak.service.core.LinkEventsManager;
 import org.jailbreak.service.core.SecureTokenGenerator;
 import org.jailbreak.service.core.StripeManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.UsersManager;
-import org.jailbreak.service.core.YoutubesManager;
+import org.jailbreak.service.core.YoutubeEventsManager;
 import org.jailbreak.service.db.ApiTokensDAO;
 import org.jailbreak.service.db.CheckinsDAO;
+import org.jailbreak.service.db.DonateEventsDAO;
 import org.jailbreak.service.db.DonationsDAO;
 import org.jailbreak.service.db.EventsDAO;
+import org.jailbreak.service.db.LinkEventsDAO;
 import org.jailbreak.service.db.TeamsDAO;
 import org.jailbreak.service.db.UsersDAO;
-import org.jailbreak.service.db.YoutubeDAO;
+import org.jailbreak.service.db.YoutubeEventsDAO;
 import org.jailbreak.service.helpers.DistanceHelper;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -63,7 +69,9 @@ public class ServiceModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(EventsManager.class).to(EventsManagerImpl.class);
-		bind(YoutubesManager.class).to(YoutubesManagerImpl.class);
+		bind(LinkEventsManager.class).to(LinkEventsManagerImpl.class);
+		bind(DonateEventsManager.class).to(DonateEventsManagerImpl.class);
+		bind(YoutubeEventsManager.class).to(YoutubeEventsManagerImpl.class);
 		
 		bind(TeamsManager.class).to(TeamsManagerImpl.class);
 		bind(CheckinsManager.class).to(CheckinsManagerImpl.class);
@@ -211,9 +219,18 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	public YoutubeDAO provideYoutubeDAO(Connection conn) {
-		YoutubeDAO dao = dbi.onDemand(YoutubeDAO.class);
-        return dao;
+	public YoutubeEventsDAO provideYoutubeEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(YoutubeEventsDAO.class);
+	}
+	
+	@Provides
+	public DonateEventsDAO provideDonateEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(DonateEventsDAO.class);
+	}
+	
+	@Provides
+	public LinkEventsDAO provideLinkEventsDAO(DBI jdbi) {
+        return jdbi.onDemand(LinkEventsDAO.class);
 	}
 	
 	@Provides

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Youtube;
-import org.jailbreak.service.db.mappers.YoutubeMapper;
+import org.jailbreak.service.db.mappers.YoutubeEventsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
@@ -12,8 +12,8 @@ import org.skife.jdbi.v2.sqlobject.customizers.SingleValueResult;
 
 import com.google.common.base.Optional;
 
-@RegisterMapper(YoutubeMapper.class)
-public interface YoutubeDAO {	
+@RegisterMapper(YoutubeEventsMapper.class)
+public interface YoutubeEventsDAO {	
 	
 	@SqlQuery("SELECT * FROM events_youtube WHERE AND id = :id")
 	@SingleValueResult(Youtube.class)

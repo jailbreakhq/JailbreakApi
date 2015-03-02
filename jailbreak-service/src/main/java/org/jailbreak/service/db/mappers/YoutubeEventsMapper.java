@@ -7,7 +7,7 @@ import org.jailbreak.api.representations.Representations.Youtube;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
-public class YoutubeMapper implements ResultSetMapper<Youtube> {
+public class YoutubeEventsMapper implements ResultSetMapper<Youtube> {
 	
 	public Youtube map(int index, ResultSet r, StatementContext ctx) throws SQLException {
 		int id = r.getInt("id");

@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Youtube;
-import org.jailbreak.service.core.YoutubesManager;
-import org.jailbreak.service.db.YoutubeDAO;
+import org.jailbreak.service.core.YoutubeEventsManager;
+import org.jailbreak.service.db.YoutubeEventsDAO;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.newrelic.deps.com.google.common.collect.Maps;
 
-public class YoutubesManagerImpl implements YoutubesManager {
+public class YoutubeEventsManagerImpl implements YoutubeEventsManager {
 	
-	private final YoutubeDAO dao;
+	private final YoutubeEventsDAO dao;
 	
 	@Inject
-	public YoutubesManagerImpl(YoutubeDAO dao) {
+	public YoutubeEventsManagerImpl(YoutubeEventsDAO dao) {
 		this.dao = dao;
 	}
 

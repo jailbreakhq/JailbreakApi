@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.api.representations.Representations.Donate;
 import org.jailbreak.api.representations.Representations.Event;
+import org.jailbreak.api.representations.Representations.Link;
 import org.jailbreak.api.representations.Representations.Youtube;
 import org.jailbreak.api.representations.Representations.Event.EventType;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.service.core.CheckinsManager;
+import org.jailbreak.service.core.DonateEventsManager;
 import org.jailbreak.service.core.EventsManager;
+import org.jailbreak.service.core.LinkEventsManager;
 import org.jailbreak.service.core.TeamsManager;
-import org.jailbreak.service.core.YoutubesManager;
+import org.jailbreak.service.core.YoutubeEventsManager;
 import org.jailbreak.service.db.EventsDAO;
 import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
@@ -31,18 +35,24 @@ public class EventsManagerImpl implements EventsManager {
 	private final EventsDAO dao;
 	private final TeamsManager teamsManager;
 	private final CheckinsManager checkinsManager;
-	private final YoutubesManager youtubesManager;
+	private final YoutubeEventsManager youtubesManager;
+	private final DonateEventsManager donatesManager;
+	private final LinkEventsManager linksManager;
 	private final Logger LOG = LoggerFactory.getLogger(EventsManagerImpl.class);
 	
 	@Inject
 	public EventsManagerImpl(EventsDAO dao,
 			TeamsManager teamsManager,
 			CheckinsManager checkinsManager,
-			YoutubesManager youtubesManager) {
+			YoutubeEventsManager youtubesManager,
+			DonateEventsManager donatesManager,
+			LinkEventsManager linksManager) {
 		this.dao = dao;
 		this.teamsManager = teamsManager;
 		this.checkinsManager = checkinsManager;
 		this.youtubesManager = youtubesManager;
+		this.donatesManager = donatesManager;
+		this.linksManager = linksManager;
 	}
 	
 	@Override
@@ -70,31 +80,36 @@ public class EventsManagerImpl implements EventsManager {
 	
 	private List<Event> annotateEvents(List<Event> events) {
 		// Divide them up into their event types
-		List<Event> youtubeEvents = Lists.newArrayList();
 		List<Event> linkEvents = Lists.newArrayList();
+		List<Event> donateEvents = Lists.newArrayList();
 		List<Event> checkinEvents = Lists.newArrayList();
+		List<Event> youtubeEvents = Lists.newArrayList();
 		
 		for (Event event : events) {
-			if (event.getType() == EventType.YOUTUBE) {
-				youtubeEvents.add(event);
-			} else if (event.getType() == EventType.LINK) {
+			if (event.getType() == EventType.LINK) {
 				linkEvents.add(event);
+			} else if (event.getType() == EventType.DONATE) {
+				donateEvents.add(event);
 			} else if (event.getType() == EventType.CHECKIN) {
 				checkinEvents.add(event);
+			} else if (event.getType() == EventType.YOUTUBE) {
+				youtubeEvents.add(event);
 			}
 		}
 		
 		// Go fetch object data and annotate event
-		List<Event.Builder> youtubeBuilders = annotateYoutubeEvents(youtubeEvents);
 		List<Event.Builder> linkBuilders = annotateLinkEvents(linkEvents);
+		List<Event.Builder> donateBuilders = annotateDonateEvents(donateEvents);
 		List<Event.Builder> checkinBuilders = annotateCheckinEvents(checkinEvents);
+		List<Event.Builder> youtubeBuilders = annotateYoutubeEvents(youtubeEvents);
 		
 		// Combine all the events types together again and sort by event time
 		List<Event.Builder> combinedEvents = Lists.newArrayList();
 		
-		combinedEvents.addAll(youtubeBuilders);
 		combinedEvents.addAll(linkBuilders);
+		combinedEvents.addAll(donateBuilders);
 		combinedEvents.addAll(checkinBuilders);
+		combinedEvents.addAll(youtubeBuilders);
 		
 		Collections.sort(combinedEvents, new Comparator<Event.Builder>() {
 			@Override
@@ -130,6 +145,13 @@ public class EventsManagerImpl implements EventsManager {
 						checkin.setTeam(teamsMap.get(teamId));
 					}
 					event.setCheckin(checkin);
+				} else if (event.getType() == EventType.DONATE) {
+					Donate.Builder donate = event.getDonate().toBuilder();
+					donate.setTeamId(teamId);
+					if (teamsMap.containsKey(teamId)) {
+						donate.setTeam(teamsMap.get(teamId));
+					}
+					event.setDonate(donate);
 				}
 			}
 		}
@@ -140,7 +162,7 @@ public class EventsManagerImpl implements EventsManager {
 	private List<Event.Builder> annotateYoutubeEvents(List<Event> events) {
 		HashMap<Integer, Youtube> youtubes = youtubesManager.getYoutubes(getObjectIds(events));
 		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events ) {
+		for (Event event : events) {
 			if (youtubes.containsKey(event.getObjectId())) {
 				Event.Builder builder = event.toBuilder().setYoutube(youtubes.get(event.getObjectId()));
 				builders.add(builder);
@@ -151,13 +173,35 @@ public class EventsManagerImpl implements EventsManager {
 	}
 	
 	private List<Event.Builder> annotateLinkEvents(List<Event> events) {
-		return Lists.newArrayList();
+		HashMap<Integer, Link> ls = linksManager.getLinkEvents(getObjectIds(events));
+		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
+		for (Event event : events) {
+			if (ls.containsKey(event.getObjectId())) {
+				Event.Builder builder = event.toBuilder().setLink(ls.get(event.getObjectId()));
+				builders.add(builder);
+			}
+			// if no matching link object ignore whole object
+		}
+		return builders;
+	}
+	
+	private List<Event.Builder> annotateDonateEvents(List<Event> events) {
+		HashMap<Integer, Donate> ls = donatesManager.getDonateEvents(getObjectIds(events));
+		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
+		for (Event event : events) {
+			if (ls.containsKey(event.getObjectId())) {
+				Event.Builder builder = event.toBuilder().setDonate(ls.get(event.getObjectId()));
+				builders.add(builder);
+			}
+			// if no matching link object ignore whole object
+		}
+		return builders;
 	}
 	
 	private List<Event.Builder> annotateCheckinEvents(List<Event> events) {
 		HashMap<Integer, Checkin> checkins = checkinsManager.getCheckins(getObjectIds(events));
 		List<Event.Builder> builders =  Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events ) {
+		for (Event event : events) {
 			if (checkins.containsKey(event.getObjectId())) {
 				Event.Builder builder = event.toBuilder().setCheckin(checkins.get(event.getObjectId()));
 				builders.add(builder);
