@@ -1,6 +1,14 @@
 package org.jailbreak.service.base;
 
+import java.util.Date;
 import java.util.Map;
+
+import javax.annotation.Nullable;
+
+import net.kencochrane.raven.Raven;
+import net.kencochrane.raven.event.Event;
+import net.kencochrane.raven.event.EventBuilder;
+import net.kencochrane.raven.event.interfaces.ExceptionInterface;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationType;
@@ -20,12 +28,15 @@ import com.stripe.model.Charge;
 public class StripeManagerImpl implements StripeManager {
 
 	private final DonationsManager donations;
+	private final Raven raven;
 	private final Logger LOG = LoggerFactory.getLogger(StripeManagerImpl.class);
 	
 	@Inject
 	public StripeManagerImpl(DonationsManager donations,
+			@Nullable Raven raven,
 			@Named("stripe.secret.key") String key) {
 		this.donations = donations;
+		this.raven = raven;
 		Stripe.apiKey = key;
 	}
 	
@@ -80,6 +91,16 @@ public class StripeManagerImpl implements StripeManager {
 		} catch (Exception e) {
 			// bury exception if any in the logs - the stripe charge was successful so we want to return a positive result
 			LOG.error("Error handling donation post charge actions: " + e.getMessage());
+			if (raven != null) {
+				// report the error to sentry
+				EventBuilder eventBuilder = new EventBuilder()
+					.setTimestamp(new Date())
+					.setLevel(Event.Level.ERROR)
+					.setMessage(e.getMessage());
+				
+				eventBuilder.addSentryInterface(new ExceptionInterface(e));
+				raven.sendEvent(eventBuilder.build());
+			}
 		}
 		
 		return result;
