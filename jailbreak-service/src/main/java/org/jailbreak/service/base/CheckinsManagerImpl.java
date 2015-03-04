@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.service.core.CheckinsManager;
+import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.dao.CheckinsDAO;
+import org.jailbreak.service.errors.ApiDocs;
+import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.helpers.DistanceHelper;
 
 import com.google.common.base.Optional;
@@ -17,19 +21,30 @@ import com.google.inject.Inject;
 public class CheckinsManagerImpl implements CheckinsManager {
 
 	private final CheckinsDAO dao;
+	private final TeamsManager teamsManager;
 	private final DistanceHelper distanceHelper;
 	
 	@Inject
 	public CheckinsManagerImpl(CheckinsDAO dao,
+			TeamsManager teamsManager,
 			DistanceHelper distanceHelper) {
 		this.dao = dao;
+		this.teamsManager = teamsManager;
 		this.distanceHelper = distanceHelper;
 	}
 	
 	@Override
 	public Checkin createCheckin(Checkin checkin) {
-		int new_id = this.dao.insert(checkin);
-		return this.addDistanceToX(this.getCheckin(new_id).get());
+		Optional<Team> team = teamsManager.getRawTeam(checkin.getTeamId());
+		if (team.isPresent()) {
+			int new_id = this.dao.insert(checkin);
+			
+			teamsManager.updateTeam(team.get().toBuilder().setLastCheckinId(new_id).build());
+			
+			return this.addDistanceToX(this.getCheckin(new_id).get());
+		} else {
+			throw new BadRequestException("There is no team that matches team id " + checkin.getTeamId(), ApiDocs.CHECKINS);
+		}
 	}
 	
 	@Override

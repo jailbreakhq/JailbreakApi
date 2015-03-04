@@ -47,6 +47,18 @@ public class CheckinsResource {
 			throw new ForbiddenException("You don't have the necessary permissions to create a checkin", ApiDocs.CHECKINS);
 		}
 		
+		if (!checkin.hasTeamId()) {
+			throw new BadRequestException("You must provide a team id value to create this Checkin", ApiDocs.CHECKINS);
+		}
+		
+		if (!checkin.hasLat()) {
+			throw new BadRequestException("You must provide a latitude value to create this Checkin", ApiDocs.CHECKINS);
+		}
+		
+		if (!checkin.hasLon()) {
+			throw new BadRequestException("You must provide a longitude value to create this Checkin", ApiDocs.CHECKINS);
+		}
+		
 		return this.manager.createCheckin(checkin);
 	}
 	
