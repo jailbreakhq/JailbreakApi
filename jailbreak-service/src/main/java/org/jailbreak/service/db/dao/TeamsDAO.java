@@ -36,7 +36,7 @@ public abstract class TeamsDAO {
 	@GetGeneratedKeys
 	public abstract int insert(@BindProtobuf Team team);
 
-	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_offline, countries = :countries, transports = :transports, description = :description, featured = :featured, slug = :slug, video = :video, avatar_large = :avatar_large, :last_checkin_id = :last_checkin_id WHERE id = :id")
+	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_offline, countries = :countries, transports = :transports, description = :description, featured = :featured, slug = :slug, video = :video, avatar_large = :avatar_large, last_checkin_id = :last_checkin_id WHERE id = :id")
 	public abstract int update(@BindProtobuf Team team);
 	
 	@SqlUpdate("DELETE FROM teams WHERE id = :id")
