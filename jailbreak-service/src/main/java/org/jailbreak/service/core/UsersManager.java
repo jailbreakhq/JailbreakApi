@@ -9,7 +9,8 @@ import com.google.common.base.Optional;
 public interface UsersManager {
 	
 	public Optional<User> getUser(long user_id);
+	public Optional<User> getUserByEmail(String email);
 	public List<User> getUsers();
-	public void createUser(User user);
+	public User createUser(User user);
 
 }

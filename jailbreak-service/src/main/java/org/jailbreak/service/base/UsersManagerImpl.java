@@ -22,6 +22,11 @@ public class UsersManagerImpl implements UsersManager {
 	public Optional<User> getUser(long user_id) {
 		return this.dao.getUser(user_id);
 	}
+	
+	@Override
+	public Optional<User> getUserByEmail(String email) {
+		return this.dao.getUserByEmail(email);
+	}
 
 	@Override
 	public List<User> getUsers() {
@@ -29,8 +34,10 @@ public class UsersManagerImpl implements UsersManager {
 	}
 
 	@Override
-	public void createUser(User user) {
-		this.dao.createUser(user);
+	public User createUser(User user) {
+		int new_id = this.dao.createUser(user);
+		
+		return dao.getUser(new_id).get();
 	}
 
 }

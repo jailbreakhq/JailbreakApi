@@ -280,5 +280,10 @@
             <column name="team_id" type="int"/>
     	</createTable>
     </changeSet>
+    <changeSet id="13" author="kbaker">
+    	<addColumn tableName="users">
+    		<column name="password" type="text"/>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>
