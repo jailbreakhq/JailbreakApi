@@ -2,48 +2,36 @@ package org.jailbreak.service.config;
 
 public class EnvironmentFactory {
 	
-	private final int DEAFULT_DEFAULT_LIMIT = 10;
+	private final int DEFAULT_DEFAULT_LIMIT = 10;
 	private final int DEFAULT_MAX_LIMIT = 20;
 	private final int DEFAULT_EVENTS_MAX_LIMIT = 50;
 	
+	public float getFinalLocationLat() {
+		return getMandatoryFloat("FINAL_LAT");
+	}
+	
+	public float getFinalLocationLon() {
+		return getMandatoryFloat("FINAL_LON");
+	}
+	
     public int getDefaultLimit() {
-    	String envValue = System.getenv("DEFAULT_LIMIT");
-    	if (envValue == null)
-    		return DEAFULT_DEFAULT_LIMIT;
-    	else
-    		return Integer.parseInt(envValue);
+    	return getIntWithDefault("DEFAULT_LIMIT", DEFAULT_DEFAULT_LIMIT);
     }
     
     public int getMaxLimit() {
-    	String envValue = System.getenv("MAX_LIMIT");
-    	if (envValue == null)
-    		return DEFAULT_MAX_LIMIT;
-    	else
-    		return Integer.parseInt(envValue);
+    	return getIntWithDefault("MAX_LIMIT", DEFAULT_MAX_LIMIT);
     }
     
     public int getEventsDefaultLimit() {
-    	String envValue = System.getenv("EVENTS_DEFAULT_LIMIT");
-    	if (envValue == null)
-    		return DEAFULT_DEFAULT_LIMIT;
-    	else
-    		return Integer.parseInt(envValue);
+    	return getIntWithDefault("EVENTS_DEFAULT_LIMIT", DEFAULT_DEFAULT_LIMIT);
     }
     
     public int getEventsMaxLimit() {
-    	String envValue = System.getenv("EVENTS_MAX_LIMIT");
-    	if (envValue == null)
-    		return DEFAULT_EVENTS_MAX_LIMIT;
-    	else
-    		return Integer.parseInt(envValue);
+    	return getIntWithDefault("EVENTS_MAX_LIMIT", DEFAULT_EVENTS_MAX_LIMIT);
     }
     
     public String getStripeSecretKey() {
-    	String envValue = System.getenv("STRIPE_SECRET_KEY");
-    	if (envValue == null) {
-    		throw new RuntimeException("STRIPE_SECRET_KEY environment variable is not set. It is a requried environment varialbe.");
-    	}
-    	return envValue;
+    	return getMandatoryString("STRIPE_SECRET_KEY");
     }
     
     public String getSentryDSN() {
@@ -55,22 +43,55 @@ public class EnvironmentFactory {
     }
     
     public boolean getSentryEnabled() {
-    	boolean result;
-    	
-    	String envValue = System.getenv("SENTRY_ENABLED");
-    	if (envValue == null) {
-    		result = true;
-    	} else {
-    		result = Boolean.parseBoolean(envValue);
-    	}
-    	return result;
+    	return getBooleanWithDefault("SENTRY_ENABLED", true);
     }
     
 	public void requestAllManadtory() {
+		// TODO hook startup event from here instead of requiring a call to this function in ServiceApplication
 		// this method will trigger runtime exceptions if the ENV variables are empty
 		// it is called at start-up time so that we discover these problems early
 		this.getStripeSecretKey();
 		this.getSentryDSN();
+		this.getFinalLocationLat();
+		this.getFinalLocationLon();
 	}
-
+	
+	private float getMandatoryFloat(String envvar) {
+		String envValue = System.getenv(envvar);
+    	if (envValue == null)
+    		throw new RuntimeException(envvar + " environment variable is not set.");
+    	else
+    		return Float.parseFloat(envValue); 
+	}
+	
+	private String getMandatoryString(String envvar) {
+		return getMandatoryString(envvar, envvar + " environment variable is not set. It is a required environment variable");
+	}
+	
+	private String getMandatoryString(String envvar, String reason) {
+		String envValue = System.getenv(envvar);
+    	if (envValue == null)
+    		throw new RuntimeException(reason);
+    	else
+    		return envValue;
+		
+	}
+	
+	private int getIntWithDefault(String envvar, int defaultValue) {
+		String envValue = System.getenv(envvar);
+    	if (envValue == null)
+    		return defaultValue;
+    	else
+    		return Integer.parseInt(envValue);
+	}
+	
+	private boolean getBooleanWithDefault(String envvar, boolean defaultValue) {
+		String envValue = System.getenv(envvar);
+		if (envValue == null) {
+			return defaultValue;
+		} else {
+			return Boolean.parseBoolean(envValue);
+		}
+	}
+	
 }

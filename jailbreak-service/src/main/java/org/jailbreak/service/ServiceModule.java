@@ -124,13 +124,13 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	@Named("jailbreak.finalLocationLat")
 	public double provideEndLat(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getFinalLocationLat();
+		return config.getEnvironmentSettings().getFinalLocationLat();
 	}
 	
 	@Provides
 	@Named("jailbreak.finalLocationLon")
 	public double provideEndLon(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getFinalLocationLon();
+		return config.getEnvironmentSettings().getFinalLocationLon();
 	}
 	
 	@Provides
