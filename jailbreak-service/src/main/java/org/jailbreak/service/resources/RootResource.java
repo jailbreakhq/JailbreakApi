@@ -13,7 +13,6 @@ import org.jailbreak.service.core.DonationsManager;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-
 @Path("/")
 @Produces({MediaType.APPLICATION_JSON})
 public class RootResource {
@@ -56,13 +55,17 @@ public class RootResource {
     		.setStartTime(startTime)
     		.setStartLocationLat(startLat)
     		.setStartLocationLon(startLon)
-    		.setFinalLocationLat(finalLat)
-    		.setFinalLocationLon(finalLon)
+    		.setFinalLocationLat(roundLocationPercision(finalLat))
+    		.setFinalLocationLon(roundLocationPercision(finalLon))
         	.setTeamsUrl(path + Paths.TEAMS_PATH)
     		.setUsersUrl(path + Paths.USERS_PATH)
     		.setAuthenticateUrl(path + Paths.AUTHENTICATE_PATH)
     		.setFacebookTokensUrl(path + Paths.FACEBOOK_TOKENS_PATH)
     		.build();
+	}
+	
+	private double roundLocationPercision(double location) {
+		return (double)Math.round(location * 1000000) / 1000000;
 	}
 
 }
