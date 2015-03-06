@@ -19,29 +19,29 @@ import com.google.common.base.Optional;
 @RegisterMapper(CheckinsMapper.class)
 public interface CheckinsDAO {	
 	
-	@SqlUpdate("INSERT INTO checkins (location, status, position, time, team_id) VALUES (:location, :status, (:lat, :lon), :time, :team_id)")
+	@SqlUpdate("INSERT INTO checkins (location, status, lat, lon, time, team_id) VALUES (:location, :status, :lat, :lon, extract(epoch from now() at time zone 'utc'), :team_id)")
 	@GetGeneratedKeys
 	int insert(@BindProtobuf Checkin checkin);
 	
-	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, position = :position, time = :time, team_id = :team_id WHERE id = :id")
+	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, lat = :lat, lon = :lon, time = extract(epoch from now() at time zone 'utc'), team_id = :team_id WHERE id = :id")
 	int update(@BindProtobuf Checkin checkin);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE id = :id")
+	@SqlQuery("SELECT * FROM checkins WHERE id = :id")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getCheckin(@Bind("id") int id);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE id = ANY (:idList)")
+	@SqlQuery("SELECT * FROM checkins WHERE id = ANY (:idList)")
 	List<Checkin> getCheckins(@BindIds Set<Integer> ids);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE team_id = :team_id AND id = :id")
+	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id AND id = :id")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getTeamCheckin(@Bind("team_id") int teamId, @Bind("id") int id);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE team_id = :team_id ORDER BY time DESC LIMIT 1")
+	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id ORDER BY time DESC LIMIT 1")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getLastTeamCheckin(@Bind("team_id") int teamId);
 	
-	@SqlQuery("SELECT *, position[0] as x, position[1] as y FROM checkins WHERE team_id = :team_id")
+	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id")
 	List<Checkin> getTeamCheckins(@Bind("team_id") int teamId);
 	
 }
