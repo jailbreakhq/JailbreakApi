@@ -16,25 +16,37 @@ public class UsersMapper implements ResultSetMapper<User> {
 		long time_created = r.getLong("time_created");
 		UserLevel user_level = UserLevel.valueOf(r.getInt("user_level"));
 		String email = r.getString("email");
-		String first_name = r.getString("first_name");
-		String last_name = r.getString("last_name");
+		String firstName = r.getString("first_name");
+		String lastName = r.getString("last_name");
 		Gender gender = Gender.valueOf(r.getInt("gender"));
 		int timezone = r.getInt("timezone");
 		String locale = r.getString("locale");
-		String facebook_link = r.getString("facebook_link");
+		String facebookLink = r.getString("facebook_link");
+		String password = r.getString("password");
 		
-		return User.newBuilder()
+		User.Builder builder = User.newBuilder()
 				.setUserId(user_id)
 				.setTimeCreated(time_created)
 				.setUserLevel(user_level)
 				.setEmail(email)
-				.setFirstName(first_name)
-				.setLastName(last_name)
+				.setFirstName(firstName)
+				.setLastName(lastName)
 				.setGender(gender)
-				.setTimezone(timezone)
-				.setLocale(locale)
-				.setFacebookLink(facebook_link)
-				.build();
+				.setTimezone(timezone);
+		
+		if (locale != null && !locale.isEmpty()) {
+			builder.setLocale(locale);
+		}
+		
+		if (facebookLink != null && !facebookLink.isEmpty()) {
+			builder.setFacebookLink(facebookLink);
+		}
+		
+		if (password != null && !password.isEmpty()) {
+			builder.setPassword(password);
+		}
+		
+		return builder.build();
 	}
 
 }

@@ -22,11 +22,11 @@ public class ApiTokenAuthenticator implements Authenticator<BasicCredentials, Us
 	
     @Override
     public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
-    	Long user_id = Long.parseLong(credentials.getUsername());
+    	Long userId = Long.parseLong(credentials.getUsername());
     	String token = credentials.getPassword();
     	
     	ApiToken apiToken = ApiToken.newBuilder()
-    			.setUserId(user_id)
+    			.setUserId(userId)
     			.setApiToken(token)
     			.build();
     	

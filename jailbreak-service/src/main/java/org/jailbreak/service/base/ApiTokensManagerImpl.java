@@ -1,13 +1,19 @@
 package org.jailbreak.service.base;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import org.jailbreak.api.representations.Representations.ApiToken;
+import org.jailbreak.api.representations.Representations.AuthRequest;
 import org.jailbreak.api.representations.Representations.FacebookAuthToken;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.client.FacebookClient;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.core.UsersManager;
 import org.jailbreak.service.db.dao.ApiTokensDAO;
+import org.jailbreak.service.errors.AppException;
 import org.jailbreak.service.errors.auth.ApiTokenExpiredException;
+import org.jailbreak.service.helpers.PasswordHashingHelper;
 
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
@@ -37,7 +43,7 @@ public class ApiTokensManagerImpl implements ApiTokensManager {
 				.setUserId(user_id)
 				.setExpires((System.currentTimeMillis()/1000L) + (18 * 60 * 60)) // 18 hours
 				.build();
-		this.dao.createApiToken(token);
+		dao.createApiToken(token);
 		return token;
 	}
 	
@@ -74,6 +80,24 @@ public class ApiTokensManagerImpl implements ApiTokensManager {
 		}
 		
 		return usersManager.getUser(result.getUserId());
+	}
+	
+	@Override
+	public Optional<ApiToken> authenticate(AuthRequest request) {
+		Optional<User> user = usersManager.getUserByEmail(request.getEmail());
+		if (!user.isPresent()) {
+	    	return Optional.absent();
+	    }
+		
+		try {
+			if (PasswordHashingHelper.validatePassword(request.getPassword(), user.get().getPassword())) {
+				return Optional.of(this.createNewToken(user.get().getUserId()));
+			} else {
+				return Optional.absent();
+			}
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			throw new AppException("Failure hashing password", e);
+		}
 	}
 	
 }

@@ -13,6 +13,7 @@ import org.jailbreak.api.representations.Representations.Event.EventsFilters;
 import org.jailbreak.service.core.events.EventsManager;
 import org.jailbreak.service.errors.ApiDocs;
 
+import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -35,6 +36,7 @@ public class EventsResource {
 	}
 	
 	@GET
+	@Timed
 	public List<Event> getEvents(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
 		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);

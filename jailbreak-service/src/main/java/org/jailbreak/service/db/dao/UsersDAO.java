@@ -6,6 +6,7 @@ import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.mappers.UsersMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
@@ -18,12 +19,17 @@ public interface UsersDAO {
 
 	@SqlQuery("SELECT * FROM users WHERE user_id = :user_id")
 	@SingleValueResult(User.class)
-	Optional<User> getUser(@Bind("user_id") long user_id);
+	public Optional<User> getUser(@Bind("user_id") long user_id);
+	
+	@SqlQuery("SELECT * FROM users WHERE email = :email")
+	@SingleValueResult(User.class)
+	public Optional<User> getUserByEmail(@Bind("email") String email);
 	
 	@SqlQuery("SELECT * FROM users LIMIT 20")
-	List<User> getUsers();
+	public List<User> getUsers();
 
-	@SqlUpdate("INSERT INTO users VALUES(:user_id, UNIX_TIMESTAMP(UTC_TIMESTAMP()), :email, :user_level, :first_name, :last_name, :gender, :timezone, :locale, :facebook_link)")
-	void createUser(@BindProtobuf User user);
+	@SqlUpdate("INSERT INTO users VALUES(:user_id, UNIX_TIMESTAMP(UTC_TIMESTAMP()), :email, :user_level, :first_name, :last_name, :gender, :timezone, :locale, :facebook_link, :password)")
+	@GetGeneratedKeys
+	public int createUser(@BindProtobuf User user);
 
 }

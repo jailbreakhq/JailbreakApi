@@ -247,6 +247,11 @@ message ApiToken {
 	optional int64 expires = 3;
 }
 
+message AuthRequest {
+	optional string email = 1;
+	optional string password = 2;
+}
+
 message User {
 	enum UserLevel {
 		SUPERADMIN = 0;
@@ -272,4 +277,5 @@ message User {
 	optional string locale = 9;
 	optional string facebook_link = 10;
 	optional string api_tokens_url = 11;
+	optional string password = 12;
 }

@@ -10,6 +10,7 @@ public class Paths {
 	public final static String DONATIONS_PATH = "/donations";
 	public final static String STRIPE_PATH = "/stripe";
 	
+	public final static String LOGIN_PATH = "/login";
 	public final static String AUTHENTICATE_PATH = "/authenticate";
 	public final static String FACEBOOK_TOKENS_PATH = "/facebook_tokens";
 	
