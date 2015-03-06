@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
+import org.jailbreak.api.representations.Representations.User;
 
 import com.google.common.base.Optional;
 
@@ -18,6 +19,7 @@ public interface TeamsManager {
 	
 	public List<Team> getTeams();
 	public List<Team> getTeams(int limit, TeamsFilters filters);
+	public List<Team> getTeamsByLastCheckin();
 	public HashMap<Integer, Team> getLimitedTeams(Set<Integer> ids);
 	
 	public Team addTeam(Team team);
