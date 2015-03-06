@@ -12,6 +12,7 @@ import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.core.ApiTokensManager;
 import org.jailbreak.service.errors.auth.AuthenticationFailedException;
 
+import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 
@@ -40,6 +41,7 @@ public class AuthenticationResource {
 	}
 	
 	
+	@Timed
 	@POST
 	@Path(Paths.LOGIN_PATH)
 	public ApiToken login(AuthRequest request) {
