@@ -1,6 +1,8 @@
 package org.jailbreak.service.base;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +95,32 @@ public class TeamsManagerImpl implements TeamsManager {
 		}
 		
 		return annotateTeamsWithCheckins(teams);
+	}
+	
+	@Override
+	public List<Team> getTeamsByLastCheckin() {
+		List<Team> teams = dao.getTeams();
+		
+		List<Team> teamsAnnotated = annotateTeamsWithCheckins(teams);
+		
+		Collections.sort(teamsAnnotated, new Comparator<Team>() {
+			@Override
+			public int compare(Team t1, Team t2) {
+				if (!t1.hasLastCheckin()) {
+					return 1;
+				}
+				
+				if (!t2.hasLastCheckin()) {
+					return -1;
+				}
+				
+				Long time1 = t1.getLastCheckin().getTime();
+				Long time2 = t2.getLastCheckin().getTime();
+				return time1.compareTo(time2);
+			}
+		});
+		
+		return teamsAnnotated;
 	}
 	
 	@Override

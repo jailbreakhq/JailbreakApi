@@ -42,13 +42,15 @@ public class CheckinsResource {
 	}
 	
 	@POST
-	public Checkin postCheckin(@Auth User user, Checkin checkin) {
+	public Checkin postCheckin(@Auth User user, @PathParam("team_id") int teamId, Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a checkin", ApiDocs.CHECKINS);
 		}
 		
-		if (!checkin.hasTeamId()) {
-			throw new BadRequestException("You must provide a team id value to create this Checkin", ApiDocs.CHECKINS);
+		if (checkin.hasTeamId() && teamId != checkin.getTeamId()) {
+			throw new BadRequestException("The team id in the path must match the one in the URL", ApiDocs.CHECKINS);
+		} else {
+			checkin = checkin.toBuilder().setTeamId(teamId).build();
 		}
 		
 		if (!checkin.hasLat()) {
@@ -64,8 +66,8 @@ public class CheckinsResource {
 	
 	@GET
 	@Path("/{id}")
-	public Optional<Checkin> getCheckin(@PathParam("team_id") int team_id, @PathParam("id") int id) {
-		return this.manager.getTeamCheckin(team_id, id);
+	public Optional<Checkin> getCheckin(@PathParam("team_id") int teamId, @PathParam("id") int id) {
+		return this.manager.getTeamCheckin(teamId, id);
 	}
 	
 	@PUT

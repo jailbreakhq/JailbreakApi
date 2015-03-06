@@ -60,7 +60,7 @@ public abstract class TeamsDAO {
 	
 	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
 	public abstract List<Team> getTeams();
-
+	
 	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC LIMIT 10")
 	public abstract List<Team> getTopTenTeams();
 	
@@ -99,5 +99,5 @@ public abstract class TeamsDAO {
 			throw e;
 		}
 	}
-	
+
 }

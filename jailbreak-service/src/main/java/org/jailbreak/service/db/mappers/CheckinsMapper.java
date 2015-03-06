@@ -14,15 +14,15 @@ public class CheckinsMapper implements ResultSetMapper<Checkin> {
 		int id = r.getInt("id");
 		String location = r.getString("location");
 		String status = r.getString("status");
-		String lat = r.getString("x");
-		String lon = r.getString("y");
+		double lat = r.getDouble("lat");
+		double lon = r.getDouble("lon");
 		long time = r.getLong("time");
 		int team_id = r.getInt("team_id");
 		
 		Checkin.Builder builder = Checkin.newBuilder()
 				.setId(id)
-				.setLat(Double.parseDouble(lat))
-				.setLon(Double.parseDouble(lon))
+				.setLat(lat)
+				.setLon(lon)
 				.setTime(time)
 				.setTeamId(team_id);
 		

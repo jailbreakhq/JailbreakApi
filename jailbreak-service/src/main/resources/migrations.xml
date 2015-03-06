@@ -285,5 +285,11 @@
     		<column name="password" type="text"/>
     	</addColumn>
     </changeSet>
+    <changeSet id="14" author="kbaker">
+    	<addColumn tableName="checkins">
+    		<column name="lat" type="float"/>
+    		<column name="lon" type="float"/>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

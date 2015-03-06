@@ -60,6 +60,12 @@ public class TeamsResource {
 		return this.manager.getTeams(limit+150, filters); // TODO: fix limit issues
 	}
 	
+	@Path("/lastcheckin")
+	@GET
+	public List<Team> getTeamsByLastCheckin() {
+		return this.manager.getTeamsByLastCheckin();
+	}
+	
 	@POST
 	public Team addTeam(@Auth User user, Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
