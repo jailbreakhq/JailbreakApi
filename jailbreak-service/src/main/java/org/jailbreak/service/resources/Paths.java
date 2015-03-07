@@ -4,6 +4,7 @@ public class Paths {
 	
 	public final static String EVENTS_PATH = "/events";
 	public final static String LINK_EVENTS_PATH = "/events/links";
+	public final static String DONATE_EVENTS_PATH = "/events/donates";
 	
 	public final static String TEAMS_PATH = "/teams";
 	public final static String CHECKINS_PATH = "/teams/{team_id}/checkins";

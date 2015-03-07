@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 @RegisterMapper(FacebookEventsMapper.class)
 public interface FacebookEventsDAO {	
 	
-	@SqlQuery("SELECT * FROM events_facebook WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM events_facebook WHERE id = :id")
 	@SingleValueResult(Facebook.class)
 	Optional<Facebook> getFacebookEvent(@Bind("id") int id);
 	

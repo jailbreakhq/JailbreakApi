@@ -9,7 +9,8 @@ import com.google.common.base.Optional;
 
 public interface DonateEventsManager {
 	
-	Optional<Donate> getDonateEvent(int id);
-	HashMap<Integer, Donate> getDonateEvents(Set<Integer> ids);
-
+	public Optional<Donate> getDonateEvent(int id);
+	public HashMap<Integer, Donate> getDonateEvents(Set<Integer> ids);
+	public Donate createDonateEvent(Donate donate);
+	
 }

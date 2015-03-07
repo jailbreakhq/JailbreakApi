@@ -1,4 +1,4 @@
-package org.jailbreak.service.resources;
+package org.jailbreak.service.resources.events;
 
 import io.dropwizard.auth.Auth;
 
@@ -14,6 +14,7 @@ import org.jailbreak.service.core.events.LinkEventsManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
+import org.jailbreak.service.resources.Paths;
 
 import com.google.inject.Inject;
 
