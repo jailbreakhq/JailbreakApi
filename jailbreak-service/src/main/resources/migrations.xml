@@ -291,5 +291,10 @@
     		<column name="lon" type="float"/>
     	</addColumn>
     </changeSet>
+    <changeSet id="15" author="kbaker">
+    	<addColumn tableName="teams">
+    		<column name="position" type="tinyint"/>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

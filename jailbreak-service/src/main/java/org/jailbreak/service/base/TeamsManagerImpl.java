@@ -193,6 +193,39 @@ public class TeamsManagerImpl implements TeamsManager {
 		this.dao.delete(id);
 	}
 	
+	@Override
+	public void updateAllTeamPositions() {
+		List<Team> teamsAnnotated = getTeams(); // get teams annotated with last chekin information
+		
+		// sort teams by distance to X
+		Collections.sort(teamsAnnotated, new Comparator<Team>() {
+			@Override
+			public int compare(Team t1, Team t2) {
+				if (!t1.hasLastCheckin()) {
+					return 1;
+				}
+				
+				if (!t2.hasLastCheckin()) {
+					return -1;
+				}
+				
+				Double distance1 = Double.valueOf(t1.getLastCheckin().getDistanceToX());
+				Double distance2 = Double.valueOf(t2.getLastCheckin().getDistanceToX());
+				return distance1.compareTo(distance2);
+			}
+		});
+		
+		// update teams that have changed position in the race (cry)
+		int next_position = 1;
+		for (Team team : teamsAnnotated) {
+			if (team.getPosition() != next_position) {
+				dao.updateTeamPosition(team.getId(), next_position);
+			}
+			
+			next_position++;
+		}
+	}
+	
 	private List<Team> annotateTeamsWithCheckins(List<Team> teams) {
 		Set<Integer> ids = lastCheckinIds(teams);
 		HashMap<Integer, Checkin> map = checkinsManager.getCheckins(ids);

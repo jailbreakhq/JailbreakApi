@@ -39,7 +39,11 @@ public class CheckinsManagerImpl implements CheckinsManager {
 		if (team.isPresent()) {
 			int new_id = this.dao.insert(checkin);
 			
+			// update teams last checkin id
 			teamsManager.updateTeam(team.get().toBuilder().setLastCheckinId(new_id).build());
+			
+			// update all team positions
+			teamsManager.updateAllTeamPositions();
 			
 			return this.addDistanceToX(this.getCheckin(new_id).get());
 		} else {
