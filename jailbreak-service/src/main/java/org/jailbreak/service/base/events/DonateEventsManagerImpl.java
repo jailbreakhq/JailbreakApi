@@ -50,12 +50,15 @@ public class DonateEventsManagerImpl implements DonateEventsManager {
 	public Donate createDonateEvent(Donate donate) {
 		int newId = dao.insert(donate);
 		
-		Event event = Event.newBuilder()
+		Event.Builder event = Event.newBuilder()
 				.setType(EventType.DONATE)
-				.setObjectId(newId)
-				.build();
+				.setObjectId(newId);
 		
-		eventsManager.createEvent(event);
+		if (donate.hasTeamId()) {
+			event.setTeamId(donate.getTeamId());
+		}
+		
+		eventsManager.createEvent(event.build());
 
 		return getDonateEvent(newId).get(); 
 	}
