@@ -34,6 +34,7 @@ import org.jailbreak.service.errors.AppException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.newrelic.deps.com.google.common.collect.Sets;
@@ -73,6 +74,39 @@ public class EventsManagerImpl implements EventsManager {
 		this.twitterManager = twitterManager;
 		this.instagramManager = instagramManager;
 		this.vineManager = vineManager;
+	}
+	
+	@Override
+	public Event createEvent(Event event) {
+		int newId = dao.insert(event);
+		
+		return getEvent(newId).get();
+	}
+	
+	@Override
+	public boolean updateEvent(Event event) {
+		int result = dao.update(event);
+		if (result == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public Optional<Event> getRawEvent(int id) {
+		return dao.getEvent(id);
+	}
+	
+	@Override
+	public Optional<Event> getEvent(int id) {
+		Optional<Event> maybeEvent = dao.getEvent(id);
+		if (maybeEvent.isPresent()) {
+			List<Event> es = Lists.newArrayList(maybeEvent.get());
+			Event annotatedEvent = annotateEvents(es).get(0);
+			maybeEvent = Optional.of(annotatedEvent);
+		}
+		return maybeEvent;
 	}
 	
 	@Override

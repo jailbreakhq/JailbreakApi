@@ -296,5 +296,10 @@
     		<column name="position" type="tinyint"/>
     	</addColumn>
     </changeSet>
+    <changeSet id="16" author="kbaker">
+    	<addColumn tableName="events">
+    		<column name="highlight" type="boolean" defaultValueBoolean="false"/>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

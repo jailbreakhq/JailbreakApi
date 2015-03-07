@@ -110,6 +110,7 @@ message Event {
 	optional int64 time = 3;
 	optional int32 object_id = 4;
 	optional int32 team_id = 5;
+	optional bool highlight = 14;
 	
 	optional Link link = 6;
 	optional Checkin checkin = 7;

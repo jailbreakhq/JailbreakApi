@@ -194,7 +194,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 	
 	@Override
-	public void updateAllTeamPositions() {
+	public int updateAllTeamPositions(int teamIdCausedUpdate) {
 		List<Team> teamsAnnotated = getTeams(); // get teams annotated with last chekin information
 		
 		// sort teams by distance to X
@@ -216,14 +216,22 @@ public class TeamsManagerImpl implements TeamsManager {
 		});
 		
 		// update teams that have changed position in the race (cry)
-		int next_position = 1;
+		int newPosition = 0;
+		
+		int nextPosition = 1;
 		for (Team team : teamsAnnotated) {
-			if (team.getPosition() != next_position) {
-				dao.updateTeamPosition(team.getId(), next_position);
+			if (team.getPosition() != nextPosition) {
+				dao.updateTeamPosition(team.getId(), nextPosition);
 			}
 			
-			next_position++;
+			if (team.getId() == teamIdCausedUpdate) {
+				newPosition = nextPosition;
+			}
+			
+			nextPosition++;
 		}
+		
+		return newPosition;
 	}
 	
 	private List<Team> annotateTeamsWithCheckins(List<Team> teams) {

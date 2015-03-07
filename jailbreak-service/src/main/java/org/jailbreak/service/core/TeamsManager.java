@@ -26,6 +26,6 @@ public interface TeamsManager {
 	public Optional<Team> patchTeam(Team team);
 	public void deleteTeam(int id);
 	
-	public void updateAllTeamPositions();
+	public int updateAllTeamPositions(int teamIdCausedUpdate);
 	
 }

@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.api.representations.Representations.Event;
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Event.EventType;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.TeamsManager;
+import org.jailbreak.service.core.events.EventsManager;
 import org.jailbreak.service.db.dao.CheckinsDAO;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
@@ -22,14 +25,17 @@ public class CheckinsManagerImpl implements CheckinsManager {
 
 	private final CheckinsDAO dao;
 	private final TeamsManager teamsManager;
+	private final EventsManager eventsManager;
 	private final DistanceHelper distanceHelper;
 	
 	@Inject
 	public CheckinsManagerImpl(CheckinsDAO dao,
 			TeamsManager teamsManager,
+			EventsManager eventsManager,
 			DistanceHelper distanceHelper) {
 		this.dao = dao;
 		this.teamsManager = teamsManager;
+		this.eventsManager = eventsManager;
 		this.distanceHelper = distanceHelper;
 	}
 	
@@ -37,15 +43,30 @@ public class CheckinsManagerImpl implements CheckinsManager {
 	public Checkin createCheckin(Checkin checkin) {
 		Optional<Team> team = teamsManager.getRawTeam(checkin.getTeamId());
 		if (team.isPresent()) {
-			int new_id = this.dao.insert(checkin);
+			int newId = this.dao.insert(checkin);
 			
 			// update teams last checkin id
-			teamsManager.updateTeam(team.get().toBuilder().setLastCheckinId(new_id).build());
+			teamsManager.updateTeam(team.get().toBuilder().setLastCheckinId(newId).build());
 			
 			// update all team positions
-			teamsManager.updateAllTeamPositions();
+			int thisTeamsNewPosition = teamsManager.updateAllTeamPositions(checkin.getTeamId());
 			
-			return this.addDistanceToX(this.getCheckin(new_id).get());
+			// add a note to the 
+			boolean highlight = false;
+			if (thisTeamsNewPosition < 3) {
+				highlight = true;
+			}
+			
+			Event event = Event.newBuilder()
+					 .setType(EventType.CHECKIN)
+					 .setObjectId(newId)
+					 .setTeamId(checkin.getTeamId())
+					 .setHighlight(highlight)
+					 .build();
+			 
+			 eventsManager.createEvent(event);
+			
+			return this.addDistanceToX(this.getCheckin(newId).get());
 		} else {
 			throw new BadRequestException("There is no team that matches team id " + checkin.getTeamId(), ApiDocs.CHECKINS);
 		}
