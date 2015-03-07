@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 @RegisterMapper(YoutubeEventsMapper.class)
 public interface YoutubeEventsDAO {	
 	
-	@SqlQuery("SELECT * FROM events_youtube WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM events_youtube WHERE id = :id")
 	@SingleValueResult(Youtube.class)
 	Optional<Youtube> getYoutube(@Bind("id") int id);
 	

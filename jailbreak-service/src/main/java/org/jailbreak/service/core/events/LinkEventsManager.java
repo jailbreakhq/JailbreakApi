@@ -9,7 +9,8 @@ import com.google.common.base.Optional;
 
 public interface LinkEventsManager {
 	
-	Optional<Link> getLinkEvent(int id);
-	HashMap<Integer, Link> getLinkEvents(Set<Integer> ids);
+	public Optional<Link> getLinkEvent(int id);
+	public HashMap<Integer, Link> getLinkEvents(Set<Integer> ids);
+	public Link createLinkEvent(Link link);
 
 }

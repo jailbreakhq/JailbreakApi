@@ -26,6 +26,7 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		boolean featured = r.getBoolean("featured");
 		String slug = r.getString("slug");
 		int lastCheckinId = r.getInt("last_checkin_id");
+		int position = r.getInt("position");
 		
 		Team.Builder builder = Team.newBuilder()
 				.setId(id)
@@ -38,7 +39,8 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setCountries(countries)
 				.setTransports(transports)
 				.setFeatured(featured)
-				.setSlug(slug);
+				.setSlug(slug)
+				.setPosition(position);
 		
 		if (lastCheckinId != 0) {
 			builder.setLastCheckinId(lastCheckinId);

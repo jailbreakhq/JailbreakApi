@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 @RegisterMapper(TwitterEventsMapper.class)
 public interface TwitterEventsDAO {	
 	
-	@SqlQuery("SELECT * FROM events_twitter WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM events_twitter WHERE id = :id")
 	@SingleValueResult(Twitter.class)
 	Optional<Twitter> getTwitterEvent(@Bind("id") int id);
 	

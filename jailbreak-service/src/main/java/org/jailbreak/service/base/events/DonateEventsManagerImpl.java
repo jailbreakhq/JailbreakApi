@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Donate;
+import org.jailbreak.api.representations.Representations.Event;
+import org.jailbreak.api.representations.Representations.Event.EventType;
 import org.jailbreak.service.core.events.DonateEventsManager;
+import org.jailbreak.service.core.events.EventsManager;
 import org.jailbreak.service.db.dao.events.DonateEventsDAO;
 
 import com.google.common.base.Optional;
@@ -15,10 +18,13 @@ import com.google.inject.Inject;
 public class DonateEventsManagerImpl implements DonateEventsManager {
 
 	private final DonateEventsDAO dao;
+	private final EventsManager eventsManager;
 	
 	@Inject
-	public DonateEventsManagerImpl(DonateEventsDAO dao) {
+	public DonateEventsManagerImpl(DonateEventsDAO dao,
+			EventsManager eventsManager) {
 		this.dao = dao;
+		this.eventsManager = eventsManager;
 	}
 	
 	@Override
@@ -40,4 +46,21 @@ public class DonateEventsManagerImpl implements DonateEventsManager {
 		return map;
 	}
 
+	@Override
+	public Donate createDonateEvent(Donate donate) {
+		int newId = dao.insert(donate);
+		
+		Event.Builder event = Event.newBuilder()
+				.setType(EventType.DONATE)
+				.setObjectId(newId);
+		
+		if (donate.hasTeamId()) {
+			event.setTeamId(donate.getTeamId());
+		}
+		
+		eventsManager.createEvent(event.build());
+
+		return getDonateEvent(newId).get(); 
+	}
+	
 }

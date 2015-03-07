@@ -291,5 +291,15 @@
     		<column name="lon" type="float"/>
     	</addColumn>
     </changeSet>
+    <changeSet id="15" author="kbaker">
+    	<addColumn tableName="teams">
+    		<column name="position" type="tinyint"/>
+    	</addColumn>
+    </changeSet>
+    <changeSet id="16" author="kbaker">
+    	<addColumn tableName="events">
+    		<column name="highlight" type="boolean" defaultValueBoolean="false"/>
+    	</addColumn>
+    </changeSet>
     
 </databaseChangeLog>

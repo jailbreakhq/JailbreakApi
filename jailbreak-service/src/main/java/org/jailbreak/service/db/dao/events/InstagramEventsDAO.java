@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 @RegisterMapper(InstagramEventsMapper.class)
 public interface InstagramEventsDAO {	
 	
-	@SqlQuery("SELECT * FROM events_instagram WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM events_instagram WHERE id = :id")
 	@SingleValueResult(Instagram.class)
 	Optional<Instagram> getInstagram(@Bind("id") int id);
 	

@@ -7,13 +7,16 @@ import java.util.Map;
 
 import org.jailbreak.api.representations.Representations.Event;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
+import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.ManualStatement;
 import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
 import org.jailbreak.service.db.mappers.RowCountMapper;
 import org.jailbreak.service.db.mappers.events.EventsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import org.skife.jdbi.v2.sqlobject.customizers.SingleValueResult;
 import org.slf4j.Logger;
@@ -27,6 +30,13 @@ public abstract class EventsDAO {
 	
 	public Connection conn;
 	private final Logger LOG = LoggerFactory.getLogger(EventsDAO.class);
+	
+	@SqlUpdate("INSERT INTO events (type, object_id, time, team_id, highlight) VALUES (:type, :object_id, extract(epoch from now() at time zone 'utc'), :team_id, :highlight)")
+	@GetGeneratedKeys
+	public abstract int insert(@BindProtobuf Event event);
+
+	@SqlUpdate("UPDATE events SET type = :type, object_id = :object_id, time = :time, team_id = :team_id, highlight = :highlight WHERE id = :id")
+	public abstract int update(@BindProtobuf Event event);
 	
 	@SqlQuery("SELECT * FROM events WHERE id = :id")
 	@SingleValueResult(Event.class)

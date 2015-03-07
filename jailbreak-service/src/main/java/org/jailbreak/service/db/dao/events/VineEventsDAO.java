@@ -16,7 +16,7 @@ import com.google.common.base.Optional;
 @RegisterMapper(VineEventsMapper.class)
 public interface VineEventsDAO {	
 	
-	@SqlQuery("SELECT * FROM events_vine WHERE AND id = :id")
+	@SqlQuery("SELECT * FROM events_vine WHERE id = :id")
 	@SingleValueResult(Vine.class)
 	Optional<Vine> getVine(@Bind("id") int id);
 	

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
-import org.jailbreak.api.representations.Representations.User;
 
 import com.google.common.base.Optional;
 
@@ -26,5 +25,7 @@ public interface TeamsManager {
 	public Optional<Team> updateTeam(Team team);
 	public Optional<Team> patchTeam(Team team);
 	public void deleteTeam(int id);
+	
+	public int updateAllTeamPositions(int teamIdCausedUpdate);
 	
 }

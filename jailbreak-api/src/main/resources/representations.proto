@@ -50,11 +50,19 @@ message Team {
  	optional string avatar_large = 21;
  	optional int32 last_checkin_id = 22;
  	optional Checkin last_checkin = 23;
+ 	optional int32 position = 24;
  	
  	message TeamsFilters {
  		optional int32 team_number = 1;
  		optional University university = 2;
  		optional bool featured = 3;
+ 		optional TeamOrdering order_by = 4;
+ 	}
+ 	
+ 	enum TeamOrdering {
+ 		AMOUNT_RAISED = 0;
+ 		POSITION = 1;
+ 		TEAM_NUMBER = 2;
  	}
 }
 
@@ -102,6 +110,7 @@ message Event {
 	optional int64 time = 3;
 	optional int32 object_id = 4;
 	optional int32 team_id = 5;
+	optional bool highlight = 14;
 	
 	optional Link link = 6;
 	optional Checkin checkin = 7;

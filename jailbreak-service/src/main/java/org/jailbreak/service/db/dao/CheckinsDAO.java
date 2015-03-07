@@ -23,7 +23,7 @@ public interface CheckinsDAO {
 	@GetGeneratedKeys
 	int insert(@BindProtobuf Checkin checkin);
 	
-	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, lat = :lat, lon = :lon, time = extract(epoch from now() at time zone 'utc'), team_id = :team_id WHERE id = :id")
+	@SqlUpdate("UPDATE checkins SET location = :location, status = :status, lat = :lat, lon = :lon, time = :time, team_id = :team_id WHERE id = :id")
 	int update(@BindProtobuf Checkin checkin);
 	
 	@SqlQuery("SELECT * FROM checkins WHERE id = :id")
