@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar jailbreak-service/target/jailbreak-service-0.0.1-SNAPSHOT.jar db migrate jailbreak-service/jailbreak.yml && java $JAVA_OPTS -Ddw.server.connector.port=$PORT -Dnewrelic.enable.java.8 -jar jailbreak-service/target/jailbreak-service-0.0.1-SNAPSHOT.jar server jailbreak-service/jailbreak.yml
+web: java $JAVA_OPTS -Ddw.server.connector.port=$PORT -Dnewrelic.enable.java.8 -jar jailbreak-service/target/jailbreak-service-0.0.1-SNAPSHOT.jar server jailbreak-service/jailbreak.yml
