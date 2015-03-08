@@ -37,7 +37,7 @@ public interface CheckinsDAO {
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getTeamCheckin(@Bind("team_id") int teamId, @Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id ORDER BY time DESC LIMIT 1")
+	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id ORDER BY id DESC LIMIT 1")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getLastTeamCheckin(@Bind("team_id") int teamId);
 	
