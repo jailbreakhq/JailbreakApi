@@ -33,7 +33,7 @@ public interface CheckinsDAO {
 	@SqlQuery("SELECT * FROM checkins WHERE id = ANY (:idList)")
 	List<Checkin> getCheckins(@BindIds Set<Integer> ids);
 	
-	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id AND id = :id")
+	@SqlQuery("SELECT * FROM checkins WHERE team_id = :team_id AND id = :id ORDER BY time DESC")
 	@SingleValueResult(Checkin.class)
 	Optional<Checkin> getTeamCheckin(@Bind("team_id") int teamId, @Bind("id") int id);
 	
