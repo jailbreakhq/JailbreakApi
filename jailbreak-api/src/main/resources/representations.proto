@@ -126,6 +126,7 @@ message Event {
 		optional int32 before_id = 2;
 		optional int32 after_id = 3;
 		optional int32 team_id = 4;
+		optional bool highlight = 5;
 	}
 }
 

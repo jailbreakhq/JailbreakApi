@@ -93,6 +93,10 @@ public abstract class EventsDAO {
 			builder.addWhere("id > :after_id");
 			bindParams.put("after_id", filters.getAfterId());
 		}
+		if (filters.hasHighlight()) {
+			builder.addWhere("highlight = :highlight");
+			bindParams.put("highlight", filters.getHighlight());
+		}
 		
 		return builder;
 	}
