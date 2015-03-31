@@ -27,8 +27,6 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 	
 	@Override
     public Response toResponse(RuntimeException e) {
-		LOG.info("Runtime Exception Mapper");
-		
 		Exception report;
 		String reportMessage;
 		
