@@ -1,10 +1,15 @@
 package org.jailbreak.service.config;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 public class EnvironmentFactory {
 	
 	private final int DEFAULT_DEFAULT_LIMIT = 10;
 	private final int DEFAULT_MAX_LIMIT = 20;
 	private final int DEFAULT_EVENTS_MAX_LIMIT = 50;
+	
+	private final Logger LOG = LoggerFactory.getLogger(EnvironmentFactory.class);
 	
 	public float getFinalLocationLat() {
 		return getMandatoryFloat("FINAL_LAT");
@@ -43,7 +48,9 @@ public class EnvironmentFactory {
     }
     
     public boolean getSentryEnabled() {
-    	return getBooleanWithDefault("SENTRY_ENABLED", true);
+    	boolean value = getBooleanWithDefault("SENTRY_ENABLED", true);
+    	LOG.info("Sentry Enabled: " + value);
+    	return value;
     }
     
 	public void requestAllManadtory() {

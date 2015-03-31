@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ErrorMessage {
 	
 	@JsonProperty
-	private int statusCode;
+	private int status;
 	
 	@JsonProperty
 	private String message;
 	
 	@JsonProperty
-	private String docsLink;
+	private String docs_link;
 	
-	public ErrorMessage(int status_code, String message, String docs_link) {
-		this.statusCode = status_code;
+	public ErrorMessage(int status, String message, String docs_link) {
+		this.status = status;
 		this.message = message;
-		this.docsLink = docs_link;
+		this.docs_link = docs_link;
 	}
-
+	
 }

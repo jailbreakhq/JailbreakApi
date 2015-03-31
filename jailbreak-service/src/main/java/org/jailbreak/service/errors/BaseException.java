@@ -1,17 +1,40 @@
 package org.jailbreak.service.errors;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 @SuppressWarnings("serial")
-public class BaseException extends WebApplicationException {
+public class BaseException extends RuntimeException {
 	
-	public BaseException(int status_code, String message, String docs_link) {
-		super(Response.status(status_code)
-				.entity(new ErrorMessage(status_code, message, docs_link))
-				.type(MediaType.APPLICATION_JSON)
-				.build());
+	private int status;
+	private String message;
+	private String docs_link;
+	
+	public BaseException(int status, String message, String docs_link) {
+		this.status = status;
+		this.message = message;
+		this.docs_link = docs_link;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getDocsLink() {
+		return docs_link;
+	}
+
+	public void setDocsLink(String docs_link) {
+		this.docs_link = docs_link;
 	}
 
 }

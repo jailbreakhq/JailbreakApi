@@ -24,7 +24,6 @@ public class HerokuDatabaseConfiguration {
             throw new IllegalArgumentException("The DATABASE_URL environment variable must be set before running the app " +
                     "example: DATABASE_URL=\"postgres://username:password@host:5432/dbname\"");
         }
-        DataSourceFactory databaseConfiguration = null;
         try {
             URI dbUri = new URI(databaseUrl);
             final String user = dbUri.getUserInfo().split(":")[0];
