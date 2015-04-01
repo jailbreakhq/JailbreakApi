@@ -58,9 +58,10 @@ public class RootResource {
     		.setFinalLocationLat(roundLocationPercision(finalLat))
     		.setFinalLocationLon(roundLocationPercision(finalLon))
         	.setTeamsUrl(path + Paths.TEAMS_PATH)
+        	.setDonationsUrl(path + Paths.DONATIONS_PATH)
+        	.setEventsUrl(path + Paths.EVENTS_PATH)
     		.setUsersUrl(path + Paths.USERS_PATH)
     		.setAuthenticateUrl(path + Paths.AUTHENTICATE_PATH)
-    		.setFacebookTokensUrl(path + Paths.FACEBOOK_TOKENS_PATH)
     		.build();
 	}
 	

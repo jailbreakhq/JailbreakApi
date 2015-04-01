@@ -139,6 +139,34 @@ public final class Representations {
      * <code>optional double start_location_lon = 12;</code>
      */
     double getStartLocationLon();
+
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    boolean hasDonationsUrl();
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    java.lang.String getDonationsUrl();
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getDonationsUrlBytes();
+
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    boolean hasEventsUrl();
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    java.lang.String getEventsUrl();
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getEventsUrlBytes();
   }
   /**
    * Protobuf type {@code org.jailbreak.api.representations.JailbreakService}
@@ -254,6 +282,18 @@ public final class Representations {
             case 97: {
               bitField0_ |= 0x00000800;
               startLocationLon_ = input.readDouble();
+              break;
+            }
+            case 106: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00001000;
+              donationsUrl_ = bs;
+              break;
+            }
+            case 114: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00002000;
+              eventsUrl_ = bs;
               break;
             }
           }
@@ -584,6 +624,90 @@ public final class Representations {
       return startLocationLon_;
     }
 
+    public static final int DONATIONS_URL_FIELD_NUMBER = 13;
+    private java.lang.Object donationsUrl_;
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    public boolean hasDonationsUrl() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    public java.lang.String getDonationsUrl() {
+      java.lang.Object ref = donationsUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          donationsUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string donations_url = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDonationsUrlBytes() {
+      java.lang.Object ref = donationsUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        donationsUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int EVENTS_URL_FIELD_NUMBER = 14;
+    private java.lang.Object eventsUrl_;
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    public boolean hasEventsUrl() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    public java.lang.String getEventsUrl() {
+      java.lang.Object ref = eventsUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          eventsUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string events_url = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEventsUrlBytes() {
+      java.lang.Object ref = eventsUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        eventsUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       startTime_ = 0L;
       amountRaised_ = 0;
@@ -597,6 +721,8 @@ public final class Representations {
       usersUrl_ = "";
       startLocationLat_ = 0D;
       startLocationLon_ = 0D;
+      donationsUrl_ = "";
+      eventsUrl_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -646,6 +772,12 @@ public final class Representations {
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeDouble(12, startLocationLon_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        output.writeBytes(13, getDonationsUrlBytes());
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        output.writeBytes(14, getEventsUrlBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -703,6 +835,14 @@ public final class Representations {
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(12, startLocationLon_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(13, getDonationsUrlBytes());
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(14, getEventsUrlBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -845,6 +985,10 @@ public final class Representations {
         bitField0_ = (bitField0_ & ~0x00000400);
         startLocationLon_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000800);
+        donationsUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00001000);
+        eventsUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00002000);
         return this;
       }
 
@@ -921,6 +1065,14 @@ public final class Representations {
           to_bitField0_ |= 0x00000800;
         }
         result.startLocationLon_ = startLocationLon_;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
+        }
+        result.donationsUrl_ = donationsUrl_;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
+        }
+        result.eventsUrl_ = eventsUrl_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -980,6 +1132,16 @@ public final class Representations {
         }
         if (other.hasStartLocationLon()) {
           setStartLocationLon(other.getStartLocationLon());
+        }
+        if (other.hasDonationsUrl()) {
+          bitField0_ |= 0x00001000;
+          donationsUrl_ = other.donationsUrl_;
+          onChanged();
+        }
+        if (other.hasEventsUrl()) {
+          bitField0_ |= 0x00002000;
+          eventsUrl_ = other.eventsUrl_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1564,6 +1726,158 @@ public final class Representations {
       public Builder clearStartLocationLon() {
         bitField0_ = (bitField0_ & ~0x00000800);
         startLocationLon_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object donationsUrl_ = "";
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public boolean hasDonationsUrl() {
+        return ((bitField0_ & 0x00001000) == 0x00001000);
+      }
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public java.lang.String getDonationsUrl() {
+        java.lang.Object ref = donationsUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            donationsUrl_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDonationsUrlBytes() {
+        java.lang.Object ref = donationsUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          donationsUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public Builder setDonationsUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00001000;
+        donationsUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public Builder clearDonationsUrl() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        donationsUrl_ = getDefaultInstance().getDonationsUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string donations_url = 13;</code>
+       */
+      public Builder setDonationsUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00001000;
+        donationsUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object eventsUrl_ = "";
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public boolean hasEventsUrl() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public java.lang.String getEventsUrl() {
+        java.lang.Object ref = eventsUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            eventsUrl_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getEventsUrlBytes() {
+        java.lang.Object ref = eventsUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          eventsUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public Builder setEventsUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00002000;
+        eventsUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public Builder clearEventsUrl() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        eventsUrl_ = getDefaultInstance().getEventsUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string events_url = 14;</code>
+       */
+      public Builder setEventsUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00002000;
+        eventsUrl_ = value;
         onChanged();
         return this;
       }
@@ -28616,7 +28930,7 @@ public final class Representations {
   static {
     java.lang.String[] descriptorData = {
       "\n(src/main/resources/representations.pro" +
-      "to\022!org.jailbreak.api.representations\"\264\002" +
+      "to\022!org.jailbreak.api.representations\"\337\002" +
       "\n\020JailbreakService\022\022\n\nstart_time\030\001 \001(\003\022\025" +
       "\n\ramount_raised\030\002 \001(\005\022\026\n\016winner_team_id\030" +
       "\003 \001(\005\022\020\n\010tfm_live\030\004 \001(\010\022\032\n\022final_locatio" +
@@ -28624,129 +28938,131 @@ public final class Representations {
       "\021\n\tteams_url\030\007 \001(\t\022\033\n\023facebook_tokens_ur" +
       "l\030\010 \001(\t\022\030\n\020authenticate_url\030\t \001(\t\022\021\n\tuse" +
       "rs_url\030\n \001(\t\022\032\n\022start_location_lat\030\013 \001(\001" +
-      "\022\032\n\022start_location_lon\030\014 \001(\001\"\243\007\n\004Team\022\n\n",
-      "\002id\030\001 \001(\005\022\023\n\013team_number\030\002 \001(\005\022\021\n\tteam_n" +
-      "ame\030\003 \001(\t\022\r\n\005names\030\004 \001(\t\022\016\n\006avatar\030\005 \001(\t" +
-      "\022\020\n\010tag_line\030\006 \001(\t\022F\n\nuniversity\030\t \001(\01622" +
-      ".org.jailbreak.api.representations.Team." +
-      "University\022\023\n\013description\030\n \001(\t\022\034\n\024amoun" +
-      "t_raised_online\030\013 \001(\005\022\035\n\025amount_raised_o" +
-      "ffline\030\014 \001(\005\022\021\n\tcountries\030\016 \001(\005\022\022\n\ntrans" +
-      "ports\030\017 \001(\005\022\025\n\rdonations_url\030\020 \001(\t\022@\n\nch" +
-      "allenges\030\021 \003(\0132,.org.jailbreak.api.repre" +
-      "sentations.Challenge\022\020\n\010featured\030\022 \001(\010\022\014",
-      "\n\004slug\030\023 \001(\t\022\r\n\005video\030\024 \001(\t\022\024\n\014avatar_la" +
-      "rge\030\025 \001(\t\022\027\n\017last_checkin_id\030\026 \001(\005\022@\n\014la" +
-      "st_checkin\030\027 \001(\0132*.org.jailbreak.api.rep" +
-      "resentations.Checkin\022\020\n\010position\030\030 \001(\005\032\305" +
-      "\001\n\014TeamsFilters\022\023\n\013team_number\030\001 \001(\005\022F\n\n" +
-      "university\030\002 \001(\01622.org.jailbreak.api.rep" +
-      "resentations.Team.University\022\020\n\010featured" +
-      "\030\003 \001(\010\022F\n\010order_by\030\004 \001(\01624.org.jailbreak" +
-      ".api.representations.Team.TeamOrdering\"`" +
-      "\n\nUniversity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC\020\002\022",
-      "\010\n\004NUIG\020\003\022\010\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006\022\010\n" +
-      "\004GMIT\020\007\022\007\n\003ITT\020\010\"@\n\014TeamOrdering\022\021\n\rAMOU" +
-      "NT_RAISED\020\000\022\014\n\010POSITION\020\001\022\017\n\013TEAM_NUMBER" +
-      "\020\002\"\276\001\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010location\030\002" +
-      " \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003lon" +
-      "\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005\022\025\n" +
-      "\rdistance_to_x\030\010 \001(\001\0225\n\004team\030\t \001(\0132\'.org" +
-      ".jailbreak.api.representations.Team\"\353\001\n\t" +
-      "Challenge\022\n\n\002id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(\005\022\021" +
-      "\n\tcompleted\030\003 \001(\010\022H\n\004type\030\004 \001(\0162:.org.ja",
-      "ilbreak.api.representations.Challenge.Ch" +
-      "allengeType\022\026\n\016completed_time\030\005 \001(\003\"L\n\rC" +
-      "hallengeType\022\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_BOA" +
-      "TS\020\002\022\r\n\tEDUCATION\020\003\022\014\n\010ALTRUISM\020\004\"\210\007\n\005Ev" +
-      "ent\022\n\n\002id\030\001 \001(\005\022@\n\004type\030\002 \001(\01622.org.jail" +
-      "break.api.representations.Event.EventTyp" +
-      "e\022\014\n\004time\030\003 \001(\003\022\021\n\tobject_id\030\004 \001(\005\022\017\n\007te" +
-      "am_id\030\005 \001(\005\022\021\n\thighlight\030\016 \001(\010\0225\n\004link\030\006" +
-      " \001(\0132\'.org.jailbreak.api.representations" +
-      ".Link\022;\n\007checkin\030\007 \001(\0132*.org.jailbreak.a",
-      "pi.representations.Checkin\0229\n\006donate\030\010 \001" +
-      "(\0132).org.jailbreak.api.representations.D" +
-      "onate\022;\n\007twitter\030\t \001(\0132*.org.jailbreak.a" +
-      "pi.representations.Twitter\022=\n\010facebook\030\n" +
-      " \001(\0132+.org.jailbreak.api.representations" +
-      ".Facebook\0225\n\004vine\030\013 \001(\0132\'.org.jailbreak." +
-      "api.representations.Vine\022?\n\tinstagram\030\014 " +
-      "\001(\0132,.org.jailbreak.api.representations." +
-      "Instagram\022;\n\007youtube\030\r \001(\0132*.org.jailbre" +
-      "ak.api.representations.Youtube\032\232\001\n\rEvent",
-      "sFilters\022@\n\004type\030\001 \001(\01622.org.jailbreak.a" +
-      "pi.representations.Event.EventType\022\021\n\tbe" +
-      "fore_id\030\002 \001(\005\022\020\n\010after_id\030\003 \001(\005\022\017\n\007team_" +
-      "id\030\004 \001(\005\022\021\n\thighlight\030\005 \001(\010\"o\n\tEventType" +
-      "\022\010\n\004LINK\020\000\022\013\n\007CHECKIN\020\001\022\n\n\006DONATE\020\002\022\013\n\007T" +
-      "WITTER\020\003\022\014\n\010FACEBOOK\020\004\022\010\n\004VINE\020\005\022\r\n\tINST" +
-      "AGRAM\020\006\022\013\n\007YOUTUBE\020\007\"Z\n\004Link\022\n\n\002id\030\001 \001(\005" +
-      "\022\013\n\003url\030\002 \001(\t\022\021\n\tlink_text\030\003 \001(\t\022\023\n\013desc" +
-      "ription\030\004 \001(\t\022\021\n\tphoto_url\030\005 \001(\t\"\204\001\n\006Don" +
-      "ate\022\n\n\002id\030\001 \001(\005\022\021\n\tlink_text\030\002 \001(\t\022\023\n\013de",
-      "scription\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n\004team" +
-      "\030\005 \001(\0132\'.org.jailbreak.api.representatio" +
-      "ns.Team\"\230\002\n\007Twitter\022\n\n\002id\030\001 \001(\005\022\020\n\010tweet" +
-      "_id\030\002 \001(\003\022\r\n\005tweet\030\003 \001(\t\022\022\n\ntweet_html\030\004" +
-      " \001(\t\022\014\n\004time\030\005 \001(\003\022\021\n\tphoto_url\030\006 \001(\t\022\023\n" +
-      "\013in_reply_to\030\007 \001(\t\022\027\n\017twitter_user_id\030\010 " +
-      "\001(\005\022\031\n\021twitter_user_name\030\t \001(\t\022\032\n\022twitte" +
-      "r_user_photo\030\n \001(\t\022\017\n\007team_id\030\013 \001(\005\0225\n\004t" +
-      "eam\030\014 \001(\0132\'.org.jailbreak.api.representa" +
-      "tions.Team\"\327\001\n\010Facebook\022\n\n\002id\030\001 \001(\005\022\023\n\013f",
-      "acebook_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\017\n\007message" +
-      "\030\004 \001(\t\022\020\n\010link_url\030\005 \001(\t\022\021\n\tphoto_url\030\006 " +
-      "\001(\t\022\014\n\004time\030\007 \001(\003\022\021\n\tpage_name\030\010 \001(\t\022\017\n\007" +
-      "team_id\030\t \001(\005\0225\n\004team\030\n \001(\0132\'.org.jailbr" +
-      "eak.api.representations.Team\"\371\001\n\004Vine\022\n\n" +
-      "\002id\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\022\013\n\003url\030\003 " +
-      "\001(\t\022\025\n\rthumbnail_url\030\004 \001(\t\022\023\n\013iframe_htm" +
-      "l\030\005 \001(\t\022\023\n\013author_name\030\006 \001(\t\022\022\n\nauthor_u" +
-      "rl\030\007 \001(\t\022\030\n\020author_photo_url\030\010 \001(\t\022\014\n\004ti" +
-      "me\030\t \001(\003\022\017\n\007team_id\030\n \001(\005\0225\n\004team\030\013 \001(\0132",
-      "\'.org.jailbreak.api.representations.Team" +
-      "\"\377\001\n\tInstagram\022\n\n\002id\030\001 \001(\005\022\024\n\014instagram_" +
-      "id\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\013\n\003url\030\004 \001" +
-      "(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n\013author_name" +
-      "\030\006 \001(\t\022\022\n\nauthor_url\030\007 \001(\t\022\030\n\020author_pho" +
-      "to_url\030\010 \001(\t\022\014\n\004time\030\t \001(\003\022\017\n\007team_id\030\n " +
-      "\001(\005\0225\n\004team\030\013 \001(\0132\'.org.jailbreak.api.re" +
-      "presentations.Team\"\343\001\n\007Youtube\022\n\n\002id\030\001 \001" +
-      "(\005\022\r\n\005title\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\013" +
-      "\n\003url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n\013if",
-      "rame_html\030\006 \001(\t\022\023\n\013author_name\030\007 \001(\t\022\022\n\n" +
-      "author_url\030\010 \001(\t\022\017\n\007team_id\030\n \001(\005\0225\n\004tea" +
-      "m\030\013 \001(\0132\'.org.jailbreak.api.representati" +
-      "ons.Team\"\213\003\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007tea" +
-      "m_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 \001(\t" +
-      "\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.jailb" +
-      "reak.api.representations.Donation.Donati" +
-      "onType\022\r\n\005email\030\007 \001(\t\0225\n\004team\030\010 \001(\0132\'.or" +
-      "g.jailbreak.api.representations.Team\032\177\n\020" +
-      "DonationsFilters\022\017\n\007team_id\030\001 \001(\005\022\022\n\nsin",
-      "ce_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.jailbr" +
-      "eak.api.representations.Donation.Donatio" +
-      "nType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n\006ON" +
-      "LINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005token\030\001" +
-      " \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001(\005\022\r\n" +
-      "\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backer\030\006 \001" +
-      "(\010\":\n\021FacebookAuthToken\022\024\n\014access_token\030" +
-      "\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n\tap" +
-      "i_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007expire" +
-      "s\030\003 \001(\003\".\n\013AuthRequest\022\r\n\005email\030\001 \001(\t\022\020\n",
-      "\010password\030\002 \001(\t\"\271\003\n\004User\022\017\n\007user_id\030\001 \001(" +
-      "\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_level\030\003 " +
-      "\001(\01621.org.jailbreak.api.representations." +
-      "User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirst_n" +
-      "ame\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gender\030\007" +
-      " \001(\0162..org.jailbreak.api.representations" +
-      ".User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006locale" +
-      "\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_tok" +
-      "ens_url\030\013 \001(\t\022\020\n\010password\030\014 \001(\t\"?\n\tUserL" +
-      "evel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TRACK",
-      "ER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022\n\n\006" +
-      "FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representations"
+      "\022\032\n\022start_location_lon\030\014 \001(\001\022\025\n\rdonation",
+      "s_url\030\r \001(\t\022\022\n\nevents_url\030\016 \001(\t\"\243\007\n\004Team" +
+      "\022\n\n\002id\030\001 \001(\005\022\023\n\013team_number\030\002 \001(\005\022\021\n\ttea" +
+      "m_name\030\003 \001(\t\022\r\n\005names\030\004 \001(\t\022\016\n\006avatar\030\005 " +
+      "\001(\t\022\020\n\010tag_line\030\006 \001(\t\022F\n\nuniversity\030\t \001(" +
+      "\01622.org.jailbreak.api.representations.Te" +
+      "am.University\022\023\n\013description\030\n \001(\t\022\034\n\024am" +
+      "ount_raised_online\030\013 \001(\005\022\035\n\025amount_raise" +
+      "d_offline\030\014 \001(\005\022\021\n\tcountries\030\016 \001(\005\022\022\n\ntr" +
+      "ansports\030\017 \001(\005\022\025\n\rdonations_url\030\020 \001(\t\022@\n" +
+      "\nchallenges\030\021 \003(\0132,.org.jailbreak.api.re",
+      "presentations.Challenge\022\020\n\010featured\030\022 \001(" +
+      "\010\022\014\n\004slug\030\023 \001(\t\022\r\n\005video\030\024 \001(\t\022\024\n\014avatar" +
+      "_large\030\025 \001(\t\022\027\n\017last_checkin_id\030\026 \001(\005\022@\n" +
+      "\014last_checkin\030\027 \001(\0132*.org.jailbreak.api." +
+      "representations.Checkin\022\020\n\010position\030\030 \001(" +
+      "\005\032\305\001\n\014TeamsFilters\022\023\n\013team_number\030\001 \001(\005\022" +
+      "F\n\nuniversity\030\002 \001(\01622.org.jailbreak.api." +
+      "representations.Team.University\022\020\n\010featu" +
+      "red\030\003 \001(\010\022F\n\010order_by\030\004 \001(\01624.org.jailbr" +
+      "eak.api.representations.Team.TeamOrderin",
+      "g\"`\n\nUniversity\022\007\n\003TCD\020\000\022\007\n\003UCD\020\001\022\007\n\003UCC" +
+      "\020\002\022\010\n\004NUIG\020\003\022\010\n\004NUIM\020\004\022\007\n\003CIT\020\005\022\007\n\003NCI\020\006" +
+      "\022\010\n\004GMIT\020\007\022\007\n\003ITT\020\010\"@\n\014TeamOrdering\022\021\n\rA" +
+      "MOUNT_RAISED\020\000\022\014\n\010POSITION\020\001\022\017\n\013TEAM_NUM" +
+      "BER\020\002\"\276\001\n\007Checkin\022\n\n\002id\030\001 \001(\005\022\020\n\010locatio" +
+      "n\030\002 \001(\t\022\016\n\006status\030\003 \001(\t\022\013\n\003lat\030\004 \001(\001\022\013\n\003" +
+      "lon\030\005 \001(\001\022\014\n\004time\030\006 \001(\003\022\017\n\007team_id\030\007 \001(\005" +
+      "\022\025\n\rdistance_to_x\030\010 \001(\001\0225\n\004team\030\t \001(\0132\'." +
+      "org.jailbreak.api.representations.Team\"\353" +
+      "\001\n\tChallenge\022\n\n\002id\030\001 \001(\005\022\017\n\007team_id\030\002 \001(",
+      "\005\022\021\n\tcompleted\030\003 \001(\010\022H\n\004type\030\004 \001(\0162:.org" +
+      ".jailbreak.api.representations.Challenge" +
+      ".ChallengeType\022\026\n\016completed_time\030\005 \001(\003\"L" +
+      "\n\rChallengeType\022\r\n\tBLINDFOLD\020\001\022\017\n\013PAPER_" +
+      "BOATS\020\002\022\r\n\tEDUCATION\020\003\022\014\n\010ALTRUISM\020\004\"\210\007\n" +
+      "\005Event\022\n\n\002id\030\001 \001(\005\022@\n\004type\030\002 \001(\01622.org.j" +
+      "ailbreak.api.representations.Event.Event" +
+      "Type\022\014\n\004time\030\003 \001(\003\022\021\n\tobject_id\030\004 \001(\005\022\017\n" +
+      "\007team_id\030\005 \001(\005\022\021\n\thighlight\030\016 \001(\010\0225\n\004lin" +
+      "k\030\006 \001(\0132\'.org.jailbreak.api.representati",
+      "ons.Link\022;\n\007checkin\030\007 \001(\0132*.org.jailbrea" +
+      "k.api.representations.Checkin\0229\n\006donate\030" +
+      "\010 \001(\0132).org.jailbreak.api.representation" +
+      "s.Donate\022;\n\007twitter\030\t \001(\0132*.org.jailbrea" +
+      "k.api.representations.Twitter\022=\n\010faceboo" +
+      "k\030\n \001(\0132+.org.jailbreak.api.representati" +
+      "ons.Facebook\0225\n\004vine\030\013 \001(\0132\'.org.jailbre" +
+      "ak.api.representations.Vine\022?\n\tinstagram" +
+      "\030\014 \001(\0132,.org.jailbreak.api.representatio" +
+      "ns.Instagram\022;\n\007youtube\030\r \001(\0132*.org.jail",
+      "break.api.representations.Youtube\032\232\001\n\rEv" +
+      "entsFilters\022@\n\004type\030\001 \001(\01622.org.jailbrea" +
+      "k.api.representations.Event.EventType\022\021\n" +
+      "\tbefore_id\030\002 \001(\005\022\020\n\010after_id\030\003 \001(\005\022\017\n\007te" +
+      "am_id\030\004 \001(\005\022\021\n\thighlight\030\005 \001(\010\"o\n\tEventT" +
+      "ype\022\010\n\004LINK\020\000\022\013\n\007CHECKIN\020\001\022\n\n\006DONATE\020\002\022\013" +
+      "\n\007TWITTER\020\003\022\014\n\010FACEBOOK\020\004\022\010\n\004VINE\020\005\022\r\n\tI" +
+      "NSTAGRAM\020\006\022\013\n\007YOUTUBE\020\007\"Z\n\004Link\022\n\n\002id\030\001 " +
+      "\001(\005\022\013\n\003url\030\002 \001(\t\022\021\n\tlink_text\030\003 \001(\t\022\023\n\013d" +
+      "escription\030\004 \001(\t\022\021\n\tphoto_url\030\005 \001(\t\"\204\001\n\006",
+      "Donate\022\n\n\002id\030\001 \001(\005\022\021\n\tlink_text\030\002 \001(\t\022\023\n" +
+      "\013description\030\003 \001(\t\022\017\n\007team_id\030\004 \001(\005\0225\n\004t" +
+      "eam\030\005 \001(\0132\'.org.jailbreak.api.representa" +
+      "tions.Team\"\230\002\n\007Twitter\022\n\n\002id\030\001 \001(\005\022\020\n\010tw" +
+      "eet_id\030\002 \001(\003\022\r\n\005tweet\030\003 \001(\t\022\022\n\ntweet_htm" +
+      "l\030\004 \001(\t\022\014\n\004time\030\005 \001(\003\022\021\n\tphoto_url\030\006 \001(\t" +
+      "\022\023\n\013in_reply_to\030\007 \001(\t\022\027\n\017twitter_user_id" +
+      "\030\010 \001(\005\022\031\n\021twitter_user_name\030\t \001(\t\022\032\n\022twi" +
+      "tter_user_photo\030\n \001(\t\022\017\n\007team_id\030\013 \001(\005\0225" +
+      "\n\004team\030\014 \001(\0132\'.org.jailbreak.api.represe",
+      "ntations.Team\"\327\001\n\010Facebook\022\n\n\002id\030\001 \001(\005\022\023" +
+      "\n\013facebook_id\030\002 \001(\t\022\013\n\003url\030\003 \001(\t\022\017\n\007mess" +
+      "age\030\004 \001(\t\022\020\n\010link_url\030\005 \001(\t\022\021\n\tphoto_url" +
+      "\030\006 \001(\t\022\014\n\004time\030\007 \001(\003\022\021\n\tpage_name\030\010 \001(\t\022" +
+      "\017\n\007team_id\030\t \001(\005\0225\n\004team\030\n \001(\0132\'.org.jai" +
+      "lbreak.api.representations.Team\"\371\001\n\004Vine" +
+      "\022\n\n\002id\030\001 \001(\005\022\023\n\013description\030\002 \001(\t\022\013\n\003url" +
+      "\030\003 \001(\t\022\025\n\rthumbnail_url\030\004 \001(\t\022\023\n\013iframe_" +
+      "html\030\005 \001(\t\022\023\n\013author_name\030\006 \001(\t\022\022\n\nautho" +
+      "r_url\030\007 \001(\t\022\030\n\020author_photo_url\030\010 \001(\t\022\014\n",
+      "\004time\030\t \001(\003\022\017\n\007team_id\030\n \001(\005\0225\n\004team\030\013 \001" +
+      "(\0132\'.org.jailbreak.api.representations.T" +
+      "eam\"\377\001\n\tInstagram\022\n\n\002id\030\001 \001(\005\022\024\n\014instagr" +
+      "am_id\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\013\n\003url\030" +
+      "\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n\013author_n" +
+      "ame\030\006 \001(\t\022\022\n\nauthor_url\030\007 \001(\t\022\030\n\020author_" +
+      "photo_url\030\010 \001(\t\022\014\n\004time\030\t \001(\003\022\017\n\007team_id" +
+      "\030\n \001(\005\0225\n\004team\030\013 \001(\0132\'.org.jailbreak.api" +
+      ".representations.Team\"\343\001\n\007Youtube\022\n\n\002id\030" +
+      "\001 \001(\005\022\r\n\005title\030\002 \001(\t\022\023\n\013description\030\003 \001(",
+      "\t\022\013\n\003url\030\004 \001(\t\022\025\n\rthumbnail_url\030\005 \001(\t\022\023\n" +
+      "\013iframe_html\030\006 \001(\t\022\023\n\013author_name\030\007 \001(\t\022" +
+      "\022\n\nauthor_url\030\010 \001(\t\022\017\n\007team_id\030\n \001(\005\0225\n\004" +
+      "team\030\013 \001(\0132\'.org.jailbreak.api.represent" +
+      "ations.Team\"\213\003\n\010Donation\022\n\n\002id\030\001 \001(\005\022\017\n\007" +
+      "team_id\030\002 \001(\005\022\016\n\006amount\030\003 \001(\005\022\014\n\004name\030\004 " +
+      "\001(\t\022\014\n\004time\030\005 \001(\003\022F\n\004type\030\006 \001(\01628.org.ja" +
+      "ilbreak.api.representations.Donation.Don" +
+      "ationType\022\r\n\005email\030\007 \001(\t\0225\n\004team\030\010 \001(\0132\'" +
+      ".org.jailbreak.api.representations.Team\032",
+      "\177\n\020DonationsFilters\022\017\n\007team_id\030\001 \001(\005\022\022\n\n" +
+      "since_time\030\002 \001(\003\022F\n\004type\030\003 \001(\01628.org.jai" +
+      "lbreak.api.representations.Donation.Dona" +
+      "tionType\"\'\n\014DonationType\022\013\n\007OFFLINE\020\000\022\n\n" +
+      "\006ONLINE\020\001\"r\n\023StripeChargeRequest\022\r\n\005toke" +
+      "n\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005\022\017\n\007team_id\030\003 \001(\005" +
+      "\022\r\n\005email\030\004 \001(\t\022\014\n\004name\030\005 \001(\t\022\016\n\006backer\030" +
+      "\006 \001(\010\":\n\021FacebookAuthToken\022\024\n\014access_tok" +
+      "en\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\"?\n\010ApiToken\022\021\n" +
+      "\tapi_token\030\001 \001(\t\022\017\n\007user_id\030\002 \001(\003\022\017\n\007exp",
+      "ires\030\003 \001(\003\".\n\013AuthRequest\022\r\n\005email\030\001 \001(\t" +
+      "\022\020\n\010password\030\002 \001(\t\"\271\003\n\004User\022\017\n\007user_id\030\001" +
+      " \001(\003\022\024\n\014time_created\030\002 \001(\003\022E\n\nuser_level" +
+      "\030\003 \001(\01621.org.jailbreak.api.representatio" +
+      "ns.User.UserLevel\022\r\n\005email\030\004 \001(\t\022\022\n\nfirs" +
+      "t_name\030\005 \001(\t\022\021\n\tlast_name\030\006 \001(\t\022>\n\006gende" +
+      "r\030\007 \001(\0162..org.jailbreak.api.representati" +
+      "ons.User.Gender\022\020\n\010timezone\030\010 \001(\005\022\016\n\006loc" +
+      "ale\030\t \001(\t\022\025\n\rfacebook_link\030\n \001(\t\022\026\n\016api_" +
+      "tokens_url\030\013 \001(\t\022\020\n\010password\030\014 \001(\t\"?\n\tUs",
+      "erLevel\022\016\n\nSUPERADMIN\020\000\022\t\n\005ADMIN\020\001\022\013\n\007TR" +
+      "ACKER\020\002\022\n\n\006NORMAL\020\003\")\n\006Gender\022\010\n\004MALE\020\000\022" +
+      "\n\n\006FEMALE\020\001\022\t\n\005OTHER\020\002B\021B\017Representation" +
+      "s"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -28765,7 +29081,7 @@ public final class Representations {
     internal_static_org_jailbreak_api_representations_JailbreakService_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_jailbreak_api_representations_JailbreakService_descriptor,
-        new java.lang.String[] { "StartTime", "AmountRaised", "WinnerTeamId", "TfmLive", "FinalLocationLat", "FinalLocationLon", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", "StartLocationLat", "StartLocationLon", });
+        new java.lang.String[] { "StartTime", "AmountRaised", "WinnerTeamId", "TfmLive", "FinalLocationLat", "FinalLocationLon", "TeamsUrl", "FacebookTokensUrl", "AuthenticateUrl", "UsersUrl", "StartLocationLat", "StartLocationLon", "DonationsUrl", "EventsUrl", });
     internal_static_org_jailbreak_api_representations_Team_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_jailbreak_api_representations_Team_fieldAccessorTable = new

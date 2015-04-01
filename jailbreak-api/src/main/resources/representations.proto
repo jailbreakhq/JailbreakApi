@@ -15,6 +15,8 @@ message JailbreakService {
 	optional string users_url = 10;
 	optional double start_location_lat = 11;
 	optional double start_location_lon = 12;
+	optional string donations_url = 13;
+	optional string events_url = 14;
 }
 
 message Team {
