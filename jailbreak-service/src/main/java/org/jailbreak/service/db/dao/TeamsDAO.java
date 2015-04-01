@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.TeamOrdering;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.db.BindIds;
 import org.jailbreak.service.db.BindProtobuf;
@@ -86,7 +87,18 @@ public abstract class TeamsDAO {
 			bindParams.put("featured", filters.getFeatured());
 		}
 		
-		builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.DESC);
+		if (filters.hasOrderBy()) {
+			if (filters.getOrderBy() == TeamOrdering.AMOUNT_RAISED) {
+				builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.DESC);
+			} else if (filters.getOrderBy() == TeamOrdering.POSITION) {
+				builder.addOrderBy("position", OrderBy.ASC);
+			} else if (filters.getOrderBy() == TeamOrdering.TEAM_NUMBER) {
+				builder.addOrderBy("team_number", OrderBy.ASC);
+			}
+		} else {
+			// default ordering is by position
+			builder.addOrderBy("position", OrderBy.ASC);
+		}
 		builder.limit(limit);
 		
 		String queryString = builder.build();
