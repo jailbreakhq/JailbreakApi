@@ -21,8 +21,6 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 		University university = University.valueOf(r.getInt("university"));
 		int amountRaisedOnline = r.getInt("amount_raised_online");
 		int amountRaisedOffline = r.getInt("amount_raised_offline");
-		int countries = r.getInt("countries");
-		int transports = r.getInt("transports");
 		boolean featured = r.getBoolean("featured");
 		String slug = r.getString("slug");
 		int lastCheckinId = r.getInt("last_checkin_id");
@@ -36,8 +34,6 @@ public class TeamsMapper implements ResultSetMapper<Team> {
 				.setUniversity(university)
 				.setAmountRaisedOnline(amountRaisedOnline)
 				.setAmountRaisedOffline(amountRaisedOffline)
-				.setCountries(countries)
-				.setTransports(transports)
 				.setFeatured(featured)
 				.setSlug(slug)
 				.setPosition(position);
