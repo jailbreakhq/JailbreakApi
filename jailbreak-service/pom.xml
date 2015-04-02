@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <name>JailbreakAPI Dropwizard Service</name>
+  <name>Jailbreak API Dropwizard Service</name>
   
   <dependencies>
     <dependency>

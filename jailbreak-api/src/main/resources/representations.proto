@@ -42,10 +42,7 @@ message Team {
 	optional string description = 10;
 	optional int32 amount_raised_online = 11;
 	optional int32 amount_raised_offline = 12;
-	optional int32 countries = 14;
-	optional int32 transports = 15;
 	optional string donations_url = 16;
- 	repeated Challenge challenges = 17;
  	optional bool featured = 18;
  	optional string slug = 19;
  	optional string video = 20;

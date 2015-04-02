@@ -14,7 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   
-  <name>Jailbreak API clients</name>
+  <name>Jailbreak API Clients</name>
 
   <dependencies>
     <dependency>

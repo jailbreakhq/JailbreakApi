@@ -22,5 +22,6 @@ public interface DonationsManager {
 	
 	public int getTotalRaised();
 	public List<Donation> filterPrivateFields(List<Donation> donations);
+	public Optional<Donation> filterPrivateFields(Optional<Donation> donation);
 	
 }
