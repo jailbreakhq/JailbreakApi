@@ -72,7 +72,7 @@ public class DonationsResource {
 	@GET
 	@Path("/{id}")
 	public Optional<Donation> getDonation(@PathParam("id") int id) {
-		return this.manager.getDonation(id);
+		return this.manager.filterPrivateFields(this.manager.getDonation(id));
 	}
 	
 	@PUT
