@@ -301,5 +301,9 @@
     		<column name="highlight" type="boolean" defaultValueBoolean="false"/>
     	</addColumn>
     </changeSet>
+    <changeSet id="17" author="kbaker">
+    	<dropColumn columnName="countries" tableName="teams"/>
+    	<dropColumn columnName="transports" tableName="teams"/>
+    </changeSet>
     
 </databaseChangeLog>
