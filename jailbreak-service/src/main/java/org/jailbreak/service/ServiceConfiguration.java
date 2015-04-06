@@ -16,6 +16,28 @@ import org.jailbreak.service.config.StripeFactory;
 
 public class ServiceConfiguration extends Configuration {
 	
+    // Database Settings
+    @Valid
+    @NotNull
+    @JsonProperty("database")
+    private DataSourceFactory database = new DataSourceFactory();
+	
+    public DataSourceFactory getDataSourceFactory() {
+        return database;
+    }
+	
+    // HTTP Client Settings
+    @JsonProperty("httpClient")
+    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
+	
+    public JerseyClientConfiguration getJerseyClientConfiguration() {
+        return httpClient;
+    }
+
+    public void setJerseyClientConfiguration(JerseyClientConfiguration config) {
+        this.httpClient = config;
+    }
+    
     // Jailbreak Competition Settings
 	@Valid
 	@NotNull
@@ -74,30 +96,6 @@ public class ServiceConfiguration extends Configuration {
     @JsonProperty("stripe")
     public void setStripeSettings(StripeFactory factory) {
     	this.stripeSettings = factory;
-    }
-	
-    // Database Settings
-    @JsonProperty
-    private DataSourceFactory database = new DataSourceFactory();
-	
-    public DataSourceFactory getDataSourceFactory() {
-        return database;
-    }
-
-    public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
-        this.database = dataSourceFactory;
-    }
-    
-    // HTTP Client Settings
-    @JsonProperty
-    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
-	
-    public JerseyClientConfiguration getJerseyClientConfiguration() {
-        return httpClient;
-    }
-
-    public void setJerseyClientConfiguration(JerseyClientConfiguration config) {
-        this.httpClient = config;
     }
     
 }

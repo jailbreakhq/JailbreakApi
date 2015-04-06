@@ -10,6 +10,8 @@ database:
   driverClass: org.postgresql.Driver
 
   # connection settings
+  user: ${DATABASE_USER}
+  password: ${DATABASE_PASSWORD}
   url: ${DATABASE_URL}
 
   properties:

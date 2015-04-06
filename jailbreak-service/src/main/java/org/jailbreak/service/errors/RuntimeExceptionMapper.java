@@ -59,10 +59,10 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 		// Report the error details to Sentry
 		if (raven != null && status == 500) {
 			Event event = new EventBuilder()
-				.setTimestamp(new Date())
-				.setLevel(Event.Level.ERROR)
-				.setMessage(reportMessage)
-				.addSentryInterface(new ExceptionInterface(report))
+				.withTimestamp(new Date())
+				.withLevel(Event.Level.ERROR)
+				.withMessage(reportMessage)
+				.withSentryInterface(new ExceptionInterface(report))
 				.build();
 			
 			raven.sendEvent(event);
