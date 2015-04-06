@@ -1,6 +1,6 @@
 package org.jailbreak.service.resources;
 
-import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -28,7 +28,7 @@ public class FacebookTokensResource {
 	}
 	
 	@POST
-	public ApiToken authenticateFacebookAccessToken(@Valid FacebookAuthToken access_token) {
+	public ApiToken authenticateFacebookAccessToken(@BeanParam FacebookAuthToken access_token) {
 		Optional<ApiToken> token = this.manager.authenticateFacebookAccessToken(access_token);
 		if (token.isPresent()) {
         	return token.get();

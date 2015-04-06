@@ -5,6 +5,7 @@ import io.dropwizard.jersey.PATCH;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -67,7 +68,7 @@ public class TeamsResource {
 	}
 	
 	@POST
-	public Team addTeam(@Auth User user, Team team) {
+	public Team addTeam(@Auth User user, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
@@ -76,7 +77,7 @@ public class TeamsResource {
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/{id:\\d+}")
 	public Optional<Team> getTeam(@PathParam("id") int id) {
 		return manager.getTeam(id);
 	}
@@ -89,7 +90,7 @@ public class TeamsResource {
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, Team team) {
+	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
@@ -108,7 +109,7 @@ public class TeamsResource {
 	
 	@PATCH
 	@Path("/{id}")
-	public Optional<Team> patchTeam(@Auth User user, @PathParam("id") int id, Team team) {
+	public Optional<Team> patchTeam(@Auth User user, @PathParam("id") int id, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}

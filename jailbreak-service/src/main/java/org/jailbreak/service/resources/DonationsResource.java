@@ -4,6 +4,7 @@ import io.dropwizard.auth.Auth;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -61,7 +62,7 @@ public class DonationsResource {
 	}
 	
 	@POST
-	public Donation postDonation(@Auth User user, Donation donation) {
+	public Donation postDonation(@Auth User user, @BeanParam Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a donation", ApiDocs.DONATIONS);
 		}
@@ -77,7 +78,7 @@ public class DonationsResource {
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, Donation donation) {
+	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, @BeanParam Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a donation", ApiDocs.DONATIONS);
 		}

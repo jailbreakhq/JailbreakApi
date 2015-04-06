@@ -4,6 +4,7 @@ import io.dropwizard.auth.Auth;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -42,7 +43,7 @@ public class CheckinsResource {
 	}
 	
 	@POST
-	public Checkin postCheckin(@Auth User user, @PathParam("team_id") int teamId, Checkin checkin) {
+	public Checkin postCheckin(@Auth User user, @PathParam("team_id") int teamId, @BeanParam Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a checkin", ApiDocs.CHECKINS);
 		}
@@ -72,7 +73,7 @@ public class CheckinsResource {
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Checkin> updateCheckin(@Auth User user, @PathParam("id") int id, Checkin checkin) {
+	public Optional<Checkin> updateCheckin(@Auth User user, @PathParam("id") int id, @BeanParam Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a checkin", ApiDocs.CHECKINS);
 		}
