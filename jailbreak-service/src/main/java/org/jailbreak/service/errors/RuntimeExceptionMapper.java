@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -27,8 +28,8 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 	
 	@Override
     public Response toResponse(RuntimeException e) {
-		Exception report;
-		String reportMessage;
+		Exception report = null;
+		String reportMessage = "";
 		
 		int status;
         String message;
@@ -48,6 +49,12 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 			docsLink = base.getDocsLink();
 			report = e;
 			reportMessage = e.getMessage();
+			
+		} else if (e instanceof WebApplicationException) {
+			WebApplicationException webException = (WebApplicationException) e;
+			Response resp = webException.getResponse();
+			status = resp.getStatus();
+			message = e.getMessage();
 			
 		} else {
 			status = 500;

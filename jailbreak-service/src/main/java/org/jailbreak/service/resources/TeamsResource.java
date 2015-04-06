@@ -83,8 +83,15 @@ public class TeamsResource {
 	}
 	
 	@GET
-	@Path("/slug/{slug}")
+	@Path("/{slug:[a-zA-Z][a-zA-Z0-9\\-]+}")
 	public Optional<Team> getTeamSlug(@PathParam("slug") String slug) {
+		return manager.getTeamSlug(slug);
+	}
+	
+	// this resource is being deprecated as I know how to regex @Path placeholders
+	@GET
+	@Path("/slug/{slug}")
+	public Optional<Team> getTeamSlugOld(@PathParam("slug") String slug) {
 		return manager.getTeamSlug(slug);
 	}
 	

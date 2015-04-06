@@ -70,7 +70,18 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public Optional<Team> getTeamSlug(String slug) {
-		return dao.getTeamSlug(slug);
+		Optional<Team> maybeTeam = dao.getTeamSlug(slug);
+		
+		if (maybeTeam.isPresent()) {
+			Team team = maybeTeam.get();
+			Optional<Checkin> maybeCheckin = checkinsManager.getLastTeamCheckin(team.getId());
+			if (maybeCheckin.isPresent()) {
+				Team result = team.toBuilder().setLastCheckin(maybeCheckin.get()).build();
+				maybeTeam = Optional.of(result);
+			}
+		}
+		
+		return maybeTeam;
 	}
 	
 	@Override
