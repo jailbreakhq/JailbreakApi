@@ -17,6 +17,9 @@ import com.google.inject.name.Named;
 @Produces({MediaType.APPLICATION_JSON})
 public class RootResource {
 	
+	@Context
+	private UriInfo uriInfo;
+	
 	private final DonationsManager donationsManager;
 	private final long startTime;
 	private final double startLat;
@@ -40,13 +43,8 @@ public class RootResource {
 	}
 	
 	@GET
-	public JailbreakService getJailbreakInfo(@Context UriInfo uriInfo) {
-		String path = uriInfo.getBaseUri().toString();
-		
-		// remove possible trailing slash
-		if (path.endsWith("/")) {
-		    path = path.substring(0, path.length() - 1);
-		}
+	public JailbreakService getJailbreakInfo() {
+		String path = ResourcesHelper.buildUrl(uriInfo, "");
 		
 		int amountRaised = donationsManager.getTotalRaised();
 		

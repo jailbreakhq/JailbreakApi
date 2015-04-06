@@ -139,32 +139,6 @@ public class DonationsManagerImpl implements DonationsManager {
 		return dao.getDonationsTotalAmount();
 	}
 
-	@Override
-	public List<Donation> filterPrivateFields(List<Donation> donations) {
-		// Useful method that removes private fields from objects so that we don't leak
-		// sensitive information over the public API
-		List<Donation> filtered = Lists.newArrayListWithCapacity(donations.size());
-		for (Donation donation : donations) {
-			Donation.Builder builder = donation.toBuilder();
-			
-			if (donation.hasEmail()) {
-				builder.clearEmail();
-			}
-			
-			filtered.add(builder.build());
-		}
-		return filtered;
-	}
-	
-	@Override
-	public Optional<Donation> filterPrivateFields(Optional<Donation> donation) {
-		if (donation.isPresent()) {
-			return Optional.of(filterPrivateFields(Lists.newArrayList(donation.get())).get(0));
-		} else {
-			return Optional.absent();
-		}
-	}
-	
 	private List<Donation> annotateDonationsWithTeams(List<Donation> donations) {
 		Set<Integer> ids = teamIds(donations);
 		HashMap<Integer, Team> map = teamsManager.getLimitedTeams(ids);

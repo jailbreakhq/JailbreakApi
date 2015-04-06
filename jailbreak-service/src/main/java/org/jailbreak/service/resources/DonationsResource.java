@@ -13,8 +13,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
@@ -26,6 +28,7 @@ import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -33,6 +36,9 @@ import com.google.inject.name.Named;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DonationsResource {
+	
+	@Context
+	private UriInfo uriInfo;
 	
 	private final DonationsManager manager;
 	private final int defaultLimit;
@@ -56,7 +62,7 @@ public class DonationsResource {
 		List<Donation> donations = this.manager.getDonations(limit, filters);
 		int totalCount = this.manager.getTotalCount(filters);
 		
-		donations = this.manager.filterPrivateFields(donations);
+		donations = this.response(donations);
 		
 		return Response.ok(donations).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
@@ -73,7 +79,7 @@ public class DonationsResource {
 	@GET
 	@Path("/{id}")
 	public Optional<Donation> getDonation(@PathParam("id") int id) {
-		return this.manager.filterPrivateFields(this.manager.getDonation(id));
+		return this.response(this.manager.getDonation(id));
 	}
 	
 	@PUT
@@ -93,10 +99,37 @@ public class DonationsResource {
 		}
 		
 		boolean result = this.manager.updateDonation(donation);
-		if(result)
+		if(result) {
 			return Optional.of(donation);
-		else
+		} else {
 			return Optional.absent();
+		}
+	}
+	
+	// Response Builder Methods
+	private List<Donation> response(List<Donation> donations) {
+		List<Donation> filtered = Lists.newArrayListWithCapacity(donations.size());
+		for (Donation donation : donations) {
+			Donation.Builder builder = donation.toBuilder();
+			
+			// filter out private fields like email address
+			if (donation.hasEmail()) {
+				builder.clearEmail();
+			}
+			
+			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.DONATIONS_PATH, builder.getId()));
+			
+			filtered.add(builder.build());
+		}
+		return filtered;
+	}
+	
+	private Optional<Donation> response(Optional<Donation> donation) {
+		if (donation.isPresent()) {
+			return Optional.of(response(Lists.newArrayList(donation.get())).get(0));
+		} else {
+			return Optional.absent();
+		}
 	}
 	
 }

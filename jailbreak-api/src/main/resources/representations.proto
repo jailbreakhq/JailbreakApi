@@ -50,6 +50,7 @@ message Team {
  	optional int32 last_checkin_id = 22;
  	optional Checkin last_checkin = 23;
  	optional int32 position = 24;
+ 	optional string href = 25;
  	
  	message TeamsFilters {
  		optional int32 team_number = 1;
@@ -110,6 +111,7 @@ message Event {
 	optional int32 object_id = 4;
 	optional int32 team_id = 5;
 	optional bool highlight = 14;
+	optional string href = 15;
 	
 	optional Link link = 6;
 	optional Checkin checkin = 7;
@@ -234,6 +236,7 @@ message Donation {
 	optional DonationType type = 6;
 	optional string email = 7;
 	optional Team team = 8;
+	optional string href = 9;
 }
 
 message StripeChargeRequest {
