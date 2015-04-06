@@ -6,7 +6,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.ws.rs.client.Client;
+
 import io.dropwizard.auth.Authenticator;
+import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
@@ -75,6 +78,7 @@ public class ServiceModule extends AbstractModule {
 	private Logger LOG = LoggerFactory.getLogger(ServiceModule.class);
 	private DBI dbi; // force this to be singleton (https://github.com/HubSpot/dropwizard-guice/issues/19)
 	private Connection conn;
+	private Client client;
 	private Slugify slg;
 	private Raven raven;
 	
@@ -112,62 +116,62 @@ public class ServiceModule extends AbstractModule {
 	@Provides
 	@Named("jailbreak.startLocationLat")
 	public double provideStartLat(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getStartLocationLat();
+		return config.getJailbreakSettings().getStartLat();
 	}
 	
 	@Provides
 	@Named("jailbreak.startLocationLon")
 	public double provideStartLon(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getStartLocationLon();
+		return config.getJailbreakSettings().getStartLon();
 	}
 	
 	@Provides
 	@Named("jailbreak.finalLocationLat")
 	public double provideEndLat(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getFinalLocationLat();
+		return config.getJailbreakSettings().getFinalLat();
 	}
 	
 	@Provides
 	@Named("jailbreak.finalLocationLon")
 	public double provideEndLon(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getFinalLocationLon();
+		return config.getJailbreakSettings().getFinalLon();
 	}
 	
 	@Provides
 	@Named("resources.maxLimit")
 	public int provideResourcesMaxLimit(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getMaxLimit();
+		return config.getResourcesSettings().getMaxLimit();
 	}
 	
 	@Provides
 	@Named("resources.defaultLimit")
 	public int provideResourcesDefaultLimit(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getDefaultLimit();
+		return config.getResourcesSettings().getDefaultLimit();
 	}
 	
 	@Provides
 	@Named("resources.events.maxLimit")
 	public int provideEventsResourceMaxLimit(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getEventsMaxLimit();
+		return config.getResourcesSettings().getEventsMaxLimit();
 	}
 	
 	@Provides
 	@Named("resources.events.defaultLimit")
 	public int provideEventsResourceDefaultLimit(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getEventsDefaultLimit();
+		return config.getResourcesSettings().getEventsDefaultLimit();
 	}
 	
 	@Provides
 	@Named("stripe.secret.key")
 	public String provideStripeSecretKey(ServiceConfiguration config) {
-		return config.getEnvironmentSettings().getStripeSecretKey();
+		return config.getStripeSettings().getSecretKey();
 	}
 	
 	@Provides
 	public Raven provideRaven(ServiceConfiguration config) {
 		if (raven == null) {
-			if (config.getEnvironmentSettings().getSentryEnabled()) {
-				String dsn = config.getEnvironmentSettings().getSentryDSN();
+			if (config.getSentrySettings().getEnabled()) {
+				String dsn = config.getSentrySettings().getDSN();
 				raven = RavenFactory.ravenInstance(new Dsn(dsn));
 			} else {
 				LOG.info("Sentry is disabled");
@@ -196,6 +200,14 @@ public class ServiceModule extends AbstractModule {
 			this.dbi = factory.build(env, config.getDataSourceFactory(), "postgres");
 		}
         return this.dbi;
+	}
+	
+	@Provides
+	private Client getHttpClient(ServiceConfiguration config, Environment env) {
+		if (this.client == null) {
+			this.client = new JerseyClientBuilder(env).using(config.getJerseyClientConfiguration()).build("JailbreakApi");
+		}
+		return this.client;
 	}
 	
 	@Provides

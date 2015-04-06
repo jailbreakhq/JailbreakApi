@@ -2,8 +2,9 @@ package org.jailbreak.client.base;
 
 import java.io.IOException;
 
+import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.jailbreak.client.FacebookClient;
 import org.jailbreak.api.representations.Representations.FacebookAuthToken;
@@ -18,10 +19,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 public class FacebookClientImpl implements FacebookClient {
 	
@@ -38,14 +35,12 @@ public class FacebookClientImpl implements FacebookClient {
 	@Override
 	public Optional<User> authenticateWithFacebook(FacebookAuthToken token) {
 		// make HTTP call to facebook /me endpoint
-		WebResource webResource = httpClient.resource("https://graph.facebook.com/me");
-		
-		MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
-		queryParams.add("user_id", Long.toString(token.getUserId()));
-		queryParams.add("access_token", token.getAccessToken());
-		ClientResponse response = webResource.queryParams(queryParams)
-											.accept(MediaType.APPLICATION_JSON)
-											.get(ClientResponse.class);
+		Response response = httpClient.target("https://graph.facebook.com")
+				.path("me")
+				.queryParam("user_id", Long.toString(token.getUserId()))
+				.queryParam("access_token", token.getAccessToken())
+				.request(MediaType.APPLICATION_JSON)
+				.get();
  
 		if (response.getStatus() != 200) {
 		   LOG.info("Failed Authenticating with Facebook: HTTP : " + response.getStatus());
@@ -53,7 +48,7 @@ public class FacebookClientImpl implements FacebookClient {
 		}
  
 		// parse json response
-		String json = response.getEntity(String.class);
+		String json = response.readEntity(String.class);
 		LOG.debug(json);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode actual_obj;

@@ -2,6 +2,7 @@ package org.jailbreak.service.resources.events;
 
 import io.dropwizard.auth.Auth;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -30,7 +31,7 @@ public class LinkEventsResource {
 	}
 	
 	@POST
-	public Link createLink(@Auth User user, Link link) {
+	public Link createLink(@Auth User user, @BeanParam Link link) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a Link Event", ApiDocs.EVENTS);
 		}
