@@ -10,9 +10,7 @@ database:
   driverClass: org.postgresql.Driver
 
   # connection settings
-  user: set-by-env
-  password: set-by-env
-  url: set-by-env
+  url: ${DATABASE_URL}
 
   properties:
     charSet: UTF-8
@@ -45,7 +43,24 @@ logging:
       threshold: INFO
       target: stdout
 
+resources:
+  defaultLimit: 10
+  maxLimit: 20
+  eventsDefaultLimit: 20
+  eventsMaxLimit: 50
+
 jailbreak:
-  startTime: 1425632400
-  startLocationLat: 53.348857
-  startLocationLon: -6.285844
+  startTime: ${JB_START_TIME}
+  startLat: ${JB_START_LAT}
+  startLon: ${JB_START_LON}
+  finalLat: ${JB_FINAL_LAT}
+  finalLon: ${JB_FINAL_LON}
+
+sentry:
+  enabled: ${SENTRY_ENABLED}
+  dsn: ${SENTRY_DSN}
+
+stripe:
+  secretKey: ${STRIPE_SECRET_KEY}
+
+

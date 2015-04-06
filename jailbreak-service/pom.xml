@@ -59,12 +59,12 @@
     <dependency>
       <groupId>com.hubspot.dropwizard</groupId>
       <artifactId>dropwizard-guice</artifactId>
-      <version>0.7.0.2</version>
+      <version>0.8.0</version>
     </dependency>
     <dependency>
       <groupId>com.hubspot.jackson</groupId>
       <artifactId>jackson-datatype-protobuf</artifactId>
-      <version>0.4.0</version>
+      <version>0.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.jailbreak.api</groupId>

@@ -4,29 +4,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import io.dropwizard.Configuration;
+import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.db.DataSourceFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.jailbreak.service.config.EnvironmentFactory;
-import org.jailbreak.service.config.HerokuDatabaseConfiguration;
 import org.jailbreak.service.config.JailbreakFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jailbreak.service.config.ResourcesFactory;
+import org.jailbreak.service.config.SentryFactory;
+import org.jailbreak.service.config.StripeFactory;
 
 public class ServiceConfiguration extends Configuration {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(ServiceConfiguration.class);
-	
-	// Environment Variables Settings
-	@NotNull
-	private EnvironmentFactory environmentSettings = new EnvironmentFactory();
-	
-	public EnvironmentFactory getEnvironmentSettings() {
-		return environmentSettings;
-	}
-	
-	// Jailbreak Competition Settings
+    // Jailbreak Competition Settings
 	@Valid
 	@NotNull
 	private JailbreakFactory jailbreakSettings = new JailbreakFactory();
@@ -40,21 +30,74 @@ public class ServiceConfiguration extends Configuration {
     public void setJailbreakSettings(JailbreakFactory factory) {
     	this.jailbreakSettings = factory;
     }
+    
+    // Resources  Settings
+ 	@Valid
+ 	@NotNull
+ 	private ResourcesFactory resourceSettings = new ResourcesFactory();
+ 	
+	@JsonProperty("resources")
+	public ResourcesFactory getResourcesSettings() {
+		return this.resourceSettings;
+	}
+	 
+	@JsonProperty("resources")
+	public void setResourcesSettings(ResourcesFactory factory) {
+		this.resourceSettings = factory;
+	}
+    
+    // Sentry Error Reporting Settings
+    @Valid
+	@NotNull
+	private SentryFactory sentrySettings = new SentryFactory();
+	
+    @JsonProperty("sentry")
+    public SentryFactory getSentrySettings() {
+    	return this.sentrySettings;
+    }
+    
+    @JsonProperty("sentry")
+    public void setSentrySettings(SentryFactory factory) {
+    	this.sentrySettings = factory;
+    }
+    
+    // Stripe API Settings
+    @Valid
+	@NotNull
+	private StripeFactory stripeSettings = new StripeFactory();
+	
+    @JsonProperty("stripe")
+    public StripeFactory getStripeSettings() {
+    	return this.stripeSettings;
+    }
+    
+    @JsonProperty("stripe")
+    public void setStripeSettings(StripeFactory factory) {
+    	this.stripeSettings = factory;
+    }
 	
     // Database Settings
-    @Valid
-    @NotNull
+    @JsonProperty
     private DataSourceFactory database = new DataSourceFactory();
 	
-    @JsonProperty("database")
     public DataSourceFactory getDataSourceFactory() {
-    	LOG.info("Dropwizard dummy DB URL will be overridden by environment variable DATABASE_URL");
-        database = HerokuDatabaseConfiguration.create();
         return database;
     }
 
     public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
         this.database = dataSourceFactory;
+    }
+    
+    // HTTP Client Settings
+    @JsonProperty
+    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
+	
+    public JerseyClientConfiguration getJerseyClientConfiguration() {
+        return httpClient;
+    }
+
+    public void setJerseyClientConfiguration(JerseyClientConfiguration config) {
+        this.httpClient = config;
     }
     
 }
