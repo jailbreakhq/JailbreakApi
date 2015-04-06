@@ -77,6 +77,7 @@ message Checkin {
 	optional int32 team_id = 7;
 	optional double distance_to_x = 8;
 	optional Team team = 9;
+	optional string href = 10;
 }
 
 message Challenge {
