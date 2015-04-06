@@ -18,6 +18,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
@@ -155,7 +156,8 @@ public class TeamsResource {
 		for (Team team : teams) {
 			Team.Builder builder = team.toBuilder();
 
-			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.TEAMS_PATH, builder.getId()));
+			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.TEAMS_PATH, team.getId()));
+			builder.setCheckinsUrl(ResourcesHelper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(team.getId()).toString()));
 			
 			results.add(builder.build());
 		}
