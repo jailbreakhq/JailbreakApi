@@ -54,7 +54,14 @@ public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>
 			WebApplicationException webException = (WebApplicationException) e;
 			Response resp = webException.getResponse();
 			status = resp.getStatus();
-			message = e.getMessage();
+			
+			if (status == 404) {
+				message = "Object not found";
+			} else if (status == 405) {
+				message = "HTTP Method not supported";
+			} else {
+				message = e.getMessage();
+			}
 			
 		} else {
 			status = 500;
