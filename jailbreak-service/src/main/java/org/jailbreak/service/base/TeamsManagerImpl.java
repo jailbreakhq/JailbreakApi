@@ -10,6 +10,7 @@ import java.util.Set;
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
+import org.jailbreak.service.ServiceConfiguration;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.dao.TeamsDAO;
@@ -21,7 +22,6 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.newrelic.deps.com.google.common.collect.Lists;
 
 public class TeamsManagerImpl implements TeamsManager {
@@ -38,14 +38,13 @@ public class TeamsManagerImpl implements TeamsManager {
 			CheckinsManager checkinsManager,
 			Slugify slugify,
 			DistanceHelper distanceHelper,
-			@Named("jailbreak.startLocationLat") double startLat,
-			@Named("jailbreak.startLocationLon") double startLon) {
+			ServiceConfiguration config) {
 		this.dao = dao;
 		this.checkinsManager = checkinsManager;
 		this.slugify = slugify;
 		this.distanceHelper = distanceHelper;
-		this.startLat = startLat;
-		this.startLon = startLon;
+		this.startLat = config.getJailbreakSettings().getStartLat();
+		this.startLon = config.getJailbreakSettings().getStartLon();
 	}
 	
 	@Override
@@ -90,9 +89,19 @@ public class TeamsManagerImpl implements TeamsManager {
 	}
 
 	@Override
-	public List<Team> getTeams() {
-		List<Team> teams = dao.getTeams();
+	public List<Team> getAllTeams() {
+		List<Team> teams = dao.getAllTeams();
 		
+		return annotateTeamsWithCheckins(teams);
+	}
+	
+	public List<Team> getTeams(int limit) {
+		List<Team> teams;
+		try {
+			teams =  dao.getFilteredTeams(limit, TeamsFilters.getDefaultInstance());
+		} catch (SQLException e) {
+			throw new AppException("Database error getting teams", e);
+		}
 		return annotateTeamsWithCheckins(teams);
 	}
 	
@@ -110,7 +119,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public List<Team> getTeamsByLastCheckin() {
-		List<Team> teams = dao.getTeams();
+		List<Team> teams = dao.getAllTeams();
 		
 		List<Team> teamsAnnotated = annotateTeamsWithCheckins(teams);
 		
@@ -206,7 +215,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public int updateAllTeamPositions(int teamIdCausedUpdate) {
-		List<Team> teamsAnnotated = getTeams(); // get teams annotated with last chekin information
+		List<Team> teamsAnnotated = getAllTeams(); // get teams annotated with last chekin information
 		
 		// sort teams by distance to X
 		Collections.sort(teamsAnnotated, new Comparator<Team>() {

@@ -30,6 +30,8 @@ import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
@@ -49,6 +51,8 @@ public class TeamsResource {
 	private final int defaultLimit;
 	private final int maxLimit;
 	
+	private final Logger LOG = LoggerFactory.getLogger(TeamsResource.class);
+	
 	@Inject
 	public TeamsResource(TeamsManager manager,
 			@Named("resources.defaultLimit") int defaultLimit,
@@ -56,16 +60,21 @@ public class TeamsResource {
 		this.manager = manager;
 		this.defaultLimit = defaultLimit;
 		this.maxLimit = maxLimit;
+		LOG.info("Constructor Default: " + defaultLimit);
+		LOG.info("Constructor Max: " + maxLimit);
 	}
 	
 	@GET
 	@Timed
 	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
+		LOG.info("default: " + defaultLimit);
+		LOG.info("max: " + maxLimit);
 		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
+		LOG.info("limit: " + limit);
 		TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
         
-		List<Team> teams = this.manager.getTeams(limit+150, filters); // TODO: fix limit issues
+		List<Team> teams = this.manager.getTeams(limit, filters);
 	
 		return response(teams);
 	}

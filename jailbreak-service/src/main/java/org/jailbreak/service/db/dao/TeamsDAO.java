@@ -63,10 +63,7 @@ public abstract class TeamsDAO {
 	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
 	
 	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
-	public abstract List<Team> getTeams();
-	
-	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC LIMIT 10")
-	public abstract List<Team> getTopTenTeams();
+	public abstract List<Team> getAllTeams();
 	
 	public List<Team> getFilteredTeams(int limit, TeamsFilters filters) throws SQLException {
 		Map<String, Object> bindParams = Maps.newHashMap();

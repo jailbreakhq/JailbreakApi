@@ -16,7 +16,8 @@ public interface TeamsManager {
 	public Optional<Team> getTeamSlug(String slug);
 	public Optional<Team> getLimitedTeam(int id);
 	
-	public List<Team> getTeams();
+	public List<Team> getAllTeams();
+	public List<Team> getTeams(int limit);
 	public List<Team> getTeams(int limit, TeamsFilters filters);
 	public List<Team> getTeamsByLastCheckin();
 	public HashMap<Integer, Team> getLimitedTeams(Set<Integer> ids);
