@@ -20,7 +20,9 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
 
+import com.google.common.collect.ImmutableMap;
 import com.hubspot.dropwizard.guice.GuiceBundle;
 import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 
@@ -39,6 +41,7 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
     public void initialize(Bootstrap<ServiceConfiguration> bootstrap) {   	
     	bootstrap.addBundle(migrations);
         bootstrap.addBundle(guiceBundle);
+        bootstrap.addBundle(viewBundle);
         bootstrap.getObjectMapper().registerModule(new ProtobufModule()); // jackson serializer for protobuf objects
         bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor()));
     }
@@ -78,5 +81,12 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
 	    .enableAutoConfig(getClass().getPackage().getName())
 	    .setConfigClass(ServiceConfiguration.class)
 	    .build();
+    
+   private final ViewBundle<ServiceConfiguration> viewBundle = new ViewBundle<ServiceConfiguration>() {
+       @Override
+       public ImmutableMap<String, ImmutableMap<String, String>> getViewConfiguration(ServiceConfiguration config) {
+           return config.getViewRendererConfiguration();
+       }
+   };
     
 }
