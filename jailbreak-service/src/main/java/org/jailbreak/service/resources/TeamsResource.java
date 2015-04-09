@@ -30,14 +30,11 @@ import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.errors.ApiDocs;
 import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 @Path("/teams")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -48,35 +45,27 @@ public class TeamsResource {
 	private UriInfo uriInfo;
 	
 	private final TeamsManager manager;
-	private final int defaultLimit;
-	private final int maxLimit;
-	
-	private final Logger LOG = LoggerFactory.getLogger(TeamsResource.class);
+	private final ResourcesHelper helper;
 	
 	@Inject
 	public TeamsResource(TeamsManager manager,
-			@Named("resources.defaultLimit") int defaultLimit,
-			@Named("resources.maxLimit") int maxLimit) {
+			ResourcesHelper helper) {
 		this.manager = manager;
-		this.defaultLimit = defaultLimit;
-		this.maxLimit = maxLimit;
-		LOG.info("Constructor Default: " + defaultLimit);
-		LOG.info("Constructor Max: " + maxLimit);
+		this.helper = helper;
 	}
 	
 	@GET
 	@Timed
-	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
+	public Response getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
+			@QueryParam("page") Optional<Integer> page,
 			@QueryParam("filters") Optional<String> maybeFilters) {
-		LOG.info("default: " + defaultLimit);
-		LOG.info("max: " + maxLimit);
-		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		LOG.info("limit: " + limit);
-		TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
+		int limit = helper.limit(maybeLimit);
+		TeamsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
         
-		List<Team> teams = this.manager.getTeams(limit, filters);
-	
-		return response(teams);
+		List<Team> teams = this.manager.getTeams(limit, page, filters);
+		int totalCount = this.manager.getTotalCount(filters);
+		
+		return Response.ok(teams).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
 	
 	@Path("/lastcheckin")
@@ -165,8 +154,8 @@ public class TeamsResource {
 		for (Team team : teams) {
 			Team.Builder builder = team.toBuilder();
 
-			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.TEAMS_PATH, team.getId()));
-			builder.setCheckinsUrl(ResourcesHelper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(team.getId()).toString()));
+			builder.setHref(helper.buildUrl(uriInfo, Paths.TEAMS_PATH, team.getId()));
+			builder.setCheckinsUrl(helper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(team.getId()).toString()));
 			
 			results.add(builder.build());
 		}

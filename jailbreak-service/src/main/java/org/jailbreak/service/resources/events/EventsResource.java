@@ -21,7 +21,6 @@ import org.jailbreak.service.resources.ResourcesHelper;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.newrelic.deps.com.google.common.collect.Lists;
 
 @Path(Paths.EVENTS_PATH)
@@ -32,25 +31,21 @@ public class EventsResource {
 	private UriInfo uriInfo;
 	
 	private final EventsManager manager;
-	private final int defaultLimit;
-	private final int maxLimit;
+	private final ResourcesHelper helper;
 	
 	@Inject
 	public EventsResource(EventsManager manager,
-			@Named("resources.events.defaultLimit") int defaultLimit,
-			@Named("resources.events.maxLimit") int maxLimit) {
+			ResourcesHelper helper) {
 		this.manager = manager;
-		this.defaultLimit = defaultLimit;
-		this.maxLimit = maxLimit;
+		this.helper = helper;
 	}
 	
 	@GET
 	@Timed
 	public List<Event> getEvents(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
-		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		
-		EventsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, EventsFilters.class, EventsFilters.newBuilder().build(), ApiDocs.EVENTS_FILTERS);
+		Integer limit = helper.eventsLimit(maybeLimit);
+		EventsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, EventsFilters.class, EventsFilters.getDefaultInstance(), ApiDocs.EVENTS_FILTERS);
 		
 		return response(manager.getEvents(limit, filters));
 	}
@@ -67,7 +62,7 @@ public class EventsResource {
 		for (Event event : events) {
 			Event.Builder builder = event.toBuilder();
 			builder.clearObjectId();
-			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.EVENTS_PATH, event.getId()));
+			builder.setHref(helper.buildUrl(uriInfo, Paths.EVENTS_PATH, event.getId()));
 			results.add(builder.build());
 		}
 		return results;

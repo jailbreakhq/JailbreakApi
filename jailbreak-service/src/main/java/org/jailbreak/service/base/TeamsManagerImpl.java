@@ -88,28 +88,22 @@ public class TeamsManagerImpl implements TeamsManager {
 		return dao.getLimitedTeam(id);
 	}
 
-	@Override
-	public List<Team> getAllTeams() {
+	private List<Team> getAllTeams() {
 		List<Team> teams = dao.getAllTeams();
 		
 		return annotateTeamsWithCheckins(teams);
 	}
 	
-	public List<Team> getTeams(int limit) {
-		List<Team> teams;
-		try {
-			teams =  dao.getFilteredTeams(limit, TeamsFilters.getDefaultInstance());
-		} catch (SQLException e) {
-			throw new AppException("Database error getting teams", e);
-		}
-		return annotateTeamsWithCheckins(teams);
+	@Override
+	public List<Team> getTeams(int limit, Optional<Integer> page) {
+		return this.getTeams(limit, page, TeamsFilters.getDefaultInstance());
 	}
 	
 	@Override
-	public List<Team> getTeams(int limit, TeamsFilters filters) {
+	public List<Team> getTeams(int limit, Optional<Integer> page, TeamsFilters filters) {
 		List<Team> teams;
 		try {
-			teams = dao.getFilteredTeams(limit, filters);
+			teams = dao.getFilteredTeams(limit, page, filters);
 		} catch (SQLException e) {
 			throw new AppException("Database error getting teams", e);
 		}
@@ -156,6 +150,15 @@ public class TeamsManagerImpl implements TeamsManager {
 		}
 		
 		return map;
+	}
+	
+	@Override
+	public int getTotalCount(TeamsFilters filters) {
+		try {
+			return dao.countFilteredTeams(filters);
+		} catch (SQLException e) {
+			throw new AppException("Error counting the number of teams", e);
+		}
 	}
 	
 	@Override

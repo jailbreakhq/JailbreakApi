@@ -21,18 +21,21 @@ public class RootResource {
 	private UriInfo uriInfo;
 	
 	private final DonationsManager donationsManager;
-	private final ServiceConfiguration config;;
+	private final ServiceConfiguration config;
+	private final ResourcesHelper helper;
 	
 	@Inject
 	public RootResource(DonationsManager donationsManager,
-			ServiceConfiguration config) {
+			ServiceConfiguration config,
+			ResourcesHelper helper) {
 		this.donationsManager = donationsManager;
 		this.config = config;
+		this.helper = helper;
 	}
 	
 	@GET
 	public JailbreakService getJailbreakInfo() {
-		String path = ResourcesHelper.buildUrl(uriInfo, "");
+		String path = helper.buildUrl(uriInfo, "");
 		
 		int amountRaised = donationsManager.getTotalRaised();
 		
