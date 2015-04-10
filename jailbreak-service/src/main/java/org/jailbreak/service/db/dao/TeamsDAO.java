@@ -84,7 +84,7 @@ public abstract class TeamsDAO {
 		}
 		builder.limit(limit);
 		if (page.isPresent()) {
-			builder.offset(limit * page.get());
+			builder.offset(limit * (page.get() - 1)); // pagination starts at 0
 		}
 		String queryString = builder.build();
 		
