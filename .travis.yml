@@ -6,6 +6,7 @@ cache:
   directories:
     - "$HOME/.m2/repository"
 notifications:
+  email: false
   slack: jailbreakhq:WSFGi4VPG5JlpA0PgU1fOsI2
   on_success: change
   on_failure: always
