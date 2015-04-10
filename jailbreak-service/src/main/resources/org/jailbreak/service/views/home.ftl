@@ -7,9 +7,6 @@
     <title>JailbreakHQ 2015 a global race in aid of Amnesty International and Society St. Vincent de Paul</title>
     <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise €100,000 for Amnesty International and Society St. Vincent de Paul">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="signet:authors" content="Kevin Baker, Shayan Yousefizadeh">
-    <meta name="signet:links" content="https://twitter.com/__kbaker__, https://github.com/Specialkbyte, https://twitter.com/Shayanzadeh, https://github.com/Shayanzadeh, https://github.com/jailbreakhq">
-    <meta name="apple-itunes-app" content="app-id=971420182">
      
     <link rel="apple-touch-icon" sizes="57x57" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="114x114" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-114x114.png">
@@ -67,7 +64,7 @@
         <nav data-topbar="" role="navigation" class="top-bar">
           <ul class="title-area">
             <li class="name">
-              <h1 id="logo-title"><a href="/">JailbreakHQ 2015: The Race is On!</a></h1>
+              <h1 id="logo-title"><a href="/html/home">JailbreakHQ 2015: The Race is On!</a></h1>
             </li>
           </ul>
           
@@ -109,7 +106,7 @@
                         <div class="progress radius"><span style="width: ${settings.amountRaised/10000}%" class="meter">€${settings.amountRaised/100} raised</span>€100,000 goal</div>
                       </div>
                     </div>
-                    <div class="small-12 medium-2 columns"><a class="button round expand donate-button">Donate Now</a></div>
+                    <div class="small-12 medium-2 columns"><a href="/donate" class="button round expand donate-button">Donate Now</a></div>
                   </div>
               </div>
             </div>
