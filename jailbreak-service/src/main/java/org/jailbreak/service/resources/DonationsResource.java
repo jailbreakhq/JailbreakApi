@@ -30,7 +30,6 @@ import org.jailbreak.service.errors.ForbiddenException;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 @Path(Paths.DONATIONS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -41,23 +40,20 @@ public class DonationsResource {
 	private UriInfo uriInfo;
 	
 	private final DonationsManager manager;
-	private final int defaultLimit;
-	private final int maxLimit;
+	private final ResourcesHelper helper;
 	
 	@Inject
-	public DonationsResource(DonationsManager manager, 
-			@Named("resources.defaultLimit") int defaultLimit,
-			@Named("resources.maxLimit") int maxLimit) {
+	public DonationsResource(DonationsManager manager,
+			ResourcesHelper helper) {
 		this.manager = manager;
-		this.defaultLimit = defaultLimit;
-		this.maxLimit = maxLimit;
+		this.helper = helper;
 	}
 	
 	@GET
 	public Response getDonations(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
-		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, DonationsFilters.class, DonationsFilters.newBuilder().build(), ApiDocs.DONATIONS_FILTERS);
+		Integer limit = helper.limit(maybeLimit);
+		DonationsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, DonationsFilters.class, DonationsFilters.getDefaultInstance(), ApiDocs.DONATIONS_FILTERS);
 		
 		List<Donation> donations = this.manager.getDonations(limit, filters);
 		int totalCount = this.manager.getTotalCount(filters);
@@ -117,7 +113,7 @@ public class DonationsResource {
 				builder.clearEmail();
 			}
 			
-			builder.setHref(ResourcesHelper.buildUrl(uriInfo, Paths.DONATIONS_PATH, builder.getId()));
+			builder.setHref(helper.buildUrl(uriInfo, Paths.DONATIONS_PATH, builder.getId()));
 			
 			filtered.add(builder.build());
 		}

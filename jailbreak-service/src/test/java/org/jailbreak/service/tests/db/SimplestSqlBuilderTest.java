@@ -82,8 +82,19 @@ public class SimplestSqlBuilderTest {
 	}
 	
 	@Test
+	public void testOrderByOffset() {
+String expected = "SELECT * FROM donations ORDER BY time OFFSET 40";
+		
+		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations")
+			.addOrderBy("time")
+			.offset(40);
+		
+		assertThat(builder.build()).isEqualTo(expected);
+	}
+	
+	@Test
 	public void testAll() {
-		String expected = "SELECT amount, team_id, name FROM donations WHERE time = :time AND name = :name ORDER BY team_id ASC, time DESC LIMIT 25";
+		String expected = "SELECT amount, team_id, name FROM donations WHERE time = :time AND name = :name ORDER BY team_id ASC, time DESC LIMIT 25 OFFSET 50";
 		
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("donations")
 			.addColumn("amount")
@@ -93,7 +104,8 @@ public class SimplestSqlBuilderTest {
 			.addWhere("name = :name")
 			.addOrderBy("team_id", OrderBy.ASC)
 			.addOrderBy("time", OrderBy.DESC)
-			.limit(25);
+			.limit(25)
+			.offset(50);
 		
 		assertThat(builder.build()).isEqualTo(expected);
 	}

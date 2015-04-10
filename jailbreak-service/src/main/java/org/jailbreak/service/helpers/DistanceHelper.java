@@ -1,9 +1,9 @@
 package org.jailbreak.service.helpers;
 
 import org.jailbreak.api.representations.Representations.Checkin;
+import org.jailbreak.service.ServiceConfiguration;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 public class DistanceHelper {
 	
@@ -11,10 +11,9 @@ public class DistanceHelper {
 	private final double finalLon;
 	
 	@Inject
-	public DistanceHelper(@Named("jailbreak.finalLocationLat") double finalLat,
-			@Named("jailbreak.finalLocationLon") double finalLon) {
-		this.finalLat = finalLat;
-		this.finalLon = finalLon;
+	public DistanceHelper(ServiceConfiguration config) {
+		this.finalLat = config.getJailbreakSettings().getFinalLat();
+		this.finalLon = config.getJailbreakSettings().getFinalLon();
 	}
 	
 	public double distanceToX(double lat, double lon) {

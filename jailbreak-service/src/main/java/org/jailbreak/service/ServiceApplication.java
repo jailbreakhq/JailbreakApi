@@ -10,9 +10,11 @@ import net.kencochrane.raven.Raven;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.jailbreak.api.representations.Representations.User;
 import org.jailbreak.service.auth.ApiTokenAuthenticator;
+import org.jailbreak.service.errors.JsonUnauthorizedHandler;
 import org.jailbreak.service.errors.RuntimeExceptionMapper;
 
 import io.dropwizard.Application;
+import io.dropwizard.auth.AuthFactory;
 import io.dropwizard.auth.basic.BasicAuthFactory;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
@@ -52,7 +54,7 @@ public class ServiceApplication extends Application<ServiceConfiguration> {
         // we don't need to add resources, tasks, healthchecks or providers
         // we must get our health checks inherit from InjectableHealthCheck in order for them to be injected
     	ApiTokenAuthenticator apiTokenAuth = this.guiceBundle.getInjector().getInstance(ApiTokenAuthenticator.class);
-    	environment.jersey().register(new BasicAuthFactory<User>(apiTokenAuth, "AUTH", User.class));
+    	environment.jersey().register(AuthFactory.binder(new BasicAuthFactory<User>(apiTokenAuth, "AUTH", User.class).responseBuilder(new JsonUnauthorizedHandler())));
     	
     	// Custom Exception Mapper
     	Raven raven = this.guiceBundle.getInjector().getInstance(Raven.class);

@@ -38,10 +38,13 @@ public class CheckinsResource {
 	private UriInfo uriInfo;
 	
 	private final CheckinsManager manager;
+	private final ResourcesHelper helper;
 	
 	@Inject
-	public CheckinsResource(CheckinsManager manager) {
+	public CheckinsResource(CheckinsManager manager,
+			ResourcesHelper helper) {
 		this.manager = manager;
+		this.helper = helper;
 	}
 	
 	@GET
@@ -97,7 +100,7 @@ public class CheckinsResource {
 		List<Checkin> results = Lists.newArrayListWithCapacity(checkins.size());
 		for (Checkin checkin : checkins) {
 			Checkin.Builder builder = checkin.toBuilder();
-			builder.setHref(ResourcesHelper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(checkin.getTeamId()).toString(), checkin.getId()));
+			builder.setHref(helper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(checkin.getTeamId()).toString(), checkin.getId()));
 			results.add(builder.build());
 		}
 		return results;
