@@ -29,5 +29,6 @@ public interface TeamsManager {
 	public void deleteTeam(int id);
 	
 	public int updateAllTeamPositions(int teamIdCausedUpdate);
+	public List<Team> getAllTeams();
 	
 }
