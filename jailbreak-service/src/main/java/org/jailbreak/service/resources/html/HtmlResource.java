@@ -46,7 +46,7 @@ public class HtmlResource {
 	@GET
 	@Timed
 	public HomeView getHomeView() {
-		List<Team> teams = teamsManager.getTeams();
+		List<Team> teams = teamsManager.getAllTeams();
 		List<Event> events = eventsManager.getEvents(20, EventsFilters.getDefaultInstance());
 		List<Donation> donations = donationsManager.getDonations(10);
 		return new HomeView(teams, events, donations);
