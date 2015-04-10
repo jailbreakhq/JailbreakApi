@@ -68,6 +68,12 @@ public class TeamsResource {
 		return Response.ok(teams).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
 	
+	@Path("/all")
+	@GET
+	public List<Team> getAllTeams() {
+		return this.response(this.manager.getAllTeams());
+	}
+	
 	@Path("/lastcheckin")
 	@GET
 	public List<Team> getTeamsByLastCheckin() {

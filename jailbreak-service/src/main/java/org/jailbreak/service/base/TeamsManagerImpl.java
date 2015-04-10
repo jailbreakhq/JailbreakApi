@@ -88,7 +88,8 @@ public class TeamsManagerImpl implements TeamsManager {
 		return dao.getLimitedTeam(id);
 	}
 
-	private List<Team> getAllTeams() {
+	@Override
+	public List<Team> getAllTeams() {
 		List<Team> teams = dao.getAllTeams();
 		
 		return annotateTeamsWithCheckins(teams);
