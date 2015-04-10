@@ -11,8 +11,11 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Event;
+import org.jailbreak.api.representations.Representations.JailbreakService;
+import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.service.ServiceConfiguration;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.events.EventsManager;
@@ -32,24 +35,41 @@ public class HtmlResource {
 	private final TeamsManager teamsManager;
 	private final EventsManager eventsManager;
 	private final DonationsManager donationsManager;
+	private final ServiceConfiguration config;
 	
 	@Inject
 	public HtmlResource(TeamsManager teamsManager,
 			EventsManager eventsManager,
-			DonationsManager donationsManager) {
+			DonationsManager donationsManager,
+			ServiceConfiguration config) {
 		this.teamsManager = teamsManager;
 		this.eventsManager = eventsManager;
 		this.donationsManager = donationsManager;
+		this.config = config;
 	}
 	
 	@Path("/home")
 	@GET
 	@Timed
 	public HomeView getHomeView() {
+		int amountRaised = donationsManager.getTotalRaised();
+		
+		// build only the necessary attributes of the JailbreakService object
+		// that are needed for the HomeView
+		JailbreakService settings = JailbreakService.newBuilder()
+	        	.setAmountRaised(amountRaised)
+	    		.setStartTime(config.getJailbreakSettings().getStartTime())
+	    		.setStartLocationLat(config.getJailbreakSettings().getStartLat())
+	    		.setStartLocationLon(config.getJailbreakSettings().getStartLon())
+	    		.setFinalLocationLat(config.getJailbreakSettings().getFinalLat())
+	    		.setFinalLocationLon(config.getJailbreakSettings().getFinalLon())
+	    		.build();
+		
 		List<Team> teams = teamsManager.getAllTeams();
 		List<Event> events = eventsManager.getEvents(20, EventsFilters.getDefaultInstance());
 		List<Donation> donations = donationsManager.getDonations(10);
-		return new HomeView(teams, events, donations);
+		int donationsCount = donationsManager.getTotalCount(DonationsFilters.getDefaultInstance());
+		return new HomeView(settings, teams, events, donations, donationsCount);
 	}
 	
 	@Path("/teams")
