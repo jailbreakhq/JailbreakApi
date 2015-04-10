@@ -8,10 +8,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.JailbreakService;
+import org.jailbreak.service.ServiceConfiguration;
 import org.jailbreak.service.core.DonationsManager;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 @Path("/")
 @Produces({MediaType.APPLICATION_JSON})
@@ -21,40 +21,31 @@ public class RootResource {
 	private UriInfo uriInfo;
 	
 	private final DonationsManager donationsManager;
-	private final long startTime;
-	private final double startLat;
-	private final double startLon;
-	private final double finalLat;
-	private final double finalLon;
+	private final ServiceConfiguration config;
+	private final ResourcesHelper helper;
 	
 	@Inject
 	public RootResource(DonationsManager donationsManager,
-			@Named("jailbreak.startTime") long startTime,
-			@Named("jailbreak.startLocationLat") double startLat,
-			@Named("jailbreak.startLocationLon") double startLon,
-			@Named("jailbreak.finalLocationLat") double finalLat,
-			@Named("jailbreak.finalLocationLon") double finalLon) {
+			ServiceConfiguration config,
+			ResourcesHelper helper) {
 		this.donationsManager = donationsManager;
-		this.startTime = startTime;
-		this.startLat = startLat;
-		this.startLon = startLon;
-		this.finalLat = finalLat;
-		this.finalLon = finalLon;
+		this.config = config;
+		this.helper = helper;
 	}
 	
 	@GET
 	public JailbreakService getJailbreakInfo() {
-		String path = ResourcesHelper.buildUrl(uriInfo, "");
+		String path = helper.buildUrl(uriInfo, "");
 		
 		int amountRaised = donationsManager.getTotalRaised();
 		
         return JailbreakService.newBuilder()
         	.setAmountRaised(amountRaised)
-    		.setStartTime(startTime)
-    		.setStartLocationLat(startLat)
-    		.setStartLocationLon(startLon)
-    		.setFinalLocationLat(roundLocationPercision(finalLat))
-    		.setFinalLocationLon(roundLocationPercision(finalLon))
+    		.setStartTime(config.getJailbreakSettings().getStartTime())
+    		.setStartLocationLat(config.getJailbreakSettings().getStartLat())
+    		.setStartLocationLon(config.getJailbreakSettings().getStartLon())
+    		.setFinalLocationLat(config.getJailbreakSettings().getFinalLat())
+    		.setFinalLocationLon(config.getJailbreakSettings().getFinalLon())
         	.setTeamsUrl(path + Paths.TEAMS_PATH)
         	.setDonationsUrl(path + Paths.DONATIONS_PATH)
         	.setEventsUrl(path + Paths.EVENTS_PATH)
@@ -63,8 +54,4 @@ public class RootResource {
     		.build();
 	}
 	
-	private double roundLocationPercision(double location) {
-		return (double)Math.round(location * 1000000) / 1000000;
-	}
-
 }

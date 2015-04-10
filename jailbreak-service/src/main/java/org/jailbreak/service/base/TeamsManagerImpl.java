@@ -10,6 +10,7 @@ import java.util.Set;
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.api.representations.Representations.Team;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
+import org.jailbreak.service.ServiceConfiguration;
 import org.jailbreak.service.core.CheckinsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.db.dao.TeamsDAO;
@@ -21,7 +22,6 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import com.newrelic.deps.com.google.common.collect.Lists;
 
 public class TeamsManagerImpl implements TeamsManager {
@@ -38,14 +38,13 @@ public class TeamsManagerImpl implements TeamsManager {
 			CheckinsManager checkinsManager,
 			Slugify slugify,
 			DistanceHelper distanceHelper,
-			@Named("jailbreak.startLocationLat") double startLat,
-			@Named("jailbreak.startLocationLon") double startLon) {
+			ServiceConfiguration config) {
 		this.dao = dao;
 		this.checkinsManager = checkinsManager;
 		this.slugify = slugify;
 		this.distanceHelper = distanceHelper;
-		this.startLat = startLat;
-		this.startLon = startLon;
+		this.startLat = config.getJailbreakSettings().getStartLat();
+		this.startLon = config.getJailbreakSettings().getStartLon();
 	}
 	
 	@Override
@@ -89,18 +88,22 @@ public class TeamsManagerImpl implements TeamsManager {
 		return dao.getLimitedTeam(id);
 	}
 
-	@Override
-	public List<Team> getTeams() {
-		List<Team> teams = dao.getTeams();
+	private List<Team> getAllTeams() {
+		List<Team> teams = dao.getAllTeams();
 		
 		return annotateTeamsWithCheckins(teams);
 	}
 	
 	@Override
-	public List<Team> getTeams(int limit, TeamsFilters filters) {
+	public List<Team> getTeams(int limit, Optional<Integer> page) {
+		return this.getTeams(limit, page, TeamsFilters.getDefaultInstance());
+	}
+	
+	@Override
+	public List<Team> getTeams(int limit, Optional<Integer> page, TeamsFilters filters) {
 		List<Team> teams;
 		try {
-			teams = dao.getFilteredTeams(limit, filters);
+			teams = dao.getFilteredTeams(limit, page, filters);
 		} catch (SQLException e) {
 			throw new AppException("Database error getting teams", e);
 		}
@@ -110,7 +113,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public List<Team> getTeamsByLastCheckin() {
-		List<Team> teams = dao.getTeams();
+		List<Team> teams = dao.getAllTeams();
 		
 		List<Team> teamsAnnotated = annotateTeamsWithCheckins(teams);
 		
@@ -147,6 +150,15 @@ public class TeamsManagerImpl implements TeamsManager {
 		}
 		
 		return map;
+	}
+	
+	@Override
+	public int getTotalCount(TeamsFilters filters) {
+		try {
+			return dao.countFilteredTeams(filters);
+		} catch (SQLException e) {
+			throw new AppException("Error counting the number of teams", e);
+		}
 	}
 	
 	@Override
@@ -206,7 +218,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public int updateAllTeamPositions(int teamIdCausedUpdate) {
-		List<Team> teamsAnnotated = getTeams(); // get teams annotated with last chekin information
+		List<Team> teamsAnnotated = getAllTeams(); // get teams annotated with last chekin information
 		
 		// sort teams by distance to X
 		Collections.sort(teamsAnnotated, new Comparator<Team>() {

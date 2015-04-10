@@ -108,60 +108,6 @@ public class ServiceModule extends AbstractModule {
 	}
 	
 	@Provides
-	@Named("jailbreak.startTime")
-	public long provideStartTime(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getStartTime();
-	}
-	
-	@Provides
-	@Named("jailbreak.startLocationLat")
-	public double provideStartLat(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getStartLat();
-	}
-	
-	@Provides
-	@Named("jailbreak.startLocationLon")
-	public double provideStartLon(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getStartLon();
-	}
-	
-	@Provides
-	@Named("jailbreak.finalLocationLat")
-	public double provideEndLat(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getFinalLat();
-	}
-	
-	@Provides
-	@Named("jailbreak.finalLocationLon")
-	public double provideEndLon(ServiceConfiguration config) {
-		return config.getJailbreakSettings().getFinalLon();
-	}
-	
-	@Provides
-	@Named("resources.maxLimit")
-	public int provideResourcesMaxLimit(ServiceConfiguration config) {
-		return config.getResourcesSettings().getMaxLimit();
-	}
-	
-	@Provides
-	@Named("resources.defaultLimit")
-	public int provideResourcesDefaultLimit(ServiceConfiguration config) {
-		return config.getResourcesSettings().getDefaultLimit();
-	}
-	
-	@Provides
-	@Named("resources.events.maxLimit")
-	public int provideEventsResourceMaxLimit(ServiceConfiguration config) {
-		return config.getResourcesSettings().getEventsMaxLimit();
-	}
-	
-	@Provides
-	@Named("resources.events.defaultLimit")
-	public int provideEventsResourceDefaultLimit(ServiceConfiguration config) {
-		return config.getResourcesSettings().getEventsDefaultLimit();
-	}
-	
-	@Provides
 	@Named("stripe.secret.key")
 	public String provideStripeSecretKey(ServiceConfiguration config) {
 		return config.getStripeSettings().getSecretKey();
