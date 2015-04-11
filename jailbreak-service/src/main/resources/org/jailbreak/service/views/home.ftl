@@ -8,33 +8,11 @@
     <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise €100,000 for Amnesty International and Society St. Vincent de Paul">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
-    <link rel="apple-touch-icon" sizes="57x57" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="http://builds.jailbreakhq.org/static-236/favicons/apple-touch-icon-180x180.png">
-    <link rel="shortcut icon" href="http://builds.jailbreakhq.org/static-236/favicons/favicon.ico">
-    <link rel="icon" type="image/png" href="http://builds.jailbreakhq.org/static-236/favicons/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="http://builds.jailbreakhq.org/static-236/favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="http://builds.jailbreakhq.org/static-236/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="http://builds.jailbreakhq.org/static-236/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="http://builds.jailbreakhq.org/static-236/favicons/favicon-32x32.png" sizes="32x32">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="//builds.jailbreakhq.org/static-236/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="//builds.jailbreakhq.org/static-236/favicons/browserconfig.xml"> 
-    
-     
     <!-- CSS-->
     <!--<link rel="stylesheet" href="http://builds.jailbreakhq.org/traditional/main.css">-->
     <link rel="stylesheet" href="//builds.jailbreakhq.org/static-236/dist/styles/main.css">
      
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- JS-->
-    <!-- Jailbreak JS App Settings-->
     <script>
       var jailbreak = {};
       jailbreak.sentry = {};
@@ -42,20 +20,11 @@
     </script>
          
     <script>
-      jailbreak.url = 'qa.jailbreakhq.org';
-      jailbreak.api_host = 'https://qa.jbapi.net';
-      jailbreak.release = 'static-236';
-      jailbreak.ga_id = 'UA-58463386-2';
+      jailbreak.release = 'traditional';
       jailbreak.sentry.enabled = true;
       jailbreak.sentry.dsn = 'https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797';
     </script> 
          
-    <!-- Stripe Setup-->
-    <script src="https://js.stripe.com/v2/"></script>
-    <script>
-      Stripe.setPublishableKey('pk_test_elhSJvoDh3lhrYOuOv1D5i23');
-    </script> 
-        
     <!--<script src="http://builds.jailbreakhq.org/traditional/main.js"></script>-->
   </head>
   <body class="f-topbar-fixed">
@@ -121,7 +90,7 @@
 		                          <i class="fa fa-globe"></i>
 		                          <span class="team-header">
 		                            <img src="${event.checkin.team.avatar}" width="30" height="30" class="radius">
-		                            <h4><a href="/teams/${event.checkin.team.slug}">${event.checkin.team.names}<span class="label round itt">${event.checkin.team.university}</span><span class="label round">${event.checkin.team.position}</span></a></h4>
+		                            <h4><a href="/teams/${event.checkin.team.slug}">${event.checkin.team.names}<span class="label round ${event.checkin.team.university?lower_case}">${event.checkin.team.university}</span><span class="label round">${event.checkin.team.position}</span></a></h4>
 		                          </span>
 		                          <span class="time">${(event.checkin.time*1000)?number_to_date}</span>
 		                          <p> <strong>${event.checkin.location}</strong>${event.checkin.status}</p>
@@ -136,9 +105,11 @@
                     <h3 class="section-header">Recent Donations</h3>
                     <ul id="donations" class="donations-list">
                     	<#list donations as donation>
-                    		<#if (donation.team)?is_hash>
-				        		<li><span><em>&euro;${donation.amount}</em> from ${donation.name} to <a href="/teams/${donation.team.slug}">${donation.team.names}</a></span><span class="time">${(donation.time*1000)?number_to_date}</span></li>
-				        	</#if>
+			        		<li><span><em>&euro;${donation.amount}</em> from ${donation.name}
+			        		<#if donation.hasTeam()>
+			        			to <a href="/teams/${donation.team.slug}">${donation.team.names}</a>
+			        		</#if>
+			        		</span><span class="time">${(donation.time*1000)?number_to_date}</span></li>
 				        </#list>
                    	</ul>
                     <p class="and-more">and ${donationsCount - 10} other donations</p>
