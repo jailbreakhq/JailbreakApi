@@ -9,23 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
     <!-- CSS-->
-    <!--<link rel="stylesheet" href="http://builds.jailbreakhq.org/traditional/main.css">-->
-    <link rel="stylesheet" href="//builds.jailbreakhq.org/static-236/dist/styles/main.css">
-     
+    <link rel="stylesheet" href="http://localhost:8080/build/styles/main.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-      var jailbreak = {};
-      jailbreak.sentry = {};
-      jailbreak.sentry.enabled = false;
-    </script>
-         
-    <script>
-      jailbreak.release = 'traditional';
-      jailbreak.sentry.enabled = true;
-      jailbreak.sentry.dsn = 'https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797';
-    </script> 
-         
-    <!--<script src="http://builds.jailbreakhq.org/traditional/main.js"></script>-->
   </head>
   <body class="f-topbar-fixed">
     <div id="wrapper">
@@ -65,23 +50,71 @@
                           <li>
                               <label>College</label>
                               <select id="university">
+                              	<#if university = "ALL">
+                                    <option value="ALL" selected>All Colleges</option>
+                                <#else>
                                   <option value="ALL">All Colleges</option>
+                                </#if>
+                                <#if university = "TCD">
+                                    <option value="TCD" selected>TCD</option>
+                                <#else>
                                   <option value="TCD">TCD</option>
+                                </#if>
+                                <#if university = "UCD">
+                                    <option value="UCD" selected>UCD</option>
+                                <#else>
                                   <option value="UCD">UCD</option>
+                                </#if>
+                                <#if university = "UCC">
+                                    <option value="UCC" selected>UCC</option>
+                                <#else>
                                   <option value="UCC">UCC</option>
+                                </#if>
+                                <#if university = "NUIG">
+                                    <option value="NUIG" selected>NUIG</option>
+                                <#else>
                                   <option value="NUIG">NUIG</option>
+                                </#if>
+                                <#if university = "NUIM">
+                                    <option value="NUIM" selected>NUIM</option>
+                                <#else>
                                   <option value="NUIM">NUIM</option>
+                                </#if>
+                                <#if university = "NCI">
+                                    <option value="NCI" selected>NCI</option>
+                                <#else>
                                   <option value="NCI">NCI</option>
-                                  <option value="CIT">Cork IT</option>
+                                </#if>
+                                <#if university = "CIT">
+                                    <option value="CIT" selected>CIT</option>
+                                <#else>
+                                  <option value="CIT">CIT</option>
+                                </#if>
+                                <#if university = "ITT">
+                                    <option value="ITT" selected>NUIM</option>
+                                <#else>
                                   <option value="ITT">ITT</option>
+                                </#if>
                               </select>
                           </li>
                           <li>
                               <label>Order By</label>
                               <select id="order-by">
+                              	<#if orderBy = "POSITION">
+                                    <option value="POSITION" selected>Position</option>
+                                <#else>
                                   <option value="POSITION">Position</option>
+                                </#if>
+                                <#if orderBy = "AMOUNT_RAISED">
+                                    <option value="AMOUNT_RAISED" selected>Amount Raised</option>
+                                <#else>
                                   <option value="AMOUNT_RAISED">Amount Raised</option>
+                                </#if>
+                                <#if orderBy = "TEAM_NUMBER">
+                                    <option value="TEAM_NUMBER" selected>Team Number</option>
+                                <#else>
                                   <option value="TEAM_NUMBER">Team Number</option>
+                                </#if>
                               </select>
                           </li>
                       </ul>
@@ -102,8 +135,27 @@
                       </ul>
                   </div>
                   <div id="teams-pagination">
-                      <span class="loaded">Loaded 20 of 81 teams</span>
-                      <a id="load-more-teams" class="content-button">Load More</a>
+                  	<div class="pagination-centered">
+					  <ul class="pagination">
+					  	<#if page = 1>
+					    	<li class="arrow unavailable"><a>&laquo; Previous</a></li>
+					    <#else>
+					    	<li class="arrow"><a href="?page=${page-1}${filtersParams}">&laquo; Previous</a></li>
+					    </#if>
+					    <#list pageRange as pageNumber>
+					    	<#if pageNumber = page>
+					    		<li class="current"><a href="?page=${pageNumber}${filtersParams}">${pageNumber}</a></li>
+					    	<#else>
+					    		<li><a href="?page=${pageNumber}${filtersParams}">${pageNumber}</a></li>
+					    	</#if>
+					    </#list>
+					    <#if page = numberPages>
+					    	<li class="arrow unavailable"><a>Next &raquo;</a></li>
+					    <#else>
+					    	<li class="arrow"><a href="?page=${page+1}${filtersParams}">Next &raquo;</a></li>
+					    </#if>
+					  </ul>
+					</div>
                   </div>
               </div>
           </div>
@@ -128,5 +180,9 @@
         </div>
       </footer>
     </div>
+    
+    <!-- JS -->
+    <script src="http://localhost:8080/build/scripts/components.js"></script>
+    <script src="http://localhost:8080/build/scripts/teams.js"></script>
 </body>
 </html>

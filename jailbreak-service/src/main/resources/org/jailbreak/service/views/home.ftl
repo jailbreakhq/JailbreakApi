@@ -9,23 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
     <!-- CSS-->
-    <!--<link rel="stylesheet" href="http://builds.jailbreakhq.org/traditional/main.css">-->
-    <link rel="stylesheet" href="//builds.jailbreakhq.org/static-236/dist/styles/main.css">
-     
+    <link rel="stylesheet" href="http://localhost:8080/build/styles/main.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-      var jailbreak = {};
-      jailbreak.sentry = {};
-      jailbreak.sentry.enabled = false;
-    </script>
-         
-    <script>
-      jailbreak.release = 'traditional';
-      jailbreak.sentry.enabled = true;
-      jailbreak.sentry.dsn = 'https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797';
-    </script> 
-         
-    <!--<script src="http://builds.jailbreakhq.org/traditional/main.js"></script>-->
   </head>
   <body class="f-topbar-fixed">
     <div id="wrapper">
@@ -166,5 +151,10 @@
         </div>
       </footer>
     </div>
+    
+    <!-- JS -->
+    <script src="http://localhost:8080/build/scripts/components.js"></script>
+    <script src="http://localhost:8080/build/scripts/slick.js"></script>
+    <script src="http://localhost:8080/build/scripts/index.js"></script>
 </body>
 </html>

@@ -16,13 +16,13 @@ import org.jailbreak.api.representations.Representations.JailbreakService;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
 import org.jailbreak.api.representations.Representations.Event.EventsFilters;
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.TeamOrdering;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
+import org.jailbreak.api.representations.Representations.Team.University;
 import org.jailbreak.service.ServiceConfiguration;
 import org.jailbreak.service.core.DonationsManager;
 import org.jailbreak.service.core.TeamsManager;
 import org.jailbreak.service.core.events.EventsManager;
-import org.jailbreak.service.errors.ApiDocs;
-import org.jailbreak.service.resources.ResourcesHelper;
 import org.jailbreak.service.views.HomeView;
 import org.jailbreak.service.views.TeamsView;
 
@@ -41,19 +41,16 @@ public class HtmlResource {
 	private final EventsManager eventsManager;
 	private final DonationsManager donationsManager;
 	private final ServiceConfiguration config;
-	private final ResourcesHelper helper;
 	
 	@Inject
 	public HtmlResource(TeamsManager teamsManager,
 			EventsManager eventsManager,
 			DonationsManager donationsManager,
-			ServiceConfiguration config,
-			ResourcesHelper helper) {
+			ServiceConfiguration config) {
 		this.teamsManager = teamsManager;
 		this.eventsManager = eventsManager;
 		this.donationsManager = donationsManager;
 		this.config = config;
-		this.helper = helper;
 	}
 	
 	@Path("/home")
@@ -82,14 +79,37 @@ public class HtmlResource {
 	
 	@Path("/teams")
 	@GET
+	@Timed
 	public TeamsView getTeamsView(@QueryParam("page") Optional<Integer> page,
-			@QueryParam("filters") Optional<String> maybeFilters) {
-		TeamsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
+			@QueryParam("university") Optional<String> university,
+			@QueryParam("orderBy") Optional<String> orderBy) {
+		int limit = 20;
 		
-		List<Team> teams = teamsManager.getTeams(20, page, filters);
+		// build filters from url params
+		TeamsFilters.Builder builder = TeamsFilters.newBuilder();
+		if (university.isPresent()) {
+			builder.setUniversity(University.valueOf(university.get()));
+		}
+		
+		if (orderBy.isPresent()) {
+			builder.setOrderBy(TeamOrdering.valueOf(orderBy.get()));
+		}
+		TeamsFilters filters = builder.build();
+				
+		// get data for view
+		List<Team> teams = teamsManager.getTeams(limit, page, filters);
 		int count = teamsManager.getTotalCount(filters);
 		
-		return new TeamsView(teams, count);
+		int pageValue;
+		if (page.isPresent()) {
+			pageValue = page.get();
+		} else {
+			pageValue = 1;
+		}
+		
+		int numberPages = (int) Math.ceil(count/(float)limit);
+		
+		return new TeamsView(teams, count, pageValue, numberPages, filters);
 	}
 	
 }
