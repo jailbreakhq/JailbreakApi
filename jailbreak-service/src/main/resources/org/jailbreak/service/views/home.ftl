@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      
     <!-- CSS-->
-    <link rel="stylesheet" href="http://localhost:8080/build/styles/main.css">
+    <link rel="stylesheet" href="https://builds.jailbreakhq.org/traditional/dist/styles/main.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body class="f-topbar-fixed">
@@ -153,9 +153,9 @@
     </div>
     
     <!-- JS -->
-    <script src="http://localhost:8080/build/scripts/components.js"></script>
-    <script src="http://localhost:8080/build/scripts/slick.js"></script>
-    <script src="http://localhost:8080/build/scripts/index.js"></script>
+    <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/components.js"></script>
+    <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/slick.js"></script>
+    <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/index.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 		function initialize() {
