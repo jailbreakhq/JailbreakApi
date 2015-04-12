@@ -156,5 +156,92 @@
     <script src="http://localhost:8080/build/scripts/components.js"></script>
     <script src="http://localhost:8080/build/scripts/slick.js"></script>
     <script src="http://localhost:8080/build/scripts/index.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+		function initialize() {
+			var mapOptions = {
+				zoom: 6,
+		        center: new google.maps.LatLng(53.349, -6.260),
+		        mapTypeId: google.maps.MapTypeId.ROADMAP,
+		        streetViewControl: false,
+		        mapTypeControl: false,
+		        panControl: false,
+		        zoomControl: true
+			};
+			var map = new google.maps.Map(document.getElementById('index-map-canvas'), mapOptions);
+			var markerBounds = new google.maps.LatLngBounds;
+			var infowindow = new google.maps.InfoWindow({
+			  content: 'Loading...'
+			});
+			
+			var startMarker = new google.maps.Marker({
+			  position: new google.maps.LatLng(${settings.startLocationLat}, ${settings.startLocationLon}),
+			  map: map,
+			  icon: {
+			    path: google.maps.SymbolPath.CIRCLE,
+			    scale: 6,
+			    strokeColor: '#b21c26'
+			  },
+			  title: 'Start Point',
+			  html: '<div class="info-window"><h3>Collins Barracks Dublin</h3><p>The start point of Jailbreak 2015 race</p></div>'
+			});
+			
+			google.maps.event.addListener(startMarker, 'click', function(startMarker) {
+			    infowindow.setContent(startMarker.html);
+			    return infowindow.open(map, startMarker);
+			});
+			
+			markerBounds.extend(startMarker.position);
+			
+			var endMarker = new google.maps.Marker({
+			  position: new google.maps.LatLng(${settings.finalLocationLat}, ${settings.finalLocationLon}),
+			  map: map,
+			  icon: {
+			    path: google.maps.SymbolPath.CIRCLE,
+			    scale: 6,
+			    strokeColor: '#b21c26'
+			  },
+			  title: 'Location X',
+			  html: '<div class="info-window"><h3>Location X</h3><p>Bled Castle overlooking Lake Bled, Slovenia!</p><br /><img src="https://static.jailbreakhq.org/bled-castle.jpg" /></div>'
+			});
+			
+			google.maps.event.addListener(endMarker, 'click', function(endMarker) {
+			    infowindow.setContent(endMarker.html);
+			    return infowindow.open(map, endMarker);
+			});
+			
+			markerBounds.extend(endMarker.position);
+			
+			map.fitBounds(markerBounds);
+			
+			// teams
+			var marker;
+			var markers = [];
+			<#list teams as team>
+				marker = new google.maps.Marker({
+				  position: new google.maps.LatLng(${team.lastCheckin.lat}, ${team.lastCheckin.lon}),
+				  map: map,
+				  title: '${team.teamNumber} - ${team.names}',
+				  html: '',
+				  animation: google.maps.Animation.DROP
+				}); 
+				
+				markers.push(marker);
+			</#list>
+			
+			for(var i = 0; i < markers.length; i++) {
+				var marker = markers[i];
+				google.maps.event.addListener(marker, 'click', function(marker) {
+				    infowindow.setContent(this.html);
+				    return infowindow.open(map, this);
+				});
+				
+				markerBounds.extend(marker.position);
+			}
+      
+      		map.fitBounds(markerBounds);
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </body>
 </html>
