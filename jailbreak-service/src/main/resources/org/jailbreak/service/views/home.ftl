@@ -10,7 +10,7 @@
      
     <!-- CSS-->
     <link rel="stylesheet" href="https://builds.jailbreakhq.org/traditional/dist/styles/main.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body class="f-topbar-fixed">
     <div id="wrapper">
