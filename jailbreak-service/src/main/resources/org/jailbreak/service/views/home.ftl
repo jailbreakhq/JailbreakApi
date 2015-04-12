@@ -156,7 +156,7 @@
     <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/components.js"></script>
     <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/slick.js"></script>
     <script src="https://builds.jailbreakhq.org/traditional/dist/scripts/index.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 		function initialize() {
 			var mapOptions = {
