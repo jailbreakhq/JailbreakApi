@@ -28,6 +28,9 @@ local.properties
 # Eclipse Core
 .project
 
+# IntelliJ
+*.iml
+
 # External tool builders
 .externalToolBuilders/
 

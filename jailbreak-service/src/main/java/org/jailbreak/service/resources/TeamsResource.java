@@ -65,7 +65,7 @@ public class TeamsResource {
 		List<Team> teams = this.manager.getTeams(limit, page, filters);
 		int totalCount = this.manager.getTotalCount(filters);
 		
-		return Response.ok(teams).header(Headers.X_TOTAL_COUNT, totalCount).build();
+		return response(teams, totalCount);
 	}
 	
 	@Path("/all")
@@ -166,6 +166,11 @@ public class TeamsResource {
 			results.add(builder.build());
 		}
 		return results;
+	}
+	
+	private Response response(List<Team> teams, int totalCount) {
+		List<Team> results = response(teams);
+		return Response.ok(results).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
 	
 	private Optional<Team> response(Optional<Team> donation) {
