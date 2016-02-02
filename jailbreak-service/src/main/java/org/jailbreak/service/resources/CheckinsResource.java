@@ -4,6 +4,7 @@ import io.dropwizard.auth.Auth;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,7 +12,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.Checkin;
 import org.jailbreak.api.representations.Representations.User;
@@ -22,6 +26,7 @@ import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 @Path(Paths.CHECKINS_PATH)
@@ -29,20 +34,26 @@ import com.google.inject.Inject;
 @Produces(MediaType.APPLICATION_JSON)
 public class CheckinsResource {
 	
+	@Context
+	private UriInfo uriInfo;
+	
 	private final CheckinsManager manager;
+	private final ResourcesHelper helper;
 	
 	@Inject
-	public CheckinsResource(CheckinsManager manager) {
+	public CheckinsResource(CheckinsManager manager,
+			ResourcesHelper helper) {
 		this.manager = manager;
+		this.helper = helper;
 	}
 	
 	@GET
 	public List<Checkin> getTeamCheckins(@PathParam("team_id") int team_id) {
-        return this.manager.getTeamCheckins(team_id);
+        return response(manager.getTeamCheckins(team_id));
 	}
 	
 	@POST
-	public Checkin postCheckin(@Auth User user, @PathParam("team_id") int teamId, Checkin checkin) {
+	public Checkin postCheckin(@Auth User user, @PathParam("team_id") int teamId, @BeanParam Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a checkin", ApiDocs.CHECKINS);
 		}
@@ -61,18 +72,18 @@ public class CheckinsResource {
 			throw new BadRequestException("You must provide a longitude value to create this Checkin", ApiDocs.CHECKINS);
 		}
 		
-		return this.manager.createCheckin(checkin);
+		return response(manager.createCheckin(checkin));
 	}
 	
 	@GET
 	@Path("/{id}")
 	public Optional<Checkin> getCheckin(@PathParam("team_id") int teamId, @PathParam("id") int id) {
-		return this.manager.getTeamCheckin(teamId, id);
+		return response(manager.getTeamCheckin(teamId, id));
 	}
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Checkin> updateCheckin(@Auth User user, @PathParam("id") int id, Checkin checkin) {
+	public Optional<Checkin> updateCheckin(@Auth User user, @PathParam("id") int id, @BeanParam Checkin checkin) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a checkin", ApiDocs.CHECKINS);
 		}
@@ -81,7 +92,30 @@ public class CheckinsResource {
 			throw new BadRequestException("Checkin id in request body must match checkin id in the url", ApiDocs.CHECKINS_UPDATE);
 		}
 		
-		return this.manager.updateCheckin(checkin);
+		return response(manager.updateCheckin(checkin));
+	}
+	
+	// response builders
+	private List<Checkin> response(List<Checkin> checkins) {
+		List<Checkin> results = Lists.newArrayListWithCapacity(checkins.size());
+		for (Checkin checkin : checkins) {
+			Checkin.Builder builder = checkin.toBuilder();
+			builder.setHref(helper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(checkin.getTeamId()).toString(), checkin.getId()));
+			results.add(builder.build());
+		}
+		return results;
+	}
+	
+	private Optional<Checkin> response(Optional<Checkin> maybe) {
+		if (maybe.isPresent()) {
+			return Optional.of(response(Lists.newArrayList(maybe.get())).get(0));
+		} else {
+			return Optional.absent();
+		}
+	}
+	
+	private Checkin response(Checkin checkin) {
+		return response(Lists.newArrayList(checkin)).get(0);
 	}
 	
 }

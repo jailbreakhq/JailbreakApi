@@ -5,6 +5,7 @@ import io.dropwizard.jersey.PATCH;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,8 +15,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
 
 import org.jailbreak.api.representations.Representations.Team;
@@ -29,67 +33,77 @@ import org.jailbreak.service.errors.ForbiddenException;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 @Path("/teams")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TeamsResource {
 	
+	@Context
+	private UriInfo uriInfo;
+	
 	private final TeamsManager manager;
-	private final int defaultLimit;
-	private final int maxLimit;
+	private final ResourcesHelper helper;
 	
 	@Inject
 	public TeamsResource(TeamsManager manager,
-			@Named("resources.defaultLimit") int defaultLimit,
-			@Named("resources.maxLimit") int maxLimit) {
+			ResourcesHelper helper) {
 		this.manager = manager;
-		this.defaultLimit = defaultLimit;
-		this.maxLimit = maxLimit;
+		this.helper = helper;
 	}
 	
 	@GET
 	@Timed
-	public List<Team> getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
+	public Response getTeams(@QueryParam("limit") Optional<Integer> maybeLimit,
+			@QueryParam("page") Optional<Integer> page,
 			@QueryParam("filters") Optional<String> maybeFilters) {
-		int limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		TeamsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
+		int limit = helper.limit(maybeLimit);
+		TeamsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, TeamsFilters.class, TeamsFilters.newBuilder().build(), ApiDocs.TEAMS_FILTERS);
         
-		return this.manager.getTeams(limit+150, filters); // TODO: fix limit issues
+		List<Team> teams = this.manager.getTeams(limit, page, filters);
+		int totalCount = this.manager.getTotalCount(filters);
+		
+		return Response.ok(teams).header(Headers.X_TOTAL_COUNT, totalCount).build();
+	}
+	
+	@Path("/all")
+	@GET
+	public List<Team> getAllTeams() {
+		return this.response(this.manager.getAllTeams());
 	}
 	
 	@Path("/lastcheckin")
 	@GET
 	public List<Team> getTeamsByLastCheckin() {
-		return this.manager.getTeamsByLastCheckin();
+		return this.response(this.manager.getTeamsByLastCheckin());
 	}
 	
 	@POST
-	public Team addTeam(@Auth User user, Team team) {
+	public Team addTeam(@Auth User user, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
 		
-		return this.manager.addTeam(team);
+		return response(manager.addTeam(team));
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/{id:\\d+}")
 	public Optional<Team> getTeam(@PathParam("id") int id) {
-		return manager.getTeam(id);
+		return response(manager.getTeam(id));
 	}
 	
 	@GET
-	@Path("/slug/{slug}")
+	@Path("/{slug:[a-zA-Z][a-zA-Z0-9\\-]+}")
 	public Optional<Team> getTeamSlug(@PathParam("slug") String slug) {
-		return manager.getTeamSlug(slug);
+		return response(manager.getTeamSlug(slug));
 	}
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, Team team) {
+	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
@@ -103,12 +117,12 @@ public class TeamsResource {
 			team = team.toBuilder().clearLastCheckin().build();
 		}
 		
-		return this.manager.updateTeam(team);
+		return response(manager.updateTeam(team));
 	}
 	
 	@PATCH
 	@Path("/{id}")
-	public Optional<Team> patchTeam(@Auth User user, @PathParam("id") int id, Team team) {
+	public Optional<Team> patchTeam(@Auth User user, @PathParam("id") int id, @BeanParam Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
@@ -126,7 +140,7 @@ public class TeamsResource {
 			throw new BadRequestException("You cannot update the last checkin field on team. You can only create new checkins", ApiDocs.TEAMS_UPDATES);
 		}
 		
-		return this.manager.patchTeam(team);
+		return response(manager.patchTeam(team));
 	}
 	
 	@DELETE
@@ -138,5 +152,31 @@ public class TeamsResource {
 		
 		this.manager.deleteTeam(id);
 		return Response.status(Status.NO_CONTENT).build();
+	}
+	
+	// Response Builder Methods
+	private List<Team> response(List<Team> teams) {
+		List<Team> results = Lists.newArrayListWithCapacity(teams.size());
+		for (Team team : teams) {
+			Team.Builder builder = team.toBuilder();
+
+			builder.setHref(helper.buildUrl(uriInfo, Paths.TEAMS_PATH, team.getId()));
+			builder.setCheckinsUrl(helper.buildUrl(uriInfo, UriBuilder.fromUri(Paths.CHECKINS_PATH).build(team.getId()).toString()));
+			
+			results.add(builder.build());
+		}
+		return results;
+	}
+	
+	private Optional<Team> response(Optional<Team> donation) {
+		if (donation.isPresent()) {
+			return Optional.of(response(Lists.newArrayList(donation.get())).get(0));
+		} else {
+			return Optional.absent();
+		}
+	}
+	
+	private Team response(Team team) {
+		return response(Lists.newArrayList(team)).get(0);
 	}
 }

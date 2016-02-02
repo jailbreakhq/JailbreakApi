@@ -4,6 +4,7 @@ import io.dropwizard.auth.Auth;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,8 +13,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.jailbreak.api.representations.Representations.Donation;
 import org.jailbreak.api.representations.Representations.Donation.DonationsFilters;
@@ -25,43 +28,43 @@ import org.jailbreak.service.errors.BadRequestException;
 import org.jailbreak.service.errors.ForbiddenException;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 @Path(Paths.DONATIONS_PATH)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DonationsResource {
 	
+	@Context
+	private UriInfo uriInfo;
+	
 	private final DonationsManager manager;
-	private final int defaultLimit;
-	private final int maxLimit;
+	private final ResourcesHelper helper;
 	
 	@Inject
-	public DonationsResource(DonationsManager manager, 
-			@Named("resources.defaultLimit") int defaultLimit,
-			@Named("resources.maxLimit") int maxLimit) {
+	public DonationsResource(DonationsManager manager,
+			ResourcesHelper helper) {
 		this.manager = manager;
-		this.defaultLimit = defaultLimit;
-		this.maxLimit = maxLimit;
+		this.helper = helper;
 	}
 	
 	@GET
 	public Response getDonations(@QueryParam("limit") Optional<Integer> maybeLimit,
 			@QueryParam("filters") Optional<String> maybeFilters) {
-		Integer limit = ResourcesHelper.limit(maybeLimit, defaultLimit, maxLimit);
-		DonationsFilters filters = ResourcesHelper.decodeUrlEncodedJson(maybeFilters, DonationsFilters.class, DonationsFilters.newBuilder().build(), ApiDocs.DONATIONS_FILTERS);
+		Integer limit = helper.limit(maybeLimit);
+		DonationsFilters filters = helper.decodeUrlEncodedJson(maybeFilters, DonationsFilters.class, DonationsFilters.getDefaultInstance(), ApiDocs.DONATIONS_FILTERS);
 		
 		List<Donation> donations = this.manager.getDonations(limit, filters);
 		int totalCount = this.manager.getTotalCount(filters);
 		
-		donations = this.manager.filterPrivateFields(donations);
+		donations = this.response(donations);
 		
 		return Response.ok(donations).header(Headers.X_TOTAL_COUNT, totalCount).build();
 	}
 	
 	@POST
-	public Donation postDonation(@Auth User user, Donation donation) {
+	public Donation postDonation(@Auth User user, @BeanParam Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a donation", ApiDocs.DONATIONS);
 		}
@@ -72,12 +75,12 @@ public class DonationsResource {
 	@GET
 	@Path("/{id}")
 	public Optional<Donation> getDonation(@PathParam("id") int id) {
-		return this.manager.getDonation(id);
+		return this.response(this.manager.getDonation(id));
 	}
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, Donation donation) {
+	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, @BeanParam Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a donation", ApiDocs.DONATIONS);
 		}
@@ -92,10 +95,37 @@ public class DonationsResource {
 		}
 		
 		boolean result = this.manager.updateDonation(donation);
-		if(result)
+		if(result) {
 			return Optional.of(donation);
-		else
+		} else {
 			return Optional.absent();
+		}
+	}
+	
+	// Response Builder Methods
+	private List<Donation> response(List<Donation> donations) {
+		List<Donation> filtered = Lists.newArrayListWithCapacity(donations.size());
+		for (Donation donation : donations) {
+			Donation.Builder builder = donation.toBuilder();
+			
+			// filter out private fields like email address
+			if (donation.hasEmail()) {
+				builder.clearEmail();
+			}
+			
+			builder.setHref(helper.buildUrl(uriInfo, Paths.DONATIONS_PATH, builder.getId()));
+			
+			filtered.add(builder.build());
+		}
+		return filtered;
+	}
+	
+	private Optional<Donation> response(Optional<Donation> donation) {
+		if (donation.isPresent()) {
+			return Optional.of(response(Lists.newArrayList(donation.get())).get(0));
+		} else {
+			return Optional.absent();
+		}
 	}
 	
 }

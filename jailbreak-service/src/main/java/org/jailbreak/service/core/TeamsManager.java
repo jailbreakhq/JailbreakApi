@@ -16,10 +16,12 @@ public interface TeamsManager {
 	public Optional<Team> getTeamSlug(String slug);
 	public Optional<Team> getLimitedTeam(int id);
 	
-	public List<Team> getTeams();
-	public List<Team> getTeams(int limit, TeamsFilters filters);
+	public List<Team> getTeams(int limit, Optional<Integer> page);
+	public List<Team> getTeams(int limit, Optional<Integer> page, TeamsFilters filters);
 	public List<Team> getTeamsByLastCheckin();
 	public HashMap<Integer, Team> getLimitedTeams(Set<Integer> ids);
+	
+	public int getTotalCount(TeamsFilters filters);
 	
 	public Team addTeam(Team team);
 	public Optional<Team> updateTeam(Team team);
@@ -27,5 +29,6 @@ public interface TeamsManager {
 	public void deleteTeam(int id);
 	
 	public int updateAllTeamPositions(int teamIdCausedUpdate);
+	public List<Team> getAllTeams();
 	
 }

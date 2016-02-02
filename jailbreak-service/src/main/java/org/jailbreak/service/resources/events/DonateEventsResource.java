@@ -2,6 +2,7 @@ package org.jailbreak.service.resources.events;
 
 import io.dropwizard.auth.Auth;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -30,7 +31,7 @@ public class DonateEventsResource {
 	}
 	
 	@POST
-	public Donate createDonateEvent(@Auth User user, Donate donate) {
+	public Donate createDonateEvent(@Auth User user, @BeanParam Donate donate) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a Donate Button Event", ApiDocs.EVENTS);
 		}

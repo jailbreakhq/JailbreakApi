@@ -93,13 +93,13 @@ public class StripeManagerImpl implements StripeManager {
 			LOG.error("Error handling donation post charge actions: " + e.getMessage());
 			if (raven != null) {
 				// report the error to sentry
-				EventBuilder eventBuilder = new EventBuilder()
-					.setTimestamp(new Date())
-					.setLevel(Event.Level.ERROR)
-					.setMessage(e.getMessage());
-				
-				eventBuilder.addSentryInterface(new ExceptionInterface(e));
-				raven.sendEvent(eventBuilder.build());
+				Event event = new EventBuilder()
+					.withTimestamp(new Date())
+					.withLevel(Event.Level.ERROR)
+					.withMessage(e.getMessage())
+					.withSentryInterface(new ExceptionInterface(e))
+					.build();
+				raven.sendEvent(event);
 			}
 		}
 		

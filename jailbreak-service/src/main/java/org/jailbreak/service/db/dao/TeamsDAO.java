@@ -7,12 +7,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.jailbreak.api.representations.Representations.Team;
+import org.jailbreak.api.representations.Representations.Team.TeamOrdering;
 import org.jailbreak.api.representations.Representations.Team.TeamsFilters;
 import org.jailbreak.service.db.BindIds;
 import org.jailbreak.service.db.BindProtobuf;
 import org.jailbreak.service.db.ManualStatement;
 import org.jailbreak.service.db.SimplestSqlBuilder;
 import org.jailbreak.service.db.SimplestSqlBuilder.OrderBy;
+import org.jailbreak.service.db.mappers.RowCountMapper;
 import org.jailbreak.service.db.mappers.TeamsMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
@@ -32,11 +34,11 @@ public abstract class TeamsDAO {
 	public Connection conn;
 	private final Logger LOG = LoggerFactory.getLogger(TeamsDAO.class);
 	
-	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transport, description, featured, slug, video, avatar_large, last_checkin_id, position) VALUES (:name, :names, :team_number, :avatar, :tag_line, :university, :amount_raised_online, :amount_raised_offline, :countries, :transports, :description, :featured, :slug, :video, :avatar_large, :last_checkin_id, :position")
+	@SqlUpdate("INSERT INTO teams (team_name, names, team_number, avatar, tag_line, university, amount_raised_online, amount_raised_offline, description, featured, slug, video, avatar_large, last_checkin_id, position) VALUES (:name, :names, :team_number, :avatar, :tag_line, :university, :amount_raised_online, :amount_raised_offline, :countries, :transports, :description, :featured, :slug, :video, :avatar_large, :last_checkin_id, :position")
 	@GetGeneratedKeys
 	public abstract int insert(@BindProtobuf Team team);
 
-	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_offline, countries = :countries, transports = :transports, description = :description, featured = :featured, slug = :slug, video = :video, avatar_large = :avatar_large, last_checkin_id = :last_checkin_id, position = :position WHERE id = :id")
+	@SqlUpdate("UPDATE teams SET team_name = :team_name, names = :names, team_number = :team_number, avatar = :avatar, tag_line = :tag_line, university = :university, amount_raised_online = :amount_raised_online, amount_raised_offline = :amount_raised_offline, description = :description, featured = :featured, slug = :slug, video = :video, avatar_large = :avatar_large, last_checkin_id = :last_checkin_id, position = :position WHERE id = :id")
 	public abstract int update(@BindProtobuf Team team);
 	
 	@SqlUpdate("UPDATE teams SET position = :position WHERE id = :id")
@@ -49,11 +51,11 @@ public abstract class TeamsDAO {
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeam(@Bind("id") int id);
 	
-	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, last_checkin_id, position FROM teams WHERE id = :id")
+	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, featured, last_checkin_id, position FROM teams WHERE id = :id")
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getLimitedTeam(@Bind("id") int id);
 	
-	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, countries, transports, featured, last_checkin_id, position FROM teams WHERE id = ANY (:idList)")
+	@SqlQuery("SELECT id, team_number, team_name, names, slug, avatar, tag_line, university, amount_raised_online, amount_raised_offline, featured, last_checkin_id, position FROM teams WHERE id = ANY (:idList)")
 	@SingleValueResult(Team.class)
 	public abstract List<Team> getLimitedTeams(@BindIds Set<Integer> ids);
 	
@@ -62,13 +64,49 @@ public abstract class TeamsDAO {
 	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
 	
 	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
-	public abstract List<Team> getTeams();
+	public abstract List<Team> getAllTeams();
 	
-	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC LIMIT 10")
-	public abstract List<Team> getTopTenTeams();
-	
-	public List<Team> getFilteredTeams(int limit, TeamsFilters filters) throws SQLException {
+	public List<Team> getFilteredTeams(int limit, Optional<Integer> page, TeamsFilters filters) throws SQLException {
 		Map<String, Object> bindParams = Maps.newHashMap();
+		SimplestSqlBuilder builder = applyWhereFilters(filters, bindParams);
+		
+		if (filters.hasOrderBy()) {
+			if (filters.getOrderBy() == TeamOrdering.AMOUNT_RAISED) {
+				builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.DESC);
+			} else if (filters.getOrderBy() == TeamOrdering.POSITION) {
+				builder.addOrderBy("position", OrderBy.ASC);
+			} else if (filters.getOrderBy() == TeamOrdering.TEAM_NUMBER) {
+				builder.addOrderBy("team_number", OrderBy.ASC);
+			}
+		} else {
+			// default ordering is by position
+			builder.addOrderBy("position", OrderBy.ASC);
+		}
+		builder.limit(limit);
+		if (page.isPresent()) {
+			builder.offset(limit * (page.get() - 1)); // pagination starts at 0
+		}
+		String queryString = builder.build();
+		
+		LOG.debug("getFilteredTeams SQL: " + queryString);
+		
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		List<Team> results = query.executeQuery(new TeamsMapper());
+		return results;
+	}
+
+	public int countFilteredTeams(TeamsFilters filters) throws SQLException {
+		Map<String, Object> bindParams = Maps.newHashMap();
+		SimplestSqlBuilder builder = applyWhereFilters(filters, bindParams);
+		builder.addColumn("COUNT(*) as count");
+		String queryString = builder.build();
+		
+		ManualStatement query = new ManualStatement(conn, queryString, bindParams);
+		Integer count = query.executeQuery(new RowCountMapper()).get(0);
+		return count;
+	}
+	
+	private SimplestSqlBuilder applyWhereFilters(TeamsFilters filters, Map<String, Object> bindParams) {
 		SimplestSqlBuilder builder = new SimplestSqlBuilder("teams");
 		
 		if (filters.hasTeamNumber()) {
@@ -86,21 +124,7 @@ public abstract class TeamsDAO {
 			bindParams.put("featured", filters.getFeatured());
 		}
 		
-		builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.DESC);
-		builder.limit(limit);
-		
-		String queryString = builder.build();
-		
-		LOG.debug("getFilteredTeams SQL: " + queryString);
-		
-		try {
-			ManualStatement query = new ManualStatement(conn, queryString, bindParams);
-			List<Team> results = query.executeQuery(new TeamsMapper());
-			return results;
-		} catch (SQLException e) {
-			LOG.error("SQL Error executing query getFilteredDonations " + e.getMessage());
-			throw e;
-		}
+		return builder;
 	}
 
 }

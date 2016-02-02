@@ -15,6 +15,8 @@ message JailbreakService {
 	optional string users_url = 10;
 	optional double start_location_lat = 11;
 	optional double start_location_lon = 12;
+	optional string donations_url = 13;
+	optional string events_url = 14;
 }
 
 message Team {
@@ -40,10 +42,7 @@ message Team {
 	optional string description = 10;
 	optional int32 amount_raised_online = 11;
 	optional int32 amount_raised_offline = 12;
-	optional int32 countries = 14;
-	optional int32 transports = 15;
 	optional string donations_url = 16;
- 	repeated Challenge challenges = 17;
  	optional bool featured = 18;
  	optional string slug = 19;
  	optional string video = 20;
@@ -51,6 +50,8 @@ message Team {
  	optional int32 last_checkin_id = 22;
  	optional Checkin last_checkin = 23;
  	optional int32 position = 24;
+ 	optional string href = 25;
+ 	optional string checkins_url = 26;
  	
  	message TeamsFilters {
  		optional int32 team_number = 1;
@@ -76,6 +77,7 @@ message Checkin {
 	optional int32 team_id = 7;
 	optional double distance_to_x = 8;
 	optional Team team = 9;
+	optional string href = 10;
 }
 
 message Challenge {
@@ -111,6 +113,7 @@ message Event {
 	optional int32 object_id = 4;
 	optional int32 team_id = 5;
 	optional bool highlight = 14;
+	optional string href = 15;
 	
 	optional Link link = 6;
 	optional Checkin checkin = 7;
@@ -235,6 +238,7 @@ message Donation {
 	optional DonationType type = 6;
 	optional string email = 7;
 	optional Team team = 8;
+	optional string href = 9;
 }
 
 message StripeChargeRequest {

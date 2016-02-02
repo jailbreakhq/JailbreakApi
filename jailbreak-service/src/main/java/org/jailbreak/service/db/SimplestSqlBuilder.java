@@ -32,6 +32,7 @@ public class SimplestSqlBuilder {
 	
 	private String table;
 	private Integer limit;
+	private Integer offset;
 	private List<String> columns = Lists.newArrayList();
 	private List<String> wheres = Lists.newArrayList();
 	private List<String> orderBys = Lists.newArrayList();
@@ -75,6 +76,12 @@ public class SimplestSqlBuilder {
 		return this;
 	}
 	
+	public SimplestSqlBuilder offset(int offset) {
+		this.offset = offset;
+		
+		return this;
+	}
+	
 	public String build() {
 		StringBuilder builder = new StringBuilder();
 		
@@ -112,6 +119,10 @@ public class SimplestSqlBuilder {
 		
 		if (limit != null) {
 			builder.append(" LIMIT " + limit);
+		}
+		
+		if (offset != null) {
+			builder.append(" OFFSET " + offset);
 		}
 		
 		return builder.toString().trim();

@@ -119,19 +119,6 @@ public class EventsManagerImpl implements EventsManager {
 		}
 	}
 	
-	@Override
-	public List<Event> filterPrivateFields(List<Event> events) {
-		List<Event> filtered = Lists.newArrayListWithCapacity(events.size());
-		for (Event event : events) {
-			Event.Builder builder = event.toBuilder();
-			
-			builder.clearObjectId();
-			
-			filtered.add(builder.build());
-		}
-		return filtered;
-	}
-	
 	private List<Event> annotateEvents(List<Event> events) {
 		List<Event.Builder> builders = annotateEventsObjects(events);
 		
