@@ -63,10 +63,13 @@ public abstract class TeamsDAO {
 	@SingleValueResult(Team.class)
 	public abstract Optional<Team> getTeamSlug(@Bind("slug") String slug);
 	
-	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
-	public abstract List<Team> getAllTeams();
+	@SqlQuery("SELECT * FROM teams ORDER BY position DESC")
+	public abstract List<Team> getAllTeamsByPosition();
 	
-	public List<Team> getFilteredTeams(int limit, Optional<Integer> page, TeamsFilters filters) throws SQLException {
+	@SqlQuery("SELECT * FROM teams ORDER BY (amount_raised_online + amount_raised_offline) DESC")
+	public abstract List<Team> getAllTeamsByAmountRaised();
+	
+	public List<Team> getFilteredTeams(int limit, Optional<Integer> page, TeamsFilters filters, boolean hasStarted) throws SQLException {
 		Map<String, Object> bindParams = Maps.newHashMap();
 		SimplestSqlBuilder builder = applyWhereFilters(filters, bindParams);
 		
@@ -79,8 +82,13 @@ public abstract class TeamsDAO {
 				builder.addOrderBy("team_number", OrderBy.ASC);
 			}
 		} else {
-			// default ordering is by position
-			builder.addOrderBy("position", OrderBy.ASC);
+			if (hasStarted) {
+				// if race has started then default ordering is by position
+				builder.addOrderBy("position", OrderBy.ASC);
+			} else {
+				// if race has not started then default ordering is by amount raised
+				builder.addOrderBy("(amount_raised_online + amount_raised_offline)", OrderBy.ASC);
+			}
 		}
 		builder.limit(limit);
 		if (page.isPresent()) {

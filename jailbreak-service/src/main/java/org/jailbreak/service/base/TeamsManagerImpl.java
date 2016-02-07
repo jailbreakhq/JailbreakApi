@@ -32,6 +32,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	private final DistanceHelper distanceHelper;
 	private final double startLat;
 	private final double startLon;
+	private final double startTime;
 	
 	@Inject
 	public TeamsManagerImpl(TeamsDAO dao,
@@ -45,6 +46,7 @@ public class TeamsManagerImpl implements TeamsManager {
 		this.distanceHelper = distanceHelper;
 		this.startLat = config.getJailbreakSettings().getStartLat();
 		this.startLon = config.getJailbreakSettings().getStartLon();
+		this.startTime = config.getJailbreakSettings().getStartTime();
 	}
 	
 	@Override
@@ -90,7 +92,13 @@ public class TeamsManagerImpl implements TeamsManager {
 
 	@Override
 	public List<Team> getAllTeams() {
-		List<Team> teams = dao.getAllTeams();
+		List<Team> teams;
+		boolean hasStarted = System.currentTimeMillis() > startTime;
+		if (hasStarted) {
+			teams = dao.getAllTeamsByPosition();
+		} else {
+			teams = dao.getAllTeamsByAmountRaised();
+		}
 		
 		return annotateTeamsWithCheckins(teams);
 	}
@@ -104,7 +112,8 @@ public class TeamsManagerImpl implements TeamsManager {
 	public List<Team> getTeams(int limit, Optional<Integer> page, TeamsFilters filters) {
 		List<Team> teams;
 		try {
-			teams = dao.getFilteredTeams(limit, page, filters);
+			boolean hasStarted = System.currentTimeMillis() > startTime;
+			teams = dao.getFilteredTeams(limit, page, filters, hasStarted);
 		} catch (SQLException e) {
 			throw new AppException("Database error getting teams", e);
 		}
@@ -114,7 +123,7 @@ public class TeamsManagerImpl implements TeamsManager {
 	
 	@Override
 	public List<Team> getTeamsByLastCheckin() {
-		List<Team> teams = dao.getAllTeams();
+		List<Team> teams = dao.getAllTeamsByPosition();
 		
 		List<Team> teamsAnnotated = annotateTeamsWithCheckins(teams);
 		
