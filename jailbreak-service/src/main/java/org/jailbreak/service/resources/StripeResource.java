@@ -1,6 +1,5 @@
 package org.jailbreak.service.resources;
 
-import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -32,7 +31,7 @@ public class StripeResource {
 	}
 	
 	@POST
-	public Response charge(@BeanParam StripeChargeRequest request) {
+	public Response charge(StripeChargeRequest request) {
 		try {
 			manager.chargeCard(request);
 			return Response.status(Status.NO_CONTENT).build();
