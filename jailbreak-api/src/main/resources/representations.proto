@@ -30,6 +30,9 @@ message Team {
 		NCI = 6;
 		GMIT = 7;
 		ITT = 8;
+		DCU = 9;
+		WIT = 10;
+		UL = 11;
 	}
 	
 	optional int32 id = 1;
