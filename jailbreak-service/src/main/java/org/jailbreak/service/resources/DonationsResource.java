@@ -64,7 +64,7 @@ public class DonationsResource {
 	}
 	
 	@POST
-	public Donation postDonation(@Auth User user, @BeanParam Donation donation) {
+	public Donation postDonation(@Auth User user, Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to create a donation", ApiDocs.DONATIONS);
 		}
@@ -80,7 +80,7 @@ public class DonationsResource {
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, @BeanParam Donation donation) {
+	public Optional<Donation> updateDonation(@Auth User user, @PathParam("id") int id, Donation donation) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a donation", ApiDocs.DONATIONS);
 		}
