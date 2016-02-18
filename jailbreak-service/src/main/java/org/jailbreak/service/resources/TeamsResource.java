@@ -81,7 +81,7 @@ public class TeamsResource {
 	}
 	
 	@POST
-	public Team addTeam(@Auth User user, @BeanParam Team team) {
+	public Team addTeam(@Auth User user, Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}
@@ -103,7 +103,7 @@ public class TeamsResource {
 	
 	@PUT
 	@Path("/{id}")
-	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, @BeanParam Team team) {
+	public Optional<Team> putTeam(@Auth User user, @PathParam("id") int id, Team team) {
 		if (user.getUserLevel() != UserLevel.SUPERADMIN) {
 			throw new ForbiddenException("You don't have the necessary permissions to update a team", ApiDocs.TEAMS);
 		}

@@ -30,7 +30,7 @@ public class AuthenticationResource {
 	}
 	
 	@POST
-	public User authenticateApiToken(@BeanParam ApiToken api_token) {
+	public User authenticateApiToken(ApiToken api_token) {
 		Optional<User> user;
 		user = tokensManager.authenticate(api_token);
 		if (user.isPresent()) {
@@ -44,7 +44,7 @@ public class AuthenticationResource {
 	@Timed
 	@POST
 	@Path(Paths.LOGIN_PATH)
-	public ApiToken login(@BeanParam AuthRequest request) {
+	public ApiToken login(AuthRequest request) {
 		AuthRequest cleaned = AuthRequest.newBuilder()
 				.setEmail(request.getEmail().trim().toLowerCase())
 				.setPassword(request.getPassword().trim())
